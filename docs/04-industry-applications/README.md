@@ -24,15 +24,20 @@
 ### 4.2.3 商业管理模型
 
 - [4.2.3.1 战略管理模型](./business-management/strategic-management.md)
-- [4.2.3.2 运营管理模型](./business-management/operations-management.md)
+- [4.2.3.2 运营管理模型](./business-management/operational-management.md)
 - [4.2.3.3 财务管理模型](./business-management/financial-management.md)
-- [4.2.3.4 人力资源模型](./business-management/human-resources.md)
+- [4.2.3.4 人力资源管理模型](./business-management/human-resource-management.md)
 
 ### 4.2.4 跨领域模型
 
-- [4.2.4.1 创新管理模型](./cross-domain/innovation-management.md)
-- [4.2.4.2 知识管理模型](./cross-domain/knowledge-management.md)
-- [4.2.4.3 变革管理模型](./cross-domain/change-management.md)
+- [4.2.4.1 创新管理模型](./business-management/innovation-management.md)
+- [4.2.4.2 知识管理模型](./business-management/knowledge-management.md)
+- [4.2.4.3 变革管理模型](./business-management/change-management.md)
+
+### 4.2.5 专业领域模型
+
+- [4.2.5.1 医疗健康管理模型](./healthcare-management/healthcare-management.md)
+- [4.2.5.2 教育管理模型](./education-management/education-management.md)
 
 ## 4.3 形式化规范
 

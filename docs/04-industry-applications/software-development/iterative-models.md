@@ -12,6 +12,7 @@
 $$\mathcal{I} = (I, F, R, T, C, \mathcal{F})$$
 
 其中：
+
 - $I = \{i_1, i_2, \ldots, i_n\}$ 是迭代(Iteration)集合
 - $F = \{f_1, f_2, \ldots, f_m\}$ 是功能(Feature)集合
 - $R = \{r_1, r_2, \ldots, r_k\}$ 是需求(Requirement)集合
@@ -25,6 +26,7 @@ $$\mathcal{I} = (I, F, R, T, C, \mathcal{F})$$
 $$i_j = (planning, development, testing, deployment)$$
 
 其中：
+
 - $planning$: 迭代规划和需求分析
 - $development$: 功能开发和实现
 - $testing$: 测试和验证
@@ -36,6 +38,7 @@ $$i_j = (planning, development, testing, deployment)$$
 $$s = (current\_iteration, stage, progress, quality, functionality)$$
 
 其中：
+
 - $current\_iteration \in I$ 是当前迭代
 - $stage \in \{planning, development, testing, deployment\}$ 是当前阶段
 - $progress \in [0,1]$ 是项目进度
@@ -50,6 +53,7 @@ $$s = (current\_iteration, stage, progress, quality, functionality)$$
 $$T_{iterative}: S \times A \times S \rightarrow [0,1]$$
 
 其中动作空间 $A$ 包含：
+
 - $a_1$: 开始迭代
 - $a_2$: 完成阶段
 - $a_3$: 功能开发
@@ -530,6 +534,7 @@ mod tests {
 设 $\{s_n\}$ 是迭代状态序列，其中 $s_n = (i_n, st_n, p_n, q_n, f_n)$。
 
 由于：
+
 1. 迭代次数有限
 2. 进度 $p_n \in [0,1]$ 是有界序列
 3. 质量 $q_n \in [0,1]$ 是有界序列
@@ -569,4 +574,4 @@ $$Q(s) = \alpha \cdot Q_{prev} + (1-\alpha) \cdot Q_{current} + \beta \cdot test
 
 ---
 
-**持续构建中...** 返回 [行业应用模型](../README.md) | [项目主页](../../../README.md) 
+**持续构建中...** 返回 [行业应用模型](../README.md) | [项目主页](../../../README.md)
