@@ -122,7 +122,7 @@ $$C_{pk} = \min\left(\frac{USL - \mu}{3\sigma}, \frac{\mu - LSL}{3\sigma}\right)
 - $R$ 是资源分配
 - $W$ 是工作流规则
 
-**示例 4.2.3.2.3.1.1 (服务流程优化)**
+**示例 4.2.3.2.3.1.1 (服务流程优化)**:
 
 ```rust
 #[derive(Debug, Clone)]
@@ -160,7 +160,7 @@ $$L = \lambda W$$
 - $\lambda$ 是到达率
 - $W$ 是平均等待时间
 
-**定理 4.2.3.2.3.2.2 (M/M/1性能指标)**
+**定理 4.2.3.2.3.2.2 (M/M/1性能指标)**:
 
 - 系统利用率：$\rho = \frac{\lambda}{\mu}$
 - 平均等待时间：$W_q = \frac{\rho}{\mu(1-\rho)}$
@@ -176,7 +176,7 @@ $$L = \lambda W$$
 - $T$ 是有形性
 - $E$ 是移情性
 
-**示例 4.2.3.2.3.3.1 (SERVQUAL模型)**
+**示例 4.2.3.2.3.3.1 (SERVQUAL模型)**:
 
 ```haskell
 data ServiceQuality = ServiceQuality
@@ -205,7 +205,7 @@ calculateSERVQUAL sq =
 - $C$ 是容量约束
 - $F$ 是流量函数
 
-**示例 4.2.3.2.4.1.1 (供应链网络优化)**
+**示例 4.2.3.2.4.1.1 (供应链网络优化)**:
 
 ```lean
 structure SupplyChainNetwork :=
@@ -244,7 +244,7 @@ def optimizeSupplyChain (scn : SupplyChainNetwork) :
 **定义 4.2.3.2.4.3.1 (车辆路径问题)**
 VRP问题：给定车辆集合 $V$ 和客户集合 $C$，找到最优配送路径。
 
-**示例 4.2.3.2.4.3.1 (VRP求解)**
+**示例 4.2.3.2.4.3.1 (VRP求解)**:
 
 ```rust
 #[derive(Debug, Clone)]
@@ -274,7 +274,7 @@ $$\text{s.t.} \quad \sum_{i=1}^n a_{ij} x_i \leq b_j, \quad j = 1,2,\ldots,m$$
 
 $$x_i \geq 0, \quad i = 1,2,\ldots,n$$
 
-**示例 4.2.3.2.5.1.1 (线性规划求解)**
+**示例 4.2.3.2.5.1.1 (线性规划求解)**:
 
 ```haskell
 data LinearProgram = LinearProgram
@@ -292,7 +292,7 @@ solveLP lp = simplexMethod lp
 **定义 4.2.3.2.5.2.1 (库存控制DP)**
 价值函数：$V_t(s) = \min_{a \in A} \{ c(s,a) + \sum_{s'} P(s'|s,a) V_{t+1}(s') \}$
 
-**示例 4.2.3.2.5.2.1 (动态规划实现)**
+**示例 4.2.3.2.5.2.1 (动态规划实现)**:
 
 ```lean
 def inventoryControlDP (T : Nat) (S : List State) : 
@@ -316,7 +316,7 @@ def inventoryControlDP (T : Nat) (S : List State) :
 - $M$ 是变异算子
 - $C$ 是交叉算子
 
-**示例 4.2.3.2.5.3.1 (遗传算法实现)**
+**示例 4.2.3.2.5.3.1 (遗传算法实现)**:
 
 ```rust
 #[derive(Debug, Clone)]
@@ -352,7 +352,7 @@ impl GeneticAlgorithm {
 - $P$ 是流程优化
 - $K$ 是持续改进
 
-**示例 4.2.3.2.6.1.1 (价值流分析)**
+**示例 4.2.3.2.6.1.1 (价值流分析)**:
 
 ```rust
 #[derive(Debug)]
@@ -387,7 +387,7 @@ impl ValueStreamMapping {
 - $S$ 是后台支持
 - $P$ 是支持过程
 
-**示例 4.2.3.2.6.2.1 (服务流程设计)**
+**示例 4.2.3.2.6.2.1 (服务流程设计)**:
 
 ```haskell
 data ServiceBlueprint = ServiceBlueprint
@@ -413,7 +413,7 @@ designServiceBlueprint sb =
 - $I$ 是智能分析
 - $T$ 是技术集成
 
-**示例 4.2.3.2.6.3.1 (智能运营平台)**
+**示例 4.2.3.2.6.3.1 (智能运营平台)**:
 
 ```rust
 #[derive(Debug)]

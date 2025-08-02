@@ -11,6 +11,7 @@
 
 **定义 4.2.5.2.1.1.2 (教育系统)**
 教育系统 $ES = (S, T, C, A)$ 其中：
+
 - $S$ 是学生集合
 - $T$ 是教师集合
 - $C$ 是课程集合
@@ -51,12 +52,14 @@
 
 **定义 4.2.5.2.2.1.1 (课程设计)**
 课程设计函数 $CD = f(O, C, A, E)$ 其中：
+
 - $O$ 是学习目标
 - $C$ 是课程内容
 - $A$ 是教学活动
 - $E$ 是评估方法
 
-**示例 4.2.5.2.2.1.1 (课程设计系统)**
+**示例 4.2.5.2.2.1.1 (课程设计系统)**:
+
 ```rust
 #[derive(Debug, Clone)]
 pub struct CourseDesign {
@@ -93,12 +96,14 @@ impl CourseDesign {
 
 **定义 4.2.5.2.2.2.1 (教学计划)**
 教学计划函数 $TP = f(S, T, R, T)$ 其中：
+
 - $S$ 是学期安排
 - $T$ 是时间分配
 - $R$ 是资源分配
 - $T$ 是时间表
 
-**示例 4.2.5.2.2.2.1 (教学计划制定)**
+**示例 4.2.5.2.2.2.1 (教学计划制定)**:
+
 ```haskell
 data TeachingPlan = TeachingPlan
     { semesterSchedule :: SemesterSchedule
@@ -120,12 +125,14 @@ createTeachingPlan tp course =
 
 **定义 4.2.5.2.2.3.1 (教学资源)**
 教学资源函数 $TR = f(M, E, H, D)$ 其中：
+
 - $M$ 是教学材料
 - $E$ 是教学设备
 - $H$ 是人力资源
 - $D$ 是数字资源
 
-**示例 4.2.5.2.2.3.1 (教学资源管理)**
+**示例 4.2.5.2.2.3.1 (教学资源管理)**:
+
 ```lean
 structure TeachingResources :=
   (materials : List TeachingMaterial)
@@ -147,6 +154,7 @@ def optimizeResourceAllocation (tr : TeachingResources) : ResourceAllocation :=
 
 **定义 4.2.5.2.3.1.1 (学习成果评估)**
 学习成果评估函数 $LOA = f(K, S, A, C)$ 其中：
+
 - $K$ 是知识掌握
 - $S$ 是技能应用
 - $A$ 是能力表现
@@ -156,10 +164,12 @@ def optimizeResourceAllocation (tr : TeachingResources) : ResourceAllocation :=
 评估指标 $AI = \sum_{i=1}^n w_i \cdot s_i$
 
 其中：
+
 - $w_i$ 是第 $i$ 个评估维度的权重
 - $s_i$ 是第 $i$ 个评估维度的得分
 
-**示例 4.2.5.2.3.1.1 (学习成果评估)**
+**示例 4.2.5.2.3.1.1 (学习成果评估)**:
+
 ```rust
 #[derive(Debug)]
 pub struct LearningOutcomeAssessment {
@@ -208,12 +218,14 @@ impl LearningOutcomeAssessment {
 
 **定义 4.2.5.2.3.2.1 (学习过程评估)**
 学习过程评估函数 $LPA = f(P, E, I, F)$ 其中：
+
 - $P$ 是参与度
 - $E$ 是参与度
 - $I$ 是互动性
 - $F$ 是反馈
 
-**示例 4.2.5.2.3.2.1 (学习过程评估)**
+**示例 4.2.5.2.3.2.1 (学习过程评估)**:
+
 ```haskell
 data LearningProcessAssessment = LearningProcessAssessment
     { participation :: Participation
@@ -235,12 +247,14 @@ assessLearningProcess lpa student =
 
 **定义 4.2.5.2.3.3.1 (学习预测)**
 学习预测函数 $LP = f(H, P, B, T)$ 其中：
+
 - $H$ 是历史数据
 - $P$ 是当前表现
 - $B$ 是行为模式
 - $T$ 是趋势分析
 
-**示例 4.2.5.2.3.3.1 (学习预测系统)**
+**示例 4.2.5.2.3.3.1 (学习预测系统)**:
+
 ```lean
 structure LearningPrediction :=
   (historicalData : HistoricalData)
@@ -262,12 +276,14 @@ def predictLearningOutcome (lp : LearningPrediction) (student : Student) : Predi
 
 **定义 4.2.5.2.4.1.1 (教学质量)**
 教学质量函数 $TQ = f(M, D, I, E)$ 其中：
+
 - $M$ 是教学方法
 - $D$ 是教学设计
 - $I$ 是教学互动
 - $E$ 是教学效果
 
-**示例 4.2.5.2.4.1.1 (教学质量评估)**
+**示例 4.2.5.2.4.1.1 (教学质量评估)**:
+
 ```rust
 #[derive(Debug)]
 pub struct TeachingQualityAssessment {
@@ -305,12 +321,14 @@ impl TeachingQualityAssessment {
 
 **定义 4.2.5.2.4.2.1 (教育效果)**
 教育效果函数 $EE = f(S, R, I, O)$ 其中：
+
 - $S$ 是学生满意度
 - $R$ 是学习成果
 - $I$ 是就业率
 - $O$ 是整体效果
 
-**示例 4.2.5.2.4.2.1 (教育效果评估)**
+**示例 4.2.5.2.4.2.1 (教育效果评估)**:
+
 ```haskell
 data EducationalEffectiveness = EducationalEffectiveness
     { studentSatisfaction :: StudentSatisfaction
@@ -332,12 +350,14 @@ assessEducationalEffectiveness ee institution =
 
 **定义 4.2.5.2.4.3.1 (持续改进)**
 持续改进函数 $CI = f(A, P, I, M)$ 其中：
+
 - $A$ 是评估分析
 - $P$ 是计划制定
 - $I$ 是实施改进
 - $M$ 是监控效果
 
-**示例 4.2.5.2.4.3.1 (教育持续改进)**
+**示例 4.2.5.2.4.3.1 (教育持续改进)**:
+
 ```lean
 structure ContinuousImprovement :=
   (assessmentAnalysis : AssessmentAnalysis)
@@ -359,12 +379,14 @@ def implementContinuousImprovement (ci : ContinuousImprovement) : ImprovementRes
 
 **定义 4.2.5.2.5.1.1 (学习管理系统)**
 学习管理系统函数 $LMS = f(C, A, T, R)$ 其中：
+
 - $C$ 是课程管理
 - $A$ 是学习活动
 - $T$ 是学习跟踪
 - $R$ 是学习报告
 
-**示例 4.2.5.2.5.1.1 (学习管理系统)**
+**示例 4.2.5.2.5.1.1 (学习管理系统)**:
+
 ```rust
 #[derive(Debug)]
 pub struct LearningManagementSystem {
@@ -396,12 +418,14 @@ impl LearningManagementSystem {
 
 **定义 4.2.5.2.5.2.1 (智能教学)**
 智能教学函数 $IT = f(A, P, R, F)$ 其中：
+
 - $A$ 是自适应学习
 - $P$ 是个性化教学
 - $R$ 是推荐系统
 - $F$ 是反馈机制
 
-**示例 4.2.5.2.5.2.1 (智能教学系统)**
+**示例 4.2.5.2.5.2.1 (智能教学系统)**:
+
 ```haskell
 data IntelligentTeaching = IntelligentTeaching
     { adaptiveLearning :: AdaptiveLearning
@@ -423,12 +447,14 @@ provideIntelligentTeaching it student =
 
 **定义 4.2.5.2.5.3.1 (在线教育)**
 在线教育函数 $OE = f(D, I, C, S)$ 其中：
+
 - $D$ 是数字内容
 - $I$ 是互动平台
 - $C$ 是协作工具
 - $S$ 是支持服务
 
-**示例 4.2.5.2.5.3.1 (在线教育平台)**
+**示例 4.2.5.2.5.3.1 (在线教育平台)**:
+
 ```lean
 structure OnlineEducation :=
   (digitalContent : DigitalContent)
@@ -450,12 +476,14 @@ def conductOnlineEducation (oe : OnlineEducation) : OnlineLearningSession :=
 
 **应用 4.2.5.2.6.1.1 (学校教育管理)**
 学校教育管理模型 $SEM = (T, S, C, A)$ 其中：
+
 - $T$ 是教学管理
 - $S$ 是学生管理
 - $C$ 是课程管理
 - $A$ 是评估管理
 
-**示例 4.2.5.2.6.1.1 (学校教育管理系统)**
+**示例 4.2.5.2.6.1.1 (学校教育管理系统)**:
+
 ```rust
 #[derive(Debug)]
 pub struct SchoolEducationManagement {
@@ -483,12 +511,14 @@ impl SchoolEducationManagement {
 
 **应用 4.2.5.2.6.2.1 (EIS平台)**
 教育信息系统平台 $EIS = (L, M, A, I)$ 其中：
+
 - $L$ 是学习管理
 - $M$ 是教学管理
 - $A$ 是管理应用
 - $I$ 是集成服务
 
-**示例 4.2.5.2.6.2.1 (教育信息化平台)**
+**示例 4.2.5.2.6.2.1 (教育信息化平台)**:
+
 ```haskell
 data EISPlatform = EISPlatform
     { learningManagement :: LearningManagement
@@ -510,12 +540,14 @@ analyzeEducationMetrics eis =
 
 **应用 4.2.5.2.6.3.1 (AI驱动教育)**
 AI驱动教育模型 $AIE = (M, P, A, L)$ 其中：
+
 - $M$ 是机器学习
 - $P$ 是预测分析
 - $A$ 是自适应教育
 - $L$ 是学习算法
 
-**示例 4.2.5.2.6.3.1 (智能教育系统)**
+**示例 4.2.5.2.6.3.1 (智能教育系统)**:
+
 ```rust
 #[derive(Debug)]
 pub struct AIEducationSystem {
@@ -552,4 +584,4 @@ impl AIEducationSystem {
 3. **质量保证**：通过质量评估和持续改进
 4. **信息化管理**：通过学习管理系统和智能教学
 
-该模型为现代教育管理提供了理论基础和实践指导，支持智能化教育和数字化学习平台。 
+该模型为现代教育管理提供了理论基础和实践指导，支持智能化教育和数字化学习平台。

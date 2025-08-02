@@ -11,6 +11,7 @@
 
 **定义 4.2.5.1.1.1.2 (医疗系统)**
 医疗系统 $HS = (P, S, R, Q)$ 其中：
+
 - $P$ 是患者集合
 - $S$ 是医疗服务集合
 - $R$ 是医疗资源集合
@@ -51,12 +52,14 @@
 
 **定义 4.2.5.1.2.1.1 (医疗服务流程)**
 医疗服务流程函数 $MSP = f(A, T, R, Q)$ 其中：
+
 - $A$ 是医疗活动集合
 - $T$ 是时间约束
 - $R$ 是资源分配
 - $Q$ 是质量要求
 
-**示例 4.2.5.1.2.1.1 (医疗服务流程优化)**
+**示例 4.2.5.1.2.1.1 (医疗服务流程优化)**:
+
 ```rust
 #[derive(Debug, Clone)]
 pub struct MedicalServiceProcess {
@@ -95,11 +98,13 @@ $$\text{s.t.} \quad \sum_{j=1}^m a_{ij} x_i \geq d_j, \quad j = 1,2,\ldots,m$$
 $$x_i \geq 0, \quad i = 1,2,\ldots,n$$
 
 其中：
+
 - $c_i$ 是资源 $i$ 的成本
 - $a_{ij}$ 是资源 $i$ 对需求 $j$ 的满足程度
 - $d_j$ 是需求 $j$ 的要求量
 
-**示例 4.2.5.1.2.2.1 (医疗资源调度)**
+**示例 4.2.5.1.2.2.1 (医疗资源调度)**:
+
 ```haskell
 data MedicalResourceScheduling = MedicalResourceScheduling
     { resources :: [MedicalResource]
@@ -120,12 +125,14 @@ optimizeResourceScheduling mrs =
 
 **定义 4.2.5.1.2.3.1 (患者管理)**
 患者管理函数 $PM = f(R, T, F, C)$ 其中：
+
 - $R$ 是患者注册
 - $T$ 是治疗跟踪
 - $F$ 是随访管理
 - $C$ 是护理协调
 
-**示例 4.2.5.1.2.3.1 (患者管理系统)**
+**示例 4.2.5.1.2.3.1 (患者管理系统)**:
+
 ```lean
 structure PatientManagement :=
   (patientRegistration : PatientRegistration)
@@ -147,6 +154,7 @@ def managePatient (pm : PatientManagement) (patient : Patient) : PatientOutcome 
 
 **定义 4.2.5.1.3.1.1 (医疗质量)**
 医疗质量函数 $MQ = f(S, E, P, O)$ 其中：
+
 - $S$ 是安全性
 - $E$ 是有效性
 - $P$ 是患者中心性
@@ -156,10 +164,12 @@ def managePatient (pm : PatientManagement) (patient : Patient) : PatientOutcome 
 质量指标 $QI = \sum_{i=1}^n w_i \cdot q_i$
 
 其中：
+
 - $w_i$ 是第 $i$ 个质量维度的权重
 - $q_i$ 是第 $i$ 个质量维度的得分
 
-**示例 4.2.5.1.3.1.1 (医疗质量评估)**
+**示例 4.2.5.1.3.1.1 (医疗质量评估)**:
+
 ```rust
 #[derive(Debug)]
 pub struct MedicalQuality {
@@ -205,12 +215,14 @@ impl MedicalQuality {
 
 **定义 4.2.5.1.3.2.1 (医疗风险)**
 医疗风险函数 $MR = f(C, T, M, E)$ 其中：
+
 - $C$ 是临床风险
 - $T$ 是技术风险
 - $M$ 是管理风险
 - $E$ 是环境风险
 
-**示例 4.2.5.1.3.2.1 (医疗风险控制)**
+**示例 4.2.5.1.3.2.1 (医疗风险控制)**:
+
 ```haskell
 data MedicalRiskControl = MedicalRiskControl
     { clinicalRisk :: ClinicalRisk
@@ -235,12 +247,14 @@ assessRiskLevel mrc =
 
 **定义 4.2.5.1.3.3.1 (持续改进)**
 持续改进函数 $CI = f(P, D, C, A)$ 其中：
+
 - $P$ 是计划阶段
 - $D$ 是执行阶段
 - $C$ 是检查阶段
 - $A$ 是行动阶段
 
-**示例 4.2.5.1.3.3.1 (PDCA循环)**
+**示例 4.2.5.1.3.3.1 (PDCA循环)**:
+
 ```lean
 structure ContinuousImprovement :=
   (planPhase : PlanPhase)
@@ -262,12 +276,14 @@ def implementPDCA (ci : ContinuousImprovement) : ImprovementResult :=
 
 **定义 4.2.5.1.4.1.1 (患者安全风险)**
 患者安全风险函数 $PSR = f(M, P, S, E)$ 其中：
+
 - $M$ 是医疗错误风险
 - $P$ 是患者跌倒风险
 - $S$ 是手术安全风险
 - $E$ 是感染风险
 
-**示例 4.2.5.1.4.1.1 (患者安全评估)**
+**示例 4.2.5.1.4.1.1 (患者安全评估)**:
+
 ```rust
 #[derive(Debug)]
 pub struct PatientSafetyRisk {
@@ -308,19 +324,21 @@ impl PatientSafetyRisk {
 
 **定义 4.2.5.1.4.2.1 (不良事件)**
 不良事件函数 $AE = f(I, R, A, P)$ 其中：
+
 - $I$ 是事件识别
 - $R$ 是事件报告
 - $A$ 是事件分析
 - $P$ 是事件预防
 
-**示例 4.2.5.1.4.2.1 (不良事件管理)**
+**示例 4.2.5.1.4.2.1 (不良事件管理)**:
+
 ```haskell
 data AdverseEventManagement = AdverseEventManagement
     { eventIdentification :: EventIdentification
     , eventReporting :: EventReporting
     , eventAnalysis :: EventAnalysis
     , eventPrevention :: EventPrevention
-    }
+    }s
 
 manageAdverseEvent :: AdverseEventManagement -> AdverseEvent -> EventOutcome
 manageAdverseEvent aem event = 
@@ -335,12 +353,14 @@ manageAdverseEvent aem event =
 
 **定义 4.2.5.1.4.3.1 (安全文化)**
 安全文化函数 $SC = f(A, R, L, T)$ 其中：
+
 - $A$ 是安全意识
 - $R$ 是报告文化
 - $L$ 是学习文化
 - $T$ 是团队合作
 
-**示例 4.2.5.1.4.3.1 (安全文化评估)**
+**示例 4.2.5.1.4.3.1 (安全文化评估)**:
+
 ```lean
 structure SafetyCulture :=
   (awareness : SafetyAwareness)
@@ -362,12 +382,14 @@ def assessSafetyCulture (sc : SafetyCulture) : CultureScore :=
 
 **定义 4.2.5.1.5.1.1 (电子病历)**
 电子病历函数 $EMR = f(P, D, T, A)$ 其中：
+
 - $P$ 是患者信息
 - $D$ 是诊断数据
 - $T$ 是治疗记录
 - $A$ 是访问控制
 
-**示例 4.2.5.1.5.1.1 (电子病历系统)**
+**示例 4.2.5.1.5.1.1 (电子病历系统)**:
+
 ```rust
 #[derive(Debug)]
 pub struct ElectronicMedicalRecord {
@@ -413,12 +435,14 @@ impl ElectronicMedicalRecord {
 
 **定义 4.2.5.1.5.2.1 (临床决策支持)**
 临床决策支持函数 $CDS = f(D, K, R, A)$ 其中：
+
 - $D$ 是诊断支持
 - $K$ 是知识库
 - $R$ 是推荐系统
 - $A$ 是警报系统
 
-**示例 4.2.5.1.5.2.1 (临床决策支持系统)**
+**示例 4.2.5.1.5.2.1 (临床决策支持系统)**:
+
 ```haskell
 data ClinicalDecisionSupport = ClinicalDecisionSupport
     { diagnosticSupport :: DiagnosticSupport
@@ -440,12 +464,14 @@ provideDecisionSupport cds patientData =
 
 **定义 4.2.5.1.5.3.1 (远程医疗)**
 远程医疗函数 $TM = f(C, T, M, F)$ 其中：
+
 - $C$ 是通信技术
 - $T$ 是远程诊断
 - $M$ 是远程监控
 - $F$ 是随访管理
 
-**示例 4.2.5.1.5.3.1 (远程医疗系统)**
+**示例 4.2.5.1.5.3.1 (远程医疗系统)**:
+
 ```lean
 structure Telemedicine :=
   (communicationTechnology : CommunicationTechnology)
@@ -467,12 +493,14 @@ def conductTelemedicine (tm : Telemedicine) (patient : Patient) : TelemedicineSe
 
 **应用 4.2.5.1.6.1.1 (医院管理系统)**
 医院管理模型 $HMS = (P, S, Q, I)$ 其中：
+
 - $P$ 是患者管理
 - $S$ 是服务管理
 - $Q$ 是质量管理
 - $I$ 是信息化管理
 
-**示例 4.2.5.1.6.1.1 (医院管理系统)**
+**示例 4.2.5.1.6.1.1 (医院管理系统)**:
+
 ```rust
 #[derive(Debug)]
 pub struct HospitalManagementSystem {
@@ -500,12 +528,14 @@ impl HospitalManagementSystem {
 
 **应用 4.2.5.1.6.2.1 (HIS平台)**
 医院信息系统平台 $HIS = (E, C, A, I)$ 其中：
+
 - $E$ 是电子病历
 - $C$ 是临床系统
 - $A$ 是管理应用
 - $I$ 是集成服务
 
-**示例 4.2.5.1.6.2.1 (HIS平台)**
+**示例 4.2.5.1.6.2.1 (HIS平台)**:
+
 ```haskell
 data HISPlatform = HISPlatform
     { electronicRecords :: ElectronicRecords
@@ -527,12 +557,14 @@ analyzeMedicalMetrics his =
 
 **应用 4.2.5.1.6.3.1 (AI驱动医疗)**
 AI驱动医疗模型 $AIM = (M, P, A, L)$ 其中：
+
 - $M$ 是机器学习
 - $P$ 是预测分析
 - $A$ 是自动化医疗
 - $L$ 是学习算法
 
-**示例 4.2.5.1.6.3.1 (智能医疗系统)**
+**示例 4.2.5.1.6.3.1 (智能医疗系统)**:
+
 ```rust
 #[derive(Debug)]
 pub struct AIMedicalSystem {
@@ -569,4 +601,4 @@ impl AIMedicalSystem {
 3. **患者安全**：通过安全评估和不良事件管理
 4. **信息化管理**：通过电子病历和临床决策支持
 
-该模型为现代医疗健康管理提供了理论基础和实践指导，支持智能化医疗和数字化健康管理。 
+该模型为现代医疗健康管理提供了理论基础和实践指导，支持智能化医疗和数字化健康管理。

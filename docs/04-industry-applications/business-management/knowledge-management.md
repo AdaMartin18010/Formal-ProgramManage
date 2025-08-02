@@ -216,7 +216,7 @@ impl KnowledgeClassification {
 - $Q$ 是查询处理
 - $R$ 是检索结果
 
-**示例 4.2.4.2.3.2.1 (知识索引系统)**
+**示例 4.2.4.2.3.2.1 (知识索引系统)**:
 
 ```haskell
 data KnowledgeIndexing = KnowledgeIndexing
@@ -255,7 +255,7 @@ searchKnowledge ki query =
 **定理 4.2.4.2.3.3.2 (检索召回率)**
 检索召回率 $R = \frac{\text{相关文档数}}{\text{总相关文档数}}$
 
-**示例 4.2.4.2.3.3.1 (知识检索系统)**
+**示例 4.2.4.2.3.3.1 (知识检索系统)**:
 
 ```lean
 structure KnowledgeRetrieval :=
@@ -291,7 +291,7 @@ def calculateRetrievalMetrics (kr : KnowledgeRetrieval) (testQueries : [TestQuer
 **定理 4.2.4.2.4.1.1 (传播效率)**
 传播效率 $E = \frac{\text{成功传播数}}{\text{总传播数}}$
 
-**示例 4.2.4.2.4.1.1 (知识传播系统)**
+**示例 4.2.4.2.4.1.1 (知识传播系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -340,7 +340,7 @@ impl KnowledgePropagation {
 - $S$ 是共享空间
 - $C$ 是协作机制
 
-**示例 4.2.4.2.4.2.1 (知识协作平台)**
+**示例 4.2.4.2.4.2.1 (知识协作平台)**:
 
 ```haskell
 data KnowledgeCollaboration = KnowledgeCollaboration
@@ -372,7 +372,7 @@ facilitateCollaboration kc =
 - $W$ 是权重函数（关系强度）
 - $C$ 是中心性度量
 
-**示例 4.2.4.2.4.3.1 (知识网络分析)**
+**示例 4.2.4.2.4.3.1 (知识网络分析)**:
 
 ```lean
 structure KnowledgeNetwork :=
@@ -401,7 +401,7 @@ def analyzeKnowledgeNetwork (kn : KnowledgeNetwork) : NetworkAnalysis :=
 - $I$ 是应用接口
 - $V$ 是应用价值
 
-**示例 4.2.4.2.5.1.1 (知识应用系统)**
+**示例 4.2.4.2.5.1.1 (知识应用系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -445,7 +445,7 @@ impl KnowledgeApplication {
 - $I$ 是创新实施
 - $G$ 是价值生成
 
-**示例 4.2.4.2.5.2.1 (知识创新系统)**
+**示例 4.2.4.2.5.2.1 (知识创新系统)**:
 
 ```haskell
 data KnowledgeInnovation = KnowledgeInnovation
@@ -474,7 +474,7 @@ generateInnovation ki knowledgeBase =
 - $R$ 是稀有性价值
 - $I$ 是创新价值
 
-**示例 4.2.4.2.5.3.1 (知识价值评估)**
+**示例 4.2.4.2.5.3.1 (知识价值评估)**:
 
 ```lean
 structure KnowledgeValue :=
@@ -505,7 +505,7 @@ def assessValueLevel (kv : KnowledgeValue) : ValueLevel :=
 - $S$ 是知识共享
 - $A$ 是知识应用
 
-**示例 4.2.4.2.6.1.1 (企业知识管理系统)**
+**示例 4.2.4.2.6.1.1 (企业知识管理系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -540,7 +540,7 @@ impl EnterpriseKnowledgeManagement {
 - $A$ 是应用接口
 - $I$ 是集成服务
 
-**示例 4.2.4.2.6.2.1 (知识管理平台)**
+**示例 4.2.4.2.6.2.1 (知识管理平台)**:
 
 ```haskell
 data KMSPlatform = KMSPlatform
@@ -569,7 +569,7 @@ AI驱动知识管理模型 $AIKM = (M, P, A, L)$ 其中：
 - $A$ 是自动化知识管理
 - $L$ 是学习算法
 
-**示例 4.2.4.2.6.3.1 (智能知识系统)**
+**示例 4.2.4.2.6.3.1 (智能知识系统)**:
 
 ```rust
 #[derive(Debug)]

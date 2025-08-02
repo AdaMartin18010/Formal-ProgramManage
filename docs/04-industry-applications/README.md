@@ -38,6 +38,16 @@
 
 - [4.2.5.1 医疗健康管理模型](./healthcare-management/healthcare-management.md)
 - [4.2.5.2 教育管理模型](./education-management/education-management.md)
+- [4.2.5.3 金融科技管理模型](./fintech-management/fintech-management.md)
+- [4.2.5.4 物流供应链管理模型](./logistics-management/logistics-management.md)
+- [4.2.5.5 能源管理模型](./energy-management/energy-management.md)
+
+### 4.2.6 新兴技术模型
+
+- [4.2.6.1 人工智能管理模型](./ai-management/ai-management.md)
+- [4.2.6.2 区块链管理模型](./blockchain-management/blockchain-management.md)
+- [4.2.6.3 物联网管理模型](./iot-management/iot-management.md)
+- [4.2.6.4 量子计算管理模型](./quantum-management/quantum-management.md)
 
 ## 4.3 形式化规范
 
