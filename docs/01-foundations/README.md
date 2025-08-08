@@ -139,6 +139,9 @@ impl Project {
 
 - [1.2 数学模型基础](./mathematical-models.md)
 - [1.3 语义模型理论](./semantic-models.md)
+- [1.4 量子项目管理理论](./quantum-project-theory.md)
+- [1.5 生物启发式项目管理理论](./bio-inspired-project-theory.md)
+- [1.6 全息项目管理理论](./holographic-project-theory.md)
 - [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
 - [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
