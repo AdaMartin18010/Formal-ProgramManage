@@ -2,962 +2,1156 @@
 
 ## 概述
 
-风险管理模型是Formal-ProgramManage的核心组成部分，提供形式化的数学框架来识别、评估、监控和缓解项目中的各种风险。
+风险管理模型是Formal-ProgramManage的核心理论之一，定义了项目风险的识别、分析、应对和监控机制。本理论体系严格对标PMBOK 7th Edition、ISO 31000、PRINCE2等国际风险管理标准。
 
-## 2.3.1 风险基础定义
+## 2.3.1 风险管理基础理论
 
-### 风险定义
+### 基本定义
 
-**定义 2.3.1** 项目风险是一个五元组 $R = (E, P, I, T, C)$，其中：
+**定义 2.3.1** (项目风险 - PMBOK 7th Edition) 项目风险是一个五元组：
+$$\mathcal{R} = (E, P, I, T, C)$$
 
-- $E$ 是风险事件 (Event)
-- $P$ 是发生概率 (Probability)
-- $I$ 是影响程度 (Impact)
-- $T$ 是时间窗口 (Time Window)
-- $C$ 是风险类别 (Category)
+其中：
 
-### 风险分类
+- $E$ 是风险事件集合，满足 $E = \{e_1, e_2, \ldots, e_n\}$
+- $P: E \rightarrow [0,1]$ 是概率函数，满足 $\sum_{e \in E} P(e) \leq 1$
+- $I: E \rightarrow \mathbb{R}^+$ 是影响函数，表示风险影响程度
+- $T: E \rightarrow \mathbb{R}^+$ 是时间函数，表示风险发生时间
+- $C: E \rightarrow \mathbb{R}^+$ 是成本函数，表示风险应对成本
 
-**定义 2.3.2** 风险类别集合 $\mathcal{C} = \{Technical, Schedule, Cost, Quality, Resource, External\}$
+**定义 2.3.2** (风险暴露度) 风险暴露度是一个函数：
+$$\text{Exposure}: E \rightarrow \mathbb{R}^+$$
 
-**定义 2.3.3** 技术风险 $R_{tech} = (E_{tech}, P_{tech}, I_{tech}, T_{tech}, Technical)$
+定义为：
+$$\text{Exposure}(e) = P(e) \times I(e)$$
 
-**定义 2.3.4** 进度风险 $R_{schedule} = (E_{schedule}, P_{schedule}, I_{schedule}, T_{schedule}, Schedule)$
+**定义 2.3.3** (风险优先级) 风险优先级是一个函数：
+$$\text{Priority}: E \rightarrow \mathbb{N}$$
 
-**定义 2.3.5** 成本风险 $R_{cost} = (E_{cost}, P_{cost}, I_{cost}, T_{cost}, Cost)$
+定义为：
+$$\text{Priority}(e) = \text{rank}(\text{Exposure}(e))$$
 
-**定义 2.3.6** 质量风险 $R_{quality} = (E_{quality}, P_{quality}, I_{quality}, T_{quality}, Quality)$
+其中 $\text{rank}$ 是排序函数。
 
-**定义 2.3.7** 资源风险 $R_{resource} = (E_{resource}, P_{resource}, I_{resource}, T_{resource}, Resource)$
+## 2.3.2 风险识别模型
 
-**定义 2.3.8** 外部风险 $R_{external} = (E_{external}, P_{external}, I_{external}, T_{external}, External)$
+### 风险分类体系
 
-## 2.3.2 风险评估理论
+**定义 2.3.4** (风险分类) 风险分类是一个层次结构：
+$$\mathcal{C} = \{C_1, C_2, \ldots, C_k\}$$
 
-### 风险值计算
+其中每个类别 $C_i$ 包含：
 
-**定义 2.3.9** 风险值函数：
-$$RV(r) = P(r) \times I(r)$$
-
-其中 $r$ 是风险，$P(r)$ 是概率，$I(r)$ 是影响。
-
-### 风险矩阵
-
-**定义 2.3.10** 风险矩阵是一个函数 $RM: \mathcal{P} \times \mathcal{I} \rightarrow \mathcal{L}$，其中：
-
-- $\mathcal{P}$ 是概率等级集合
-- $\mathcal{I}$ 是影响等级集合
-- $\mathcal{L}$ 是风险等级集合
-
-### 风险等级定义
-
-**定义 2.3.11** 风险等级集合 $\mathcal{L} = \{Low, Medium, High, Critical\}$
-
-**定义 2.3.12** 风险等级映射：
-$$RM(p, i) = \begin{cases}
-Low & \text{if } p \times i < 0.1 \\
-Medium & \text{if } 0.1 \leq p \times i < 0.3 \\
-High & \text{if } 0.3 \leq p \times i < 0.7 \\
-Critical & \text{if } p \times i \geq 0.7
-\end{cases}$$
-
-## 2.3.3 风险识别模型
-
-### 风险识别函数
-
-**定义 2.3.13** 风险识别函数 $RI: \mathcal{P} \rightarrow 2^{\mathcal{R}}$，其中：
-- $\mathcal{P}$ 是项目集合
-- $\mathcal{R}$ 是风险集合
+- **技术风险**: 技术实现、技术依赖、技术过时
+- **管理风险**: 计划变更、资源不足、沟通问题
+- **外部风险**: 市场变化、政策变化、自然灾害
+- **财务风险**: 成本超支、资金不足、汇率波动
+- **质量风险**: 质量缺陷、返工、客户满意度
 
 ### 风险识别算法
 
-**算法 2.3.1** 基于检查表的风险识别：
+**算法 2.3.1** (风险识别算法)：
 
 ```rust
 use std::collections::{HashMap, HashSet};
 
-# [derive(Debug, Clone)]
+#[derive(Debug, Clone)]
 pub struct Risk {
     pub id: String,
     pub name: String,
     pub description: String,
-    pub event: String,
+    pub category: RiskCategory,
     pub probability: f64,
     pub impact: f64,
-    pub category: RiskCategory,
-    pub time_window: TimeWindow,
+    pub exposure: f64,
+    pub priority: u32,
     pub triggers: Vec<String>,
-    pub mitigation_plan: Option<String>,
+    pub indicators: Vec<String>,
+    pub mitigation_strategies: Vec<MitigationStrategy>,
 }
 
-# [derive(Debug, Clone)]
+#[derive(Debug, Clone)]
 pub enum RiskCategory {
     Technical,
-    Schedule,
-    Cost,
-    Quality,
-    Resource,
+    Management,
     External,
+    Financial,
+    Quality,
+    Schedule,
+    Resource,
+    Communication,
 }
 
-# [derive(Debug, Clone)]
-pub struct TimeWindow {
-    pub start_time: u64,
-    pub end_time: u64,
-    pub probability_distribution: ProbabilityDistribution,
-}
-
-# [derive(Debug, Clone)]
-pub enum ProbabilityDistribution {
-    Uniform,
-    Normal { mean: f64, std_dev: f64 },
-    Exponential { lambda: f64 },
-    Custom(Vec<(f64, f64)>), // (time, probability)
-}
-
-pub struct RiskIdentifier {
-    pub checklists: HashMap<RiskCategory, Vec<RiskCheckItem>>,
-    pub historical_data: HashMap<String, Vec<HistoricalRisk>>,
-    pub expert_knowledge: Vec<ExpertRule>,
-}
-
-# [derive(Debug, Clone)]
-pub struct RiskCheckItem {
+#[derive(Debug, Clone)]
+pub struct MitigationStrategy {
     pub id: String,
-    pub question: String,
-    pub category: RiskCategory,
-    pub risk_template: RiskTemplate,
+    pub name: String,
+    pub description: String,
+    pub cost: f64,
+    pub effectiveness: f64,
+    pub implementation_time: f64,
 }
 
-# [derive(Debug, Clone)]
+#[derive(Debug)]
+pub struct RiskIdentifier {
+    pub risk_templates: HashMap<RiskCategory, Vec<RiskTemplate>>,
+    pub historical_risks: Vec<Risk>,
+    pub project_context: ProjectContext,
+}
+
+#[derive(Debug, Clone)]
 pub struct RiskTemplate {
     pub name: String,
     pub description: String,
-    pub base_probability: f64,
-    pub base_impact: f64,
-    pub category: RiskCategory,
+    pub typical_probability: f64,
+    pub typical_impact: f64,
+    pub triggers: Vec<String>,
+    pub indicators: Vec<String>,
+    pub mitigation_strategies: Vec<MitigationStrategy>,
 }
 
-# [derive(Debug, Clone)]
-pub struct HistoricalRisk {
-    pub project_id: String,
-    pub risk_id: String,
-    pub occurred: bool,
-    pub actual_impact: f64,
-    pub timestamp: u64,
-}
-
-# [derive(Debug, Clone)]
-pub struct ExpertRule {
-    pub id: String,
-    pub condition: RiskCondition,
-    pub risk_template: RiskTemplate,
-    pub confidence: f64,
-}
-
-# [derive(Debug, Clone)]
-pub enum RiskCondition {
-    ProjectComplexity(f64),
-    TeamExperience(u32),
-    TechnologyMaturity(f64),
-    BudgetConstraint(f64),
-    TimeConstraint(f64),
-    ResourceAvailability(f64),
+#[derive(Debug, Clone)]
+pub struct ProjectContext {
+    pub project_type: String,
+    pub team_size: u32,
+    pub budget: f64,
+    pub duration: f64,
+    pub complexity: f64,
+    pub technology_stack: Vec<String>,
+    pub stakeholders: Vec<String>,
 }
 
 impl RiskIdentifier {
     pub fn new() -> Self {
         RiskIdentifier {
-            checklists: Self::initialize_checklists(),
-            historical_data: HashMap::new(),
-            expert_knowledge: Self::initialize_expert_rules(),
+            risk_templates: Self::initialize_risk_templates(),
+            historical_risks: Vec::new(),
+            project_context: ProjectContext {
+                project_type: "software".to_string(),
+                team_size: 10,
+                budget: 1000000.0,
+                duration: 365.0,
+                complexity: 0.7,
+                technology_stack: vec!["rust".to_string(), "haskell".to_string()],
+                stakeholders: vec!["client".to_string(), "users".to_string()],
+            },
         }
     }
-
-    fn initialize_checklists() -> HashMap<RiskCategory, Vec<RiskCheckItem>> {
-        let mut checklists = HashMap::new();
-
-        // 技术风险检查表
-        checklists.insert(RiskCategory::Technical, vec![
-            RiskCheckItem {
-                id: "TECH-001".to_string(),
-                question: "项目是否使用了新技术？".to_string(),
-                category: RiskCategory::Technical,
-                risk_template: RiskTemplate {
-                    name: "新技术风险".to_string(),
-                    description: "使用新技术可能导致技术风险".to_string(),
-                    base_probability: 0.6,
-                    base_impact: 0.7,
-                    category: RiskCategory::Technical,
-                },
+    
+    fn initialize_risk_templates() -> HashMap<RiskCategory, Vec<RiskTemplate>> {
+        let mut templates = HashMap::new();
+        
+        // 技术风险模板
+        templates.insert(RiskCategory::Technical, vec![
+            RiskTemplate {
+                name: "技术实现风险".to_string(),
+                description: "新技术或复杂技术的实现困难".to_string(),
+                typical_probability: 0.6,
+                typical_impact: 0.8,
+                triggers: vec!["新技术采用".to_string(), "技术复杂度高".to_string()],
+                indicators: vec!["技术债务增加".to_string(), "开发速度下降".to_string()],
+                mitigation_strategies: vec![
+                    MitigationStrategy {
+                        id: "tech_1".to_string(),
+                        name: "技术预研".to_string(),
+                        description: "提前进行技术可行性研究".to_string(),
+                        cost: 50000.0,
+                        effectiveness: 0.8,
+                        implementation_time: 30.0,
+                    }
+                ],
             },
-            RiskCheckItem {
-                id: "TECH-002".to_string(),
-                question: "团队是否有相关技术经验？".to_string(),
-                category: RiskCategory::Technical,
-                risk_template: RiskTemplate {
-                    name: "技术经验风险".to_string(),
-                    description: "团队缺乏相关技术经验".to_string(),
-                    base_probability: 0.4,
-                    base_impact: 0.8,
-                    category: RiskCategory::Technical,
-                },
-            },
-        ]);
-
-        // 进度风险检查表
-        checklists.insert(RiskCategory::Schedule, vec![
-            RiskCheckItem {
-                id: "SCHED-001".to_string(),
-                question: "项目时间是否紧张？".to_string(),
-                category: RiskCategory::Schedule,
-                risk_template: RiskTemplate {
-                    name: "时间压力风险".to_string(),
-                    description: "项目时间紧张可能导致进度风险".to_string(),
-                    base_probability: 0.5,
-                    base_impact: 0.6,
-                    category: RiskCategory::Schedule,
-                },
+            RiskTemplate {
+                name: "技术依赖风险".to_string(),
+                description: "第三方技术或工具的依赖问题".to_string(),
+                typical_probability: 0.4,
+                typical_impact: 0.7,
+                triggers: vec!["第三方组件更新".to_string(), "许可证变更".to_string()],
+                indicators: vec!["依赖组件停止维护".to_string(), "安全漏洞发现".to_string()],
+                mitigation_strategies: vec![
+                    MitigationStrategy {
+                        id: "tech_2".to_string(),
+                        name: "依赖管理".to_string(),
+                        description: "建立依赖管理和备份方案".to_string(),
+                        cost: 20000.0,
+                        effectiveness: 0.7,
+                        implementation_time: 15.0,
+                    }
+                ],
             },
         ]);
-
-        // 成本风险检查表
-        checklists.insert(RiskCategory::Cost, vec![
-            RiskCheckItem {
-                id: "COST-001".to_string(),
-                question: "预算是否充足？".to_string(),
-                category: RiskCategory::Cost,
-                risk_template: RiskTemplate {
-                    name: "预算不足风险".to_string(),
-                    description: "预算不足可能导致成本超支".to_string(),
-                    base_probability: 0.3,
-                    base_impact: 0.9,
-                    category: RiskCategory::Cost,
-                },
+        
+        // 管理风险模板
+        templates.insert(RiskCategory::Management, vec![
+            RiskTemplate {
+                name: "需求变更风险".to_string(),
+                description: "项目需求频繁变更导致的范围蔓延".to_string(),
+                typical_probability: 0.7,
+                typical_impact: 0.9,
+                triggers: vec!["客户需求不明确".to_string(), "市场变化".to_string()],
+                indicators: vec!["需求文档频繁更新".to_string(), "开发计划调整".to_string()],
+                mitigation_strategies: vec![
+                    MitigationStrategy {
+                        id: "mgmt_1".to_string(),
+                        name: "需求管理".to_string(),
+                        description: "建立需求变更控制流程".to_string(),
+                        cost: 30000.0,
+                        effectiveness: 0.8,
+                        implementation_time: 20.0,
+                    }
+                ],
             },
         ]);
-
-        checklists
+        
+        templates
     }
-
-    fn initialize_expert_rules() -> Vec<ExpertRule> {
-        vec![
-            ExpertRule {
-                id: "EXP-001".to_string(),
-                condition: RiskCondition::ProjectComplexity(0.8),
-                risk_template: RiskTemplate {
-                    name: "高复杂度风险".to_string(),
-                    description: "项目复杂度高增加风险".to_string(),
-                    base_probability: 0.7,
-                    base_impact: 0.8,
-                    category: RiskCategory::Technical,
-                },
-                confidence: 0.9,
-            },
-            ExpertRule {
-                id: "EXP-002".to_string(),
-                condition: RiskCondition::TeamExperience(2),
-                risk_template: RiskTemplate {
-                    name: "团队经验不足风险".to_string(),
-                    description: "团队经验不足增加风险".to_string(),
-                    base_probability: 0.6,
-                    base_impact: 0.7,
-                    category: RiskCategory::Resource,
-                },
-                confidence: 0.8,
-            },
-        ]
-    }
-
-    pub fn identify_risks(&self, project: &Project) -> Vec<Risk> {
-        let mut risks = Vec::new();
-
-        // 基于检查表识别风险
-        risks.extend(self.checklist_based_identification(project));
-
+    
+    pub fn identify_risks(&self, project_context: &ProjectContext) -> Vec<Risk> {
+        let mut identified_risks = Vec::new();
+        
+        // 基于模板识别风险
+        for (category, templates) in &self.risk_templates {
+            for template in templates {
+                let risk = self.create_risk_from_template(template, project_context);
+                identified_risks.push(risk);
+            }
+        }
+        
         // 基于历史数据识别风险
-        risks.extend(self.historical_based_identification(project));
-
-        // 基于专家规则识别风险
-        risks.extend(self.expert_based_identification(project));
-
-        // 去重和合并
-        self.deduplicate_risks(risks)
-    }
-
-    fn checklist_based_identification(&self, project: &Project) -> Vec<Risk> {
-        let mut risks = Vec::new();
-
-        for (category, checklist) in &self.checklists {
-            for item in checklist {
-                if self.evaluate_check_item(project, item) {
-                    let risk = self.create_risk_from_template(&item.risk_template, project);
-                    risks.push(risk);
-                }
-            }
+        let historical_risks = self.identify_historical_risks(project_context);
+        identified_risks.extend(historical_risks);
+        
+        // 基于项目特征识别风险
+        let contextual_risks = self.identify_contextual_risks(project_context);
+        identified_risks.extend(contextual_risks);
+        
+        // 计算风险暴露度和优先级
+        for risk in &mut identified_risks {
+            risk.exposure = risk.probability * risk.impact;
         }
-
-        risks
-    }
-
-    fn evaluate_check_item(&self, project: &Project, item: &RiskCheckItem) -> bool {
-        // 简化实现：根据问题类型评估
-        match item.id.as_str() {
-            "TECH-001" => {
-                // 检查是否使用新技术
-                project.uses_new_technology()
-            },
-            "TECH-002" => {
-                // 检查团队技术经验
-                !project.team_has_experience()
-            },
-            "SCHED-001" => {
-                // 检查时间压力
-                project.has_time_pressure()
-            },
-            "COST-001" => {
-                // 检查预算充足性
-                !project.has_sufficient_budget()
-            },
-            _ => false,
+        
+        // 按暴露度排序并分配优先级
+        identified_risks.sort_by(|a, b| b.exposure.partial_cmp(&a.exposure).unwrap());
+        for (i, risk) in identified_risks.iter_mut().enumerate() {
+            risk.priority = i as u32 + 1;
         }
+        
+        identified_risks
     }
-
-    fn historical_based_identification(&self, project: &Project) -> Vec<Risk> {
-        let mut risks = Vec::new();
-
-        // 分析历史数据中的风险模式
-        for (project_type, historical_risks) in &self.historical_data {
-            if self.is_similar_project(project, project_type) {
-                let common_risks = self.find_common_risks(historical_risks);
-                for risk_pattern in common_risks {
-                    let risk = self.create_risk_from_pattern(risk_pattern, project);
-                    risks.push(risk);
-                }
-            }
-        }
-
-        risks
-    }
-
-    fn expert_based_identification(&self, project: &Project) -> Vec<Risk> {
-        let mut risks = Vec::new();
-
-        for rule in &self.expert_knowledge {
-            if self.evaluate_expert_rule(project, rule) {
-                let risk = self.create_risk_from_template(&rule.risk_template, project);
-                risks.push(risk);
-            }
-        }
-
-        risks
-    }
-
-    fn evaluate_expert_rule(&self, project: &Project, rule: &ExpertRule) -> bool {
-        match &rule.condition {
-            RiskCondition::ProjectComplexity(threshold) => {
-                project.complexity() > *threshold
-            },
-            RiskCondition::TeamExperience(min_experience) => {
-                project.team_experience() < *min_experience
-            },
-            RiskCondition::TechnologyMaturity(threshold) => {
-                project.technology_maturity() < *threshold
-            },
-            RiskCondition::BudgetConstraint(threshold) => {
-                project.budget_utilization() > *threshold
-            },
-            RiskCondition::TimeConstraint(threshold) => {
-                project.time_utilization() > *threshold
-            },
-            RiskCondition::ResourceAvailability(threshold) => {
-                project.resource_availability() < *threshold
-            },
-        }
-    }
-
-    fn create_risk_from_template(&self, template: &RiskTemplate, project: &Project) -> Risk {
+    
+    fn create_risk_from_template(&self, template: &RiskTemplate, context: &ProjectContext) -> Risk {
+        // 根据项目上下文调整概率和影响
+        let adjusted_probability = self.adjust_probability(template.typical_probability, context);
+        let adjusted_impact = self.adjust_impact(template.typical_impact, context);
+        
         Risk {
-            id: format!("{}-{}", template.name, project.id),
+            id: format!("risk_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
             name: template.name.clone(),
             description: template.description.clone(),
-            event: format!("{} in project {}", template.name, project.id),
-            probability: template.base_probability,
-            impact: template.base_impact,
-            category: template.category.clone(),
-            time_window: TimeWindow {
-                start_time: 0,
-                end_time: project.duration(),
-                probability_distribution: ProbabilityDistribution::Uniform,
-            },
-            triggers: Vec::new(),
-            mitigation_plan: None,
+            category: self.determine_category(&template.name),
+            probability: adjusted_probability,
+            impact: adjusted_impact,
+            exposure: adjusted_probability * adjusted_impact,
+            priority: 0, // 稍后设置
+            triggers: template.triggers.clone(),
+            indicators: template.indicators.clone(),
+            mitigation_strategies: template.mitigation_strategies.clone(),
         }
     }
-
-    fn deduplicate_risks(&self, risks: Vec<Risk>) -> Vec<Risk> {
-        let mut unique_risks = Vec::new();
-        let mut seen_names = HashSet::new();
-
-        for risk in risks {
-            if !seen_names.contains(&risk.name) {
-                seen_names.insert(risk.name.clone());
-                unique_risks.push(risk);
+    
+    fn adjust_probability(&self, base_probability: f64, context: &ProjectContext) -> f64 {
+        let mut adjusted = base_probability;
+        
+        // 根据项目复杂度调整
+        adjusted *= (1.0 + context.complexity * 0.3);
+        
+        // 根据团队规模调整
+        if context.team_size > 20 {
+            adjusted *= 1.2; // 大团队沟通风险增加
+        }
+        
+        // 根据技术栈调整
+        if context.technology_stack.len() > 3 {
+            adjusted *= 1.1; // 多技术栈集成风险增加
+        }
+        
+        adjusted.min(1.0)
+    }
+    
+    fn adjust_impact(&self, base_impact: f64, context: &ProjectContext) -> f64 {
+        let mut adjusted = base_impact;
+        
+        // 根据项目预算调整
+        if context.budget > 5000000.0 {
+            adjusted *= 1.2; // 大项目影响更大
+        }
+        
+        // 根据项目持续时间调整
+        if context.duration > 730.0 {
+            adjusted *= 1.1; // 长期项目影响更大
+        }
+        
+        adjusted.min(1.0)
+    }
+    
+    fn determine_category(&self, risk_name: &str) -> RiskCategory {
+        if risk_name.contains("技术") || risk_name.contains("技术") {
+            RiskCategory::Technical
+        } else if risk_name.contains("管理") || risk_name.contains("需求") {
+            RiskCategory::Management
+        } else if risk_name.contains("外部") || risk_name.contains("市场") {
+            RiskCategory::External
+        } else if risk_name.contains("财务") || risk_name.contains("成本") {
+            RiskCategory::Financial
+        } else if risk_name.contains("质量") || risk_name.contains("缺陷") {
+            RiskCategory::Quality
+        } else {
+            RiskCategory::Management // 默认分类
+        }
+    }
+    
+    fn identify_historical_risks(&self, context: &ProjectContext) -> Vec<Risk> {
+        let mut historical_risks = Vec::new();
+        
+        // 基于历史数据识别相似项目的风险
+        for historical_risk in &self.historical_risks {
+            if self.is_similar_project(historical_risk, context) {
+                let adapted_risk = self.adapt_historical_risk(historical_risk, context);
+                historical_risks.push(adapted_risk);
             }
         }
-
-        unique_risks
+        
+        historical_risks
     }
-}
-
-// 项目扩展方法（简化实现）
-impl Project {
-    fn uses_new_technology(&self) -> bool {
-        // 简化实现
-        true
+    
+    fn is_similar_project(&self, risk: &Risk, context: &ProjectContext) -> bool {
+        // 简化的相似性判断
+        context.project_type == "software" && 
+        context.team_size >= 5 && 
+        context.team_size <= 50
     }
-
-    fn team_has_experience(&self) -> bool {
-        // 简化实现
-        false
+    
+    fn adapt_historical_risk(&self, historical_risk: &Risk, context: &ProjectContext) -> Risk {
+        let mut adapted = historical_risk.clone();
+        adapted.id = format!("hist_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap());
+        adapted.probability = self.adjust_probability(historical_risk.probability, context);
+        adapted.impact = self.adjust_impact(historical_risk.impact, context);
+        adapted
     }
-
-    fn has_time_pressure(&self) -> bool {
-        // 简化实现
-        true
-    }
-
-    fn has_sufficient_budget(&self) -> bool {
-        // 简化实现
-        false
-    }
-
-    fn complexity(&self) -> f64 {
-        // 简化实现
-        0.8
-    }
-
-    fn team_experience(&self) -> u32 {
-        // 简化实现
-        1
-    }
-
-    fn technology_maturity(&self) -> f64 {
-        // 简化实现
-        0.6
-    }
-
-    fn budget_utilization(&self) -> f64 {
-        // 简化实现
-        0.9
-    }
-
-    fn time_utilization(&self) -> f64 {
-        // 简化实现
-        0.8
-    }
-
-    fn resource_availability(&self) -> f64 {
-        // 简化实现
-        0.7
-    }
-
-    fn duration(&self) -> u64 {
-        // 简化实现
-        100
+    
+    fn identify_contextual_risks(&self, context: &ProjectContext) -> Vec<Risk> {
+        let mut contextual_risks = Vec::new();
+        
+        // 基于项目特征识别特定风险
+        if context.team_size > 20 {
+            contextual_risks.push(Risk {
+                id: format!("context_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
+                name: "大团队协调风险".to_string(),
+                description: "大团队规模导致的沟通和协调困难".to_string(),
+                category: RiskCategory::Communication,
+                probability: 0.6,
+                impact: 0.7,
+                exposure: 0.42,
+                priority: 0,
+                triggers: vec!["团队规模增长".to_string(), "跨部门协作".to_string()],
+                indicators: vec!["沟通效率下降".to_string(), "决策延迟".to_string()],
+                mitigation_strategies: vec![
+                    MitigationStrategy {
+                        id: "comm_1".to_string(),
+                        name: "沟通管理".to_string(),
+                        description: "建立有效的沟通机制和工具".to_string(),
+                        cost: 25000.0,
+                        effectiveness: 0.8,
+                        implementation_time: 10.0,
+                    }
+                ],
+            });
+        }
+        
+        if context.complexity > 0.8 {
+            contextual_risks.push(Risk {
+                id: format!("context_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
+                name: "高复杂度项目风险".to_string(),
+                description: "项目复杂度高导致的实施困难".to_string(),
+                category: RiskCategory::Technical,
+                probability: 0.8,
+                impact: 0.9,
+                exposure: 0.72,
+                priority: 0,
+                triggers: vec!["技术复杂度高".to_string(), "业务逻辑复杂".to_string()],
+                indicators: vec!["开发进度延迟".to_string(), "缺陷率上升".to_string()],
+                mitigation_strategies: vec![
+                    MitigationStrategy {
+                        id: "tech_3".to_string(),
+                        name: "分阶段实施".to_string(),
+                        description: "将复杂项目分解为可管理的阶段".to_string(),
+                        cost: 40000.0,
+                        effectiveness: 0.9,
+                        implementation_time: 25.0,
+                    }
+                ],
+            });
+        }
+        
+        contextual_risks
     }
 }
 ```
 
-## 2.3.4 风险量化模型
+## 2.3.3 风险分析模型
 
-### 蒙特卡洛模拟
+### 定性风险分析
 
-**定义 2.3.14** 风险蒙特卡洛模拟：
-$$E[Loss] = \frac{1}{N} \sum_{i=1}^{N} \sum_{r \in \mathcal{R}} I_r^{(i)} \times P_r^{(i)}$$
+**定义 2.3.5** (风险矩阵) 风险矩阵是一个二维表：
+$$M = [m_{ij}]_{n \times m}$$
 
 其中：
-- $N$ 是模拟次数
-- $I_r^{(i)}$ 是第 $i$ 次模拟中风险 $r$ 的影响
-- $P_r^{(i)}$ 是第 $i$ 次模拟中风险 $r$ 的发生概率
 
-### 风险量化实现
+- $m_{ij}$ 表示概率等级 $i$ 和影响等级 $j$ 的风险等级
+- $n$ 是概率等级数
+- $m$ 是影响等级数
+
+**定义 2.3.6** (风险等级) 风险等级函数：
+$$\text{RiskLevel}: [0,1] \times [0,1] \rightarrow \{Low, Medium, High, Critical\}$$
+
+定义为：
+$$\text{RiskLevel}(p, i) = \begin{cases}
+\text{Low} & \text{if } p \times i < 0.1 \\
+\text{Medium} & \text{if } 0.1 \leq p \times i < 0.3 \\
+\text{High} & \text{if } 0.3 \leq p \times i < 0.6 \\
+\text{Critical} & \text{if } p \times i \geq 0.6
+\end{cases}$$
+
+### 定量风险分析
+
+**定义 2.3.7** (蒙特卡洛模拟) 蒙特卡洛模拟的风险评估：
+$$\text{ExpectedLoss} = \frac{1}{N} \sum_{i=1}^{N} \text{Loss}_i$$
+
+其中 $N$ 是模拟次数，$\text{Loss}_i$ 是第 $i$ 次模拟的损失。
+
+**算法 2.3.2** (蒙特卡洛风险分析)：
 
 ```rust
+use std::collections::HashMap;
 use rand::Rng;
 
-pub struct RiskQuantifier {
-    pub simulation_iterations: usize,
-    pub risk_models: HashMap<String, RiskModel>,
+# [derive(Debug)]
+pub struct MonteCarloAnalyzer {
+    pub simulation_count: usize,
+    pub risk_scenarios: Vec<RiskScenario>,
+    pub project_parameters: ProjectParameters,
 }
 
 # [derive(Debug, Clone)]
-pub struct RiskModel {
-    pub risk_id: String,
-    pub probability_distribution: ProbabilityDistribution,
+pub struct RiskScenario {
+    pub id: String,
+    pub risks: Vec<Risk>,
+    pub probability: f64,
     pub impact_distribution: ImpactDistribution,
-    pub correlation_matrix: Option<Vec<Vec<f64>>>,
 }
 
 # [derive(Debug, Clone)]
 pub enum ImpactDistribution {
-    Fixed(f64),
     Normal { mean: f64, std_dev: f64 },
     Uniform { min: f64, max: f64 },
     Triangular { min: f64, mode: f64, max: f64 },
+    Exponential { lambda: f64 },
 }
 
-impl RiskQuantifier {
-    pub fn new(simulation_iterations: usize) -> Self {
-        RiskQuantifier {
-            simulation_iterations,
-            risk_models: HashMap::new(),
+# [derive(Debug, Clone)]
+pub struct ProjectParameters {
+    pub base_cost: f64,
+    pub base_duration: f64,
+    pub base_quality: f64,
+    pub cost_risk_factor: f64,
+    pub duration_risk_factor: f64,
+    pub quality_risk_factor: f64,
+}
+
+# [derive(Debug)]
+pub struct SimulationResult {
+    pub iterations: Vec<SimulationIteration>,
+    pub summary: SimulationSummary,
+}
+
+# [derive(Debug, Clone)]
+pub struct SimulationIteration {
+    pub iteration: usize,
+    pub cost: f64,
+    pub duration: f64,
+    pub quality: f64,
+    pub triggered_risks: Vec<String>,
+    pub total_impact: f64,
+}
+
+# [derive(Debug)]
+pub struct SimulationSummary {
+    pub mean_cost: f64,
+    pub std_cost: f64,
+    pub min_cost: f64,
+    pub max_cost: f64,
+    pub mean_duration: f64,
+    pub std_duration: f64,
+    pub min_duration: f64,
+    pub max_duration: f64,
+    pub mean_quality: f64,
+    pub std_quality: f64,
+    pub min_quality: f64,
+    pub max_quality: f64,
+    pub risk_probabilities: HashMap<String, f64>,
+}
+
+impl MonteCarloAnalyzer {
+    pub fn new(simulation_count: usize, project_parameters: ProjectParameters) -> Self {
+        MonteCarloAnalyzer {
+            simulation_count,
+            risk_scenarios: Vec::new(),
+            project_parameters,
         }
     }
 
-    pub fn add_risk_model(&mut self, risk_id: String, model: RiskModel) {
-        self.risk_models.insert(risk_id, model);
+    pub fn add_risk_scenario(&mut self, scenario: RiskScenario) {
+        self.risk_scenarios.push(scenario);
     }
 
-    pub fn run_monte_carlo_simulation(&self) -> MonteCarloResult {
+    pub fn run_simulation(&self) -> SimulationResult {
+        let mut iterations = Vec::new();
+        let mut risk_trigger_counts: HashMap<String, u32> = HashMap::new();
+
+        for i in 0..self.simulation_count {
+            let iteration = self.run_single_iteration(i);
+
+            // 统计风险触发次数
+            for risk_id in &iteration.triggered_risks {
+                *risk_trigger_counts.entry(risk_id.clone()).or_insert(0) += 1;
+            }
+
+            iterations.push(iteration);
+        }
+
+        // 计算统计摘要
+        let summary = self.calculate_summary(&iterations, &risk_trigger_counts);
+
+        SimulationResult {
+            iterations,
+            summary,
+        }
+    }
+
+    fn run_single_iteration(&self, iteration: usize) -> SimulationIteration {
         let mut rng = rand::thread_rng();
-        let mut total_losses = Vec::new();
-        let mut risk_occurrences = HashMap::new();
+        let mut triggered_risks = Vec::new();
+        let mut total_impact = 0.0;
 
-        for iteration in 0..self.simulation_iterations {
-            let mut iteration_loss = 0.0;
-            let mut iteration_risks = Vec::new();
+        let mut cost = self.project_parameters.base_cost;
+        let mut duration = self.project_parameters.base_duration;
+        let mut quality = self.project_parameters.base_quality;
 
-            // 模拟每个风险
-            for (risk_id, model) in &self.risk_models {
-                let probability = self.sample_probability(&model.probability_distribution, &mut rng);
-                let impact = self.sample_impact(&model.impact_distribution, &mut rng);
+        // 模拟每个风险场景
+        for scenario in &self.risk_scenarios {
+            // 检查风险是否触发
+            if rng.gen::<f64>() < scenario.probability {
+                triggered_risks.push(scenario.id.clone());
 
-                // 检查风险是否发生
-                if rng.gen::<f64>() < probability {
-                    iteration_loss += impact;
-                    iteration_risks.push(risk_id.clone());
-                }
-            }
+                // 计算风险影响
+                let impact = self.calculate_impact(&scenario.impact_distribution, &mut rng);
+                total_impact += impact;
 
-            total_losses.push(iteration_loss);
-
-            // 记录风险发生次数
-            for risk_id in iteration_risks {
-                *risk_occurrences.entry(risk_id).or_insert(0) += 1;
+                // 应用影响到项目参数
+                cost += impact * self.project_parameters.cost_risk_factor;
+                duration += impact * self.project_parameters.duration_risk_factor;
+                quality -= impact * self.project_parameters.quality_risk_factor;
             }
         }
 
-        // 计算统计指标
-        let mean_loss = total_losses.iter().sum::<f64>() / total_losses.len() as f64;
-        let variance = total_losses.iter()
-            .map(|&x| (x - mean_loss).powi(2))
-            .sum::<f64>() / total_losses.len() as f64;
-        let std_dev = variance.sqrt();
+        // 确保质量在合理范围内
+        quality = quality.max(0.0).min(1.0);
 
-        // 计算分位数
-        total_losses.sort_by(|a, b| a.partial_cmp(b).unwrap());
-        let percentile_50 = total_losses[total_losses.len() / 2];
-        let percentile_90 = total_losses[(total_losses.len() * 9) / 10];
-        let percentile_95 = total_losses[(total_losses.len() * 19) / 20];
-
-        MonteCarloResult {
-            mean_loss,
-            std_dev,
-            percentile_50,
-            percentile_90,
-            percentile_95,
-            risk_occurrences,
-            total_iterations: self.simulation_iterations,
+        SimulationIteration {
+            iteration,
+            cost,
+            duration,
+            quality,
+            triggered_risks,
+            total_impact,
         }
     }
 
-    fn sample_probability(&self, distribution: &ProbabilityDistribution, rng: &mut impl Rng) -> f64 {
+    fn calculate_impact(&self, distribution: &ImpactDistribution, rng: &mut rand::rngs::ThreadRng) -> f64 {
         match distribution {
-            ProbabilityDistribution::Uniform => rng.gen::<f64>(),
-            ProbabilityDistribution::Normal { mean, std_dev } => {
+            ImpactDistribution::Normal { mean, std_dev } => {
                 // 使用Box-Muller变换生成正态分布
                 let u1 = rng.gen::<f64>();
                 let u2 = rng.gen::<f64>();
                 let z0 = (-2.0 * u1.ln()).sqrt() * (2.0 * std::f64::consts::PI * u2).cos();
-                mean + std_dev * z0
-            },
-            ProbabilityDistribution::Exponential { lambda } => {
-                -rng.gen::<f64>().ln() / lambda
-            },
-            ProbabilityDistribution::Custom(probabilities) => {
-                // 从自定义概率分布中采样
-                let random = rng.gen::<f64>();
-                let mut cumulative = 0.0;
-
-                for (time, prob) in probabilities {
-                    cumulative += prob;
-                    if random <= cumulative {
-                        return *time;
-                    }
-                }
-
-                probabilities.last().map(|(_, prob)| *prob).unwrap_or(0.0)
-            },
-        }
-    }
-
-    fn sample_impact(&self, distribution: &ImpactDistribution, rng: &mut impl Rng) -> f64 {
-        match distribution {
-            ImpactDistribution::Fixed(value) => *value,
-            ImpactDistribution::Normal { mean, std_dev } => {
-                let u1 = rng.gen::<f64>();
-                let u2 = rng.gen::<f64>();
-                let z0 = (-2.0 * u1.ln()).sqrt() * (2.0 * std::f64::consts::PI * u2).cos();
-                mean + std_dev * z0
-            },
+                mean + z0 * std_dev
+            }
             ImpactDistribution::Uniform { min, max } => {
-                min + (max - min) * rng.gen::<f64>()
-            },
+                rng.gen_range(*min..*max)
+            }
             ImpactDistribution::Triangular { min, mode, max } => {
                 let u = rng.gen::<f64>();
-                if u < (mode - min) / (max - min) {
-                    min + (u * (max - min) * (mode - min)).sqrt()
+                let f = (*mode - *min) / (*max - *min);
+
+                if u < f {
+                    *min + (u * (*max - *min) * (*mode - *min)).sqrt()
                 } else {
-                    max - ((1.0 - u) * (max - min) * (max - mode)).sqrt()
+                    *max - ((1.0 - u) * (*max - *min) * (*max - *mode)).sqrt()
                 }
-            },
+            }
+            ImpactDistribution::Exponential { lambda } => {
+                -u.ln() / lambda
+            }
         }
     }
-}
 
-# [derive(Debug, Clone)]
-pub struct MonteCarloResult {
-    pub mean_loss: f64,
-    pub std_dev: f64,
-    pub percentile_50: f64,
-    pub percentile_90: f64,
-    pub percentile_95: f64,
-    pub risk_occurrences: HashMap<String, usize>,
-    pub total_iterations: usize,
+    fn calculate_summary(&self, iterations: &[SimulationIteration], risk_trigger_counts: &HashMap<String, u32>) -> SimulationSummary {
+        let costs: Vec<f64> = iterations.iter().map(|i| i.cost).collect();
+        let durations: Vec<f64> = iterations.iter().map(|i| i.duration).collect();
+        let qualities: Vec<f64> = iterations.iter().map(|i| i.quality).collect();
+
+        let mean_cost = costs.iter().sum::<f64>() / costs.len() as f64;
+        let mean_duration = durations.iter().sum::<f64>() / durations.len() as f64;
+        let mean_quality = qualities.iter().sum::<f64>() / qualities.len() as f64;
+
+        let std_cost = self.calculate_std(&costs, mean_cost);
+        let std_duration = self.calculate_std(&durations, mean_duration);
+        let std_quality = self.calculate_std(&qualities, mean_quality);
+
+        let min_cost = costs.iter().fold(f64::INFINITY, |a, &b| a.min(b));
+        let max_cost = costs.iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
+        let min_duration = durations.iter().fold(f64::INFINITY, |a, &b| a.min(b));
+        let max_duration = durations.iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
+        let min_quality = qualities.iter().fold(f64::INFINITY, |a, &b| a.min(b));
+        let max_quality = qualities.iter().fold(f64::NEG_INFINITY, |a, &b| a.max(b));
+
+        let mut risk_probabilities = HashMap::new();
+        for (risk_id, count) in risk_trigger_counts {
+            risk_probabilities.insert(risk_id.clone(), *count as f64 / self.simulation_count as f64);
+        }
+
+        SimulationSummary {
+            mean_cost,
+            std_cost,
+            min_cost,
+            max_cost,
+            mean_duration,
+            std_duration,
+            min_duration,
+            max_duration,
+            mean_quality,
+            std_quality,
+            min_quality,
+            max_quality,
+            risk_probabilities,
+        }
+    }
+
+    fn calculate_std(&self, values: &[f64], mean: f64) -> f64 {
+        let variance = values.iter()
+            .map(|x| (x - mean).powi(2))
+            .sum::<f64>() / values.len() as f64;
+        variance.sqrt()
+    }
 }
 ```
 
-## 2.3.5 风险缓解模型
+## 2.3.4 风险应对模型
 
-### 缓解策略定义
+### 风险应对策略
 
-**定义 2.3.15** 风险缓解策略是一个四元组 $MS = (R, S, C, E)$，其中：
-- $R$ 是目标风险
-- $S$ 是缓解策略
-- $C$ 是实施成本
-- $E$ 是预期效果
+**定义 2.3.8** (风险应对策略) 风险应对策略是一个四元组：
+$$\text{Strategy} = (T, A, C, E)$$
 
-### 缓解策略类型
+其中：
+- $T$ 是策略类型：$\{Avoid, Transfer, Mitigate, Accept\}$
+- $A$ 是行动集合
+- $C$ 是成本函数
+- $E$ 是效果函数
 
-**定义 2.3.16** 缓解策略类型：
-- **避免** (Avoid): 完全消除风险
-- **转移** (Transfer): 将风险转移给第三方
-- **缓解** (Mitigate): 降低风险概率或影响
-- **接受** (Accept): 接受风险并准备应对
-
-### 缓解策略优化
-
-**定义 2.3.17** 缓解策略优化问题：
-$$\min_{MS} \sum_{ms \in MS} C(ms)$$
+**定义 2.3.9** (风险应对优化) 风险应对优化问题：
+$$\min_{\text{Strategy}} \sum_{i=1}^{n} C_i(\text{Strategy}_i)$$
 
 约束条件：
-$$\sum_{ms \in MS} E(ms) \geq T$$
+$$\sum_{i=1}^{n} E_i(\text{Strategy}_i) \geq \text{TargetRiskReduction}$$
 
-其中 $T$ 是目标风险降低阈值。
-
-### 缓解策略实现
+**算法 2.3.3** (风险应对优化算法)：
 
 ```rust
-pub struct RiskMitigation {
-    pub strategies: HashMap<String, MitigationStrategy>,
-    pub effectiveness_matrix: HashMap<String, HashMap<String, f64>>,
-    pub cost_matrix: HashMap<String, f64>,
-}
+use std::collections::HashMap;
 
 # [derive(Debug, Clone)]
-pub struct MitigationStrategy {
-    pub id: String,
-    pub name: String,
-    pub description: String,
-    pub strategy_type: MitigationType,
-    pub target_risks: Vec<String>,
+pub struct RiskResponse {
+    pub risk_id: String,
+    pub strategy: ResponseStrategy,
+    pub actions: Vec<ResponseAction>,
     pub cost: f64,
     pub effectiveness: f64,
-    pub implementation_time: u64,
-    pub dependencies: Vec<String>,
+    pub implementation_time: f64,
 }
 
 # [derive(Debug, Clone)]
-pub enum MitigationType {
+pub enum ResponseStrategy {
     Avoid,
     Transfer,
     Mitigate,
     Accept,
 }
 
-impl RiskMitigation {
-    pub fn new() -> Self {
-        RiskMitigation {
-            strategies: HashMap::new(),
-            effectiveness_matrix: HashMap::new(),
-            cost_matrix: HashMap::new(),
+# [derive(Debug, Clone)]
+pub struct ResponseAction {
+    pub id: String,
+    pub name: String,
+    pub description: String,
+    pub cost: f64,
+    pub effectiveness: f64,
+    pub duration: f64,
+    pub dependencies: Vec<String>,
+}
+
+# [derive(Debug)]
+pub struct RiskResponseOptimizer {
+    pub risks: Vec<Risk>,
+    pub available_budget: f64,
+    pub target_risk_reduction: f64,
+    pub response_options: HashMap<String, Vec<RiskResponse>>,
+}
+
+impl RiskResponseOptimizer {
+    pub fn new(risks: Vec<Risk>, available_budget: f64, target_risk_reduction: f64) -> Self {
+        RiskResponseOptimizer {
+            risks,
+            available_budget,
+            target_risk_reduction,
+            response_options: HashMap::new(),
         }
     }
 
-    pub fn add_strategy(&mut self, strategy: MitigationStrategy) {
-        self.strategies.insert(strategy.id.clone(), strategy);
+    pub fn add_response_option(&mut self, risk_id: String, response: RiskResponse) {
+        self.response_options.entry(risk_id).or_insert_with(Vec::new).push(response);
     }
 
-    pub fn optimize_mitigation_plan(&self, risks: &[Risk], budget: f64) -> MitigationPlan {
-        let mut plan = MitigationPlan::new();
-        let mut remaining_budget = budget;
-        let mut covered_risks = HashSet::new();
+    pub fn optimize_responses(&self) -> Vec<RiskResponse> {
+        // 使用动态规划优化风险应对策略
+        let mut dp = vec![vec![0.0; (self.available_budget * 100.0) as usize + 1]; self.risks.len() + 1];
+        let mut decisions = vec![vec![None; (self.available_budget * 100.0) as usize + 1]; self.risks.len()];
 
-        // 按成本效益比排序策略
-        let mut strategies: Vec<&MitigationStrategy> = self.strategies.values().collect();
-        strategies.sort_by(|a, b| {
-            let ratio_a = a.effectiveness / a.cost;
-            let ratio_b = b.effectiveness / b.cost;
-            ratio_b.partial_cmp(&ratio_a).unwrap()
-        });
+        // 初始化
+        for j in 0..=(self.available_budget * 100.0) as usize {
+            dp[0][j] = 0.0;
+        }
 
-        for strategy in strategies {
-            if strategy.cost <= remaining_budget {
-                // 检查策略是否覆盖未处理的风险
-                let uncovered_risks = strategy.target_risks.iter()
-                    .filter(|risk_id| !covered_risks.contains(*risk_id))
-                    .count();
+        // 动态规划
+        for i in 1..=self.risks.len() {
+            let risk = &self.risks[i - 1];
+            let responses = self.response_options.get(&risk.id).unwrap_or(&Vec::new());
 
-                if uncovered_risks > 0 {
-                    plan.add_strategy(strategy.clone());
-                    remaining_budget -= strategy.cost;
+            for budget in 0..=(self.available_budget * 100.0) as usize {
+                dp[i][budget] = dp[i - 1][budget]; // 不采取任何措施
+                decisions[i - 1][budget] = None;
 
-                    for risk_id in &strategy.target_risks {
-                        covered_risks.insert(risk_id.clone());
+                for response in responses {
+                    let cost_budget = (response.cost * 100.0) as usize;
+                    if cost_budget <= budget {
+                        let risk_reduction = risk.exposure * response.effectiveness;
+                        let total_value = dp[i - 1][budget - cost_budget] + risk_reduction;
+
+                        if total_value > dp[i][budget] {
+                            dp[i][budget] = total_value;
+                            decisions[i - 1][budget] = Some(response.clone());
+                        }
                     }
                 }
             }
         }
 
-        plan
-    }
+        // 回溯最优解
+        let mut selected_responses = Vec::new();
+        let mut remaining_budget = (self.available_budget * 100.0) as usize;
 
-    pub fn calculate_mitigation_effectiveness(&self, plan: &MitigationPlan, risks: &[Risk]) -> f64 {
-        let mut total_risk_reduction = 0.0;
-        let mut total_original_risk = 0.0;
-
-        for risk in risks {
-            let original_risk_value = risk.probability * risk.impact;
-            total_original_risk += original_risk_value;
-
-            let risk_reduction = self.calculate_risk_reduction(risk, plan);
-            total_risk_reduction += risk_reduction;
-        }
-
-        if total_original_risk > 0.0 {
-            total_risk_reduction / total_original_risk
-        } else {
-            0.0
-        }
-    }
-
-    fn calculate_risk_reduction(&self, risk: &Risk, plan: &MitigationPlan) -> f64 {
-        let mut risk_reduction = 0.0;
-
-        for strategy in &plan.strategies {
-            if strategy.target_risks.contains(&risk.id) {
-                match strategy.strategy_type {
-                    MitigationType::Avoid => {
-                        risk_reduction = risk.probability * risk.impact;
-                    },
-                    MitigationType::Transfer => {
-                        risk_reduction = risk.probability * risk.impact * 0.8;
-                    },
-                    MitigationType::Mitigate => {
-                        risk_reduction = risk.probability * risk.impact * strategy.effectiveness;
-                    },
-                    MitigationType::Accept => {
-                        risk_reduction = 0.0;
-                    },
-                }
+        for i in (0..self.risks.len()).rev() {
+            if let Some(response) = &decisions[i][remaining_budget] {
+                selected_responses.push(response.clone());
+                remaining_budget -= (response.cost * 100.0) as usize;
             }
         }
 
-        risk_reduction
+        selected_responses
     }
+
+    pub fn calculate_risk_reduction(&self, responses: &[RiskResponse]) -> f64 {
+        let mut total_reduction = 0.0;
+
+        for response in responses {
+            if let Some(risk) = self.risks.iter().find(|r| r.id == response.risk_id) {
+                total_reduction += risk.exposure * response.effectiveness;
+            }
+        }
+
+        total_reduction
+    }
+
+    pub fn calculate_total_cost(&self, responses: &[RiskResponse]) -> f64 {
+        responses.iter().map(|r| r.cost).sum()
+    }
+
+    pub fn generate_response_plan(&self, responses: &[RiskResponse]) -> ResponsePlan {
+        let mut plan = ResponsePlan {
+            responses: responses.to_vec(),
+            total_cost: self.calculate_total_cost(responses),
+            total_risk_reduction: self.calculate_risk_reduction(responses),
+            implementation_schedule: Vec::new(),
+        };
+
+        // 生成实施计划
+        plan.implementation_schedule = self.generate_implementation_schedule(responses);
+
+        plan
+    }
+
+    fn generate_implementation_schedule(&self, responses: &[RiskResponse]) -> Vec<ScheduledAction> {
+        let mut scheduled_actions = Vec::new();
+        let mut current_time = 0.0;
+
+        // 按优先级排序响应
+        let mut sorted_responses = responses.to_vec();
+        sorted_responses.sort_by(|a, b| {
+            let risk_a = self.risks.iter().find(|r| r.id == a.risk_id).unwrap();
+            let risk_b = self.risks.iter().find(|r| r.id == b.risk_id).unwrap();
+            risk_a.priority.cmp(&risk_b.priority)
+        });
+
+        for response in sorted_responses {
+            for action in &response.actions {
+                let scheduled_action = ScheduledAction {
+                    action_id: action.id.clone(),
+                    action_name: action.name.clone(),
+                    start_time: current_time,
+                    end_time: current_time + action.duration,
+                    cost: action.cost,
+                    risk_id: response.risk_id.clone(),
+                };
+
+                scheduled_actions.push(scheduled_action);
+                current_time += action.duration;
+            }
+        }
+
+        scheduled_actions
+    }
+}
+
+# [derive(Debug)]
+pub struct ResponsePlan {
+    pub responses: Vec<RiskResponse>,
+    pub total_cost: f64,
+    pub total_risk_reduction: f64,
+    pub implementation_schedule: Vec<ScheduledAction>,
 }
 
 # [derive(Debug, Clone)]
-pub struct MitigationPlan {
-    pub strategies: Vec<MitigationStrategy>,
-    pub total_cost: f64,
-    pub expected_effectiveness: f64,
-}
-
-impl MitigationPlan {
-    pub fn new() -> Self {
-        MitigationPlan {
-            strategies: Vec::new(),
-            total_cost: 0.0,
-            expected_effectiveness: 0.0,
-        }
-    }
-
-    pub fn add_strategy(&mut self, strategy: MitigationStrategy) {
-        self.total_cost += strategy.cost;
-        self.strategies.push(strategy);
-    }
-
-    pub fn calculate_roi(&self, original_risk_value: f64) -> f64 {
-        if self.total_cost > 0.0 {
-            (original_risk_value - self.expected_effectiveness) / self.total_cost
-        } else {
-            0.0
-        }
-    }
+pub struct ScheduledAction {
+    pub action_id: String,
+    pub action_name: String,
+    pub start_time: f64,
+    pub end_time: f64,
+    pub cost: f64,
+    pub risk_id: String,
 }
 ```
 
-## 2.3.6 风险监控模型
+## 2.3.5 风险监控模型
 
-### 风险监控指标
+### 风险监控系统
 
-**定义 2.3.18** 风险监控指标：
-- **风险暴露度** (Risk Exposure): $RE = \sum_{r \in \mathcal{R}} P(r) \times I(r)$
-- **风险趋势** (Risk Trend): $RT = \frac{d}{dt} RE(t)$
-- **风险集中度** (Risk Concentration): $RC = \max_{r \in \mathcal{R}} P(r) \times I(r)$
+**定义 2.3.10** (风险监控指标) 风险监控指标包括：
+- **风险触发率**: $\text{TriggerRate} = \frac{\text{TriggeredRisks}}{\text{TotalRisks}} \times 100\%$
+- **风险应对效果**: $\text{Effectiveness} = \frac{\text{RiskReduction}}{\text{ResponseCost}}$
+- **风险趋势**: $\text{Trend} = \frac{\text{CurrentRiskLevel} - \text{PreviousRiskLevel}}{\text{TimeInterval}}$
 
-### 风险监控实现
+**算法 2.3.4** (风险监控算法)：
 
 ```rust
+use std::collections::HashMap;
+
+# [derive(Debug)]
 pub struct RiskMonitor {
-    pub risk_metrics: HashMap<String, RiskMetrics>,
-    pub alert_thresholds: HashMap<String, f64>,
-    pub monitoring_history: Vec<MonitoringRecord>,
+    pub risks: HashMap<String, Risk>,
+    pub risk_indicators: HashMap<String, Vec<RiskIndicator>>,
+    pub monitoring_thresholds: HashMap<String, f64>,
+    pub alert_history: Vec<RiskAlert>,
 }
 
 # [derive(Debug, Clone)]
-pub struct RiskMetrics {
-    pub risk_id: String,
-    pub current_probability: f64,
-    pub current_impact: f64,
-    pub risk_value: f64,
-    pub trend: f64,
-    pub last_updated: u64,
-}
-
-# [derive(Debug, Clone)]
-pub struct MonitoringRecord {
-    pub timestamp: u64,
-    pub risk_id: String,
-    pub metric_value: f64,
+pub struct RiskIndicator {
+    pub id: String,
+    pub name: String,
+    pub current_value: f64,
     pub threshold: f64,
-    pub alert_triggered: bool,
+    pub trend: f64,
+    pub last_updated: f64,
+}
+
+# [derive(Debug, Clone)]
+pub struct RiskAlert {
+    pub id: String,
+    pub risk_id: String,
+    pub alert_type: AlertType,
+    pub severity: Severity,
+    pub message: String,
+    pub timestamp: f64,
+    pub value: f64,
+    pub threshold: f64,
+}
+
+# [derive(Debug, Clone)]
+pub enum AlertType {
+    ThresholdExceeded,
+    TrendWarning,
+    RiskTriggered,
+    ResponseIneffective,
+}
+
+# [derive(Debug, Clone)]
+pub enum Severity {
+    Low,
+    Medium,
+    High,
+    Critical,
 }
 
 impl RiskMonitor {
     pub fn new() -> Self {
         RiskMonitor {
-            risk_metrics: HashMap::new(),
-            alert_thresholds: HashMap::new(),
-            monitoring_history: Vec::new(),
+            risks: HashMap::new(),
+            risk_indicators: HashMap::new(),
+            monitoring_thresholds: HashMap::new(),
+            alert_history: Vec::new(),
         }
     }
 
-    pub fn update_risk_metrics(&mut self, risk_id: &str, probability: f64, impact: f64) {
-        let risk_value = probability * impact;
-        let trend = self.calculate_trend(risk_id, risk_value);
-
-        let metrics = RiskMetrics {
-            risk_id: risk_id.to_string(),
-            current_probability: probability,
-            current_impact: impact,
-            risk_value,
-            trend,
-            last_updated: std::time::SystemTime::now()
-                .duration_since(std::time::UNIX_EPOCH)
-                .unwrap()
-                .as_secs(),
-        };
-
-        self.risk_metrics.insert(risk_id.to_string(), metrics);
-
-        // 检查告警
-        self.check_alerts(risk_id, risk_value);
+    pub fn add_risk(&mut self, risk: Risk) {
+        self.risks.insert(risk.id.clone(), risk);
     }
 
-    fn calculate_trend(&self, risk_id: &str, current_value: f64) -> f64 {
-        // 计算风险趋势（简化实现）
-        let history = self.monitoring_history.iter()
-            .filter(|record| record.risk_id == risk_id)
-            .collect::<Vec<_>>();
-
-        if history.len() >= 2 {
-            let recent = history[history.len() - 1].metric_value;
-            let previous = history[history.len() - 2].metric_value;
-            recent - previous
-        } else {
-            0.0
-        }
+    pub fn add_indicator(&mut self, risk_id: String, indicator: RiskIndicator) {
+        self.risk_indicators.entry(risk_id).or_insert_with(Vec::new).push(indicator);
     }
 
-    fn check_alerts(&mut self, risk_id: &str, risk_value: f64) {
-        if let Some(threshold) = self.alert_thresholds.get(risk_id) {
-            if risk_value > *threshold {
-                let record = MonitoringRecord {
-                    timestamp: std::time::SystemTime::now()
-                        .duration_since(std::time::UNIX_EPOCH)
-                        .unwrap()
-                        .as_secs(),
-                    risk_id: risk_id.to_string(),
-                    metric_value: risk_value,
-                    threshold: *threshold,
-                    alert_triggered: true,
-                };
+    pub fn set_threshold(&mut self, risk_id: String, threshold: f64) {
+        self.monitoring_thresholds.insert(risk_id, threshold);
+    }
 
-                self.monitoring_history.push(record);
+    pub fn monitor_risks(&mut self) -> Vec<RiskAlert> {
+        let mut new_alerts = Vec::new();
+
+        for (risk_id, risk) in &self.risks {
+            // 检查风险指标
+            if let Some(indicators) = self.risk_indicators.get(risk_id) {
+                for indicator in indicators {
+                    let alert = self.check_indicator(risk_id, indicator);
+                    if let Some(alert) = alert {
+                        new_alerts.push(alert.clone());
+                        self.alert_history.push(alert);
+                    }
+                }
+            }
+
+            // 检查风险概率变化
+            let probability_alert = self.check_probability_change(risk_id, risk);
+            if let Some(alert) = probability_alert {
+                        new_alerts.push(alert.clone());
+                        self.alert_history.push(alert);
+                    }
+
+            // 检查风险影响变化
+            let impact_alert = self.check_impact_change(risk_id, risk);
+            if let Some(alert) = impact_alert {
+                new_alerts.push(alert.clone());
+                self.alert_history.push(alert);
             }
         }
+
+        new_alerts
     }
 
-    pub fn get_risk_report(&self, risk_id: &str) -> Option<RiskReport> {
-        if let Some(metrics) = self.risk_metrics.get(risk_id) {
-            let alerts = self.monitoring_history.iter()
-                .filter(|record| record.risk_id == risk_id && record.alert_triggered)
-                .cloned()
-                .collect();
+    fn check_indicator(&self, risk_id: &str, indicator: &RiskIndicator) -> Option<RiskAlert> {
+        if indicator.current_value > indicator.threshold {
+            let severity = self.determine_severity(indicator.current_value, indicator.threshold);
 
-            Some(RiskReport {
+            Some(RiskAlert {
+                id: format!("alert_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
                 risk_id: risk_id.to_string(),
-                metrics: metrics.clone(),
-                alerts,
+                alert_type: AlertType::ThresholdExceeded,
+                severity,
+                message: format!("指标 '{}' 超过阈值: {:.2} > {:.2}",
+                               indicator.name, indicator.current_value, indicator.threshold),
+                timestamp: std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap()
+                    .as_secs() as f64,
+                value: indicator.current_value,
+                threshold: indicator.threshold,
+            })
+        } else if indicator.trend > 0.1 {
+            // 趋势警告
+            Some(RiskAlert {
+                id: format!("alert_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
+                risk_id: risk_id.to_string(),
+                alert_type: AlertType::TrendWarning,
+                severity: Severity::Medium,
+                message: format!("指标 '{}' 呈上升趋势: {:.2}", indicator.name, indicator.trend),
+                timestamp: std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap()
+                    .as_secs() as f64,
+                value: indicator.trend,
+                threshold: 0.1,
             })
         } else {
             None
         }
     }
+
+    fn check_probability_change(&self, risk_id: &str, risk: &Risk) -> Option<RiskAlert> {
+        // 这里应该比较当前概率与历史概率
+        // 简化实现：检查概率是否超过某个阈值
+        if risk.probability > 0.8 {
+            Some(RiskAlert {
+                id: format!("alert_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
+                risk_id: risk_id.to_string(),
+                alert_type: AlertType::RiskTriggered,
+                severity: Severity::High,
+                message: format!("风险 '{}' 概率过高: {:.2}", risk.name, risk.probability),
+                timestamp: std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap()
+                    .as_secs() as f64,
+                value: risk.probability,
+                threshold: 0.8,
+            })
+        } else {
+            None
+        }
+    }
+
+    fn check_impact_change(&self, risk_id: &str, risk: &Risk) -> Option<RiskAlert> {
+        // 检查风险影响是否显著增加
+        if risk.impact > 0.9 {
+            Some(RiskAlert {
+                id: format!("alert_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
+                risk_id: risk_id.to_string(),
+                alert_type: AlertType::RiskTriggered,
+                severity: Severity::Critical,
+                message: format!("风险 '{}' 影响程度极高: {:.2}", risk.name, risk.impact),
+                timestamp: std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .unwrap()
+                    .as_secs() as f64,
+                value: risk.impact,
+                threshold: 0.9,
+            })
+        } else {
+            None
+        }
+    }
+
+    fn determine_severity(&self, value: f64, threshold: f64) -> Severity {
+        let ratio = value / threshold;
+
+        if ratio > 2.0 {
+            Severity::Critical
+        } else if ratio > 1.5 {
+            Severity::High
+        } else if ratio > 1.2 {
+            Severity::Medium
+        } else {
+            Severity::Low
+        }
+    }
+
+    pub fn generate_risk_report(&self) -> RiskReport {
+        let mut report = RiskReport {
+            total_risks: self.risks.len(),
+            high_priority_risks: 0,
+            triggered_risks: 0,
+            total_alerts: self.alert_history.len(),
+            risk_distribution: HashMap::new(),
+            alert_summary: HashMap::new(),
+        };
+
+        // 统计风险分布
+        for risk in self.risks.values() {
+            let category = format!("{:?}", risk.category);
+            *report.risk_distribution.entry(category).or_insert(0) += 1;
+
+            if risk.priority <= 5 {
+                report.high_priority_risks += 1;
+            }
+        }
+
+        // 统计告警摘要
+        for alert in &self.alert_history {
+            let alert_type = format!("{:?}", alert.alert_type);
+            *report.alert_summary.entry(alert_type).or_insert(0) += 1;
+        }
+
+        report
+    }
 }
 
-# [derive(Debug, Clone)]
+# [derive(Debug)]
 pub struct RiskReport {
-    pub risk_id: String,
-    pub metrics: RiskMetrics,
-    pub alerts: Vec<MonitoringRecord>,
+    pub total_risks: usize,
+    pub high_priority_risks: usize,
+    pub triggered_risks: usize,
+    pub total_alerts: usize,
+    pub risk_distribution: HashMap<String, usize>,
+    pub alert_summary: HashMap<String, usize>,
 }
 ```
 
+## 2.3.6 国际标准对标
+
+### PMBOK 7th Edition 标准
+
+- **风险管理知识领域**: 项目风险管理过程
+- **风险识别**: 识别风险过程
+- **风险分析**: 实施定性风险分析、实施定量风险分析
+- **风险应对**: 规划风险应对过程
+- **风险监控**: 监督风险过程
+
+### ISO 31000 标准
+
+- **风险管理原则**: 风险管理框架和过程
+- **风险评估**: 风险识别、风险分析、风险评价
+- **风险处理**: 风险应对策略选择和实施
+- **监控和评审**: 风险监控和持续改进
+
+### PRINCE2 标准
+
+- **风险主题**: 风险管理主题
+- **风险识别**: 风险识别和评估
+- **风险应对**: 风险应对策略
+- **风险监控**: 风险监控和控制
+
 ## 2.3.7 相关链接
 
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [1.2 数学模型基础](../01-foundations/mathematical-models.md)
 - [2.1 项目生命周期模型](./lifecycle-models.md)
 - [2.2 资源管理模型](./resource-models.md)
 - [2.4 质量管理模型](./quality-models.md)
+- [1.1 形式化基础理论](../01-foundations/README.md)
+- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
 ## 参考文献
 
-1. PMI. (2017). A Guide to the Project Management Body of Knowledge (PMBOK Guide). Project Management Institute.
-2. Chapman, C., & Ward, S. (2011). Project risk management: processes, techniques and insights. John Wiley & Sons.
-3. Hillson, D. (2009). Managing risk in projects. Gower Publishing, Ltd.
-4. Kerzner, H. (2017). Project management: a systems approach to planning, scheduling, and controlling. John Wiley & Sons.
+1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+2. ISO 31000:2018. Risk management - Guidelines. International Organization for Standardization.
+3. AXELOS. (2017). Managing Successful Projects with PRINCE2 2017 Edition. TSO (The Stationery Office).
+4. Kerzner, H. (2017). Project management: a systems approach to planning, scheduling, and controlling (12th ed.). John Wiley & Sons.
+5. Meredith, J. R., & Mantel, S. J. (2019). Project management: a managerial approach (10th ed.). John Wiley & Sons.
+6. Turner, J. R. (2016). Gower handbook of project management (5th ed.). Routledge.
+7. Lock, D. (2013). Project management (10th ed.). Routledge.
+8. Schwalbe, K. (2019). Information technology project management (9th ed.). Cengage Learning.
+9. Wysocki, R. K. (2019). Effective project management: traditional, agile, extreme, hybrid (8th ed.). John Wiley & Sons.
+10. Chapman, C., & Ward, S. (2011). Project risk management: processes, techniques and insights. John Wiley & Sons.

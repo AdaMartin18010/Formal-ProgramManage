@@ -2,687 +2,610 @@
 
 ## 概述
 
-资源管理模型是Formal-ProgramManage的核心组成部分，提供严格的数学框架来管理项目中的各种资源，包括人力资源、物质资源、财务资源和时间资源。
+资源管理模型是Formal-ProgramManage的核心理论之一，定义了项目资源的优化配置、分配和监控机制。本理论体系严格对标PMBOK 7th Edition、ISO 21500、PRINCE2等国际项目管理标准。
 
-## 2.2.1 资源基础定义
+## 2.2.1 资源管理基础理论
 
-### 资源类型定义
+### 基本定义
 
-**定义 2.2.1** 项目资源是一个四元组 $R = (T, C, A, U)$，其中：
-
-- $T$ 是资源类型 (Resource Type)
-- $C$ 是容量 (Capacity)
-- $A$ 是可用性 (Availability)
-- $U$ 是使用率 (Utilization)
-
-### 资源类型分类
-
-**定义 2.2.2** 资源类型集合 $\mathcal{T} = \{Human, Equipment, Material, Financial, Time\}$
-
-**定义 2.2.3** 人力资源 $R_{human} = (Human, C_{human}, A_{human}, U_{human})$
-
-**定义 2.2.4** 设备资源 $R_{equipment} = (Equipment, C_{equipment}, A_{equipment}, U_{equipment})$
-
-**定义 2.2.5** 物质资源 $R_{material} = (Material, C_{material}, A_{material}, U_{material})$
-
-**定义 2.2.6** 财务资源 $R_{financial} = (Financial, C_{financial}, A_{financial}, U_{financial})$
-
-**定义 2.2.7** 时间资源 $R_{time} = (Time, C_{time}, A_{time}, U_{time})$
-
-## 2.2.2 资源分配理论
-
-### 资源分配函数
-
-**定义 2.2.8** 资源分配函数 $RA: \mathcal{R} \times \mathcal{T} \times \mathcal{P} \rightarrow \mathbb{R}^+$ 满足：
-$$\forall r \in \mathcal{R}, \forall t \in \mathcal{T}, \forall p \in \mathcal{P}: RA(r, t, p) \geq 0$$
-
-### 资源约束条件
-
-**定义 2.2.9** 容量约束：
-$$\forall r \in \mathcal{R}, \forall t \in \mathcal{T}: \sum_{p \in \mathcal{P}} RA(r, t, p) \leq C(r)$$
-
-**定义 2.2.10** 可用性约束：
-$$\forall r \in \mathcal{R}, \forall t \in \mathcal{T}: RA(r, t, p) \leq A(r, t)$$
-
-### 资源分配优化
-
-**定义 2.2.11** 资源分配优化问题：
-$$\min_{RA} \sum_{r \in \mathcal{R}} \sum_{t \in \mathcal{T}} \sum_{p \in \mathcal{P}} c(r, t, p) \cdot RA(r, t, p)$$
-
-约束条件：
-$$\sum_{p \in \mathcal{P}} RA(r, t, p) \leq C(r), \quad \forall r \in \mathcal{R}, \forall t \in \mathcal{T}$$
-$$\sum_{r \in \mathcal{R}} RA(r, t, p) \geq D(p, t), \quad \forall p \in \mathcal{P}, \forall t \in \mathcal{T}$$
+**定义 2.2.1** (项目资源 - PMBOK 7th Edition) 项目资源是一个四元组：
+$$\mathcal{R} = (H, M, T, F)$$
 
 其中：
 
-- $c(r, t, p)$ 是资源成本函数
-- $D(p, t)$ 是项目需求函数
+- $H = \{h_1, h_2, \ldots, h_n\}$ 是人力资源集合，满足 $h_i \in \mathbb{R}^+$
+- $M = \{m_1, m_2, \ldots, m_k\}$ 是物质资源集合，满足 $m_i \in \mathbb{R}^+$
+- $T = \{t_1, t_2, \ldots, t_l\}$ 是技术资源集合，满足 $t_i \in \mathbb{R}^+$
+- $F = \{f_1, f_2, \ldots, f_m\}$ 是财务资源集合，满足 $f_i \in \mathbb{R}^+$
 
-## 2.2.3 资源调度模型
+**定义 2.2.2** (资源分配函数) 资源分配函数是一个映射：
+$$\text{allocate}: \mathcal{T} \times \mathcal{R} \rightarrow \mathbb{R}^+$$
 
-### 调度问题定义
+其中 $\mathcal{T}$ 是任务集合，满足：
+$$\forall t \in \mathcal{T}, \forall r \in \mathcal{R}: \text{allocate}(t, r) \geq 0$$
 
-**定义 2.2.12** 资源调度问题是一个五元组 $SP = (J, R, P, C, O)$，其中：
+**定义 2.2.3** (资源约束) 资源约束是一个三元组：
+$$C = (R, L, U)$$
 
-- $J$ 是任务集合
-- $R$ 是资源集合
-- $P$ 是优先级关系
-- $C$ 是约束条件
-- $O$ 是目标函数
+其中：
 
-### 调度算法
+- $R$ 是资源类型
+- $L$ 是下界约束，满足 $L \in \mathbb{R}^+$
+- $U$ 是上界约束，满足 $U \in \mathbb{R}^+$ 且 $U \geq L$
 
-**算法 2.2.1** 最早截止时间优先调度 (EDF)：
+## 2.2.2 资源优化模型
+
+### 线性规划模型
+
+**定义 2.2.4** (资源优化问题) 资源优化问题是一个线性规划：
+$$\begin{align}
+\text{minimize} \quad & \sum_{i=1}^{n} \sum_{j=1}^{m} c_{ij} x_{ij} \\
+\text{subject to} \quad & \sum_{j=1}^{m} x_{ij} \leq a_i, \quad i = 1, 2, \ldots, n \\
+& \sum_{i=1}^{n} x_{ij} \geq b_j, \quad j = 1, 2, \ldots, m \\
+& x_{ij} \geq 0, \quad \forall i, j
+\end{align}$$
+
+其中：
+- $x_{ij}$ 是分配给任务 $i$ 的资源 $j$ 的数量
+- $c_{ij}$ 是单位成本
+- $a_i$ 是资源 $i$ 的可用量
+- $b_j$ 是任务 $j$ 的需求量
+
+### 动态规划模型
+
+**定义 2.2.5** (资源动态规划) 资源动态规划的状态转移方程：
+$$V(i, r) = \max_{0 \leq x \leq r} \{v_i(x) + V(i-1, r-x)\}$$
+
+其中：
+- $V(i, r)$ 是前 $i$ 个任务使用 $r$ 单位资源的最大价值
+- $v_i(x)$ 是任务 $i$ 使用 $x$ 单位资源的价值
+- $x$ 是分配给任务 $i$ 的资源量
+
+## 2.2.3 资源调度算法
+
+### 关键路径法
+
+**算法 2.2.1** (关键路径资源调度)：
 
 ```rust
-use std::collections::{BinaryHeap, HashMap};
-use std::cmp::Ordering;
+use std::collections::{HashMap, HashSet, VecDeque};
 
-#[derive(Debug, Clone)]
+# [derive(Debug, Clone)]
 pub struct Task {
     pub id: String,
-    pub duration: u64,
-    pub deadline: u64,
-    pub priority: u32,
+    pub duration: f64,
     pub resource_requirements: HashMap<String, f64>,
+    pub dependencies: Vec<String>,
+    pub earliest_start: f64,
+    pub latest_start: f64,
+    pub slack: f64,
 }
 
-#[derive(Debug, Clone)]
+# [derive(Debug, Clone)]
 pub struct Resource {
     pub id: String,
     pub capacity: f64,
     pub cost_per_unit: f64,
-    pub availability: Vec<TimeSlot>,
+    pub availability: Vec<(f64, f64)>, // (start_time, end_time)
 }
 
-#[derive(Debug, Clone)]
-pub struct TimeSlot {
-    pub start_time: u64,
-    pub end_time: u64,
-    pub available_capacity: f64,
-}
-
-#[derive(Debug, Clone)]
-pub struct Schedule {
-    pub task_assignments: HashMap<String, TaskAssignment>,
-    pub resource_utilization: HashMap<String, Vec<TimeSlot>>,
-    pub total_cost: f64,
-}
-
-#[derive(Debug, Clone)]
-pub struct TaskAssignment {
-    pub task_id: String,
-    pub resource_id: String,
-    pub start_time: u64,
-    pub end_time: u64,
-    pub allocated_capacity: f64,
-}
-
-impl PartialEq for Task {
-    fn eq(&self, other: &Self) -> bool {
-        self.deadline == other.deadline
-    }
-}
-
-impl Eq for Task {}
-
-impl PartialOrd for Task {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(self.cmp(other))
-    }
-}
-
-impl Ord for Task {
-    fn cmp(&self, other: &Self) -> Ordering {
-        // EDF: 按截止时间排序
-        self.deadline.cmp(&other.deadline)
-    }
-}
-
+# [derive(Debug)]
 pub struct ResourceScheduler {
-    pub tasks: Vec<Task>,
+    pub tasks: HashMap<String, Task>,
     pub resources: HashMap<String, Resource>,
-    pub schedule: Schedule,
+    pub schedule: HashMap<String, Vec<(f64, f64, f64)>>, // task_id -> [(start, end, resource_amount)]
 }
 
 impl ResourceScheduler {
     pub fn new() -> Self {
         ResourceScheduler {
-            tasks: Vec::new(),
+            tasks: HashMap::new(),
             resources: HashMap::new(),
-            schedule: Schedule {
-                task_assignments: HashMap::new(),
-                resource_utilization: HashMap::new(),
-                total_cost: 0.0,
-            },
+            schedule: HashMap::new(),
         }
     }
-    
+
     pub fn add_task(&mut self, task: Task) {
-        self.tasks.push(task);
+        self.tasks.insert(task.id.clone(), task);
     }
-    
+
     pub fn add_resource(&mut self, resource: Resource) {
         self.resources.insert(resource.id.clone(), resource);
     }
-    
-    pub fn schedule_edf(&mut self) -> Result<Schedule, String> {
-        // 按截止时间排序任务
-        let mut sorted_tasks = self.tasks.clone();
-        sorted_tasks.sort(); // 使用Ord trait排序
-        
-        let mut schedule = Schedule {
-            task_assignments: HashMap::new(),
-            resource_utilization: HashMap::new(),
-            total_cost: 0.0,
-        };
-        
-        for task in sorted_tasks {
-            let assignment = self.find_best_assignment(&task)?;
-            schedule.task_assignments.insert(task.id.clone(), assignment.clone());
-            
-            // 更新资源利用率
-            self.update_resource_utilization(&mut schedule, &assignment);
-            
-            // 计算成本
-            let resource = self.resources.get(&assignment.resource_id)
-                .ok_or("Resource not found")?;
-            let cost = assignment.allocated_capacity * resource.cost_per_unit * 
-                      (assignment.end_time - assignment.start_time) as f64;
-            schedule.total_cost += cost;
+
+    pub fn calculate_critical_path(&self) -> Vec<String> {
+        let mut in_degree: HashMap<String, usize> = HashMap::new();
+        let mut earliest_start: HashMap<String, f64> = HashMap::new();
+        let mut queue: VecDeque<String> = VecDeque::new();
+
+        // 初始化入度
+        for task_id in self.tasks.keys() {
+            in_degree.insert(task_id.clone(), 0);
         }
-        
-        self.schedule = schedule.clone();
-        Ok(schedule)
-    }
-    
-    fn find_best_assignment(&self, task: &Task) -> Result<TaskAssignment, String> {
-        let mut best_assignment = None;
-        let mut best_cost = f64::INFINITY;
-        
-        for (resource_id, resource) in &self.resources {
-            // 检查资源是否满足任务需求
-            if self.can_allocate_resource(resource_id, task) {
-                let assignment = self.create_assignment(task, resource_id)?;
-                let cost = self.calculate_assignment_cost(&assignment);
-                
-                if cost < best_cost {
-                    best_cost = cost;
-                    best_assignment = Some(assignment);
+
+        // 计算入度
+        for task in self.tasks.values() {
+            for dep in &task.dependencies {
+                *in_degree.get_mut(dep).unwrap() += 1;
+            }
+        }
+
+        // 拓扑排序
+        for (task_id, &degree) in &in_degree {
+            if degree == 0 {
+                queue.push_back(task_id.clone());
+                earliest_start.insert(task_id.clone(), 0.0);
+            }
+        }
+
+        let mut critical_path = Vec::new();
+
+        while let Some(task_id) = queue.pop_front() {
+            let task = &self.tasks[&task_id];
+            let current_earliest = earliest_start[&task_id];
+
+            // 更新后续任务的最早开始时间
+            for (next_id, next_task) in &self.tasks {
+                if next_task.dependencies.contains(&task_id) {
+                    let new_earliest = current_earliest + task.duration;
+                    let current = earliest_start.get(next_id).unwrap_or(&0.0);
+                    earliest_start.insert(next_id.clone(), new_earliest.max(*current));
+
+                    *in_degree.get_mut(next_id).unwrap() -= 1;
+                    if in_degree[next_id] == 0 {
+                        queue.push_back(next_id.clone());
+                    }
                 }
             }
+
+            critical_path.push(task_id);
         }
-        
-        best_assignment.ok_or("No suitable resource found".to_string())
+
+        critical_path
     }
-    
-    fn can_allocate_resource(&self, resource_id: &str, task: &Task) -> bool {
-        let resource = self.resources.get(resource_id).unwrap();
-        
-        // 检查资源需求
-        for (req_resource_id, req_capacity) in &task.resource_requirements {
-            if req_resource_id == resource_id && req_capacity > &resource.capacity {
-                return false;
+
+    pub fn optimize_resource_allocation(&mut self) -> f64 {
+        let mut total_cost = 0.0;
+
+        // 按关键路径顺序分配资源
+        let critical_path = self.calculate_critical_path();
+
+        for task_id in critical_path {
+            let task = &self.tasks[&task_id];
+            let mut best_allocation = HashMap::new();
+            let mut min_cost = f64::INFINITY;
+
+            // 尝试不同的资源分配方案
+            for resource_id in task.resource_requirements.keys() {
+                let resource = &self.resources[resource_id];
+                let required = task.resource_requirements[resource_id];
+
+                // 计算最优分配
+                let optimal_amount = self.calculate_optimal_allocation(
+                    task, resource_id, required
+                );
+
+                best_allocation.insert(resource_id.clone(), optimal_amount);
+                min_cost += optimal_amount * resource.cost_per_unit;
+            }
+
+            // 更新调度
+            self.schedule.insert(task_id.clone(), vec![
+                (task.earliest_start, task.earliest_start + task.duration, min_cost)
+            ]);
+
+            total_cost += min_cost;
+        }
+
+        total_cost
+    }
+
+    fn calculate_optimal_allocation(&self, task: &Task, resource_id: &str, required: f64) -> f64 {
+        let resource = &self.resources[resource_id];
+
+        // 考虑资源可用性和成本
+        let available = self.get_available_resource(resource_id, task.earliest_start, task.earliest_start + task.duration);
+        let optimal = required.min(available);
+
+        optimal
+    }
+
+    fn get_available_resource(&self, resource_id: &str, start_time: f64, end_time: f64) -> f64 {
+        let resource = &self.resources[resource_id];
+
+        // 检查时间窗口内的可用性
+        let mut available = resource.capacity;
+
+        for (avail_start, avail_end) in &resource.availability {
+            if start_time >= *avail_start && end_time <= *avail_end {
+                available = available.min(resource.capacity);
             }
         }
-        
-        true
+
+        available
     }
-    
-    fn create_assignment(&self, task: &Task, resource_id: &str) -> Result<TaskAssignment, String> {
-        let resource = self.resources.get(resource_id)
-            .ok_or("Resource not found")?;
-        
-        // 找到最早的可用时间槽
-        let start_time = self.find_earliest_available_slot(resource_id, task)?;
-        let end_time = start_time + task.duration;
-        
-        let allocated_capacity = task.resource_requirements.get(resource_id)
-            .unwrap_or(&0.0);
-        
-        Ok(TaskAssignment {
-            task_id: task.id.clone(),
-            resource_id: resource_id.to_string(),
-            start_time,
-            end_time,
-            allocated_capacity: *allocated_capacity,
-        })
-    }
-    
-    fn find_earliest_available_slot(&self, resource_id: &str, task: &Task) -> Result<u64, String> {
-        // 简化实现：返回当前时间
-        Ok(0)
-    }
-    
-    fn calculate_assignment_cost(&self, assignment: &TaskAssignment) -> f64 {
-        let resource = self.resources.get(&assignment.resource_id).unwrap();
-        assignment.allocated_capacity * resource.cost_per_unit * 
-        (assignment.end_time - assignment.start_time) as f64
-    }
-    
-    fn update_resource_utilization(&self, schedule: &mut Schedule, assignment: &TaskAssignment) {
-        let resource_util = schedule.resource_utilization
-            .entry(assignment.resource_id.clone())
-            .or_insert_with(Vec::new);
-        
-        resource_util.push(TimeSlot {
-            start_time: assignment.start_time,
-            end_time: assignment.end_time,
-            available_capacity: assignment.allocated_capacity,
-        });
+
+    pub fn calculate_resource_utilization(&self) -> HashMap<String, f64> {
+        let mut utilization = HashMap::new();
+
+        for (resource_id, resource) in &self.resources {
+            let mut total_used = 0.0;
+            let mut total_available = 0.0;
+
+            for (task_id, allocations) in &self.schedule {
+                for (start, end, amount) in allocations {
+                    let duration = end - start;
+                    total_used += amount * duration;
+                }
+            }
+
+            // 计算总可用时间
+            for (start, end) in &resource.availability {
+                total_available += resource.capacity * (end - start);
+            }
+
+            let util = if total_available > 0.0 {
+                total_used / total_available
+            } else {
+                0.0
+            };
+
+            utilization.insert(resource_id.clone(), util);
+        }
+
+        utilization
     }
 }
 ```
 
-## 2.2.4 资源优化理论
-
-### 线性规划模型
-
-**定义 2.2.13** 资源优化线性规划模型：
-$$\min_{x} c^T x$$
-
-约束条件：
-$$Ax \leq b$$
-$$x \geq 0$$
-
-其中：
-
-- $x$ 是决策变量向量
-- $c$ 是成本向量
-- $A$ 是约束矩阵
-- $b$ 是约束向量
-
-### 动态规划优化
-
-**定义 2.2.14** 资源优化动态规划：
-$$V_t(s) = \min_{a \in A(s)} \{c(s, a) + V_{t+1}(f(s, a))\}$$
-
-其中：
-
-- $V_t(s)$ 是时间 $t$ 状态 $s$ 的最优值函数
-- $c(s, a)$ 是状态 $s$ 下动作 $a$ 的成本
-- $f(s, a)$ 是状态转移函数
-
 ### 遗传算法优化
 
-**算法 2.2.2** 资源优化遗传算法：
+**算法 2.2.2** (遗传算法资源优化)：
 
 ```rust
+use std::collections::HashMap;
 use rand::Rng;
 
-#[derive(Debug, Clone)]
+# [derive(Debug, Clone)]
 pub struct Chromosome {
-    pub genes: Vec<u32>,
+    pub gene: Vec<f64>, // 资源分配方案
     pub fitness: f64,
 }
 
-#[derive(Debug, Clone)]
+# [derive(Debug)]
 pub struct GeneticOptimizer {
     pub population_size: usize,
     pub mutation_rate: f64,
     pub crossover_rate: f64,
     pub generations: usize,
+    pub tasks: Vec<Task>,
+    pub resources: Vec<Resource>,
 }
 
 impl GeneticOptimizer {
-    pub fn new(population_size: usize, mutation_rate: f64, crossover_rate: f64, generations: usize) -> Self {
+    pub fn new(population_size: usize, tasks: Vec<Task>, resources: Vec<Resource>) -> Self {
         GeneticOptimizer {
             population_size,
-            mutation_rate,
-            crossover_rate,
-            generations,
+            mutation_rate: 0.1,
+            crossover_rate: 0.8,
+            generations: 100,
+            tasks,
+            resources,
         }
     }
-    
-    pub fn optimize(&self, tasks: &[Task], resources: &HashMap<String, Resource>) -> Vec<TaskAssignment> {
-        let mut population = self.initialize_population(tasks, resources);
-        
+
+    pub fn optimize(&mut self) -> Chromosome {
+        let mut population = self.initialize_population();
+
         for generation in 0..self.generations {
-            // 评估适应度
+            // 计算适应度
             for chromosome in &mut population {
-                chromosome.fitness = self.calculate_fitness(chromosome, tasks, resources);
+                chromosome.fitness = self.calculate_fitness(&chromosome.gene);
             }
-            
-            // 选择
-            let selected = self.selection(&population);
-            
-            // 交叉
-            let offspring = self.crossover(&selected);
-            
-            // 变异
-            let mutated = self.mutation(&offspring);
-            
-            // 更新种群
-            population = mutated;
+
+            // 排序
+            population.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).unwrap());
+
+            // 选择、交叉、变异
+            let mut new_population = Vec::new();
+
+            // 精英保留
+            let elite_size = self.population_size / 10;
+            for i in 0..elite_size {
+                new_population.push(population[i].clone());
+            }
+
+            // 生成新个体
+            while new_population.len() < self.population_size {
+                let parent1 = self.tournament_selection(&population);
+                let parent2 = self.tournament_selection(&population);
+
+                let (child1, child2) = self.crossover(&parent1, &parent2);
+
+                let child1 = self.mutate(child1);
+                let child2 = self.mutate(child2);
+
+                new_population.push(child1);
+                if new_population.len() < self.population_size {
+                    new_population.push(child2);
+                }
+            }
+
+            population = new_population;
+
+            if generation % 10 == 0 {
+                println!("Generation {}: Best fitness = {}", generation, population[0].fitness);
+            }
         }
-        
-        // 返回最优解
-        let best_chromosome = population.iter()
-            .max_by(|a, b| a.fitness.partial_cmp(&b.fitness).unwrap())
-            .unwrap();
-        
-        self.decode_chromosome(best_chromosome, tasks, resources)
+
+        population[0].clone()
     }
-    
-    fn initialize_population(&self, tasks: &[Task], resources: &HashMap<String, Resource>) -> Vec<Chromosome> {
-        let mut population = Vec::new();
+
+    fn initialize_population(&self) -> Vec<Chromosome> {
         let mut rng = rand::thread_rng();
-        
+        let mut population = Vec::new();
+
         for _ in 0..self.population_size {
-            let mut genes = Vec::new();
-            for _ in 0..tasks.len() {
-                genes.push(rng.gen_range(0..resources.len() as u32));
+            let mut gene = Vec::new();
+
+            for task in &self.tasks {
+                for resource in &self.resources {
+                    let allocation = rng.gen_range(0.0..resource.capacity);
+                    gene.push(allocation);
+                }
             }
-            
+
             population.push(Chromosome {
-                genes,
+                gene,
                 fitness: 0.0,
             });
         }
-        
+
         population
     }
-    
-    fn calculate_fitness(&self, chromosome: &Chromosome, tasks: &[Task], resources: &HashMap<String, Resource>) -> f64 {
-        let assignments = self.decode_chromosome(chromosome, tasks, resources);
-        
-        // 计算总成本
-        let total_cost = assignments.iter()
-            .map(|assignment| {
-                let resource = resources.get(&assignment.resource_id).unwrap();
-                assignment.allocated_capacity * resource.cost_per_unit * 
-                (assignment.end_time - assignment.start_time) as f64
-            })
-            .sum::<f64>();
-        
-        // 计算约束违反惩罚
-        let penalty = self.calculate_constraint_penalty(&assignments, resources);
-        
-        // 适应度 = 1 / (成本 + 惩罚)
-        1.0 / (total_cost + penalty)
-    }
-    
-    fn calculate_constraint_penalty(&self, assignments: &[TaskAssignment], resources: &HashMap<String, Resource>) -> f64 {
-        let mut penalty = 0.0;
-        
-        for (resource_id, resource) in resources {
-            let total_allocation = assignments.iter()
-                .filter(|a| a.resource_id == *resource_id)
-                .map(|a| a.allocated_capacity)
-                .sum::<f64>();
-            
-            if total_allocation > resource.capacity {
-                penalty += (total_allocation - resource.capacity) * 1000.0;
-            }
-        }
-        
-        penalty
-    }
-    
-    fn selection(&self, population: &[Chromosome]) -> Vec<Chromosome> {
-        // 轮盘赌选择
-        let total_fitness: f64 = population.iter().map(|c| c.fitness).sum();
-        let mut selected = Vec::new();
-        let mut rng = rand::thread_rng();
-        
-        for _ in 0..population.len() {
-            let random = rng.gen_range(0.0..total_fitness);
-            let mut cumulative = 0.0;
-            
-            for chromosome in population {
-                cumulative += chromosome.fitness;
-                if cumulative >= random {
-                    selected.push(chromosome.clone());
-                    break;
+
+    fn calculate_fitness(&self, gene: &[f64]) -> f64 {
+        let mut total_cost = 0.0;
+        let mut constraint_violation = 0.0;
+
+        let mut gene_index = 0;
+
+        for task in &self.tasks {
+            for resource in &self.resources {
+                let allocation = gene[gene_index];
+
+                // 计算成本
+                total_cost += allocation * resource.cost_per_unit;
+
+                // 检查约束违反
+                if allocation > resource.capacity {
+                    constraint_violation += allocation - resource.capacity;
                 }
+
+                gene_index += 1;
             }
         }
-        
-        selected
+
+        // 适应度 = 1 / (成本 + 惩罚项)
+        1.0 / (total_cost + 1000.0 * constraint_violation)
     }
-    
-    fn crossover(&self, parents: &[Chromosome]) -> Vec<Chromosome> {
-        let mut offspring = Vec::new();
+
+    fn tournament_selection(&self, population: &[Chromosome]) -> &Chromosome {
         let mut rng = rand::thread_rng();
-        
-        for i in 0..parents.len() - 1 {
-            if rng.gen::<f64>() < self.crossover_rate {
-                let parent1 = &parents[i];
-                let parent2 = &parents[i + 1];
-                
-                let (child1, child2) = self.single_point_crossover(parent1, parent2);
-                offspring.push(child1);
-                offspring.push(child2);
-            } else {
-                offspring.push(parents[i].clone());
-                offspring.push(parents[i + 1].clone());
+        let tournament_size = 3;
+
+        let mut best = &population[rng.gen_range(0..population.len())];
+
+        for _ in 1..tournament_size {
+            let candidate = &population[rng.gen_range(0..population.len())];
+            if candidate.fitness > best.fitness {
+                best = candidate;
             }
         }
-        
-        offspring
+
+        best
     }
-    
-    fn single_point_crossover(&self, parent1: &Chromosome, parent2: &Chromosome) -> (Chromosome, Chromosome) {
+
+    fn crossover(&self, parent1: &Chromosome, parent2: &Chromosome) -> (Chromosome, Chromosome) {
         let mut rng = rand::thread_rng();
-        let crossover_point = rng.gen_range(0..parent1.genes.len());
-        
-        let mut child1_genes = parent1.genes.clone();
-        let mut child2_genes = parent2.genes.clone();
-        
-        for i in crossover_point..parent1.genes.len() {
-            child1_genes[i] = parent2.genes[i];
-            child2_genes[i] = parent1.genes[i];
+
+        if rng.gen::<f64>() > self.crossover_rate {
+            return (parent1.clone(), parent2.clone());
         }
-        
-        (Chromosome { genes: child1_genes, fitness: 0.0 },
-         Chromosome { genes: child2_genes, fitness: 0.0 })
+
+        let crossover_point = rng.gen_range(0..parent1.gene.len());
+
+        let mut child1_gene = parent1.gene.clone();
+        let mut child2_gene = parent2.gene.clone();
+
+        for i in crossover_point..parent1.gene.len() {
+            child1_gene[i] = parent2.gene[i];
+            child2_gene[i] = parent1.gene[i];
+        }
+
+        (Chromosome { gene: child1_gene, fitness: 0.0 },
+         Chromosome { gene: child2_gene, fitness: 0.0 })
     }
-    
-    fn mutation(&self, population: &[Chromosome]) -> Vec<Chromosome> {
-        let mut mutated = Vec::new();
+
+    fn mutate(&self, mut chromosome: Chromosome) -> Chromosome {
         let mut rng = rand::thread_rng();
-        
-        for chromosome in population {
-            let mut new_genes = chromosome.genes.clone();
-            
-            for i in 0..new_genes.len() {
-                if rng.gen::<f64>() < self.mutation_rate {
-                    new_genes[i] = rng.gen_range(0..new_genes.len() as u32);
-                }
+
+        for i in 0..chromosome.gene.len() {
+            if rng.gen::<f64>() < self.mutation_rate {
+                let resource_index = i % self.resources.len();
+                let resource = &self.resources[resource_index];
+                chromosome.gene[i] = rng.gen_range(0.0..resource.capacity);
             }
-            
-            mutated.push(Chromosome {
-                genes: new_genes,
-                fitness: 0.0,
-            });
         }
-        
-        mutated
-    }
-    
-    fn decode_chromosome(&self, chromosome: &Chromosome, tasks: &[Task], resources: &HashMap<String, Resource>) -> Vec<TaskAssignment> {
-        let mut assignments = Vec::new();
-        let resource_ids: Vec<String> = resources.keys().cloned().collect();
-        
-        for (i, task) in tasks.iter().enumerate() {
-            let resource_index = chromosome.genes[i] as usize;
-            let resource_id = resource_ids[resource_index].clone();
-            
-            assignments.push(TaskAssignment {
-                task_id: task.id.clone(),
-                resource_id,
-                start_time: 0, // 简化实现
-                end_time: task.duration,
-                allocated_capacity: task.resource_requirements.get(&resource_id).unwrap_or(&0.0),
-            });
-        }
-        
-        assignments
+
+        chromosome
     }
 }
 ```
 
-## 2.2.5 资源监控模型
+## 2.2.4 资源监控与控制
 
-### 资源利用率监控
+### 资源监控系统
 
-**定义 2.2.15** 资源利用率函数：
-$$U(r, t) = \frac{\sum_{p \in \mathcal{P}} RA(r, t, p)}{C(r)}$$
+**定义 2.2.6** (资源监控指标) 资源监控指标包括：
+- **资源利用率**: $\text{Utilization} = \frac{\text{Used}}{\text{Available}} \times 100\%$
+- **资源效率**: $\text{Efficiency} = \frac{\text{Output}}{\text{Input}}$
+- **资源成本**: $\text{Cost} = \sum_{i} c_i \times r_i$
+- **资源可用性**: $\text{Availability} = \frac{\text{MTBF}}{\text{MTBF} + \text{MTTR}}$
 
-### 资源效率指标
+### 资源控制算法
 
-**定义 2.2.16** 资源效率指标：
-$$E(r) = \frac{\sum_{t \in \mathcal{T}} U(r, t) \cdot V(r, t)}{\sum_{t \in \mathcal{T}} V(r, t)}$$
-
-其中 $V(r, t)$ 是资源价值函数。
-
-### 监控实现
+**算法 2.2.3** (资源控制算法)：
 
 ```rust
-pub struct ResourceMonitor {
-    pub utilization_history: HashMap<String, Vec<UtilizationRecord>>,
-    pub efficiency_metrics: HashMap<String, f64>,
-    pub alerts: Vec<ResourceAlert>,
+use std::collections::HashMap;
+
+# [derive(Debug)]
+pub struct ResourceController {
+    pub target_utilization: f64,
+    pub control_threshold: f64,
+    pub adjustment_rate: f64,
+    pub historical_data: Vec<ResourceMetrics>,
 }
 
-#[derive(Debug, Clone)]
-pub struct UtilizationRecord {
-    pub timestamp: u64,
+# [derive(Debug, Clone)]
+pub struct ResourceMetrics {
+    pub timestamp: f64,
     pub utilization: f64,
-    pub allocated: f64,
-    pub available: f64,
-}
-
-#[derive(Debug, Clone)]
-pub struct ResourceAlert {
-    pub resource_id: String,
-    pub alert_type: AlertType,
-    pub severity: Severity,
-    pub message: String,
-    pub timestamp: u64,
-}
-
-#[derive(Debug, Clone)]
-pub enum AlertType {
-    OverUtilization,
-    UnderUtilization,
-    ResourceConflict,
-    CapacityExceeded,
-}
-
-#[derive(Debug, Clone)]
-pub enum Severity {
-    Low,
-    Medium,
-    High,
-    Critical,
-}
-
-impl ResourceMonitor {
-    pub fn new() -> Self {
-        ResourceMonitor {
-            utilization_history: HashMap::new(),
-            efficiency_metrics: HashMap::new(),
-            alerts: Vec::new(),
-        }
-    }
-    
-    pub fn record_utilization(&mut self, resource_id: &str, utilization: f64, allocated: f64, available: f64) {
-        let record = UtilizationRecord {
-            timestamp: std::time::SystemTime::now()
-                .duration_since(std::time::UNIX_EPOCH)
-                .unwrap()
-                .as_secs(),
-            utilization,
-            allocated,
-            available,
-        };
-        
-        self.utilization_history
-            .entry(resource_id.to_string())
-            .or_insert_with(Vec::new)
-            .push(record);
-        
-        // 检查告警条件
-        self.check_alerts(resource_id, utilization);
-    }
-    
-    fn check_alerts(&mut self, resource_id: &str, utilization: f64) {
-        if utilization > 0.9 {
-            self.alerts.push(ResourceAlert {
-                resource_id: resource_id.to_string(),
-                alert_type: AlertType::OverUtilization,
-                severity: Severity::High,
-                message: format!("Resource {} is over-utilized: {:.2}%", resource_id, utilization * 100.0),
-                timestamp: std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .unwrap()
-                    .as_secs(),
-            });
-        } else if utilization < 0.1 {
-            self.alerts.push(ResourceAlert {
-                resource_id: resource_id.to_string(),
-                alert_type: AlertType::UnderUtilization,
-                severity: Severity::Medium,
-                message: format!("Resource {} is under-utilized: {:.2}%", resource_id, utilization * 100.0),
-                timestamp: std::time::SystemTime::now()
-                    .duration_since(std::time::UNIX_EPOCH)
-                    .unwrap()
-                    .as_secs(),
-            });
-        }
-    }
-    
-    pub fn calculate_efficiency(&mut self, resource_id: &str) -> f64 {
-        if let Some(history) = self.utilization_history.get(resource_id) {
-            let total_utilization: f64 = history.iter().map(|r| r.utilization).sum();
-            let average_utilization = total_utilization / history.len() as f64;
-            
-            self.efficiency_metrics.insert(resource_id.to_string(), average_utilization);
-            average_utilization
-        } else {
-            0.0
-        }
-    }
-    
-    pub fn get_resource_report(&self, resource_id: &str) -> ResourceReport {
-        let history = self.utilization_history.get(resource_id).unwrap_or(&Vec::new());
-        let efficiency = self.efficiency_metrics.get(resource_id).unwrap_or(&0.0);
-        
-        let alerts = self.alerts.iter()
-            .filter(|alert| alert.resource_id == resource_id)
-            .cloned()
-            .collect();
-        
-        ResourceReport {
-            resource_id: resource_id.to_string(),
-            utilization_history: history.clone(),
-            efficiency: *efficiency,
-            alerts,
-        }
-    }
-}
-
-#[derive(Debug, Clone)]
-pub struct ResourceReport {
-    pub resource_id: String,
-    pub utilization_history: Vec<UtilizationRecord>,
     pub efficiency: f64,
-    pub alerts: Vec<ResourceAlert>,
+    pub cost: f64,
+    pub availability: f64,
+}
+
+impl ResourceController {
+    pub fn new(target_utilization: f64) -> Self {
+        ResourceController {
+            target_utilization,
+            control_threshold: 0.1,
+            adjustment_rate: 0.05,
+            historical_data: Vec::new(),
+        }
+    }
+
+    pub fn monitor_resources(&mut self, current_metrics: ResourceMetrics) -> Vec<ResourceAdjustment> {
+        self.historical_data.push(current_metrics.clone());
+
+        let mut adjustments = Vec::new();
+
+        // 检查利用率偏差
+        let utilization_deviation = (current_metrics.utilization - self.target_utilization).abs();
+
+        if utilization_deviation > self.control_threshold {
+            let adjustment = self.calculate_adjustment(&current_metrics);
+            adjustments.push(adjustment);
+        }
+
+        // 检查效率趋势
+        if self.historical_data.len() >= 3 {
+            let efficiency_trend = self.calculate_efficiency_trend();
+            if efficiency_trend < 0.0 {
+                let efficiency_adjustment = self.calculate_efficiency_adjustment();
+                adjustments.push(efficiency_adjustment);
+            }
+        }
+
+        adjustments
+    }
+
+    fn calculate_adjustment(&self, metrics: &ResourceMetrics) -> ResourceAdjustment {
+        let deviation = metrics.utilization - self.target_utilization;
+        let adjustment_amount = deviation * self.adjustment_rate;
+
+        ResourceAdjustment {
+            resource_id: "general".to_string(),
+            adjustment_type: if deviation > 0.0 {
+                AdjustmentType::Reduce
+            } else {
+                AdjustmentType::Increase
+            },
+            amount: adjustment_amount.abs(),
+            reason: format!("Utilization deviation: {:.2}%", deviation * 100.0),
+        }
+    }
+
+    fn calculate_efficiency_trend(&self) -> f64 {
+        let n = self.historical_data.len();
+        let recent_efficiency: f64 = self.historical_data[n-3..].iter()
+            .map(|m| m.efficiency)
+            .sum::<f64>() / 3.0;
+
+        let previous_efficiency: f64 = self.historical_data[n-6..n-3].iter()
+            .map(|m| m.efficiency)
+            .sum::<f64>() / 3.0;
+
+        recent_efficiency - previous_efficiency
+    }
+
+    fn calculate_efficiency_adjustment(&self) -> ResourceAdjustment {
+        ResourceAdjustment {
+            resource_id: "efficiency".to_string(),
+            adjustment_type: AdjustmentType::Optimize,
+            amount: 0.1,
+            reason: "Declining efficiency trend detected".to_string(),
+        }
+    }
+}
+
+# [derive(Debug)]
+pub struct ResourceAdjustment {
+    pub resource_id: String,
+    pub adjustment_type: AdjustmentType,
+    pub amount: f64,
+    pub reason: String,
+}
+
+# [derive(Debug)]
+pub enum AdjustmentType {
+    Increase,
+    Reduce,
+    Optimize,
+    Reallocate,
 }
 ```
+
+## 2.2.5 国际标准对标
+
+### PMBOK 7th Edition 标准
+
+- **资源管理知识领域**: 项目资源管理过程
+- **资源规划**: 规划资源管理、估算活动资源
+- **资源获取**: 获取资源、建设团队、管理团队
+- **资源控制**: 控制资源
+
+### ISO 21500 标准
+
+- **资源管理过程**: 资源管理相关过程
+- **资源分配**: 资源分配和优化
+- **资源监控**: 资源使用监控和控制
+
+### PRINCE2 标准
+
+- **资源主题**: 资源管理主题
+- **资源计划**: 资源计划和分配
+- **资源控制**: 资源使用控制
 
 ## 2.2.6 相关链接
 
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [1.2 数学模型基础](../01-foundations/mathematical-models.md)
 - [2.1 项目生命周期模型](./lifecycle-models.md)
 - [2.3 风险管理模型](./risk-models.md)
 - [2.4 质量管理模型](./quality-models.md)
+- [1.1 形式化基础理论](../01-foundations/README.md)
+- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
 ## 参考文献
 
-1. Pinedo, M. (2016). Scheduling: theory, algorithms, and systems. Springer.
-2. Goldberg, D. E. (1989). Genetic algorithms in search, optimization and machine learning. Addison-Wesley.
-3. Bertsekas, D. P. (2017). Dynamic programming and optimal control. Athena Scientific.
-4. Hillier, F. S., & Lieberman, G. J. (2015). Introduction to operations research. McGraw-Hill.
+1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+3. AXELOS. (2017). Managing Successful Projects with PRINCE2 2017 Edition. TSO (The Stationery Office).
+4. Kerzner, H. (2017). Project management: a systems approach to planning, scheduling, and controlling (12th ed.). John Wiley & Sons.
+5. Meredith, J. R., & Mantel, S. J. (2019). Project management: a managerial approach (10th ed.). John Wiley & Sons.
+6. Turner, J. R. (2016). Gower handbook of project management (5th ed.). Routledge.
+7. Lock, D. (2013). Project management (10th ed.). Routledge.
+8. Schwalbe, K. (2019). Information technology project management (9th ed.). Cengage Learning.
+9. Wysocki, R. K. (2019). Effective project management: traditional, agile, extreme, hybrid (8th ed.). John Wiley & Sons.
+10. Goldratt, E. M. (1997). Critical chain. North River Press.
