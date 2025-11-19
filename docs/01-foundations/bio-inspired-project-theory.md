@@ -62,57 +62,57 @@ pub struct GeneticProjectAlgorithm {
 impl GeneticProjectAlgorithm {
     pub fn optimize_project(&self, initial_population: &[ProjectChromosome]) -> ProjectChromosome {
         let mut population = initial_population.to_vec();
-        
+
         for generation in 0..self.generations {
             // 计算适应度
             let fitness_scores: Vec<f64> = population.iter()
                 .map(|chromosome| self.calculate_fitness(chromosome))
                 .collect();
-            
+
             // 选择
             let selected = self.selection(&population, &fitness_scores);
-            
+
             // 交叉
             let crossed = self.crossover(&selected);
-            
+
             // 变异
             let mutated = self.mutation(&crossed);
-            
+
             // 更新种群
             population = mutated;
         }
-        
+
         // 返回最优解
         self.get_best_chromosome(&population)
     }
-    
+
     fn calculate_fitness(&self, chromosome: &ProjectChromosome) -> f64 {
         // 计算项目适应度
         let mut fitness = 0.0;
-        
+
         // 时间适应度
         fitness += self.time_fitness(chromosome);
-        
+
         // 成本适应度
         fitness += self.cost_fitness(chromosome);
-        
+
         // 质量适应度
         fitness += self.quality_fitness(chromosome);
-        
+
         // 风险适应度
         fitness += self.risk_fitness(chromosome);
-        
+
         fitness
     }
-    
+
     fn selection(&self, population: &[ProjectChromosome], fitness: &[f64]) -> Vec<ProjectChromosome> {
         let mut selected = Vec::new();
         let total_fitness: f64 = fitness.iter().sum();
-        
+
         for _ in 0..population.len() {
             let random = rand::thread_rng().gen_range(0.0..total_fitness);
             let mut cumulative = 0.0;
-            
+
             for (i, &fitness_score) in fitness.iter().enumerate() {
                 cumulative += fitness_score;
                 if cumulative >= random {
@@ -121,13 +121,13 @@ impl GeneticProjectAlgorithm {
                 }
             }
         }
-        
+
         selected
     }
-    
+
     fn crossover(&self, selected: &[ProjectChromosome]) -> Vec<ProjectChromosome> {
         let mut crossed = Vec::new();
-        
+
         for i in 0..selected.len() - 1 {
             if rand::thread_rng().gen::<f64>() < self.crossover_rate {
                 let (child1, child2) = self.single_point_crossover(&selected[i], &selected[i + 1]);
@@ -138,25 +138,25 @@ impl GeneticProjectAlgorithm {
                 crossed.push(selected[i + 1].clone());
             }
         }
-        
+
         crossed
     }
-    
+
     fn mutation(&self, crossed: &[ProjectChromosome]) -> Vec<ProjectChromosome> {
         let mut mutated = Vec::new();
-        
+
         for chromosome in crossed {
             let mut new_chromosome = chromosome.clone();
-            
+
             for gene in &mut new_chromosome.genes {
                 if rand::thread_rng().gen::<f64>() < self.mutation_rate {
                     *gene = self.mutate_gene(*gene);
                 }
             }
-            
+
             mutated.push(new_chromosome);
         }
-        
+
         mutated
     }
 }
@@ -204,45 +204,45 @@ pub struct ProjectPredictionNetwork {
 impl ProjectPredictionNetwork {
     pub fn predict_project_outcome(&self, input: &ProjectFeatures) -> ProjectPrediction {
         let mut current_input = input.to_tensor();
-        
+
         for layer in &self.layers {
             current_input = layer.forward(&current_input);
         }
-        
+
         ProjectPrediction::from_tensor(&current_input)
     }
-    
+
     pub fn train(&mut self, training_data: &[(ProjectFeatures, ProjectOutcome)]) {
         for epoch in 0..self.epochs {
             let mut total_loss = 0.0;
-            
+
             for (features, target) in training_data {
                 // 前向传播
                 let prediction = self.predict_project_outcome(features);
-                
+
                 // 计算损失
                 let loss = self.calculate_loss(&prediction, target);
                 total_loss += loss;
-                
+
                 // 反向传播
                 self.backpropagate(features, target);
             }
-            
+
             // 更新权重
             self.update_weights();
-            
+
             println!("Epoch {}, Loss: {}", epoch, total_loss);
         }
     }
-    
+
     fn calculate_loss(&self, prediction: &ProjectPrediction, target: &ProjectOutcome) -> f64 {
         // 均方误差损失
         let mut loss = 0.0;
-        
+
         loss += (prediction.completion_time - target.completion_time).powi(2);
         loss += (prediction.cost - target.cost).powi(2);
         loss += (prediction.quality - target.quality).powi(2);
-        
+
         loss
     }
 }
@@ -300,16 +300,16 @@ impl AntColonyProjectOptimization {
     pub fn optimize_project_schedule(&mut self, project: &Project) -> ProjectSchedule {
         let mut best_schedule = None;
         let mut best_cost = f64::INFINITY;
-        
+
         for iteration in 0..self.iterations {
             // 每只蚂蚁构建解
             let mut schedules = Vec::new();
-            
+
             for ant in &self.ants {
                 let schedule = ant.construct_schedule(project, &self.pheromone_matrix, &self.heuristic_matrix);
                 schedules.push(schedule);
             }
-            
+
             // 评估解的质量
             for schedule in &schedules {
                 let cost = self.calculate_schedule_cost(schedule);
@@ -318,14 +318,14 @@ impl AntColonyProjectOptimization {
                     best_schedule = Some(schedule.clone());
                 }
             }
-            
+
             // 更新信息素
             self.update_pheromone(&schedules);
         }
-        
+
         best_schedule.unwrap()
     }
-    
+
     fn update_pheromone(&mut self, schedules: &[ProjectSchedule]) {
         // 信息素蒸发
         for i in 0..self.pheromone_matrix.len() {
@@ -333,12 +333,12 @@ impl AntColonyProjectOptimization {
                 self.pheromone_matrix[i][j] *= (1.0 - self.evaporation_rate);
             }
         }
-        
+
         // 信息素沉积
         for schedule in schedules {
             let cost = self.calculate_schedule_cost(schedule);
             let pheromone_deposit = 1.0 / cost;
-            
+
             for (i, j) in schedule.get_edges() {
                 self.pheromone_matrix[i][j] += pheromone_deposit;
             }
@@ -357,50 +357,50 @@ impl Ant {
     pub fn construct_schedule(&self, project: &Project, pheromone: &[Vec<f64>], heuristic: &[Vec<f64>]) -> ProjectSchedule {
         let mut schedule = ProjectSchedule::new();
         let mut unvisited_tasks = project.get_all_tasks();
-        
+
         while !unvisited_tasks.is_empty() {
             // 选择下一个任务
             let next_task = self.select_next_task(&unvisited_tasks, pheromone, heuristic);
-            
+
             // 添加到调度
             schedule.add_task(next_task);
-            
+
             // 更新未访问任务列表
             unvisited_tasks.retain(|task| task.id != next_task.id);
         }
-        
+
         schedule
     }
-    
+
     fn select_next_task(&self, unvisited: &[Task], pheromone: &[Vec<f64>], heuristic: &[Vec<f64>]) -> Task {
         let mut probabilities = Vec::new();
         let mut total_probability = 0.0;
-        
+
         for task in unvisited {
             let pheromone_level = pheromone[self.current_position][task.id];
             let heuristic_value = heuristic[self.current_position][task.id];
-            
+
             let probability = (pheromone_level.powf(ALPHA) * heuristic_value.powf(BETA)).max(0.0001);
             probabilities.push((task.clone(), probability));
             total_probability += probability;
         }
-        
+
         // 归一化概率
         for (_, probability) in &mut probabilities {
             *probability /= total_probability;
         }
-        
+
         // 轮盘赌选择
         let random = rand::thread_rng().gen::<f64>();
         let mut cumulative = 0.0;
-        
+
         for (task, probability) in probabilities {
             cumulative += probability;
             if cumulative >= random {
                 return task;
             }
         }
-        
+
         unvisited[0].clone()
     }
 }
@@ -434,19 +434,19 @@ impl ParticleSwarmProjectOptimization {
             for particle in &mut self.particles {
                 // 更新速度
                 self.update_velocity(particle);
-                
+
                 // 更新位置
                 self.update_position(particle);
-                
+
                 // 评估适应度
                 let fitness = self.evaluate_fitness(particle, project);
-                
+
                 // 更新个体最优
                 if fitness > particle.best_fitness {
                     particle.best_position = particle.position.clone();
                     particle.best_fitness = fitness;
                 }
-                
+
                 // 更新全局最优
                 if fitness > self.global_best_fitness {
                     self.global_best_position = particle.position.clone();
@@ -454,26 +454,26 @@ impl ParticleSwarmProjectOptimization {
                 }
             }
         }
-        
+
         // 返回最优计划
         ProjectPlan::from_position(&self.global_best_position)
     }
-    
+
     fn update_velocity(&self, particle: &mut Particle) {
         for i in 0..particle.velocity.len() {
             let r1 = rand::thread_rng().gen::<f64>();
             let r2 = rand::thread_rng().gen::<f64>();
-            
+
             particle.velocity[i] = self.w * particle.velocity[i] +
                 self.c1 * r1 * (particle.best_position[i] - particle.position[i]) +
                 self.c2 * r2 * (self.global_best_position[i] - particle.position[i]);
         }
     }
-    
+
     fn update_position(&self, particle: &mut Particle) {
         for i in 0..particle.position.len() {
             particle.position[i] += particle.velocity[i];
-            
+
             // 边界约束
             particle.position[i] = particle.position[i].max(0.0).min(1.0);
         }
@@ -491,10 +491,10 @@ pub struct Particle {
 impl Particle {
     pub fn new(dimension: usize) -> Self {
         let mut rng = rand::thread_rng();
-        
+
         let position: Vec<f64> = (0..dimension).map(|_| rng.gen()).collect();
         let velocity: Vec<f64> = (0..dimension).map(|_| rng.gen_range(-0.1..0.1)).collect();
-        
+
         Particle {
             position: position.clone(),
             velocity,
@@ -533,28 +533,28 @@ impl ImmuneProjectOptimization {
     pub fn optimize_project_risk_management(&mut self, project: &Project) -> RiskManagementPlan {
         // 初始化抗原（项目风险）
         self.initialize_antigens(project);
-        
+
         for generation in 0..self.generations {
             // 抗原识别
             self.antigen_recognition();
-            
+
             // 抗体克隆
             self.antibody_cloning();
-            
+
             // 抗体变异
             self.antibody_mutation();
-            
+
             // 抗体选择
             self.antibody_selection();
-            
+
             // 记忆细胞更新
             self.memory_cell_update();
         }
-        
+
         // 生成风险管理计划
         self.generate_risk_management_plan()
     }
-    
+
     fn antigen_recognition(&mut self) {
         for antigen in &self.antigens {
             for antibody in &mut self.antibodies {
@@ -563,21 +563,21 @@ impl ImmuneProjectOptimization {
             }
         }
     }
-    
+
     fn antibody_cloning(&mut self) {
         let mut cloned_antibodies = Vec::new();
-        
+
         for antibody in &self.antibodies {
             let clone_count = (antibody.affinity * self.clone_factor) as usize;
-            
+
             for _ in 0..clone_count {
                 cloned_antibodies.push(antibody.clone());
             }
         }
-        
+
         self.antibodies.extend(cloned_antibodies);
     }
-    
+
     fn antibody_mutation(&mut self) {
         for antibody in &mut self.antibodies {
             if rand::thread_rng().gen::<f64>() < self.mutation_rate {
@@ -585,11 +585,11 @@ impl ImmuneProjectOptimization {
             }
         }
     }
-    
+
     fn antibody_selection(&mut self) {
         // 按亲和力排序
         self.antibodies.sort_by(|a, b| b.affinity.partial_cmp(&a.affinity).unwrap());
-        
+
         // 选择前N个抗体
         let selection_count = (self.antibodies.len() as f64 * self.selection_rate) as usize;
         self.antibodies.truncate(selection_count);
@@ -669,13 +669,13 @@ impl BioInspiredProjectManager {
     pub fn optimize_project(&mut self) -> ProjectSolution {
         let mut best_solution = None;
         let mut best_fitness = f64::NEG_INFINITY;
-        
+
         for algorithm in &mut self.algorithms {
             algorithm.initialize();
-            
+
             while !algorithm.terminate() {
                 algorithm.evolve();
-                
+
                 let fitness = algorithm.evaluate();
                 if fitness > best_fitness {
                     best_fitness = fitness;
@@ -683,7 +683,7 @@ impl BioInspiredProjectManager {
                 }
             }
         }
-        
+
         best_solution.unwrap()
     }
 }
@@ -785,13 +785,13 @@ instance BioInspiredAlgorithm NeuralNetwork where
 2. **意识计算**：模拟生物意识的算法
 3. **进化计算理论**：完整的进化计算理论体系
 
-## 1.5.10 相关链接
+## 1.5.10 引用关系
 
-- [1.1 形式化基础理论](./README.md)
-- [1.2 数学模型基础](./mathematical-models.md)
-- [1.3 语义模型理论](./semantic-models.md)
-- [1.4 量子项目管理理论](./quantum-project-theory.md)
-- [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
+- 基础理论：参见 [1.1 形式化基础理论](./README.md)
+- 数学模型：参见 [1.2 数学模型基础](./mathematical-models.md)
+- 语义模型：参见 [1.3 语义模型理论](./semantic-models.md)
+- 量子理论：参见 [1.4 量子项目管理理论](./quantum-project-theory.md)
+- 项目管理：参见 [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
 
 ## 参考文献
 

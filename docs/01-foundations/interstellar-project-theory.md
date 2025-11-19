@@ -904,14 +904,14 @@ executeInterstellarMission framework mission =
 2. **多恒星系统项目**：多恒星系统探索项目管理
 3. **银河系探索项目**：银河系探索项目管理
 
-## 1.7.12 相关链接
+## 1.7.12 引用关系
 
-- [1.1 形式化基础理论](./README.md)
-- [1.2 数学模型基础](./mathematical-models.md)
-- [1.3 语义模型理论](./semantic-models.md)
-- [1.4 量子项目管理理论](./quantum-project-theory.md)
-- [1.5 生物启发式项目管理理论](./bio-inspired-project-theory.md)
-- [1.6 全息项目管理理论](./holographic-project-theory.md)
+- 基础理论：参见 [1.1 形式化基础理论](./README.md)
+- 数学模型：参见 [1.2 数学模型基础](./mathematical-models.md)
+- 语义模型：参见 [1.3 语义模型理论](./semantic-models.md)
+- 量子理论：参见 [1.4 量子项目管理理论](./quantum-project-theory.md)
+- 生物启发理论：参见 [1.5 生物启发式项目管理理论](./bio-inspired-project-theory.md)
+- 全息理论：参见 [1.6 全息项目管理理论](./holographic-project-theory.md)
 
 ## 参考文献
 

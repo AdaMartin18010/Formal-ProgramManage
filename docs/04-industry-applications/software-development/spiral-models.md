@@ -1,14 +1,14 @@
-# 4.2.1.3 螺旋模型
+# 4.1.3 螺旋模型
 
-## 4.2.1.3.1 概述
+## 4.1.3.1 概述
 
 螺旋模型是结合了瀑布模型和原型模型的迭代风险驱动开发方法，通过多轮迭代逐步完善系统。本节提供螺旋模型的形式化数学模型。
 
-## 4.2.1.3.2 形式化定义
+## 4.1.3.2 形式化定义
 
-### 4.2.1.3.2.1 螺旋模型基础
+### 4.1.3.2.1 螺旋模型基础
 
-**定义 4.2.1.3.1** (螺旋项目) 螺旋项目是一个七元组：
+**定义 4.1.3.1** (螺旋项目) 螺旋项目是一个七元组：
 $$\mathcal{S} = (I, R, P, T, C, \mathcal{F}, \mathcal{R})$$
 
 其中：
@@ -21,9 +21,9 @@ $$\mathcal{S} = (I, R, P, T, C, \mathcal{F}, \mathcal{R})$$
 - $\mathcal{F}$ 是迭代转移函数
 - $\mathcal{R}$ 是风险评估函数
 
-### 4.2.1.3.2.2 迭代结构
+### 4.1.3.2.2 迭代结构
 
-**定义 4.2.1.3.2** (螺旋迭代) 每个迭代 $i_j$ 包含四个象限：
+**定义 4.1.3.2** (螺旋迭代) 每个迭代 $i_j$ 包含四个象限：
 $$i_j = (planning, risk\_analysis, engineering, evaluation)$$
 
 其中：
@@ -33,9 +33,9 @@ $$i_j = (planning, risk\_analysis, engineering, evaluation)$$
 - $engineering$: 开发和测试
 - $evaluation$: 客户评估和下一轮规划
 
-### 4.2.1.3.2.3 状态转移模型
+### 4.1.3.2.3 状态转移模型
 
-**定义 4.2.1.3.3** (螺旋状态) 螺旋状态是一个六元组：
+**定义 4.1.3.3** (螺旋状态) 螺旋状态是一个六元组：
 $$s = (current\_iteration, quadrant, progress, risk\_level, quality, cost)$$
 
 其中：
@@ -47,11 +47,11 @@ $$s = (current\_iteration, quadrant, progress, risk\_level, quality, cost)$$
 - $quality \in [0,1]$ 是系统质量
 - $cost \in \mathbb{R}^+$ 是累计成本
 
-## 4.2.1.3.3 数学模型
+## 4.1.3.3 数学模型
 
-### 4.2.1.3.3.1 迭代转移函数
+### 4.1.3.3.1 迭代转移函数
 
-**定义 4.2.1.3.4** (螺旋转移) 螺旋转移函数定义为：
+**定义 4.1.3.4** (螺旋转移) 螺旋转移函数定义为：
 $$T_{spiral}: S \times A \times S \rightarrow [0,1]$$
 
 其中动作空间 $A$ 包含：
@@ -63,45 +63,45 @@ $$T_{spiral}: S \times A \times S \rightarrow [0,1]$$
 - $a_5$: 客户评估
 - $a_6$: 风险缓解
 
-### 4.2.1.3.3.2 风险累积模型
+### 4.1.3.3.2 风险累积模型
 
-**定理 4.2.1.3.1** (风险累积) 螺旋项目的风险水平计算为：
+**定理 4.1.3.1** (风险累积) 螺旋项目的风险水平计算为：
 $$risk\_level = \frac{\sum_{i=1}^{n} w_i \cdot risk_i}{\sum_{i=1}^{n} w_i} \cdot (1 - mitigation\_factor)$$
 
 其中 $w_i$ 是风险 $i$ 的权重，$risk_i$ 是风险概率，$mitigation\_factor$ 是缓解因子。
 
-### 4.2.1.3.3.3 质量演进模型
+### 4.1.3.3.3 质量演进模型
 
-**定义 4.2.1.3.5** (质量函数) 螺旋质量函数定义为：
+**定义 4.1.3.5** (质量函数) 螺旋质量函数定义为：
 $$Q(s) = \alpha \cdot Q_{prev} + (1-\alpha) \cdot Q_{current}$$
 
 其中 $Q_{prev}$ 是上一迭代的质量，$Q_{current}$ 是当前迭代的质量，$\alpha \in [0,1]$ 是平滑因子。
 
-### 4.2.1.3.3.4 成本累积模型
+### 4.1.3.3.4 成本累积模型
 
-**定义 4.2.1.3.6** (成本函数) 螺旋成本函数定义为：
+**定义 4.1.3.6** (成本函数) 螺旋成本函数定义为：
 $$C(s) = \sum_{i=1}^{n} (base\_cost_i + risk\_cost_i + prototype\_cost_i)$$
 
 其中 $base\_cost_i$ 是基础成本，$risk\_cost_i$ 是风险缓解成本，$prototype\_cost_i$ 是原型开发成本。
 
-## 4.2.1.3.4 验证规范
+## 4.1.3.4 验证规范
 
-### 4.2.1.3.4.1 迭代完整性验证
+### 4.1.3.4.1 迭代完整性验证
 
-**公理 4.2.1.3.1** (迭代完整性) 对于任意螺旋项目 $\mathcal{S}$：
+**公理 4.1.3.1** (迭代完整性) 对于任意螺旋项目 $\mathcal{S}$：
 $$\forall i \in I: \text{每个迭代必须完成所有四个象限}$$
 
-### 4.2.1.3.4.2 风险控制验证
+### 4.1.3.4.2 风险控制验证
 
-**公理 4.2.1.3.2** (风险控制) 对于任意状态 $s$：
+**公理 4.1.3.2** (风险控制) 对于任意状态 $s$：
 $$risk\_level(s) \leq threshold \Rightarrow \text{可以继续下一迭代}$$
 
-### 4.2.1.3.4.3 质量演进验证
+### 4.1.3.4.3 质量演进验证
 
-**公理 4.2.1.3.3** (质量演进) 对于任意迭代 $i_j$：
+**公理 4.1.3.3** (质量演进) 对于任意迭代 $i_j$：
 $$Q_{i_j} \geq Q_{i_{j-1}} \Rightarrow \text{质量持续改进}$$
 
-## 4.2.1.3.5 Rust实现
+## 4.1.3.5 Rust实现
 
 ```rust
 use std::collections::HashMap;
@@ -303,15 +303,15 @@ impl SpiralProjectManager {
         let completed_iterations = self.iterations.values()
             .filter(|i| i.completed)
             .count() as f64;
-        
+
         self.current_state.progress = completed_iterations / total_iterations.max(1.0);
-        
+
         // 计算风险水平
         self.current_state.risk_level = self.calculate_risk_level();
-        
+
         // 计算质量
         self.current_state.quality = self.calculate_quality();
-        
+
         // 计算成本
         self.current_state.cost = self.calculate_cost();
     }
@@ -388,12 +388,12 @@ impl SpiralProjectManager {
         for iteration in self.iterations.values() {
             // 基础成本
             total_cost += 1000.0 * iteration.id as f64;
-            
+
             // 原型成本
             total_cost += iteration.prototypes.iter()
                 .map(|p| p.cost)
                 .sum::<f64>();
-            
+
             // 风险缓解成本
             total_cost += iteration.risks.iter()
                 .filter(|r| r.mitigated)
@@ -539,11 +539,11 @@ mod tests {
 }
 ```
 
-## 4.2.1.3.6 形式化证明
+## 4.1.3.6 形式化证明
 
-### 4.2.1.3.6.1 迭代收敛性证明
+### 4.1.3.6.1 迭代收敛性证明
 
-**定理 4.2.1.3.2** (迭代收敛性) 螺旋项目在有限迭代次数内收敛到稳定状态。
+**定理 4.1.3.2** (迭代收敛性) 螺旋项目在有限迭代次数内收敛到稳定状态。
 
 **证明**：
 设 $\{s_n\}$ 是螺旋状态序列，其中 $s_n = (i_n, q_n, p_n, r_n, ql_n, c_n)$。
@@ -557,9 +557,9 @@ mod tests {
 
 根据单调收敛定理，序列收敛到稳定状态。
 
-### 4.2.1.3.6.2 风险递减性证明
+### 4.1.3.6.2 风险递减性证明
 
-**定理 4.2.1.3.3** (风险递减性) 在螺旋项目中，风险水平随迭代递减。
+**定理 4.1.3.3** (风险递减性) 在螺旋项目中，风险水平随迭代递减。
 
 **证明**：
 由定义 4.2.1.3.1，风险水平计算为：
@@ -567,9 +567,9 @@ $$risk\_level = \frac{\sum_{i=1}^{n} w_i \cdot risk_i}{\sum_{i=1}^{n} w_i} \cdot
 
 由于 $mitigation\_factor$ 随迭代递增，因此 $risk\_level$ 递减。
 
-### 4.2.1.3.6.3 质量递增性证明
+### 4.1.3.6.3 质量递增性证明
 
-**定理 4.2.1.3.4** (质量递增性) 在螺旋项目中，系统质量随迭代递增。
+**定理 4.1.3.4** (质量递增性) 在螺旋项目中，系统质量随迭代递增。
 
 **证明**：
 由定义 4.2.1.3.5，质量函数为：
@@ -577,14 +577,23 @@ $$Q(s) = \alpha \cdot Q_{prev} + (1-\alpha) \cdot Q_{current}$$
 
 由于 $Q_{current} \geq Q_{prev}$（质量持续改进），因此 $Q(s)$ 递增。
 
-## 4.2.1.3.7 引用关系
+## 4.1.3.7 引用关系
 
 - 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
 - 生命周期模型：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
 - 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 敏捷模型：参见 [4.2.1.1 敏捷开发模型](./agile-models.md)
-- 瀑布模型：参见 [4.2.1.2 瀑布模型](./waterfall-models.md)
+- 敏捷模型：参见 [4.1.1 敏捷开发模型](./agile-models.md)
+- 瀑布模型：参见 [4.1.2 瀑布模型](./waterfall-models.md)
 - Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Boehm, B. W. (1988). A spiral model of software development and enhancement. Computer, 21(5), 61-72.
+2. Boehm, B. W. (2000). Spiral development: Experience, principles, and refinements. In Spiral Development Workshop (CMU/SEI-2000-SR-008).
+3. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+4. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+5. IEEE Std 830-1998. IEEE recommended practice for software requirements specifications.
+6. ISO/IEC 25010:2011. Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models.
 
 ---
 

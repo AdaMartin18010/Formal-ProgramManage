@@ -1,14 +1,14 @@
-# 4.2.3.1 战略管理模型
+# 4.3.1 战略管理模型
 
-## 4.2.3.1.1 概述
+## 4.3.1.1 概述
 
 战略管理是企业制定、实施和评估长期战略目标的系统性过程。本节提供战略管理的形式化数学模型。
 
-## 4.2.3.1.2 形式化定义
+## 4.3.1.2 形式化定义
 
-### 4.2.3.1.2.1 战略管理基础
+### 4.3.1.2.1 战略管理基础
 
-**定义 4.2.3.1.1** (战略项目) 战略项目是一个七元组：
+**定义 4.3.1.1** (战略项目) 战略项目是一个七元组：
 $$\mathcal{SM} = (O, S, R, E, T, P, \mathcal{F})$$
 
 其中：
@@ -21,9 +21,9 @@ $$\mathcal{SM} = (O, S, R, E, T, P, \mathcal{F})$$
 - $P = \{p_1, p_2, \ldots, p_q\}$ 是绩效(Performance)集合
 - $\mathcal{F}$ 是战略执行函数
 
-### 4.2.3.1.2.2 战略结构
+### 4.3.1.2.2 战略结构
 
-**定义 4.2.3.1.2** (战略结构) 战略结构是一个五元组：
+**定义 4.3.1.2** (战略结构) 战略结构是一个五元组：
 $$S = (vision, mission, goals, strategies, actions)$$
 
 其中：
@@ -34,9 +34,9 @@ $$S = (vision, mission, goals, strategies, actions)$$
 - $strategies \subseteq S$ 是策略集合
 - $actions$ 是行动计划
 
-### 4.2.3.1.2.3 状态转移模型
+### 4.3.1.2.3 状态转移模型
 
-**定义 4.2.3.1.3** (战略状态) 战略状态是一个六元组：
+**定义 4.3.1.3** (战略状态) 战略状态是一个六元组：
 $$s = (current\_strategy, performance, alignment, execution, risk, value)$$
 
 其中：
@@ -48,11 +48,11 @@ $$s = (current\_strategy, performance, alignment, execution, risk, value)$$
 - $risk \in [0,1]$ 是战略风险
 - $value \in \mathbb{R}^+$ 是战略价值
 
-## 4.2.3.1.3 数学模型
+## 4.3.1.3 数学模型
 
-### 4.2.3.1.3.1 战略执行函数
+### 4.3.1.3.1 战略执行函数
 
-**定义 4.2.3.1.4** (战略执行) 战略执行函数定义为：
+**定义 4.3.1.4** (战略执行) 战略执行函数定义为：
 $$T_{SM}: S \times A \times S \rightarrow [0,1]$$
 
 其中动作空间 $A$ 包含：
@@ -64,45 +64,45 @@ $$T_{SM}: S \times A \times S \rightarrow [0,1]$$
 - $a_5$: 战略调整
 - $a_6$: 价值创造
 
-### 4.2.3.1.3.2 绩效评估模型
+### 4.3.1.3.2 绩效评估模型
 
-**定理 4.2.3.1.1** (战略绩效) 战略绩效计算为：
+**定理 4.3.1.1** (战略绩效) 战略绩效计算为：
 $$performance = \alpha \cdot alignment + \beta \cdot execution + \gamma \cdot value\_creation$$
 
 其中 $\alpha, \beta, \gamma \in [0,1]$ 是权重系数，且 $\alpha + \beta + \gamma = 1$。
 
-### 4.2.3.1.3.3 一致性模型
+### 4.3.1.3.3 一致性模型
 
-**定义 4.2.3.1.5** (一致性函数) 战略一致性函数定义为：
+**定义 4.3.1.5** (一致性函数) 战略一致性函数定义为：
 $$A(s) = \frac{\sum_{i=1}^{n} w_i \cdot alignment_i}{\sum_{i=1}^{n} w_i}$$
 
 其中 $w_i$ 是目标 $i$ 的权重，$alignment_i$ 是目标一致性。
 
-### 4.2.3.1.3.4 价值创造模型
+### 4.3.1.3.4 价值创造模型
 
-**定义 4.2.3.1.6** (价值函数) 战略价值函数定义为：
+**定义 4.3.1.6** (价值函数) 战略价值函数定义为：
 $$V(s) = \sum_{i=1}^{n} (revenue_i - cost_i) \cdot (1 + growth\_rate_i)^t$$
 
 其中 $revenue_i$ 是收入，$cost_i$ 是成本，$growth\_rate_i$ 是增长率，$t$ 是时间。
 
-## 4.2.3.1.4 验证规范
+## 4.3.1.4 验证规范
 
-### 4.2.3.1.4.1 战略一致性验证
+### 4.3.1.4.1 战略一致性验证
 
-**公理 4.2.3.1.1** (战略一致性) 对于任意战略项目 $\mathcal{SM}$：
+**公理 4.3.1.1** (战略一致性) 对于任意战略项目 $\mathcal{SM}$：
 $$\forall s \in S: alignment(s) \geq threshold \Rightarrow \text{战略一致}$$
 
-### 4.2.3.1.4.2 资源充足性验证
+### 4.3.1.4.2 资源充足性验证
 
-**公理 4.2.3.1.2** (资源充足性) 对于任意状态 $s$：
+**公理 4.3.1.2** (资源充足性) 对于任意状态 $s$：
 $$\sum_{i=1}^{n} resource\_requirement_i \leq available\_resources \Rightarrow \text{资源充足}$$
 
-### 4.2.3.1.4.3 绩效达标验证
+### 4.3.1.4.3 绩效达标验证
 
-**公理 4.2.3.1.3** (绩效达标) 对于任意状态 $s$：
+**公理 4.3.1.3** (绩效达标) 对于任意状态 $s$：
 $$performance(s) \geq target \Rightarrow \text{绩效达标}$$
 
-## 4.2.3.1.5 Rust实现
+## 4.3.1.5 Rust实现
 
 ```rust
 use std::collections::HashMap;
@@ -254,16 +254,16 @@ impl StrategicManagementManager {
     fn update_strategic_state(&mut self) {
         // 计算绩效
         self.current_state.performance = self.calculate_performance();
-        
+
         // 计算一致性
         self.current_state.alignment = self.calculate_alignment();
-        
+
         // 计算执行程度
         self.current_state.execution = self.calculate_execution();
-        
+
         // 计算风险
         self.current_state.risk = self.calculate_risk();
-        
+
         // 计算价值
         self.current_state.value = self.calculate_value();
     }
@@ -332,7 +332,7 @@ impl StrategicManagementManager {
             .filter(|obj| matches!(obj.status, ObjectiveStatus::Failed))
             .count();
         let total_objectives = self.objectives.len();
-        
+
         if total_objectives > 0 {
             risk += (failed_objectives as f64 / total_objectives as f64) * 0.4;
         }
@@ -341,7 +341,7 @@ impl StrategicManagementManager {
         let total_resource_cost: f64 = self.resources.values()
             .map(|r| r.cost)
             .sum();
-        
+
         if total_resource_cost > self.budget {
             risk += 0.3;
         }
@@ -351,7 +351,7 @@ impl StrategicManagementManager {
             .filter(|s| matches!(s.status, StrategyStatus::Planning))
             .count();
         let total_strategies = self.strategies.len();
-        
+
         if total_strategies > 0 {
             risk += (delayed_strategies as f64 / total_strategies as f64) * 0.3;
         }
@@ -581,11 +581,11 @@ mod tests {
     }
 }
 
-## 4.2.3.1.6 形式化证明
+## 4.3.1.6 形式化证明
 
-### 4.2.3.1.6.1 战略收敛性证明
+### 4.3.1.6.1 战略收敛性证明
 
-**定理 4.2.3.1.2** (战略收敛性) 战略管理项目在有限时间内收敛到稳定状态。
+**定理 4.3.1.2** (战略收敛性) 战略管理项目在有限时间内收敛到稳定状态。
 
 **证明**：
 设 $\{s_n\}$ 是战略状态序列，其中 $s_n = (cs_n, p_n, a_n, e_n, r_n, v_n)$。
@@ -598,9 +598,9 @@ mod tests {
 
 根据Bolzano-Weierstrass定理，存在收敛子序列。
 
-### 4.2.3.1.6.2 价值递增性证明
+### 4.3.1.6.2 价值递增性证明
 
-**定理 4.2.3.1.3** (价值递增性) 在战略管理中，价值随执行程度递增。
+**定理 4.3.1.3** (价值递增性) 在战略管理中，价值随执行程度递增。
 
 **证明**：
 由定义 4.2.3.1.6，价值函数为：
@@ -608,20 +608,28 @@ $$V(s) = \sum_{i=1}^{n} (revenue_i - cost_i) \cdot (1 + growth\_rate_i)^t$$
 
 由于执行程度增加导致收入增加和成本降低，因此 $V(s)$ 递增。
 
-### 4.2.3.1.6.3 风险递减性证明
+### 4.3.1.6.3 风险递减性证明
 
-**定理 4.2.3.1.4** (风险递减性) 在战略管理中，风险随执行程度递减。
+**定理 4.3.1.4** (风险递减性) 在战略管理中，风险随执行程度递减。
 
 **证明**：
 风险主要来源于执行延迟和资源不足。随着执行程度提高，延迟减少，风险递减。
 
-## 4.2.3.1.7 引用关系
+## 4.3.1.7 引用关系
 
 - 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
 - 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
 - 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 敏捷模型：参见 [4.2.1.1 敏捷开发模型](../software-development/agile-models.md)
+- 敏捷模型：参见 [4.1.1 敏捷开发模型](../software-development/agile-models.md)
 - Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Porter, M. E. (1980). Competitive Strategy: Techniques for Analyzing Industries and Competitors. Free Press.
+2. Kaplan, R. S., & Norton, D. P. (1996). The Balanced Scorecard: Translating Strategy into Action. Harvard Business School Press.
+3. Mintzberg, H. (1994). The Rise and Fall of Strategic Planning. Free Press.
+4. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+5. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
 
 ---
 

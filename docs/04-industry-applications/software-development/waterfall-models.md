@@ -1,14 +1,14 @@
-# 4.2.1.2 瀑布模型
+# 4.1.2 瀑布模型
 
-## 4.2.1.2.1 概述
+## 4.1.2.1 概述
 
 瀑布模型是软件开发中最经典的传统项目管理方法论，采用线性、顺序的开发流程。本节提供瀑布模型的形式化数学模型。
 
-## 4.2.1.2.2 形式化定义
+## 4.1.2.2 形式化定义
 
-### 4.2.1.2.2.1 瀑布模型基础
+### 4.1.2.2.1 瀑布模型基础
 
-**定义 4.2.1.2.1** (瀑布项目) 瀑布项目是一个六元组：
+**定义 4.1.2.1** (瀑布项目) 瀑布项目是一个六元组：
 $$\mathcal{W} = (P, S, T, R, C, \mathcal{F})$$
 
 其中：
@@ -20,9 +20,9 @@ $$\mathcal{W} = (P, S, T, R, C, \mathcal{F})$$
 - $C = \{c_1, c_2, \ldots, c_p\}$ 是约束(Constraint)集合
 - $\mathcal{F}$ 是阶段转移函数
 
-### 4.2.1.2.2.2 阶段定义
+### 4.1.2.2.2 阶段定义
 
-**定义 4.2.1.2.2** (瀑布阶段) 瀑布模型的阶段集合定义为：
+**定义 4.1.2.2** (瀑布阶段) 瀑布模型的阶段集合定义为：
 $$P = \{需求分析, 系统设计, 详细设计, 编码实现, 测试验证, 部署维护\}$$
 
 每个阶段 $p_i$ 具有以下属性：
@@ -32,9 +32,9 @@ $$P = \{需求分析, 系统设计, 详细设计, 编码实现, 测试验证, �
 - $quality(p_i) \in [0,1]$ 是阶段质量指标
 - $dependencies(p_i) \subseteq P$ 是阶段依赖集合
 
-### 4.2.1.2.2.3 状态转移模型
+### 4.1.2.2.3 状态转移模型
 
-**定义 4.2.1.2.3** (瀑布状态) 瀑布状态是一个五元组：
+**定义 4.1.2.3** (瀑布状态) 瀑布状态是一个五元组：
 $$s = (current\_phase, progress, quality, cost, risk)$$
 
 其中：
@@ -45,11 +45,11 @@ $$s = (current\_phase, progress, quality, cost, risk)$$
 - $cost \in \mathbb{R}^+$ 是累计成本
 - $risk \in [0,1]$ 是项目风险
 
-## 4.2.1.2.3 数学模型
+## 4.1.2.3 数学模型
 
-### 4.2.1.2.3.1 阶段转移函数
+### 4.1.2.3.1 阶段转移函数
 
-**定义 4.2.1.2.4** (阶段转移) 阶段转移函数定义为：
+**定义 4.1.2.4** (阶段转移) 阶段转移函数定义为：
 $$T_{waterfall}: S \times A \times S \rightarrow [0,1]$$
 
 其中动作空间 $A$ 包含：
@@ -60,45 +60,45 @@ $$T_{waterfall}: S \times A \times S \rightarrow [0,1]$$
 - $a_4$: 成本控制
 - $a_5$: 风险管理
 
-### 4.2.1.2.3.2 进度计算模型
+### 4.1.2.3.2 进度计算模型
 
-**定理 4.2.1.2.1** (瀑布进度) 瀑布项目进度计算为：
+**定理 4.1.2.1** (瀑布进度) 瀑布项目进度计算为：
 $$progress = \frac{\sum_{i=1}^{n} w_i \cdot phase\_progress_i}{\sum_{i=1}^{n} w_i}$$
 
 其中 $w_i$ 是阶段 $i$ 的权重，$phase\_progress_i \in [0,1]$ 是阶段进度。
 
-### 4.2.1.2.3.3 质量累积模型
+### 4.1.2.3.3 质量累积模型
 
-**定义 4.2.1.2.5** (质量函数) 瀑布质量函数定义为：
+**定义 4.1.2.5** (质量函数) 瀑布质量函数定义为：
 $$Q(s) = \prod_{i=1}^{n} quality_i^{\alpha_i}$$
 
 其中 $quality_i$ 是阶段 $i$ 的质量，$\alpha_i$ 是质量权重。
 
-### 4.2.1.2.3.4 成本累积模型
+### 4.1.2.3.4 成本累积模型
 
-**定义 4.2.1.2.6** (成本函数) 瀑布成本函数定义为：
+**定义 4.1.2.6** (成本函数) 瀑布成本函数定义为：
 $$C(s) = \sum_{i=1}^{n} cost_i + \sum_{i=1}^{n} rework\_cost_i$$
 
 其中 $cost_i$ 是阶段 $i$ 的直接成本，$rework\_cost_i$ 是返工成本。
 
-## 4.2.1.2.4 验证规范
+## 4.1.2.4 验证规范
 
-### 4.2.1.2.4.1 阶段顺序验证
+### 4.1.2.4.1 阶段顺序验证
 
-**公理 4.2.1.2.1** (瀑布顺序性) 对于任意瀑布项目 $\mathcal{W}$：
+**公理 4.1.2.1** (瀑布顺序性) 对于任意瀑布项目 $\mathcal{W}$：
 $$\forall p_i, p_j \in P: i < j \Rightarrow p_i \text{ 必须在 } p_j \text{ 之前完成}$$
 
 ### 4.2.1.2.4.2 质量门控验证
 
-**公理 4.2.1.2.2** (质量门控) 对于任意阶段 $p_i$：
+**公理 4.1.2.2** (质量门控) 对于任意阶段 $p_i$：
 $$quality(p_i) \geq threshold_i \Rightarrow \text{可以进入下一阶段}$$
 
 ### 4.2.1.2.4.3 成本控制验证
 
-**公理 4.2.1.2.3** (成本控制) 对于任意状态 $s$：
+**公理 4.1.2.3** (成本控制) 对于任意状态 $s$：
 $$C(s) \leq budget \Rightarrow \text{项目可以继续}$$
 
-## 4.2.1.2.5 Rust实现
+## 4.1.2.5 Rust实现
 
 ```rust
 use std::collections::HashMap;
@@ -236,9 +236,9 @@ impl WaterfallProjectManager {
     fn update_project_state(&mut self) {
         let total_phases = self.phases.len() as f64;
         let completed_phases = self.phases.values().filter(|p| p.completed).count() as f64;
-        
+
         self.current_state.progress = completed_phases / total_phases;
-        
+
         // 计算质量
         let quality_product: f64 = self.phases.values()
             .filter(|p| p.completed)
@@ -259,7 +259,7 @@ impl WaterfallProjectManager {
     /// 计算项目风险
     fn calculate_risk(&self) -> f64 {
         let mut risk = 0.0;
-        
+
         // 基于进度延迟的风险
         let expected_progress = self.get_expected_progress();
         if self.current_state.progress < expected_progress {
@@ -409,7 +409,7 @@ mod tests {
         let mut manager = WaterfallProjectManager::new("测试项目".to_string(), 10000.0);
         let result = manager.complete_phase(WaterfallPhase::RequirementsAnalysis, 0.8);
         assert!(result.is_ok());
-        
+
         let state = manager.get_current_state();
         assert!(state.progress > 0.0);
     }
@@ -427,7 +427,7 @@ mod tests {
     }
 }
 
-## 4.2.1.2.6 形式化证明
+## 4.1.2.6 形式化证明
 
 ### 4.2.1.2.6.1 顺序性证明
 
@@ -462,13 +462,22 @@ $$C(s) = \sum_{i=1}^{n} cost_i + \sum_{i=1}^{n} rework\_cost_i$$
 由于 $cost_i \geq 0$ 且 $rework\_cost_i \geq 0$，因此：
 $$C(s) \geq 0$$
 
-## 4.2.1.2.7 引用关系
+## 4.1.2.7 引用关系
 
 - 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
 - 生命周期模型：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
 - 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 敏捷模型：参见 [4.2.1.1 敏捷开发模型](./agile-models.md)
+- 敏捷模型：参见 [4.1.1 敏捷开发模型](./agile-models.md)
 - Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Royce, W. W. (1970). Managing the development of large software systems. In Proceedings of IEEE WESCON (Vol. 26, pp. 1-9).
+2. Boehm, B. W. (1988). A spiral model of software development and enhancement. Computer, 21(5), 61-72.
+3. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+4. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+5. IEEE Std 830-1998. IEEE recommended practice for software requirements specifications.
+6. ISO/IEC 25010:2011. Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models.
 
 ---
 

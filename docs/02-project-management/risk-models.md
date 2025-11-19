@@ -137,10 +137,10 @@ impl RiskIdentifier {
             },
         }
     }
-    
+
     fn initialize_risk_templates() -> HashMap<RiskCategory, Vec<RiskTemplate>> {
         let mut templates = HashMap::new();
-        
+
         // 技术风险模板
         templates.insert(RiskCategory::Technical, vec![
             RiskTemplate {
@@ -180,7 +180,7 @@ impl RiskIdentifier {
                 ],
             },
         ]);
-        
+
         // 管理风险模板
         templates.insert(RiskCategory::Management, vec![
             RiskTemplate {
@@ -202,13 +202,13 @@ impl RiskIdentifier {
                 ],
             },
         ]);
-        
+
         templates
     }
-    
+
     pub fn identify_risks(&self, project_context: &ProjectContext) -> Vec<Risk> {
         let mut identified_risks = Vec::new();
-        
+
         // 基于模板识别风险
         for (category, templates) in &self.risk_templates {
             for template in templates {
@@ -216,34 +216,34 @@ impl RiskIdentifier {
                 identified_risks.push(risk);
             }
         }
-        
+
         // 基于历史数据识别风险
         let historical_risks = self.identify_historical_risks(project_context);
         identified_risks.extend(historical_risks);
-        
+
         // 基于项目特征识别风险
         let contextual_risks = self.identify_contextual_risks(project_context);
         identified_risks.extend(contextual_risks);
-        
+
         // 计算风险暴露度和优先级
         for risk in &mut identified_risks {
             risk.exposure = risk.probability * risk.impact;
         }
-        
+
         // 按暴露度排序并分配优先级
         identified_risks.sort_by(|a, b| b.exposure.partial_cmp(&a.exposure).unwrap());
         for (i, risk) in identified_risks.iter_mut().enumerate() {
             risk.priority = i as u32 + 1;
         }
-        
+
         identified_risks
     }
-    
+
     fn create_risk_from_template(&self, template: &RiskTemplate, context: &ProjectContext) -> Risk {
         // 根据项目上下文调整概率和影响
         let adjusted_probability = self.adjust_probability(template.typical_probability, context);
         let adjusted_impact = self.adjust_impact(template.typical_impact, context);
-        
+
         Risk {
             id: format!("risk_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
             name: template.name.clone(),
@@ -258,42 +258,42 @@ impl RiskIdentifier {
             mitigation_strategies: template.mitigation_strategies.clone(),
         }
     }
-    
+
     fn adjust_probability(&self, base_probability: f64, context: &ProjectContext) -> f64 {
         let mut adjusted = base_probability;
-        
+
         // 根据项目复杂度调整
         adjusted *= (1.0 + context.complexity * 0.3);
-        
+
         // 根据团队规模调整
         if context.team_size > 20 {
             adjusted *= 1.2; // 大团队沟通风险增加
         }
-        
+
         // 根据技术栈调整
         if context.technology_stack.len() > 3 {
             adjusted *= 1.1; // 多技术栈集成风险增加
         }
-        
+
         adjusted.min(1.0)
     }
-    
+
     fn adjust_impact(&self, base_impact: f64, context: &ProjectContext) -> f64 {
         let mut adjusted = base_impact;
-        
+
         // 根据项目预算调整
         if context.budget > 5000000.0 {
             adjusted *= 1.2; // 大项目影响更大
         }
-        
+
         // 根据项目持续时间调整
         if context.duration > 730.0 {
             adjusted *= 1.1; // 长期项目影响更大
         }
-        
+
         adjusted.min(1.0)
     }
-    
+
     fn determine_category(&self, risk_name: &str) -> RiskCategory {
         if risk_name.contains("技术") || risk_name.contains("技术") {
             RiskCategory::Technical
@@ -309,10 +309,10 @@ impl RiskIdentifier {
             RiskCategory::Management // 默认分类
         }
     }
-    
+
     fn identify_historical_risks(&self, context: &ProjectContext) -> Vec<Risk> {
         let mut historical_risks = Vec::new();
-        
+
         // 基于历史数据识别相似项目的风险
         for historical_risk in &self.historical_risks {
             if self.is_similar_project(historical_risk, context) {
@@ -320,17 +320,17 @@ impl RiskIdentifier {
                 historical_risks.push(adapted_risk);
             }
         }
-        
+
         historical_risks
     }
-    
+
     fn is_similar_project(&self, risk: &Risk, context: &ProjectContext) -> bool {
         // 简化的相似性判断
-        context.project_type == "software" && 
-        context.team_size >= 5 && 
+        context.project_type == "software" &&
+        context.team_size >= 5 &&
         context.team_size <= 50
     }
-    
+
     fn adapt_historical_risk(&self, historical_risk: &Risk, context: &ProjectContext) -> Risk {
         let mut adapted = historical_risk.clone();
         adapted.id = format!("hist_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap());
@@ -338,10 +338,10 @@ impl RiskIdentifier {
         adapted.impact = self.adjust_impact(historical_risk.impact, context);
         adapted
     }
-    
+
     fn identify_contextual_risks(&self, context: &ProjectContext) -> Vec<Risk> {
         let mut contextual_risks = Vec::new();
-        
+
         // 基于项目特征识别特定风险
         if context.team_size > 20 {
             contextual_risks.push(Risk {
@@ -367,7 +367,7 @@ impl RiskIdentifier {
                 ],
             });
         }
-        
+
         if context.complexity > 0.8 {
             contextual_risks.push(Risk {
                 id: format!("context_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
@@ -392,7 +392,7 @@ impl RiskIdentifier {
                 ],
             });
         }
-        
+
         contextual_risks
     }
 }
@@ -1135,13 +1135,13 @@ pub struct RiskReport {
 - **风险应对**: 风险应对策略
 - **风险监控**: 风险监控和控制
 
-## 2.3.7 相关链接
+## 2.3.7 引用关系
 
-- [2.1 项目生命周期模型](./lifecycle-models.md)
-- [2.2 资源管理模型](./resource-models.md)
-- [2.4 质量管理模型](./quality-models.md)
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
+- 生命周期模型：参见 [2.1 项目生命周期模型](./lifecycle-models.md)
+- 资源管理：参见 [2.2 资源管理模型](./resource-models.md)
+- 质量管理：参见 [2.4 质量管理模型](./quality-models.md)
+- 基础理论：参见 [1.1 形式化基础理论](../01-foundations/README.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
 ## 参考文献
 

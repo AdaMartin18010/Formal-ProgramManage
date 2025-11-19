@@ -1,15 +1,15 @@
-# 4.2.6.3 物联网管理模型
+# 4.5.3 物联网管理模型
 
-## 4.2.6.3.1 概述
+## 4.5.3.1 概述
 
 物联网管理是组织通过系统化方法设计、部署、监控和维护IoT系统，实现设备互联和智能感知的管理活动。本模型提供IoT管理的形式化理论基础和实践应用框架。
 
-### 4.2.6.3.1.1 核心概念
+### 4.5.3.1.1 核心概念
 
-**定义 4.2.6.3.1.1.1 (物联网管理)**
+**定义 4.5.3.1.1.1 (物联网管理)**
 物联网管理是组织通过系统化方法设计、部署、监控和维护IoT系统，实现设备互联和智能感知的管理活动。
 
-**定义 4.2.6.3.1.1.2 (IoT系统)**
+**定义 4.5.3.1.1.2 (IoT系统)**
 IoT系统 $IOTS = (D, N, P, A)$ 其中：
 
 - $D$ 是设备集合
@@ -17,40 +17,40 @@ IoT系统 $IOTS = (D, N, P, A)$ 其中：
 - $P$ 是数据处理
 - $A$ 是应用服务
 
-### 4.2.6.3.1.2 模型框架
+### 4.5.3.1.2 模型框架
 
 ```text
 物联网管理模型框架
-├── 4.2.6.3.1 概述
-│   ├── 4.2.6.3.1.1 核心概念
-│   └── 4.2.6.3.1.2 模型框架
-├── 4.2.6.3.2 IoT架构模型
-│   ├── 4.2.6.3.2.1 感知层模型
-│   ├── 4.2.6.3.2.2 网络层模型
-│   └── 4.2.6.3.2.3 应用层模型
-├── 4.2.6.3.3 设备管理模型
-│   ├── 4.2.6.3.3.1 设备注册模型
-│   ├── 4.2.6.3.3.2 设备监控模型
-│   └── 4.2.6.3.3.3 设备维护模型
-├── 4.2.6.3.4 数据流管理模型
-│   ├── 4.2.6.3.4.1 数据采集模型
-│   ├── 4.2.6.3.4.2 数据处理模型
-│   └── 4.2.6.3.4.3 数据存储模型
-├── 4.2.6.3.5 安全与隐私模型
-│   ├── 4.2.6.3.5.1 设备安全模型
-│   ├── 4.2.6.3.5.2 数据安全模型
-│   └── 4.2.6.3.5.3 隐私保护模型
-└── 4.2.6.3.6 实际应用
-    ├── 4.2.6.3.6.1 智能城市
-    ├── 4.2.6.3.6.2 工业物联网
-    └── 4.2.6.3.6.3 智能家居
+├── 4.5.3.1 概述
+│   ├── 4.5.3.1.1 核心概念
+│   └── 4.5.3.1.2 模型框架
+├── 4.5.3.2 IoT架构模型
+│   ├── 4.5.3.2.1 感知层模型
+│   ├── 4.5.3.2.2 网络层模型
+│   └── 4.5.3.2.3 应用层模型
+├── 4.5.3.3 设备管理模型
+│   ├── 4.5.3.3.1 设备注册模型
+│   ├── 4.5.3.3.2 设备监控模型
+│   └── 4.5.3.3.3 设备维护模型
+├── 4.5.3.4 数据流管理模型
+│   ├── 4.5.3.4.1 数据采集模型
+│   ├── 4.5.3.4.2 数据处理模型
+│   └── 4.5.3.4.3 数据存储模型
+├── 4.5.3.5 安全与隐私模型
+│   ├── 4.5.3.5.1 设备安全模型
+│   ├── 4.5.3.5.2 数据安全模型
+│   └── 4.5.3.5.3 隐私保护模型
+└── 4.5.3.6 实际应用
+    ├── 4.5.3.6.1 智能城市
+    ├── 4.5.3.6.2 工业物联网
+    └── 4.5.3.6.3 智能家居
 ```
 
-## 4.2.6.3.2 IoT架构模型
+## 4.5.3.2 IoT架构模型
 
-### 4.2.6.3.2.1 感知层模型
+### 4.5.3.2.1 感知层模型
 
-**定义 4.2.6.3.2.1.1 (感知层)**
+**定义 4.5.3.2.1.1 (感知层)**
 感知层函数 $PL = f(S, A, C, T)$ 其中：
 
 - $S$ 是传感器
@@ -58,12 +58,12 @@ IoT系统 $IOTS = (D, N, P, A)$ 其中：
 - $C$ 是控制器
 - $T$ 是终端设备
 
-**定义 4.2.6.3.2.1.2 (感知能力)**
+**定义 4.5.3.2.1.2 (感知能力)**
 感知能力 $PC = \sum_{i=1}^{n} w_i \cdot c_i$
 
 其中 $c_i$ 是感知指标，$w_i$ 是权重
 
-**示例 4.2.6.3.2.1.1 (感知层系统)**:
+**示例 4.5.3.2.1.1 (感知层系统)**:
 
 ```rust
 #[derive(Debug, Clone)]
@@ -81,7 +81,7 @@ impl PerceptionLayer {
         let actuators = self.create_actuators(config);
         let controllers = self.create_controllers(config);
         let terminals = self.create_terminals(config);
-        
+
         PerceptionLayerResult {
             sensors,
             actuators,
@@ -90,20 +90,20 @@ impl PerceptionLayer {
             perception_capability: self.calculate_perception_capability(),
         }
     }
-    
+
     pub fn collect_sensor_data(&self, sensors: &[Sensor]) -> Vec<SensorData> {
         // 收集传感器数据
         sensors.iter()
             .map(|sensor| sensor.collect_data())
             .collect()
     }
-    
+
     pub fn control_actuators(&self, actuators: &mut [Actuator], commands: &[ControlCommand]) -> ControlResult {
         // 控制执行器
         for (actuator, command) in actuators.iter_mut().zip(commands.iter()) {
             actuator.execute_command(command);
         }
-        
+
         ControlResult {
             success_count: commands.len(),
             failed_count: 0,
@@ -112,9 +112,9 @@ impl PerceptionLayer {
 }
 ```
 
-### 4.2.6.3.2.2 网络层模型
+### 4.5.3.2.2 网络层模型
 
-**定义 4.2.6.3.2.2.1 (网络层)**
+**定义 4.5.3.2.2.1 (网络层)**
 网络层函数 $NL = f(P, T, R, G)$ 其中：
 
 - $P$ 是协议栈
@@ -122,10 +122,10 @@ impl PerceptionLayer {
 - $R$ 是路由算法
 - $G$ 是网关管理
 
-**定理 4.2.6.3.2.2.1 (网络连通性)**
+**定理 4.5.3.2.2.1 (网络连通性)**
 对于IoT网络，如果节点度 $d_i \geq 2$ 对所有节点 $i$，则网络是连通的。
 
-**示例 4.2.6.3.2.2.1 (网络层系统)**:
+**示例 4.5.3.2.2.1 (网络层系统)**:
 
 ```haskell
 data NetworkLayer = NetworkLayer
@@ -136,7 +136,7 @@ data NetworkLayer = NetworkLayer
     }
 
 buildNetworkLayer :: NetworkLayer -> NetworkConfig -> NetworkLayerResult
-buildNetworkLayer nl config = 
+buildNetworkLayer nl config =
     let protocols = buildProtocolStack (protocolStack nl) config
         transmission = configureTransmission (transmissionMechanism nl) config
         routing = setupRouting (routingAlgorithm nl) config
@@ -144,7 +144,7 @@ buildNetworkLayer nl config =
     in NetworkLayerResult protocols transmission routing gateways
 
 transmitData :: NetworkLayer -> IoTData -> TransmissionResult
-transmitData nl data = 
+transmitData nl data =
     let processedData = processData (protocolStack nl) data
         transmittedData = transmit (transmissionMechanism nl) processedData
         routedData = route (routingAlgorithm nl) transmittedData
@@ -152,9 +152,9 @@ transmitData nl data =
     in TransmissionResult gatewayData
 ```
 
-### 4.2.6.3.2.3 应用层模型
+### 4.5.3.2.3 应用层模型
 
-**定义 4.2.6.3.2.3.1 (应用层)**
+**定义 4.5.3.2.3.1 (应用层)**
 应用层函数 $AL = f(A, S, I, U)$ 其中：
 
 - $A$ 是应用服务
@@ -162,7 +162,7 @@ transmitData nl data =
 - $I$ 是集成机制
 - $U$ 是用户界面
 
-**示例 4.2.6.3.2.3.1 (应用层系统)**:
+**示例 4.5.3.2.3.1 (应用层系统)**:
 
 ```lean
 structure ApplicationLayer :=
@@ -186,11 +186,11 @@ def processApplicationRequest (al : ApplicationLayer) (request : ApplicationRequ
   ApplicationResponse uiResponse
 ```
 
-## 4.2.6.3.3 设备管理模型
+## 4.5.3.3 设备管理模型
 
-### 4.2.6.3.3.1 设备注册模型
+### 4.5.3.3.1 设备注册模型
 
-**定义 4.2.6.3.3.1.1 (设备注册)**
+**定义 4.5.3.3.1.1 (设备注册)**
 设备注册函数 $DR = f(I, A, C, V)$ 其中：
 
 - $I$ 是设备标识
@@ -198,7 +198,7 @@ def processApplicationRequest (al : ApplicationLayer) (request : ApplicationRequ
 - $C$ 是配置管理
 - $V$ 是验证流程
 
-**示例 4.2.6.3.3.1.1 (设备注册系统)**:
+**示例 4.5.3.3.1.1 (设备注册系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -216,7 +216,7 @@ impl DeviceRegistration {
         let auth_result = self.authentication_mechanism.authenticate(device);
         let config = self.configuration_management.configure(device);
         let validation = self.validation_process.validate(device);
-        
+
         RegistrationResult {
             device_id,
             auth_result,
@@ -225,13 +225,13 @@ impl DeviceRegistration {
             registration_status: RegistrationStatus::Success,
         }
     }
-    
+
     pub fn manage_device_lifecycle(&self, device: &IoTDevice) -> LifecycleResult {
         // 设备生命周期管理
         let registration = self.register_device(device);
         let monitoring = self.monitor_device(device);
         let maintenance = self.maintain_device(device);
-        
+
         LifecycleResult {
             registration,
             monitoring,
@@ -241,9 +241,9 @@ impl DeviceRegistration {
 }
 ```
 
-### 4.2.6.3.3.2 设备监控模型
+### 4.5.3.3.2 设备监控模型
 
-**定义 4.2.6.3.3.2.1 (设备监控)**
+**定义 4.5.3.3.2.1 (设备监控)**
 设备监控函数 $DM = f(S, A, P, A)$ 其中：
 
 - $S$ 是状态监控
@@ -251,7 +251,7 @@ impl DeviceRegistration {
 - $P$ 是性能监控
 - $A$ 是可用性监控
 
-**示例 4.2.6.3.3.2.1 (设备监控系统)**:
+**示例 4.5.3.3.2.1 (设备监控系统)**:
 
 ```haskell
 data DeviceMonitoring = DeviceMonitoring
@@ -262,7 +262,7 @@ data DeviceMonitoring = DeviceMonitoring
     }
 
 monitorDevices :: DeviceMonitoring -> [IoTDevice] -> MonitoringResult
-monitorDevices dm devices = 
+monitorDevices dm devices =
     let statusResults = map (monitorStatus (statusMonitoring dm)) devices
         alertResults = generateAlerts (alertMechanism dm) statusResults
         performanceResults = monitorPerformance (performanceMonitoring dm) devices
@@ -270,14 +270,14 @@ monitorDevices dm devices =
     in MonitoringResult statusResults alertResults performanceResults availabilityResults
 
 detectDeviceAnomalies :: DeviceMonitoring -> [IoTDevice] -> [DeviceAnomaly]
-detectDeviceAnomalies dm devices = 
+detectDeviceAnomalies dm devices =
     let monitoringResult = monitorDevices dm devices
     in analyzeAnomalies monitoringResult
 ```
 
-### 4.2.6.3.3.3 设备维护模型
+### 4.5.3.3.3 设备维护模型
 
-**定义 4.2.6.3.3.3.1 (设备维护)**
+**定义 4.5.3.3.3.1 (设备维护)**
 设备维护函数 $DM = f(U, R, P, S)$ 其中：
 
 - $U$ 是固件更新
@@ -285,7 +285,7 @@ detectDeviceAnomalies dm devices =
 - $P$ 是预防性维护
 - $S$ 是状态管理
 
-**示例 4.2.6.3.3.3.1 (设备维护系统)**:
+**示例 4.5.3.3.3.1 (设备维护系统)**:
 
 ```lean
 structure DeviceMaintenance :=
@@ -308,11 +308,11 @@ def scheduleMaintenance (dm : DeviceMaintenance) (devices : [IoTDevice]) : Maint
   MaintenanceSchedule updateSchedule maintenanceSchedule preventiveSchedule
 ```
 
-## 4.2.6.3.4 数据流管理模型
+## 4.5.3.4 数据流管理模型
 
-### 4.2.6.3.4.1 数据采集模型
+### 4.5.3.4.1 数据采集模型
 
-**定义 4.2.6.3.4.1.1 (数据采集)**
+**定义 4.5.3.4.1.1 (数据采集)**
 数据采集函数 $DC = f(S, F, T, Q)$ 其中：
 
 - $S$ 是传感器数据
@@ -320,7 +320,7 @@ def scheduleMaintenance (dm : DeviceMaintenance) (devices : [IoTDevice]) : Maint
 - $T$ 是数据转换
 - $Q$ 是数据质量
 
-**示例 4.2.6.3.4.1.1 (数据采集系统)**:
+**示例 4.5.3.4.1.1 (数据采集系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -338,7 +338,7 @@ impl DataCollection {
         let filtered_data = self.data_filtering.filter(&raw_data);
         let transformed_data = self.data_transformation.transform(&filtered_data);
         let quality_assessment = self.data_quality.assess(&transformed_data);
-        
+
         CollectionResult {
             raw_data,
             filtered_data,
@@ -346,13 +346,13 @@ impl DataCollection {
             quality_assessment,
         }
     }
-    
+
     pub fn optimize_collection(&self, collection_config: &CollectionConfig) -> OptimizationResult {
         // 优化数据采集
         let optimized_sensors = self.optimize_sensor_placement(collection_config);
         let optimized_filtering = self.optimize_filtering_rules(collection_config);
         let optimized_transformation = self.optimize_transformation_pipeline(collection_config);
-        
+
         OptimizationResult {
             optimized_sensors,
             optimized_filtering,
@@ -362,9 +362,9 @@ impl DataCollection {
 }
 ```
 
-### 4.2.6.3.4.2 数据处理模型
+### 4.5.3.4.2 数据处理模型
 
-**定义 4.2.6.3.4.2.1 (数据处理)**
+**定义 4.5.3.4.2.1 (数据处理)**
 数据处理函数 $DP = f(A, S, R, O)$ 其中：
 
 - $A$ 是数据分析
@@ -372,7 +372,7 @@ impl DataCollection {
 - $R$ 是数据路由
 - $O$ 是数据输出
 
-**示例 4.2.6.3.4.2.1 (数据处理系统)**:
+**示例 4.5.3.4.2.1 (数据处理系统)**:
 
 ```haskell
 data DataProcessing = DataProcessing
@@ -383,7 +383,7 @@ data DataProcessing = DataProcessing
     }
 
 processData :: DataProcessing -> IoTData -> ProcessedData
-processData dp data = 
+processData dp data =
     let analyzedData = analyzeData (dataAnalysis dp) data
         storedData = storeData (dataStorage dp) analyzedData
         routedData = routeData (dataRouting dp) storedData
@@ -391,7 +391,7 @@ processData dp data =
     in ProcessedData outputData
 
 optimizeProcessing :: DataProcessing -> ProcessingConfig -> OptimizationResult
-optimizeProcessing dp config = 
+optimizeProcessing dp config =
     let optimizedAnalysis = optimizeAnalysis (dataAnalysis dp) config
         optimizedStorage = optimizeStorage (dataStorage dp) config
         optimizedRouting = optimizeRouting (dataRouting dp) config
@@ -399,9 +399,9 @@ optimizeProcessing dp config =
     in OptimizationResult optimizedAnalysis optimizedStorage optimizedRouting optimizedOutput
 ```
 
-### 4.2.6.3.4.3 数据存储模型
+### 4.5.3.4.3 数据存储模型
 
-**定义 4.2.6.3.4.3.1 (数据存储)**
+**定义 4.5.3.4.3.1 (数据存储)**
 数据存储函数 $DS = f(S, I, B, R)$ 其中：
 
 - $S$ 是存储策略
@@ -409,7 +409,7 @@ optimizeProcessing dp config =
 - $B$ 是备份机制
 - $R$ 是恢复机制
 
-**示例 4.2.6.3.4.3.1 (数据存储系统)**:
+**示例 4.5.3.4.3.1 (数据存储系统)**:
 
 ```lean
 structure DataStorage :=
@@ -431,11 +431,11 @@ def queryStoredData (ds : DataStorage) (query : DataQuery) : QueryResult :=
   QueryResult storedResult
 ```
 
-## 4.2.6.3.5 安全与隐私模型
+## 4.5.3.5 安全与隐私模型
 
-### 4.2.6.3.5.1 设备安全模型
+### 4.5.3.5.1 设备安全模型
 
-**定义 4.2.6.3.5.1.1 (设备安全)**
+**定义 4.5.3.5.1.1 (设备安全)**
 设备安全函数 $DS = f(A, E, P, M)$ 其中：
 
 - $A$ 是访问控制
@@ -443,7 +443,7 @@ def queryStoredData (ds : DataStorage) (query : DataQuery) : QueryResult :=
 - $P$ 是物理安全
 - $M$ 是监控机制
 
-**示例 4.2.6.3.5.1.1 (设备安全系统)**:
+**示例 4.5.3.5.1.1 (设备安全系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -461,7 +461,7 @@ impl DeviceSecurity {
         let encryption = self.encryption_mechanism.encrypt(device);
         let physical_security = self.physical_security.protect(device);
         let monitoring = self.monitoring_mechanism.monitor(device);
-        
+
         SecurityResult {
             access_control,
             encryption,
@@ -470,7 +470,7 @@ impl DeviceSecurity {
             security_score: self.calculate_security_score(),
         }
     }
-    
+
     pub fn detect_security_threats(&self, device: &IoTDevice) -> Vec<SecurityThreat> {
         // 安全威胁检测
         self.monitoring_mechanism.detect_threats(device)
@@ -478,9 +478,9 @@ impl DeviceSecurity {
 }
 ```
 
-### 4.2.6.3.5.2 数据安全模型
+### 4.5.3.5.2 数据安全模型
 
-**定义 4.2.6.3.5.2.1 (数据安全)**
+**定义 4.5.3.5.2.1 (数据安全)**
 数据安全函数 $DS = f(E, I, A, P)$ 其中：
 
 - $E$ 是数据加密
@@ -488,7 +488,7 @@ impl DeviceSecurity {
 - $A$ 是访问审计
 - $P$ 是隐私保护
 
-**示例 4.2.6.3.5.2.1 (数据安全系统)**:
+**示例 4.5.3.5.2.1 (数据安全系统)**:
 
 ```haskell
 data DataSecurity = DataSecurity
@@ -499,7 +499,7 @@ data DataSecurity = DataSecurity
     }
 
 secureData :: DataSecurity -> IoTData -> SecuredData
-secureData ds data = 
+secureData ds data =
     let encryptedData = encryptData (dataEncryption ds) data
         integrityCheckedData = checkIntegrity (integrityCheck ds) encryptedData
         auditedData = auditAccess (accessAudit ds) integrityCheckedData
@@ -507,14 +507,14 @@ secureData ds data =
     in SecuredData privacyProtectedData
 
 calculateDataSecurityScore :: DataSecurity -> IoTData -> SecurityScore
-calculateDataSecurityScore ds data = 
+calculateDataSecurityScore ds data =
     let securedData = secureData ds data
     in measureSecurityScore securedData
 ```
 
-### 4.2.6.3.5.3 隐私保护模型
+### 4.5.3.5.3 隐私保护模型
 
-**定义 4.2.6.3.5.3.1 (隐私保护)**
+**定义 4.5.3.5.3.1 (隐私保护)**
 隐私保护函数 $PP = f(A, M, C, D)$ 其中：
 
 - $A$ 是匿名化
@@ -522,7 +522,7 @@ calculateDataSecurityScore ds data =
 - $C$ 是同意管理
 - $D$ 是数据删除
 
-**示例 4.2.6.3.5.3.1 (隐私保护系统)**:
+**示例 4.5.3.5.3.1 (隐私保护系统)**:
 
 ```lean
 structure PrivacyProtection :=
@@ -543,11 +543,11 @@ def calculatePrivacyLevel (pp : PrivacyProtection) (data : IoTData) : PrivacyLev
   measurePrivacyLevel privacyProtectedData
 ```
 
-## 4.2.6.3.6 实际应用
+## 4.5.3.6 实际应用
 
-### 4.2.6.3.6.1 智能城市
+### 4.5.3.6.1 智能城市
 
-**应用 4.2.6.3.6.1.1 (智能城市)**
+**应用 4.5.3.6.1.1 (智能城市)**
 智能城市IoT模型 $SCI = (T, E, H, S)$ 其中：
 
 - $T$ 是交通管理
@@ -555,7 +555,7 @@ def calculatePrivacyLevel (pp : PrivacyProtection) (data : IoTData) : PrivacyLev
 - $H$ 是公共安全
 - $S$ 是智慧服务
 
-**示例 4.2.6.3.6.1.1 (智能城市系统)**:
+**示例 4.5.3.6.1.1 (智能城市系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -573,7 +573,7 @@ impl SmartCityIoT {
         let environment = self.environmental_monitoring.build(city_config);
         let safety = self.public_safety.build(city_config);
         let services = self.smart_services.build(city_config);
-        
+
         SmartCityResult {
             traffic_management: traffic,
             environmental_monitoring: environment,
@@ -582,14 +582,14 @@ impl SmartCityIoT {
             city_efficiency: self.calculate_city_efficiency(),
         }
     }
-    
+
     pub fn optimize_city_operations(&self, city: &SmartCity) -> OptimizationResult {
         // 优化城市运营
         self.optimize_traffic_flow(city);
         self.optimize_environmental_management(city);
         self.optimize_public_safety(city);
         self.optimize_smart_services(city);
-        
+
         OptimizationResult {
             traffic_optimization: self.get_traffic_optimization(),
             environmental_optimization: self.get_environmental_optimization(),
@@ -600,9 +600,9 @@ impl SmartCityIoT {
 }
 ```
 
-### 4.2.6.3.6.2 工业物联网
+### 4.5.3.6.2 工业物联网
 
-**应用 4.2.6.3.6.2.1 (工业物联网)**
+**应用 4.5.3.6.2.1 (工业物联网)**
 工业物联网模型 $IIOT = (P, Q, M, S)$ 其中：
 
 - $P$ 是生产监控
@@ -610,7 +610,7 @@ impl SmartCityIoT {
 - $M$ 是设备维护
 - $S$ 是供应链管理
 
-**示例 4.2.6.3.6.2.1 (工业物联网系统)**:
+**示例 4.5.3.6.2.1 (工业物联网系统)**:
 
 ```haskell
 data IndustrialIoT = IndustrialIoT
@@ -621,7 +621,7 @@ data IndustrialIoT = IndustrialIoT
     }
 
 buildIndustrialIoT :: IndustrialIoT -> IndustrialConfig -> IndustrialIoTResult
-buildIndustrialIoT iiot config = 
+buildIndustrialIoT iiot config =
     let production = buildProductionMonitoring (productionMonitoring iiot) config
         quality = buildQualityControl (qualityControl iiot) config
         maintenance = buildEquipmentMaintenance (equipmentMaintenance iiot) config
@@ -629,7 +629,7 @@ buildIndustrialIoT iiot config =
     in IndustrialIoTResult production quality maintenance supplyChain
 
 optimizeIndustrialOperations :: IndustrialIoT -> IndustrialOperations -> OptimizationResult
-optimizeIndustrialOperations iiot operations = 
+optimizeIndustrialOperations iiot operations =
     let productionOptimization = optimizeProduction (productionMonitoring iiot) operations
         qualityOptimization = optimizeQuality (qualityControl iiot) operations
         maintenanceOptimization = optimizeMaintenance (equipmentMaintenance iiot) operations
@@ -637,9 +637,9 @@ optimizeIndustrialOperations iiot operations =
     in OptimizationResult productionOptimization qualityOptimization maintenanceOptimization supplyChainOptimization
 ```
 
-### 4.2.6.3.6.3 智能家居
+### 4.5.3.6.3 智能家居
 
-**应用 4.2.6.3.6.3.1 (智能家居)**
+**应用 4.5.3.6.3.1 (智能家居)**
 智能家居IoT模型 $SHI = (H, S, E, A)$ 其中：
 
 - $H$ 是家庭自动化
@@ -647,7 +647,7 @@ optimizeIndustrialOperations iiot operations =
 - $E$ 是能源管理
 - $A$ 是娱乐系统
 
-**示例 4.2.6.3.6.3.1 (智能家居系统)**:
+**示例 4.5.3.6.3.1 (智能家居系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -665,7 +665,7 @@ impl SmartHomeIoT {
         let security = self.security_monitoring.build(home_config);
         let energy = self.energy_management.build(home_config);
         let entertainment = self.entertainment_system.build(home_config);
-        
+
         SmartHomeResult {
             home_automation: automation,
             security_monitoring: security,
@@ -674,14 +674,14 @@ impl SmartHomeIoT {
             home_efficiency: self.calculate_home_efficiency(),
         }
     }
-    
+
     pub fn optimize_home_operations(&self, home: &SmartHome) -> HomeOptimizationResult {
         // 优化家居运营
         let automation_optimization = self.optimize_automation(home);
         let security_optimization = self.optimize_security(home);
         let energy_optimization = self.optimize_energy(home);
         let entertainment_optimization = self.optimize_entertainment(home);
-        
+
         HomeOptimizationResult {
             automation_optimization,
             security_optimization,
@@ -692,7 +692,7 @@ impl SmartHomeIoT {
 }
 ```
 
-## 4.2.6.3.7 总结
+## 4.5.3.7 总结
 
 物联网管理模型提供了系统化的方法来设计、部署、监控和维护IoT系统。通过形式化建模和智能化管理，可以实现：
 
@@ -702,6 +702,23 @@ impl SmartHomeIoT {
 4. **安全隐私**：通过设备安全、数据安全、隐私保护
 
 该模型为现代组织的IoT应用提供了理论基础和实践指导，支持设备互联和智能感知。
+
+## 4.5.3.8 引用关系
+
+- 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
+- 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
+- 物流管理：参见 [4.4.4 物流供应链管理模型](../logistics-management/logistics-management.md)
+- 能源管理：参见 [4.4.5 能源环境管理模型](../energy-management/energy-management.md)
+- Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Gubbi, J., Buyya, R., Marusic, S., & Palaniswami, M. (2013). Internet of Things (IoT): A vision, architectural elements, and future directions. Future Generation Computer Systems, 29(7), 1645-1660.
+2. Al-Fuqaha, A., Guizani, M., Mohammadi, M., Aledhari, M., & Ayyash, M. (2015). Internet of Things: A survey on enabling technologies, protocols, and applications. IEEE Communications Surveys & Tutorials, 17(4), 2347-2376.
+3. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+4. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+5. ISO/IEC 30141:2018. Internet of Things (IoT) - Reference architecture.
 
 ---
 

@@ -1,14 +1,14 @@
-# 4.2.2.3 机械工程模型
+# 4.2.3 机械工程模型
 
-## 4.2.2.3.1 概述
+## 4.2.3.1 概述
 
 机械工程是涉及机械设计、制造工艺和质量控制的项目管理领域。本节提供机械工程的形式化数学模型。
 
-## 4.2.2.3.2 形式化定义
+## 4.2.3.2 形式化定义
 
-### 4.2.2.3.2.1 机械工程基础
+### 4.2.3.2.1 机械工程基础
 
-**定义 4.2.2.3.1** (机械项目) 机械项目是一个七元组：
+**定义 4.2.3.1** (机械项目) 机械项目是一个七元组：
 $$\mathcal{ME} = (D, M, P, Q, T, C, \mathcal{F})$$
 
 其中：
@@ -21,9 +21,9 @@ $$\mathcal{ME} = (D, M, P, Q, T, C, \mathcal{F})$$
 - $C = \{c_1, c_2, \ldots, c_q\}$ 是约束(Constraint)集合
 - $\mathcal{F}$ 是机械工程函数
 
-### 4.2.2.3.2.2 机械阶段
+### 4.2.3.2.2 机械阶段
 
-**定义 4.2.2.3.2** (机械阶段) 机械项目包含五个主要阶段：
+**定义 4.2.3.2** (机械阶段) 机械项目包含五个主要阶段：
 $$P = (design, prototyping, manufacturing, assembly, testing)$$
 
 其中：
@@ -34,9 +34,9 @@ $$P = (design, prototyping, manufacturing, assembly, testing)$$
 - $assembly$: 装配和集成
 - $testing$: 性能测试和验证
 
-### 4.2.2.3.2.3 状态转移模型
+### 4.2.3.2.3 状态转移模型
 
-**定义 4.2.2.3.3** (机械状态) 机械状态是一个六元组：
+**定义 4.2.3.3** (机械状态) 机械状态是一个六元组：
 $$s = (current\_stage, progress, quality, precision, cost, efficiency)$$
 
 其中：
@@ -48,11 +48,11 @@ $$s = (current\_stage, progress, quality, precision, cost, efficiency)$$
 - $cost \in \mathbb{R}^+$ 是项目成本
 - $efficiency \in [0,1]$ 是制造效率
 
-## 4.2.2.3.3 数学模型
+## 4.2.3.3 数学模型
 
-### 4.2.2.3.3.1 机械转移函数
+### 4.2.3.3.1 机械转移函数
 
-**定义 4.2.2.3.4** (机械转移) 机械转移函数定义为：
+**定义 4.2.3.4** (机械转移) 机械转移函数定义为：
 $$T_{ME}: S \times A \times S \rightarrow [0,1]$$
 
 其中动作空间 $A$ 包含：
@@ -64,45 +64,45 @@ $$T_{ME}: S \times A \times S \rightarrow [0,1]$$
 - $a_5$: 质量检查
 - $a_6$: 性能测试
 
-### 4.2.2.3.3.2 精度累积模型
+### 4.2.3.3.2 精度累积模型
 
-**定理 4.2.2.3.1** (精度累积) 机械项目精度计算为：
+**定理 4.2.3.1** (精度累积) 机械项目精度计算为：
 $$precision = \frac{\sum_{i=1}^{n} w_i \cdot precision_i}{\sum_{i=1}^{n} w_i}$$
 
 其中 $w_i$ 是阶段 $i$ 的权重，$precision_i \in [0,1]$ 是阶段精度。
 
-### 4.2.2.3.3.3 质量累积模型
+### 4.2.3.3.3 质量累积模型
 
-**定义 4.2.2.3.5** (质量函数) 机械质量函数定义为：
+**定义 4.2.3.5** (质量函数) 机械质量函数定义为：
 $$Q(s) = \prod_{i=1}^{n} quality_i^{\alpha_i} \cdot precision_i^{\beta_i}$$
 
 其中 $quality_i$ 是阶段 $i$ 的质量，$precision_i$ 是阶段 $i$ 的精度，$\alpha_i, \beta_i \in [0,1]$ 是权重系数。
 
-### 4.2.2.3.3.4 效率模型
+### 4.2.3.3.4 效率模型
 
-**定义 4.2.2.3.6** (效率函数) 机械效率函数定义为：
+**定义 4.2.3.6** (效率函数) 机械效率函数定义为：
 $$E(s) = \frac{output\_quantity}{input\_resources} \cdot quality\_factor$$
 
 其中 $output\_quantity$ 是产出数量，$input\_resources$ 是投入资源，$quality\_factor$ 是质量因子。
 
-## 4.2.2.3.4 验证规范
+## 4.2.3.4 验证规范
 
-### 4.2.2.3.4.1 设计完整性验证
+### 4.2.3.4.1 设计完整性验证
 
-**公理 4.2.2.3.1** (设计完整性) 对于任意机械项目 $\mathcal{ME}$：
+**公理 4.2.3.1** (设计完整性) 对于任意机械项目 $\mathcal{ME}$：
 $$\forall d \in D: \text{设计必须满足所有技术要求}$$
 
-### 4.2.2.3.4.2 制造精度验证
+### 4.2.3.4.2 制造精度验证
 
-**公理 4.2.2.3.2** (制造精度) 对于任意阶段 $p_i$：
+**公理 4.2.3.2** (制造精度) 对于任意阶段 $p_i$：
 $$precision(p_i) \geq tolerance_i \Rightarrow \text{精度达标}$$
 
-### 4.2.2.3.4.3 质量门控验证
+### 4.2.3.4.3 质量门控验证
 
-**公理 4.2.2.3.3** (质量门控) 对于任意状态 $s$：
+**公理 4.2.3.3** (质量门控) 对于任意状态 $s$：
 $$quality(s) \geq threshold \Rightarrow \text{质量达标}$$
 
-## 4.2.2.3.5 Rust实现
+## 4.2.3.5 Rust实现
 
 ```rust
 use std::collections::HashMap;
@@ -321,7 +321,7 @@ impl MechanicalEngineeringManager {
         let completed_parts = self.parts.values()
             .filter(|p| matches!(p.status, PartStatus::Tested))
             .count();
-        
+
         if total_parts > 0 {
             self.current_state.progress = completed_parts as f64 / total_parts as f64;
         }
@@ -480,7 +480,7 @@ mod tests {
     #[test]
     fn test_add_part() {
         let mut manager = MechanicalEngineeringManager::new("测试机械项目".to_string(), 500000.0);
-        
+
         let part = MechanicalPart {
             id: "PART_001".to_string(),
             name: "轴承座".to_string(),
@@ -503,7 +503,7 @@ mod tests {
     #[test]
     fn test_add_process() {
         let mut manager = MechanicalEngineeringManager::new("测试机械项目".to_string(), 500000.0);
-        
+
         let process = ManufacturingProcess {
             id: "PROC_001".to_string(),
             name: "车削加工".to_string(),
@@ -521,7 +521,7 @@ mod tests {
     #[test]
     fn test_start_design() {
         let mut manager = MechanicalEngineeringManager::new("测试机械项目".to_string(), 500000.0);
-        
+
         let part = MechanicalPart {
             id: "PART_001".to_string(),
             name: "轴承座".to_string(),
@@ -552,11 +552,11 @@ mod tests {
 }
 ```
 
-## 4.2.2.3.6 形式化证明
+## 4.2.3.6 形式化证明
 
-### 4.2.2.3.6.1 精度累积性证明
+### 4.2.3.6.1 精度累积性证明
 
-**定理 4.2.2.3.2** (精度累积性) 机械项目的总体精度是各阶段精度的加权平均。
+**定理 4.2.3.2** (精度累积性) 机械项目的总体精度是各阶段精度的加权平均。
 
 **证明**：
 由定义 4.2.2.3.1，精度计算为：
@@ -564,9 +564,9 @@ $$precision = \frac{\sum_{i=1}^{n} w_i \cdot precision_i}{\sum_{i=1}^{n} w_i}$$
 
 由于 $precision_i \in [0,1]$ 且 $w_i > 0$，因此 $0 \leq precision \leq 1$。
 
-### 4.2.2.3.6.2 质量累积性证明
+### 4.2.3.6.2 质量累积性证明
 
-**定理 4.2.2.3.3** (质量累积性) 机械项目的总体质量是各阶段质量和精度的乘积。
+**定理 4.2.3.3** (质量累积性) 机械项目的总体质量是各阶段质量和精度的乘积。
 
 **证明**：
 由定义 4.2.2.3.5，质量函数为：
@@ -574,9 +574,9 @@ $$Q(s) = \prod_{i=1}^{n} quality_i^{\alpha_i} \cdot precision_i^{\beta_i}$$
 
 由于每个阶段的质量和精度都在 $[0,1]$ 范围内，因此 $0 \leq Q(s) \leq 1$。
 
-### 4.2.2.3.6.3 效率演进性证明
+### 4.2.3.6.3 效率演进性证明
 
-**定理 4.2.2.3.4** (效率演进性) 在机械工程中，效率随质量提高而增加。
+**定理 4.2.3.4** (效率演进性) 在机械工程中，效率随质量提高而增加。
 
 **证明**：
 由定义 4.2.2.3.6，效率函数为：
@@ -584,14 +584,22 @@ $$E(s) = \frac{output\_quantity}{input\_resources} \cdot quality\_factor$$
 
 由于 $quality\_factor$ 随质量提高而增加，因此 $E(s)$ 递增。
 
-## 4.2.2.3.7 引用关系
+## 4.2.3.7 引用关系
 
 - 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
 - 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
 - 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 系统工程：参见 [4.2.2.1 系统工程模型](./systems-engineering.md)
-- 建筑工程：参见 [4.2.2.2 建筑工程模型](./construction-engineering.md)
+- 系统工程：参见 [4.2.1 系统工程模型](./systems-engineering.md)
+- 建筑工程：参见 [4.2.2 建筑工程模型](./construction-engineering.md)
 - Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+3. ISO 9001:2015. Quality management systems - Requirements.
+4. ISO/IEC 15288:2015. Systems and software engineering - System life cycle processes.
+5. Shigley, J. E., & Mischke, C. R. (2001). Mechanical Engineering Design (6th ed.). McGraw-Hill.
 
 ---
 

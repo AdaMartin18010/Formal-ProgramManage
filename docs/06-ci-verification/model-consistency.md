@@ -128,7 +128,7 @@ impl ConsistencyChecker {
             rules: Vec::new(),
             models: HashMap::new(),
         };
-        
+
         // 添加预定义规则
         checker.add_basic_rules();
         checker
@@ -460,7 +460,7 @@ impl AutomatedVerifier {
             checker: ConsistencyChecker::new(),
             verification_rules: Vec::new(),
         };
-        
+
         verifier.add_verification_rules();
         verifier
     }
@@ -510,7 +510,7 @@ impl AutomatedVerifier {
         for theorem in &model.theorems {
             let proof = Self::verify_single_theorem(theorem, model);
             result.proofs.push(proof.clone());
-            
+
             if proof.is_valid {
                 result.metrics.proved_theorems += 1;
             } else {
@@ -527,7 +527,7 @@ impl AutomatedVerifier {
 
         // 计算覆盖率
         if result.metrics.total_theorems > 0 {
-            result.metrics.coverage_percentage = 
+            result.metrics.coverage_percentage =
                 (result.metrics.proved_theorems as f64 / result.metrics.total_theorems as f64) * 100.0;
         }
 
@@ -544,10 +544,10 @@ impl AutomatedVerifier {
     /// 验证单个定理
     fn verify_single_theorem(theorem: &Theorem, model: &ModelDefinition) -> Proof {
         let start_time = std::time::Instant::now();
-        
+
         // 解析证明步骤
         let proof_steps = Self::parse_proof_steps(&theorem.proof);
-        
+
         // 验证每个步骤
         let mut valid_steps = Vec::new();
         for (i, step) in proof_steps.iter().enumerate() {
@@ -701,15 +701,15 @@ on:
 jobs:
   consistency-check:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: 设置 Rust
       uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
-    
+
     - name: 缓存依赖
       uses: actions/cache@v3
       with:
@@ -718,16 +718,16 @@ jobs:
           ~/.cargo/git
           target
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-    
+
     - name: 运行一致性检查
       run: |
         cargo test consistency_check
         cargo run --bin model-verifier
-    
+
     - name: 生成报告
       run: |
         cargo run --bin generate-report
-    
+
     - name: 上传报告
       uses: actions/upload-artifact@v3
       with:
@@ -853,6 +853,15 @@ mod tests {
 - 项目管理：参见 [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
 - 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 - 自动化验证：参见 [6.1 自动化验证流程](./automated-verification.md)
+- 自动化验证系统：参见 [6.3 自动化验证系统](./automated-verification-system.md)
+
+## 参考文献
+
+1. Clarke, E. M., Grumberg, O., & Peled, D. (1999). Model checking. MIT press.
+2. Baier, C., & Katoen, J. P. (2008). Principles of model checking. MIT press.
+3. ISO/IEC 25010:2011. Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — System and software quality models.
+4. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+5. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
 
 ---
 

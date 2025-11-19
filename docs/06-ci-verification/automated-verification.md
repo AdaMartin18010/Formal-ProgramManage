@@ -62,18 +62,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-          
+
       - name: Run Clippy
         run: cargo clippy --all-targets --all-features -- -D warnings
-        
+
       - name: Run Rust Analyzer
         run: cargo check --all-targets --all-features
-        
+
       - name: Run Formal Verification
         run: cargo test --features formal-verification
 ```
@@ -84,48 +84,48 @@ jobs:
 #[cfg(test)]
 mod formal_verification_tests {
     use super::*;
-    
+
     #[test]
     fn test_resource_safety_property() {
         let project = create_test_project();
         let verifier = ProjectVerifier::new(&project);
-        
+
         let safety_property = LTLProperty {
             name: "Resource Safety".to_string(),
             formula: LTLFormula::Globally(Box::new(LTLFormula::Atom("resource_available".to_string()))),
             description: "Resources are always available".to_string(),
         };
-        
+
         let result = verifier.kripke_structure.model_check(&safety_property.formula);
         assert!(result, "Resource safety property should be satisfied");
     }
-    
+
     #[test]
     fn test_progress_property() {
         let project = create_test_project();
         let verifier = ProjectVerifier::new(&project);
-        
+
         let progress_property = LTLProperty {
             name: "Progress".to_string(),
             formula: LTLFormula::Globally(Box::new(LTLFormula::Finally(Box::new(LTLFormula::Atom("project_completed".to_string()))))),
             description: "Project will eventually complete".to_string(),
         };
-        
+
         let result = verifier.kripke_structure.model_check(&progress_property.formula);
         assert!(result, "Progress property should be satisfied");
     }
-    
+
     #[test]
     fn test_no_deadlock_property() {
         let project = create_test_project();
         let verifier = ProjectVerifier::new(&project);
-        
+
         let deadlock_property = LTLProperty {
             name: "No Deadlock".to_string(),
             formula: LTLFormula::Globally(Box::new(LTLFormula::Atom("can_progress".to_string()))),
             description: "Project can always progress".to_string(),
         };
-        
+
         let result = verifier.kripke_structure.model_check(&deadlock_property.formula);
         assert!(result, "No deadlock property should be satisfied");
     }
@@ -281,7 +281,7 @@ impl ModelConsistencyChecker {
             violation_reports: Vec::new(),
         }
     }
-    
+
     fn define_consistency_rules() -> Vec<ConsistencyRule> {
         vec![
             ConsistencyRule {
@@ -307,19 +307,19 @@ impl ModelConsistencyChecker {
             },
         ]
     }
-    
+
     pub fn check_consistency(&mut self, model: &ProjectModel) -> Vec<ViolationReport> {
         let mut violations = Vec::new();
-        
+
         for rule in &self.consistency_rules {
             let rule_violations = self.check_rule(model, rule);
             violations.extend(rule_violations);
         }
-        
+
         self.violation_reports.extend(violations.clone());
         violations
     }
-    
+
     fn check_rule(&self, model: &ProjectModel, rule: &ConsistencyRule) -> Vec<ViolationReport> {
         match rule.rule_type {
             RuleType::ResourceConsistency => self.check_resource_consistency(model, rule),
@@ -328,13 +328,13 @@ impl ModelConsistencyChecker {
             _ => Vec::new(),
         }
     }
-    
+
     fn check_resource_consistency(&self, model: &ProjectModel, rule: &ConsistencyRule) -> Vec<ViolationReport> {
         let mut violations = Vec::new();
-        
+
         for resource in &model.resources {
             let total_allocation = model.calculate_total_allocation(resource.id);
-            
+
             if total_allocation > resource.capacity {
                 violations.push(ViolationReport {
                     rule_id: rule.id.clone(),
@@ -346,19 +346,19 @@ impl ModelConsistencyChecker {
                 });
             }
         }
-        
+
         violations
     }
-    
+
     fn check_temporal_consistency(&self, model: &ProjectModel, rule: &ConsistencyRule) -> Vec<ViolationReport> {
         let mut violations = Vec::new();
-        
+
         // 检查项目阶段的时间顺序
         let phases = &model.lifecycle.phases;
         for i in 0..phases.len() - 1 {
             let current_phase = &phases[i];
             let next_phase = &phases[i + 1];
-            
+
             if !model.is_valid_phase_transition(current_phase, next_phase) {
                 violations.push(ViolationReport {
                     rule_id: rule.id.clone(),
@@ -370,13 +370,13 @@ impl ModelConsistencyChecker {
                 });
             }
         }
-        
+
         violations
     }
-    
+
     fn check_quality_consistency(&self, model: &ProjectModel, rule: &ConsistencyRule) -> Vec<ViolationReport> {
         let mut violations = Vec::new();
-        
+
         for gate in &model.quality_gates {
             if gate.required_approval && gate.status != GateStatus::Passed {
                 violations.push(ViolationReport {
@@ -389,7 +389,7 @@ impl ModelConsistencyChecker {
                 });
             }
         }
-        
+
         violations
     }
 }
@@ -416,7 +416,7 @@ $$ATF = (T, E, R, C)$$
 mod automated_tests {
     use super::*;
     use rstest::*;
-    
+
     #[fixture]
     fn sample_project() -> Project {
         Project::new(
@@ -425,19 +425,19 @@ mod automated_tests {
             "A test project for automated verification".to_string(),
         )
     }
-    
+
     #[rstest]
     fn test_project_creation(sample_project: Project) {
         assert_eq!(sample_project.id, "TEST-001");
         assert_eq!(sample_project.status, ProjectStatus::Initiated);
         assert_eq!(sample_project.lifecycle.current_phase, LifecyclePhase::Initiation);
     }
-    
+
     #[rstest]
     fn test_resource_allocation(sample_project: Project) {
         let mut project = sample_project;
         let mut resource_manager = &mut project.resources;
-        
+
         // 添加资源
         resource_manager.add_resource(Resource {
             id: "RES-001".to_string(),
@@ -447,7 +447,7 @@ mod automated_tests {
             cost_per_unit: 50.0,
             availability: vec![],
         });
-        
+
         // 分配资源
         let allocation = ResourceAllocation {
             resource_id: "RES-001".to_string(),
@@ -457,16 +457,16 @@ mod automated_tests {
             quantity: 8.0,
             cost: 400.0,
         };
-        
+
         let result = resource_manager.allocate_resource(allocation);
         assert!(result.is_ok());
     }
-    
+
     #[rstest]
     fn test_risk_simulation(sample_project: Project) {
         let mut project = sample_project;
         let mut risk_manager = &mut project.risks;
-        
+
         // 添加风险
         risk_manager.add_risk(Risk {
             id: "RISK-001".to_string(),
@@ -479,18 +479,18 @@ mod automated_tests {
             triggers: vec![],
             mitigation_plan: None,
         });
-        
+
         // 模拟风险影响
         let simulation_result = risk_manager.simulate_risk_impact(1000);
         assert!(simulation_result.average_impact > 0.0);
         assert!(simulation_result.average_impact <= 1.0);
     }
-    
+
     #[rstest]
     fn test_quality_metrics(sample_project: Project) {
         let mut project = sample_project;
         let mut quality_manager = &mut project.quality;
-        
+
         // 添加质量指标
         quality_manager.add_metric(QualityMetric {
             id: "QUAL-001".to_string(),
@@ -502,7 +502,7 @@ mod automated_tests {
             weight: 0.5,
             measurement_unit: "percentage".to_string(),
         });
-        
+
         // 记录测量
         let check = QualityCheck {
             id: "CHECK-001".to_string(),
@@ -512,21 +512,21 @@ mod automated_tests {
             status: CheckStatus::Passed,
             notes: None,
         };
-        
+
         let result = quality_manager.record_measurement(check);
         assert!(result.is_ok());
-        
+
         // 计算质量分数
         let score = quality_manager.calculate_overall_quality_score();
         assert!(score >= 0.0 && score <= 1.0);
     }
-    
+
     #[rstest]
     fn test_formal_verification(sample_project: Project) {
         let project = sample_project;
         let verifier = ProjectVerifier::new(&project);
         let verification_result = verifier.verify_project(&project);
-        
+
         // 验证所有属性都满足
         for result in &verification_result.results {
             assert!(result.satisfied, "Property {} should be satisfied", result.name);
@@ -592,20 +592,20 @@ impl ContinuousMonitoringSystem {
             notification_system: NotificationSystem::new(),
         }
     }
-    
+
     pub fn monitor_project(&mut self, project: &Project) -> MonitoringResult {
         // 监控项目状态
         let state_result = self.state_monitor.monitor_state(project);
-        
+
         // 收集度量数据
         let metric_result = self.metric_collector.collect_metrics(project);
-        
+
         // 检查告警条件
         let alert_result = self.alert_system.check_alerts(project);
-        
+
         // 发送通知
         let notification_result = self.notification_system.send_notifications(&alert_result);
-        
+
         MonitoringResult {
             state_result,
             metric_result,
@@ -624,12 +624,12 @@ pub struct MonitoringResult {
 }
 ```
 
-## 6.1.7 相关链接
+## 6.1.7 引用关系
 
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
-- [6.2 模型一致性检查](./consistency-checking.md)
-- [5.1 Rust实现示例](../05-implementations/rust-examples.md)
+- 基础理论：参见 [1.1 形式化基础理论](../01-foundations/README.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
+- 模型一致性：参见 [6.2 模型一致性检查](./model-consistency.md)
+- Rust实现：参见 [5.1 Rust实现示例](../05-implementations/rust-examples.md)
 
 ## 参考文献
 

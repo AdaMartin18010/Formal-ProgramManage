@@ -2,7 +2,8 @@
 
 ## 概述
 
-语义模型理论为Formal-ProgramManage提供形式语义和操作语义的理论基础。本理论体系对标CMU 15-312 (编程语言基础)、Stanford CS242 (编程语言)、MIT 6.035 (计算机语言工程)、Berkeley CS164 (编程语言和编译器)等国际顶尖课程标准。
+语义模型理论为Formal-ProgramManage提供形式语义和操作语义的理论基础。
+本理论体系对标CMU 15-312 (编程语言基础)、Stanford CS242 (编程语言)、MIT 6.035 (计算机语言工程)、Berkeley CS164 (编程语言和编译器)等国际顶尖课程标准。
 
 ## 1.3.1 形式语义基础
 
@@ -180,19 +181,19 @@ impl SemanticValidator {
             properties: Vec::new(),
         }
     }
-    
+
     pub fn add_state(&mut self, state: ProjectState) {
         self.states.insert(state);
     }
-    
+
     pub fn add_transition(&mut self, from: ProjectState, to: ProjectState) {
         self.transitions.entry(from).or_insert_with(Vec::new).push(to);
     }
-    
+
     pub fn add_property(&mut self, property: Property) {
         self.properties.push(property);
     }
-    
+
     pub fn verify_safety_property(&self, property: &Property) -> bool {
         match property.property_type {
             PropertyType::Safety => {
@@ -206,7 +207,7 @@ impl SemanticValidator {
             _ => false,
         }
     }
-    
+
     pub fn verify_liveness_property(&self, property: &Property) -> bool {
         match property.property_type {
             PropertyType::Liveness => {
@@ -216,7 +217,7 @@ impl SemanticValidator {
             _ => false,
         }
     }
-    
+
     pub fn verify_fairness_property(&self, property: &Property) -> bool {
         match property.property_type {
             PropertyType::Fairness => {
@@ -226,24 +227,24 @@ impl SemanticValidator {
             _ => false,
         }
     }
-    
+
     fn model_check_liveness(&self, property: &Property) -> bool {
         // 实现活性属性模型检验
         // 使用CTL或LTL模型检验算法
         true // 简化实现
     }
-    
+
     fn model_check_fairness(&self, property: &Property) -> bool {
         // 实现公平性属性模型检验
         // 检查无限路径上的公平性条件
         true // 简化实现
     }
-    
+
     pub fn check_semantic_equivalence(&self, state1: &ProjectState, state2: &ProjectState) -> bool {
         // 检查两个状态的语义等价性
         self.observe_state(state1) == self.observe_state(state2)
     }
-    
+
     fn observe_state(&self, state: &ProjectState) -> Vec<String> {
         // 实现状态观察函数
         vec![
@@ -297,46 +298,46 @@ impl SemanticAnalyzer {
             analysis_results: HashMap::new(),
         }
     }
-    
+
     pub fn add_rule(&mut self, rule: AnalysisRule) {
         self.analysis_rules.push(rule);
     }
-    
+
     pub fn analyze_project(&mut self, project: &ProjectState) -> Vec<AnalysisResult> {
         let mut results = Vec::new();
-        
+
         for rule in &self.analysis_rules {
             if (rule.condition)(project) {
                 let result = (rule.action)(project);
                 results.push(result);
             }
         }
-        
+
         results
     }
-    
+
     pub fn analyze_resource_allocation(&self, project: &ProjectState) -> AnalysisResult {
         let mut recommendations = Vec::new();
         let mut confidence = 1.0;
-        
+
         // 分析资源分配效率
         let total_resources: f64 = project.resources.values().sum();
         let allocated_resources: f64 = project.tasks.iter()
             .map(|task| project.resources.get(task).unwrap_or(&0.0))
             .sum();
-        
+
         let efficiency = allocated_resources / total_resources;
-        
+
         if efficiency < 0.8 {
             recommendations.push("资源利用率较低，建议优化资源分配".to_string());
             confidence *= 0.9;
         }
-        
+
         if efficiency > 0.95 {
             recommendations.push("资源利用率过高，可能存在资源瓶颈".to_string());
             confidence *= 0.8;
         }
-        
+
         AnalysisResult {
             rule_name: "资源分配分析".to_string(),
             result: format!("资源利用率: {:.2}%", efficiency * 100.0),
@@ -344,27 +345,27 @@ impl SemanticAnalyzer {
             recommendations,
         }
     }
-    
+
     pub fn analyze_timeline_consistency(&self, project: &ProjectState) -> AnalysisResult {
         let mut recommendations = Vec::new();
         let mut confidence = 1.0;
-        
+
         // 分析时间线一致性
         let mut total_duration = 0.0;
         for (task, duration) in &project.timeline {
             total_duration += duration;
         }
-        
+
         let avg_duration = total_duration / project.tasks.len() as f64;
         let variance = project.timeline.values()
             .map(|d| (d - avg_duration).powi(2))
             .sum::<f64>() / project.tasks.len() as f64;
-        
+
         if variance > avg_duration {
             recommendations.push("任务持续时间差异较大，建议平衡任务分配".to_string());
             confidence *= 0.85;
         }
-        
+
         AnalysisResult {
             rule_name: "时间线一致性分析".to_string(),
             result: format!("平均持续时间: {:.2}, 方差: {:.2}", avg_duration, variance),
@@ -418,26 +419,26 @@ impl SemanticOptimizer {
             optimization_history: Vec::new(),
         }
     }
-    
+
     pub fn add_strategy(&mut self, strategy: OptimizationStrategy) {
         self.optimization_strategies.push(strategy);
     }
-    
+
     pub fn optimize_project(&mut self, project: &ProjectState, target_metric: &str) -> ProjectState {
         let mut current_state = project.clone();
         let mut iterations = 0;
         let max_iterations = 100;
-        
+
         while iterations < max_iterations {
             let mut best_improvement = 0.0;
             let mut best_strategy = None;
             let mut best_new_state = None;
-            
+
             for strategy in &self.optimization_strategies {
                 if (strategy.condition)(&current_state) {
                     let new_state = (strategy.transformation)(&current_state);
                     let improvement = self.calculate_improvement(&current_state, &new_state, target_metric);
-                    
+
                     if improvement > best_improvement {
                         best_improvement = improvement;
                         best_strategy = Some(strategy);
@@ -445,7 +446,7 @@ impl SemanticOptimizer {
                     }
                 }
             }
-            
+
             if let (Some(strategy), Some(new_state)) = (best_strategy, best_new_state) {
                 let step = OptimizationStep {
                     strategy_name: strategy.name.clone(),
@@ -453,49 +454,49 @@ impl SemanticOptimizer {
                     after_state: new_state.clone(),
                     improvement: best_improvement,
                 };
-                
+
                 self.optimization_history.push(step);
                 current_state = new_state;
-                
+
                 if best_improvement < 0.01 {
                     break; // 收敛
                 }
             } else {
                 break; // 没有可应用的策略
             }
-            
+
             iterations += 1;
         }
-        
+
         current_state
     }
-    
+
     fn calculate_improvement(&self, old_state: &ProjectState, new_state: &ProjectState, metric: &str) -> f64 {
         let old_value = old_state.metrics.get(metric).unwrap_or(&0.0);
         let new_value = new_state.metrics.get(metric).unwrap_or(&0.0);
-        
+
         if *old_value == 0.0 {
             return 0.0;
         }
-        
+
         (new_value - old_value) / old_value
     }
-    
+
     pub fn optimize_resource_allocation(&self, project: &ProjectState) -> ProjectState {
         let mut optimized_state = project.clone();
-        
+
         // 实现资源分配优化算法
         // 使用线性规划或其他优化方法
-        
+
         optimized_state
     }
-    
+
     pub fn optimize_timeline(&self, project: &ProjectState) -> ProjectState {
         let mut optimized_state = project.clone();
-        
+
         // 实现时间线优化算法
         // 使用关键路径法或其他调度算法
-        
+
         optimized_state
     }
 }
@@ -524,16 +525,16 @@ impl SemanticOptimizer {
 - **IFIP WG 2.2**: 形式语义工作组
 - **POPL**: 编程语言原理会议标准
 
-## 1.3.8 相关链接
+## 1.3.8 引用关系
 
-- [1.1 形式化基础理论](./README.md)
-- [1.2 数学模型基础](./mathematical-models.md)
-- [1.4 量子项目管理理论](./quantum-project-theory.md)
-- [1.5 生物启发式项目管理理论](./bio-inspired-project-theory.md)
-- [1.6 全息项目管理理论](./holographic-project-theory.md)
-- [1.7 星际项目管理理论](./interstellar-project-theory.md)
-- [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
-- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
+- 基础理论：参见 [1.1 形式化基础理论](./README.md)
+- 数学模型：参见 [1.2 数学模型基础](./mathematical-models.md)
+- 量子理论：参见 [1.4 量子项目管理理论](./quantum-project-theory.md)
+- 生物启发理论：参见 [1.5 生物启发式项目管理理论](./bio-inspired-project-theory.md)
+- 全息理论：参见 [1.6 全息项目管理理论](./holographic-project-theory.md)
+- 星际理论：参见 [1.7 星际项目管理理论](./interstellar-project-theory.md)
+- 项目管理：参见 [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
 ## 参考文献
 

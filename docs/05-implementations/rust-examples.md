@@ -70,13 +70,13 @@ impl Project {
             quality: QualityManager::new(),
         }
     }
-    
+
     pub fn advance_phase(&mut self) -> Result<(), String> {
         self.lifecycle.advance_phase()?;
         self.update_status();
         Ok(())
     }
-    
+
     fn update_status(&mut self) {
         self.status = match self.lifecycle.current_phase {
             LifecyclePhase::Initiation => ProjectStatus::Initiated,
@@ -153,39 +153,39 @@ impl ResourceManager {
             constraints: Vec::new(),
         }
     }
-    
+
     pub fn add_resource(&mut self, resource: Resource) {
         self.resources.insert(resource.id.clone(), resource);
     }
-    
+
     pub fn allocate_resource(&mut self, allocation: ResourceAllocation) -> Result<(), String> {
         // 验证资源可用性
         self.validate_allocation(&allocation)?;
-        
+
         // 检查约束条件
         self.check_constraints(&allocation)?;
-        
+
         // 执行分配
         self.allocations.entry(allocation.resource_id.clone())
             .or_insert_with(Vec::new)
             .push(allocation);
-        
+
         Ok(())
     }
-    
+
     fn validate_allocation(&self, allocation: &ResourceAllocation) -> Result<(), String> {
         let resource = self.resources.get(&allocation.resource_id)
             .ok_or("Resource not found")?;
-        
+
         // 检查容量约束
         if allocation.quantity > resource.capacity {
             return Err("Allocation exceeds resource capacity".to_string());
         }
-        
+
         // 检查时间冲突
         let existing_allocations = self.allocations.get(&allocation.resource_id)
             .unwrap_or(&Vec::new());
-        
+
         for existing in existing_allocations {
             if self.time_overlap(allocation, existing) {
                 let total_quantity = existing.quantity + allocation.quantity;
@@ -194,14 +194,14 @@ impl ResourceManager {
                 }
             }
         }
-        
+
         Ok(())
     }
-    
+
     fn time_overlap(&self, a1: &ResourceAllocation, a2: &ResourceAllocation) -> bool {
         a1.start_time < a2.end_time && a2.start_time < a1.end_time
     }
-    
+
     fn check_constraints(&self, allocation: &ResourceAllocation) -> Result<(), String> {
         for constraint in &self.constraints {
             match constraint.constraint_type {
@@ -209,7 +209,7 @@ impl ResourceManager {
                     let total_cost = self.calculate_total_cost();
                     let budget_limit = constraint.parameters.get("budget_limit")
                         .unwrap_or(&f64::INFINITY);
-                    
+
                     if total_cost + allocation.cost > *budget_limit {
                         return Err("Budget constraint violated".to_string());
                     }
@@ -221,7 +221,7 @@ impl ResourceManager {
         }
         Ok(())
     }
-    
+
     fn calculate_total_cost(&self) -> f64 {
         self.allocations.values()
             .flatten()
@@ -319,57 +319,57 @@ impl RiskManager {
             risk_events: Vec::new(),
         }
     }
-    
+
     pub fn add_risk(&mut self, risk: Risk) {
         let risk_level = self.calculate_risk_level(risk.probability, risk.impact);
         let mut risk_with_level = risk;
         risk_with_level.risk_level = risk_level;
         self.risks.insert(risk_with_level.id.clone(), risk_with_level);
     }
-    
+
     pub fn calculate_risk_level(&self, probability: f64, impact: f64) -> RiskLevel {
         let prob_index = self.find_level_index(probability, &self.risk_matrix.probability_levels);
         let impact_index = self.find_level_index(impact, &self.risk_matrix.impact_levels);
-        
+
         self.risk_matrix.risk_levels[prob_index][impact_index].clone()
     }
-    
+
     fn find_level_index(&self, value: f64, levels: &[f64]) -> usize {
         levels.iter()
             .position(|&level| value <= level)
             .unwrap_or(levels.len() - 1)
     }
-    
+
     pub fn simulate_risk_impact(&self, iterations: usize) -> RiskSimulationResult {
         use rand::Rng;
         let mut rng = rand::thread_rng();
         let mut total_impact = 0.0;
         let mut risk_occurrences = HashMap::new();
-        
+
         for _ in 0..iterations {
             let mut iteration_impact = 0.0;
-            
+
             for risk in self.risks.values() {
                 if rng.gen::<f64>() < risk.probability {
                     iteration_impact += risk.impact;
                     *risk_occurrences.entry(risk.id.clone()).or_insert(0) += 1;
                 }
             }
-            
+
             total_impact += iteration_impact;
         }
-        
+
         RiskSimulationResult {
             average_impact: total_impact / iterations as f64,
             risk_occurrences,
             total_iterations: iterations,
         }
     }
-    
+
     pub fn record_risk_event(&mut self, event: RiskEvent) {
         self.risk_events.push(event);
     }
-    
+
     pub fn get_high_priority_risks(&self) -> Vec<&Risk> {
         self.risks.values()
             .filter(|risk| matches!(risk.risk_level, RiskLevel::High | RiskLevel::Critical))
@@ -505,30 +505,30 @@ impl QualityManager {
             quality_history: Vec::new(),
         }
     }
-    
+
     pub fn add_metric(&mut self, metric: QualityMetric) {
         self.quality_metrics.insert(metric.id.clone(), metric);
     }
-    
+
     pub fn record_measurement(&mut self, check: QualityCheck) -> Result<(), String> {
         // 验证度量指标存在
         if !self.quality_metrics.contains_key(&check.metric_id) {
             return Err("Metric not found".to_string());
         }
-        
+
         // 评估检查状态
         let metric = &self.quality_metrics[&check.metric_id];
         let status = self.evaluate_check(&check, metric);
         let mut check_with_status = check;
         check_with_status.status = status;
-        
+
         self.quality_checks.push(check_with_status);
         Ok(())
     }
-    
+
     fn evaluate_check(&self, check: &QualityCheck, metric: &QualityMetric) -> CheckStatus {
         let (min, max) = metric.acceptable_range;
-        
+
         if check.measured_value >= min && check.measured_value <= max {
             CheckStatus::Passed
         } else if check.measured_value >= min * 0.8 && check.measured_value <= max * 1.2 {
@@ -537,32 +537,32 @@ impl QualityManager {
             CheckStatus::Failed
         }
     }
-    
+
     pub fn evaluate_gate(&mut self, gate_id: &str) -> Result<GateStatus, String> {
         let gate = self.quality_gates.iter_mut()
             .find(|g| g.id == gate_id)
             .ok_or("Gate not found")?;
-        
+
         let mut total_score = 0.0;
         let mut total_weight = 0.0;
         let mut all_passed = true;
-        
+
         for criterion in &gate.criteria {
             let metric = self.quality_metrics.get(&criterion.metric_id)
                 .ok_or("Metric not found")?;
-            
+
             // 获取最新的测量值
             let latest_check = self.quality_checks.iter()
                 .filter(|check| check.metric_id == criterion.metric_id)
                 .max_by_key(|check| check.timestamp);
-            
+
             if let Some(check) = latest_check {
                 let criterion_passed = self.evaluate_criterion(check.measured_value, criterion);
                 let score = if criterion_passed { 1.0 } else { 0.0 };
-                
+
                 total_score += score * criterion.weight;
                 total_weight += criterion.weight;
-                
+
                 if !criterion_passed {
                     all_passed = false;
                 }
@@ -570,9 +570,9 @@ impl QualityManager {
                 return Err("No measurement data for criterion".to_string());
             }
         }
-        
+
         let final_score = if total_weight > 0.0 { total_score / total_weight } else { 0.0 };
-        
+
         gate.status = if all_passed {
             GateStatus::Passed
         } else if final_score >= 0.8 {
@@ -580,10 +580,10 @@ impl QualityManager {
         } else {
             GateStatus::Failed
         };
-        
+
         Ok(gate.status.clone())
     }
-    
+
     fn evaluate_criterion(&self, value: f64, criterion: &QualityCriterion) -> bool {
         match criterion.operator {
             ComparisonOperator::GreaterThan => value > criterion.threshold,
@@ -593,33 +593,33 @@ impl QualityManager {
             ComparisonOperator::LessThanOrEqual => value <= criterion.threshold,
         }
     }
-    
+
     pub fn calculate_overall_quality_score(&self) -> f64 {
         let mut total_score = 0.0;
         let mut total_weight = 0.0;
-        
+
         for metric in self.quality_metrics.values() {
             if let Some(latest_check) = self.quality_checks.iter()
                 .filter(|check| check.metric_id == metric.id)
                 .max_by_key(|check| check.timestamp) {
-                
+
                 let normalized_value = self.normalize_metric_value(
                     latest_check.measured_value,
                     metric
                 );
-                
+
                 total_score += normalized_value * metric.weight;
                 total_weight += metric.weight;
             }
         }
-        
+
         if total_weight > 0.0 { total_score / total_weight } else { 0.0 }
     }
-    
+
     fn normalize_metric_value(&self, value: f64, metric: &QualityMetric) -> f64 {
         let (min, max) = metric.acceptable_range;
         let target = metric.target_value;
-        
+
         if value >= min && value <= max {
             1.0
         } else if value < min {
@@ -661,36 +661,36 @@ pub struct CTLProperty {
 impl ProjectVerifier {
     pub fn new(project: &Project) -> Self {
         let kripke_structure = Self::build_kripke_structure(project);
-        
+
         ProjectVerifier {
             kripke_structure,
             ltl_properties: Self::define_ltl_properties(),
             ctl_properties: Self::define_ctl_properties(),
         }
     }
-    
+
     fn build_kripke_structure(project: &Project) -> KripkeStructure {
         let mut states = Vec::new();
         let mut initial_states = HashSet::new();
         let mut transitions = HashMap::new();
         let mut labels = HashMap::new();
-        
+
         // 构建状态空间
         for phase in &project.lifecycle.phases {
             let state_name = format!("phase_{:?}", phase);
             states.push(state_name.clone());
-            
+
             if *phase == project.lifecycle.current_phase {
                 initial_states.insert(state_name.clone());
             }
-            
+
             // 添加状态标签
             let mut state_labels = HashSet::new();
             state_labels.insert(format!("phase_{:?}", phase));
             state_labels.insert(format!("status_{:?}", project.status));
             labels.insert(state_name.clone(), state_labels);
         }
-        
+
         // 构建转换关系
         for (from_phase, to_phases) in &project.lifecycle.transitions {
             let from_state = format!("phase_{:?}", from_phase);
@@ -699,7 +699,7 @@ impl ProjectVerifier {
                 .collect();
             transitions.insert(from_state, to_states);
         }
-        
+
         KripkeStructure {
             states,
             initial_states,
@@ -707,7 +707,7 @@ impl ProjectVerifier {
             labels,
         }
     }
-    
+
     fn define_ltl_properties() -> Vec<LTLProperty> {
         vec![
             LTLProperty {
@@ -727,7 +727,7 @@ impl ProjectVerifier {
             },
         ]
     }
-    
+
     fn define_ctl_properties() -> Vec<CTLProperty> {
         vec![
             CTLProperty {
@@ -742,10 +742,10 @@ impl ProjectVerifier {
             },
         ]
     }
-    
+
     pub fn verify_project(&self, project: &Project) -> VerificationResult {
         let mut results = Vec::new();
-        
+
         // 验证LTL属性
         for property in &self.ltl_properties {
             let satisfied = self.kripke_structure.model_check(&property.formula);
@@ -755,7 +755,7 @@ impl ProjectVerifier {
                 description: property.description.clone(),
             });
         }
-        
+
         // 验证CTL属性
         for property in &self.ctl_properties {
             let satisfied_states = self.kripke_structure.ctl_model_check(&property.formula);
@@ -766,7 +766,7 @@ impl ProjectVerifier {
                 description: property.description.clone(),
             });
         }
-        
+
         VerificationResult {
             project_id: project.id.clone(),
             timestamp: Utc::now(),
@@ -802,7 +802,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         "Formal Project Management System".to_string(),
         "A comprehensive project management system with formal verification".to_string(),
     );
-    
+
     // 添加资源
     let mut resource_manager = &mut project.resources;
     resource_manager.add_resource(Resource {
@@ -813,7 +813,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         cost_per_unit: 100.0, // per hour
         availability: vec![], // 简化
     });
-    
+
     // 添加风险
     let mut risk_manager = &mut project.risks;
     risk_manager.add_risk(Risk {
@@ -827,7 +827,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         triggers: vec!["complex_requirements".to_string()],
         mitigation_plan: Some("Additional technical review".to_string()),
     });
-    
+
     // 添加质量指标
     let mut quality_manager = &mut project.quality;
     quality_manager.add_metric(QualityMetric {
@@ -840,7 +840,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         weight: 0.3,
         measurement_unit: "percentage".to_string(),
     });
-    
+
     // 记录质量检查
     quality_manager.record_measurement(QualityCheck {
         id: "CHECK-001".to_string(),
@@ -850,39 +850,39 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         status: CheckStatus::Passed, // 将被重新评估
         notes: Some("Initial code coverage measurement".to_string()),
     })?;
-    
+
     // 执行形式化验证
     let verifier = ProjectVerifier::new(&project);
     let verification_result = verifier.verify_project(&project);
-    
+
     println!("Verification Results:");
     for result in &verification_result.results {
-        println!("  {}: {}", 
-            result.name, 
+        println!("  {}: {}",
+            result.name,
             if result.satisfied { "PASS" } else { "FAIL" }
         );
     }
-    
+
     // 模拟风险影响
     let simulation_result = risk_manager.simulate_risk_impact(1000);
     println!("Risk Simulation Result: {:.2} average impact", simulation_result.average_impact);
-    
+
     // 计算总体质量分数
     let quality_score = quality_manager.calculate_overall_quality_score();
     println!("Overall Quality Score: {:.2}", quality_score);
-    
+
     Ok(())
 }
 ```
 
-## 5.1.7 相关链接
+## 5.1.7 引用关系
 
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [1.2 数学模型基础](../01-foundations/mathematical-models.md)
-- [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
-- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
-- [5.2 Haskell实现示例](./haskell-examples.md)
-- [5.3 Lean实现示例](./lean-examples.md)
+- 基础理论：参见 [1.1 形式化基础理论](../01-foundations/README.md)
+- 数学模型：参见 [1.2 数学模型基础](../01-foundations/mathematical-models.md)
+- 项目管理：参见 [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
+- Haskell实现：参见 [5.2 Haskell实现示例](./haskell-examples.md)
+- Lean实现：参见 [5.3 Lean实现示例](./lean-examples.md)
 
 ## 参考文献
 

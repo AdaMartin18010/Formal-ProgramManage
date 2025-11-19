@@ -614,6 +614,25 @@ $$E(i, t, s) = \sum_{j=1}^{n} w_j \times s_j(i, t)$$
 - 实用的实施指导
 - 前瞻的发展规划
 
+## 4.6.1.8 引用关系
+
+- 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
+- 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
+- 软件开发模型：参见 [4.1.1 敏捷开发模型](./software-development/agile-models.md)
+- AI管理：参见 [4.5.1 人工智能管理模型](./ai-management/ai-management.md)
+- 区块链管理：参见 [4.5.2 区块链管理模型](./blockchain-management/blockchain-management.md)
+- IoT管理：参见 [4.5.3 物联网管理模型](./iot-management/iot-management.md)
+- Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+3. Leffingwell, D. (2020). SAFe 5.0 Distilled: Achieving Business Agility with the Scaled Agile Framework. Addison-Wesley Professional.
+4. ISO/IEC 25010:2011. Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — System and software quality models.
+5. ISO 56002:2019. Innovation management - Innovation management system - Guidance.
+
 ---
 
 **跨领域知识整合深化 - 传统与新兴技术的完美融合**:

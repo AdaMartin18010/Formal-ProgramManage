@@ -9,6 +9,7 @@
 ### 自然演绎规则
 
 **定义 3.3.1** 自然演绎系统是一个四元组 $ND = (\mathcal{L}, \mathcal{R}, \mathcal{A}, \mathcal{D})$，其中：
+
 - $\mathcal{L}$ 是逻辑语言
 - $\mathcal{R}$ 是推理规则集合
 - $\mathcal{A}$ 是公理集合
@@ -108,10 +109,10 @@ impl NaturalDeduction {
             goals: Vec::new(),
         }
     }
-    
+
     fn initialize_rules() -> HashMap<String, InferenceRule> {
         let mut rules = HashMap::new();
-        
+
         // 合取引入规则
         rules.insert("∧I".to_string(), InferenceRule {
             name: "∧I".to_string(),
@@ -119,7 +120,7 @@ impl NaturalDeduction {
             conclusion: Formula::And(Box::new(Formula::Atom("A".to_string())), Box::new(Formula::Atom("B".to_string()))),
             rule_type: RuleType::Introduction,
         });
-        
+
         // 合取消除规则
         rules.insert("∧E1".to_string(), InferenceRule {
             name: "∧E1".to_string(),
@@ -127,14 +128,14 @@ impl NaturalDeduction {
             conclusion: Formula::Atom("A".to_string()),
             rule_type: RuleType::Elimination,
         });
-        
+
         rules.insert("∧E2".to_string(), InferenceRule {
             name: "∧E2".to_string(),
             premises: vec![Formula::And(Box::new(Formula::Atom("A".to_string())), Box::new(Formula::Atom("B".to_string())))],
             conclusion: Formula::Atom("B".to_string()),
             rule_type: RuleType::Elimination,
         });
-        
+
         // 蕴含引入规则
         rules.insert("→I".to_string(), InferenceRule {
             name: "→I".to_string(),
@@ -142,7 +143,7 @@ impl NaturalDeduction {
             conclusion: Formula::Implies(Box::new(Formula::Atom("A".to_string())), Box::new(Formula::Atom("B".to_string()))),
             rule_type: RuleType::Introduction,
         });
-        
+
         // 蕴含消除规则
         rules.insert("→E".to_string(), InferenceRule {
             name: "→E".to_string(),
@@ -153,10 +154,10 @@ impl NaturalDeduction {
             conclusion: Formula::Atom("B".to_string()),
             rule_type: RuleType::Elimination,
         });
-        
+
         rules
     }
-    
+
     pub fn prove(&mut self, goal: Formula) -> Proof {
         let mut proof = Proof {
             steps: Vec::new(),
@@ -164,17 +165,17 @@ impl NaturalDeduction {
             conclusion: goal.clone(),
             status: ProofStatus::Incomplete,
         };
-        
+
         // 尝试自动证明
         if self.auto_prove(&mut proof, &goal) {
             proof.status = ProofStatus::Complete;
         } else {
             proof.status = ProofStatus::Failed;
         }
-        
+
         proof
     }
-    
+
     fn auto_prove(&self, proof: &mut Proof, goal: &Formula) -> bool {
         // 简化实现：尝试应用推理规则
         match goal {
@@ -191,7 +192,7 @@ impl NaturalDeduction {
                 // 尝试蕴含引入
                 let assumption = a.clone();
                 proof.assumptions.push(assumption.clone());
-                
+
                 if self.auto_prove(proof, b) {
                     self.apply_rule(proof, "→I", vec![b.clone()]);
                     true
@@ -211,17 +212,17 @@ impl NaturalDeduction {
             _ => false,
         }
     }
-    
+
     fn apply_rule(&self, proof: &mut Proof, rule_name: &str, premises: Vec<Formula>) {
         if let Some(rule) = self.rules.get(rule_name) {
             let step_number = proof.steps.len();
             let dependencies: Vec<usize> = (0..premises.len()).collect();
-            
+
             let justification = Justification::Rule(rule_name.to_string(), dependencies);
             self.add_step(proof, rule.conclusion.clone(), justification);
         }
     }
-    
+
     fn add_step(&self, proof: &mut Proof, formula: Formula, justification: Justification) {
         let step = ProofStep {
             step_number: proof.steps.len(),
@@ -229,14 +230,14 @@ impl NaturalDeduction {
             justification,
             dependencies: Vec::new(),
         };
-        
+
         proof.steps.push(step);
     }
-    
+
     fn is_axiom(&self, formula: &Formula) -> bool {
         self.axioms.iter().any(|axiom| axiom == formula)
     }
-    
+
     fn is_assumption(&self, formula: &Formula, assumptions: &[Formula]) -> bool {
         assumptions.iter().any(|assumption| assumption == formula)
     }
@@ -302,35 +303,35 @@ impl ResolutionProver {
             proof_steps: Vec::new(),
         }
     }
-    
+
     pub fn add_clause(&mut self, clause: Clause) {
         self.clauses.push(clause);
     }
-    
+
     pub fn prove_by_resolution(&mut self, goal: &Clause) -> ResolutionProof {
         let mut proof = ResolutionProof {
             steps: Vec::new(),
             status: ProofStatus::Incomplete,
         };
-        
+
         // 添加目标的否定作为新子句
         let negated_goal = self.negate_clause(goal);
         self.add_clause(negated_goal);
-        
+
         // 执行归结
         while !self.clauses.is_empty() {
             let resolvent = self.find_resolvable_pair();
-            
+
             match resolvent {
                 Some(resolution_step) => {
                     proof.steps.push(resolution_step.clone());
-                    
+
                     // 检查是否得到空子句（矛盾）
                     if resolution_step.resolvent.literals.is_empty() {
                         proof.status = ProofStatus::Complete;
                         break;
                     }
-                    
+
                     self.clauses.push(resolution_step.resolvent);
                 },
                 None => {
@@ -339,31 +340,31 @@ impl ResolutionProver {
                 },
             }
         }
-        
+
         proof
     }
-    
+
     fn find_resolvable_pair(&self) -> Option<ResolutionStep> {
         for i in 0..self.clauses.len() {
             for j in i + 1..self.clauses.len() {
                 let clause1 = &self.clauses[i];
                 let clause2 = &self.clauses[j];
-                
+
                 if let Some(resolution_step) = self.resolve_clauses(clause1, clause2) {
                     return Some(resolution_step);
                 }
             }
         }
-        
+
         None
     }
-    
+
     fn resolve_clauses(&self, clause1: &Clause, clause2: &Clause) -> Option<ResolutionStep> {
         for literal1 in &clause1.literals {
             for literal2 in &clause2.literals {
                 if self.are_complementary(literal1, literal2) {
                     let resolvent = self.create_resolvent(clause1, clause2, literal1, literal2);
-                    
+
                     let step = ResolutionStep {
                         step_number: self.proof_steps.len(),
                         parent1: clause1.id.clone(),
@@ -371,53 +372,53 @@ impl ResolutionProver {
                         resolvent,
                         unifier: None,
                     };
-                    
+
                     return Some(step);
                 }
             }
         }
-        
+
         None
     }
-    
+
     fn are_complementary(&self, literal1: &Literal, literal2: &Literal) -> bool {
         literal1.atom == literal2.atom && literal1.negated != literal2.negated
     }
-    
-    fn create_resolvent(&self, clause1: &Clause, clause2: &Clause, 
+
+    fn create_resolvent(&self, clause1: &Clause, clause2: &Clause,
                         literal1: &Literal, literal2: &Literal) -> Clause {
         let mut literals = Vec::new();
-        
+
         // 添加clause1中除了literal1之外的所有文字
         for lit in &clause1.literals {
             if lit != literal1 {
                 literals.push(lit.clone());
             }
         }
-        
+
         // 添加clause2中除了literal2之外的所有文字
         for lit in &clause2.literals {
             if lit != literal2 {
                 literals.push(lit.clone());
             }
         }
-        
+
         Clause {
             literals,
             id: format!("R_{}", self.resolvents.len()),
         }
     }
-    
+
     fn negate_clause(&self, clause: &Clause) -> Clause {
         let mut negated_literals = Vec::new();
-        
+
         for literal in &clause.literals {
             negated_literals.push(Literal {
                 atom: literal.atom.clone(),
                 negated: !literal.negated,
             });
         }
-        
+
         Clause {
             literals: negated_literals,
             id: format!("¬{}", clause.id),
@@ -521,10 +522,10 @@ impl TypeTheoryProver {
             term_rules: Self::initialize_term_rules(),
         }
     }
-    
+
     fn initialize_type_rules() -> HashMap<String, TypeRule> {
         let mut rules = HashMap::new();
-        
+
         // 类型形成规则
         rules.insert("Prop".to_string(), TypeRule {
             name: "Prop".to_string(),
@@ -538,7 +539,7 @@ impl TypeTheoryProver {
                 type: Type { kind: TypeKind::Type(1), parameters: vec![] },
             },
         });
-        
+
         // 函数类型形成规则
         rules.insert("→".to_string(), TypeRule {
             name: "→".to_string(),
@@ -569,13 +570,13 @@ impl TypeTheoryProver {
                 type: Type { kind: TypeKind::Prop, parameters: vec![] },
             },
         });
-        
+
         rules
     }
-    
+
     fn initialize_term_rules() -> HashMap<String, TermRule> {
         let mut rules = HashMap::new();
-        
+
         // 变量规则
         rules.insert("Var".to_string(), TermRule {
             name: "Var".to_string(),
@@ -589,7 +590,7 @@ impl TypeTheoryProver {
                 type: Type { kind: TypeKind::Prop, parameters: vec![] },
             },
         });
-        
+
         // 应用规则
         rules.insert("App".to_string(), TermRule {
             name: "App".to_string(),
@@ -638,17 +639,17 @@ impl TypeTheoryProver {
                 type: Type { kind: TypeKind::Prop, parameters: vec![] },
             },
         });
-        
+
         rules
     }
-    
+
     pub fn type_check(&mut self, term: &Term) -> TypeCheckingResult {
         let judgment = Judgment {
             context: self.context.clone(),
             term: term.clone(),
             type: Type { kind: TypeKind::Prop, parameters: vec![] },
         };
-        
+
         if self.check_judgment(&judgment) {
             TypeCheckingResult::Success {
                 inferred_type: judgment.type,
@@ -659,7 +660,7 @@ impl TypeTheoryProver {
             }
         }
     }
-    
+
     fn check_judgment(&self, judgment: &Judgment) -> bool {
         // 简化实现：检查判断是否有效
         match &judgment.term.kind {
@@ -677,7 +678,7 @@ impl TypeTheoryProver {
             _ => false,
         }
     }
-    
+
     fn check_application_types(&self, func: &Term, arg: &Term) -> bool {
         // 检查函数应用的类型
         match &func.type.kind {
@@ -687,7 +688,7 @@ impl TypeTheoryProver {
             _ => false,
         }
     }
-    
+
     fn check_abstraction_types(&self, var: &str, param_type: &Type, body: &Term) -> bool {
         // 检查抽象的类型
         // 简化实现
@@ -708,11 +709,11 @@ impl Context {
             assumptions: Vec::new(),
         }
     }
-    
+
     pub fn add_variable(&mut self, name: String, type_: Type) {
         self.variables.insert(name, type_);
     }
-    
+
     pub fn add_assumption(&mut self, judgment: Judgment) {
         self.assumptions.push(judgment);
     }
@@ -817,14 +818,14 @@ impl Tactic for IntroTactic {
                     formula: *a.clone(),
                     context: context.clone(),
                 });
-                
+
                 let new_goal = Goal {
                     id: format!("subgoal_{}", goal.id),
                     formula: *b.clone(),
                     context: new_context,
                     subgoals: vec![],
                 };
-                
+
                 TacticResult::Success {
                     subgoals: vec![new_goal],
                 }
@@ -833,14 +834,14 @@ impl Tactic for IntroTactic {
                 // 引入全称量词
                 let mut new_context = context.clone();
                 new_context.add_variable(var.clone(), Type { kind: TypeKind::Prop, parameters: vec![] });
-                
+
                 let new_goal = Goal {
                     id: format!("subgoal_{}", goal.id),
                     formula: *body.clone(),
                     context: new_context,
                     subgoals: vec![],
                 };
-                
+
                 TacticResult::Success {
                     subgoals: vec![new_goal],
                 }
@@ -850,7 +851,7 @@ impl Tactic for IntroTactic {
             },
         }
     }
-    
+
     fn name(&self) -> &str {
         "intro"
     }
@@ -880,11 +881,11 @@ impl Tactic for ApplyTactic {
             }
         }
     }
-    
+
     fn name(&self) -> &str {
         "apply"
     }
-    
+
     fn matches_goal(&self, assumption: &Formula, goal: &Formula) -> bool {
         // 简化实现：检查公式是否匹配
         assumption == goal
@@ -917,33 +918,33 @@ impl InteractiveProver {
                 current_node: Some("root".to_string()),
             },
         };
-        
+
         prover.register_tactics();
         prover
     }
-    
+
     fn register_tactics(&mut self) {
         self.tactics.insert("intro".to_string(), Box::new(IntroTactic));
         self.tactics.insert("apply".to_string(), Box::new(ApplyTactic {
             assumption_name: "".to_string(),
         }));
     }
-    
+
     pub fn set_goal(&mut self, goal: Goal) {
         self.proof_state.goals = vec![goal.clone()];
         self.proof_tree.root.goal = goal;
     }
-    
+
     pub fn apply_tactic(&mut self, tactic_name: &str, parameters: Vec<String>) -> TacticResult {
         if let Some(tactic) = self.tactics.get(tactic_name) {
             if let Some(current_goal) = self.proof_state.goals.first() {
                 let result = tactic.apply(current_goal, &self.proof_state.context);
-                
+
                 match &result {
                     TacticResult::Success { subgoals } => {
                         // 更新证明状态
                         self.proof_state.goals = subgoals.clone();
-                        
+
                         // 更新证明树
                         self.update_proof_tree(tactic_name, parameters, &result);
                     },
@@ -955,7 +956,7 @@ impl InteractiveProver {
                         self.proof_state.goals.push(remaining.clone());
                     },
                 }
-                
+
                 result
             } else {
                 TacticResult::Failure {
@@ -968,7 +969,7 @@ impl InteractiveProver {
             }
         }
     }
-    
+
     fn update_proof_tree(&mut self, tactic_name: &str, parameters: Vec<String>, result: &TacticResult) {
         if let Some(current_node_id) = &self.proof_tree.current_node {
             if let Some(current_node) = self.find_node_mut(&mut self.proof_tree.root, current_node_id) {
@@ -977,9 +978,9 @@ impl InteractiveProver {
                     parameters,
                     result: result.clone(),
                 };
-                
+
                 current_node.tactic = Some(tactic_app);
-                
+
                 match result {
                     TacticResult::Success { subgoals } => {
                         for subgoal in subgoals {
@@ -992,7 +993,7 @@ impl InteractiveProver {
                             };
                             current_node.children.push(child_node);
                         }
-                        
+
                         if subgoals.is_empty() {
                             current_node.status = NodeStatus::Closed;
                         }
@@ -1002,7 +1003,7 @@ impl InteractiveProver {
             }
         }
     }
-    
+
     fn find_node_mut(&mut self, node: &mut ProofNode, id: &str) -> Option<&mut ProofNode> {
         if node.id == id {
             Some(node)
@@ -1015,7 +1016,7 @@ impl InteractiveProver {
             None
         }
     }
-    
+
     pub fn get_proof_status(&self) -> ProofStatus {
         if self.proof_state.goals.is_empty() {
             ProofStatus::Complete
@@ -1026,17 +1027,17 @@ impl InteractiveProver {
 }
 ```
 
-## 3.3.5 相关链接
+## 3.3.5 引用关系
 
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [1.2 数学模型基础](../01-foundations/mathematical-models.md)
-- [3.1 形式化验证理论](./verification-theory.md)
-- [3.2 模型检验方法](./model-checking.md)
-- [6.1 自动化验证流程](../06-ci-verification/automated-verification.md)
+- 基础理论：参见 [1.1 形式化基础理论](../01-foundations/README.md)
+- 数学模型：参见 [1.2 数学模型基础](../01-foundations/mathematical-models.md)
+- 验证理论：参见 [3.1 形式化验证理论](./verification-theory.md)
+- 模型检验：参见 [3.2 模型检验方法](./model-checking.md)
+- 自动化验证：参见 [6.1 自动化验证流程](../06-ci-verification/automated-verification.md)
 
 ## 参考文献
 
 1. Prawitz, D. (1965). Natural deduction: a proof-theoretical study. Almqvist & Wiksell.
 2. Robinson, J. A. (1965). A machine-oriented logic based on the resolution principle. Journal of the ACM, 12(1), 23-41.
 3. Martin-Löf, P. (1984). Intuitionistic type theory. Bibliopolis.
-4. Coq Development Team. (2020). The Coq proof assistant reference manual. INRIA. 
+4. Coq Development Team. (2020). The Coq proof assistant reference manual. INRIA.

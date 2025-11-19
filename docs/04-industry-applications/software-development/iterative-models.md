@@ -1,14 +1,14 @@
-# 4.2.1.4 迭代模型
+# 4.1.4 迭代模型
 
-## 4.2.1.4.1 概述
+## 4.1.4.1 概述
 
 迭代模型是基于增量开发的软件项目管理方法，通过多轮迭代逐步完善系统功能。本节提供迭代模型的形式化数学模型。
 
-## 4.2.1.4.2 形式化定义
+## 4.1.4.2 形式化定义
 
-### 4.2.1.4.2.1 迭代模型基础
+### 4.1.4.2.1 迭代模型基础
 
-**定义 4.2.1.4.1** (迭代项目) 迭代项目是一个六元组：
+**定义 4.1.4.1** (迭代项目) 迭代项目是一个六元组：
 $$\mathcal{I} = (I, F, R, T, C, \mathcal{F})$$
 
 其中：
@@ -20,9 +20,9 @@ $$\mathcal{I} = (I, F, R, T, C, \mathcal{F})$$
 - $C = \{c_1, c_2, \ldots, c_p\}$ 是约束(Constraint)集合
 - $\mathcal{F}$ 是迭代转移函数
 
-### 4.2.1.4.2.2 迭代结构
+### 4.1.4.2.2 迭代结构
 
-**定义 4.2.1.4.2** (迭代结构) 每个迭代 $i_j$ 包含四个阶段：
+**定义 4.1.4.2** (迭代结构) 每个迭代 $i_j$ 包含四个阶段：
 $$i_j = (planning, development, testing, deployment)$$
 
 其中：
@@ -32,9 +32,9 @@ $$i_j = (planning, development, testing, deployment)$$
 - $testing$: 测试和验证
 - $deployment$: 部署和交付
 
-### 4.2.1.4.2.3 状态转移模型
+### 4.1.4.2.3 状态转移模型
 
-**定义 4.2.1.4.3** (迭代状态) 迭代状态是一个五元组：
+**定义 4.1.4.3** (迭代状态) 迭代状态是一个五元组：
 $$s = (current\_iteration, stage, progress, quality, functionality)$$
 
 其中：
@@ -45,11 +45,11 @@ $$s = (current\_iteration, stage, progress, quality, functionality)$$
 - $quality \in [0,1]$ 是系统质量
 - $functionality \in [0,1]$ 是功能完整性
 
-## 4.2.1.4.3 数学模型
+## 4.1.4.3 数学模型
 
-### 4.2.1.4.3.1 迭代转移函数
+### 4.1.4.3.1 迭代转移函数
 
-**定义 4.2.1.4.4** (迭代转移) 迭代转移函数定义为：
+**定义 4.1.4.4** (迭代转移) 迭代转移函数定义为：
 $$T_{iterative}: S \times A \times S \rightarrow [0,1]$$
 
 其中动作空间 $A$ 包含：
@@ -61,45 +61,45 @@ $$T_{iterative}: S \times A \times S \rightarrow [0,1]$$
 - $a_5$: 功能交付
 - $a_6$: 迭代评估
 
-### 4.2.1.4.3.2 功能累积模型
+### 4.1.4.3.2 功能累积模型
 
-**定理 4.2.1.4.1** (功能累积) 迭代项目的功能完整性计算为：
+**定理 4.1.4.1** (功能累积) 迭代项目的功能完整性计算为：
 $$functionality = \frac{\sum_{i=1}^{n} w_i \cdot feature\_completeness_i}{\sum_{i=1}^{n} w_i}$$
 
 其中 $w_i$ 是功能 $i$ 的权重，$feature\_completeness_i \in [0,1]$ 是功能完成度。
 
-### 4.2.1.4.3.3 质量演进模型
+### 4.1.4.3.3 质量演进模型
 
-**定义 4.2.1.4.5** (质量函数) 迭代质量函数定义为：
+**定义 4.1.4.5** (质量函数) 迭代质量函数定义为：
 $$Q(s) = \alpha \cdot Q_{prev} + (1-\alpha) \cdot Q_{current} + \beta \cdot testing\_coverage$$
 
 其中 $Q_{prev}$ 是上一迭代的质量，$Q_{current}$ 是当前迭代的质量，$testing\_coverage$ 是测试覆盖率，$\alpha, \beta \in [0,1]$ 是权重系数。
 
-### 4.2.1.4.3.4 进度累积模型
+### 4.1.4.3.4 进度累积模型
 
-**定义 4.2.1.4.6** (进度函数) 迭代进度函数定义为：
+**定义 4.1.4.6** (进度函数) 迭代进度函数定义为：
 $$P(s) = \frac{\sum_{i=1}^{n} completed\_iterations_i}{\sum_{i=1}^{n} total\_iterations_i}$$
 
 其中 $completed\_iterations_i$ 是完成的迭代数，$total\_iterations_i$ 是总迭代数。
 
-## 4.2.1.4.4 验证规范
+## 4.1.4.4 验证规范
 
-### 4.2.1.4.4.1 迭代完整性验证
+### 4.1.4.4.1 迭代完整性验证
 
-**公理 4.2.1.4.1** (迭代完整性) 对于任意迭代项目 $\mathcal{I}$：
+**公理 4.1.4.1** (迭代完整性) 对于任意迭代项目 $\mathcal{I}$：
 $$\forall i \in I: \text{每个迭代必须完成所有四个阶段}$$
 
-### 4.2.1.4.4.2 功能递增性验证
+### 4.1.4.4.2 功能递增性验证
 
-**公理 4.2.1.4.2** (功能递增性) 对于任意迭代 $i_j$：
+**公理 4.1.4.2** (功能递增性) 对于任意迭代 $i_j$：
 $$functionality_{i_j} \geq functionality_{i_{j-1}} \Rightarrow \text{功能持续增加}$$
 
-### 4.2.1.4.4.3 质量保持性验证
+### 4.1.4.4.3 质量保持性验证
 
-**公理 4.2.1.4.3** (质量保持性) 对于任意状态 $s$：
+**公理 4.1.4.3** (质量保持性) 对于任意状态 $s$：
 $$quality(s) \geq threshold \Rightarrow \text{质量达标}$$
 
-## 4.2.1.4.5 Rust实现
+## 4.1.4.5 Rust实现
 
 ```rust
 use std::collections::HashMap;
@@ -309,12 +309,12 @@ impl IterativeProjectManager {
             .filter(|i| i.completed)
             .count() as f64;
         let total_iterations = self.total_iterations as f64;
-        
+
         self.current_state.progress = completed_iterations / total_iterations;
-        
+
         // 计算质量
         self.current_state.quality = self.calculate_quality();
-        
+
         // 计算功能完整性
         self.current_state.functionality = self.calculate_functionality();
     }
@@ -336,7 +336,7 @@ impl IterativeProjectManager {
                     (1.0 - iteration.quality_metrics.defect_density) +
                     iteration.quality_metrics.performance_score
                 ) / 4.0;
-                
+
                 total_quality += quality_score;
                 iteration_count += 1;
             }
@@ -436,13 +436,13 @@ impl IterativeModelValidator {
     /// 验证功能递增性
     pub fn validate_functionality_increment(manager: &IterativeProjectManager) -> bool {
         let mut previous_functionality = 0.0;
-        
+
         for iteration_id in 1..=manager.total_iterations {
             if let Some(iteration) = manager.iterations.get(&iteration_id) {
                 let current_functionality = iteration.features.iter()
                     .map(|f| f.completeness)
                     .sum::<f64>();
-                
+
                 if current_functionality < previous_functionality {
                     return false;
                 }
@@ -524,11 +524,11 @@ mod tests {
 }
 ```
 
-## 4.2.1.4.6 形式化证明
+## 4.1.4.6 形式化证明
 
-### 4.2.1.4.6.1 迭代收敛性证明
+### 4.1.4.6.1 迭代收敛性证明
 
-**定理 4.2.1.4.2** (迭代收敛性) 迭代项目在有限迭代次数内收敛到稳定状态。
+**定理 4.1.4.2** (迭代收敛性) 迭代项目在有限迭代次数内收敛到稳定状态。
 
 **证明**：
 设 $\{s_n\}$ 是迭代状态序列，其中 $s_n = (i_n, st_n, p_n, q_n, f_n)$。
@@ -542,9 +542,9 @@ mod tests {
 
 根据Bolzano-Weierstrass定理，存在收敛子序列。
 
-### 4.2.1.4.6.2 功能递增性证明
+### 4.1.4.6.2 功能递增性证明
 
-**定理 4.2.1.4.3** (功能递增性) 在迭代项目中，功能完整性随迭代递增。
+**定理 4.1.4.3** (功能递增性) 在迭代项目中，功能完整性随迭代递增。
 
 **证明**：
 由定义 4.2.1.4.1，功能完整性计算为：
@@ -552,9 +552,9 @@ $$functionality = \frac{\sum_{i=1}^{n} w_i \cdot feature\_completeness_i}{\sum_{
 
 由于每个迭代都增加新功能或完善现有功能，因此 $feature\_completeness_i$ 递增，$functionality$ 递增。
 
-### 4.2.1.4.6.3 质量演进性证明
+### 4.1.4.6.3 质量演进性证明
 
-**定理 4.2.1.4.4** (质量演进性) 在迭代项目中，质量随迭代演进。
+**定理 4.1.4.4** (质量演进性) 在迭代项目中，质量随迭代演进。
 
 **证明**：
 由定义 4.2.1.4.5，质量函数为：
@@ -562,15 +562,23 @@ $$Q(s) = \alpha \cdot Q_{prev} + (1-\alpha) \cdot Q_{current} + \beta \cdot test
 
 由于测试覆盖率随迭代增加，且当前质量通常优于前一质量，因此 $Q(s)$ 递增。
 
-## 4.2.1.4.7 引用关系
+## 4.1.4.7 引用关系
 
 - 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
 - 生命周期模型：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
 - 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 敏捷模型：参见 [4.2.1.1 敏捷开发模型](./agile-models.md)
-- 瀑布模型：参见 [4.2.1.2 瀑布模型](./waterfall-models.md)
-- 螺旋模型：参见 [4.2.1.3 螺旋模型](./spiral-models.md)
+- 敏捷模型：参见 [4.1.1 敏捷开发模型](./agile-models.md)
+- 瀑布模型：参见 [4.1.2 瀑布模型](./waterfall-models.md)
+- 螺旋模型：参见 [4.1.3 螺旋模型](./spiral-models.md)
 - Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Larman, C., & Basili, V. R. (2003). Iterative and incremental development: A brief history. Computer, 36(6), 47-56.
+2. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+3. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+4. IEEE Std 830-1998. IEEE recommended practice for software requirements specifications.
+5. ISO/IEC 25010:2011. Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models.
 
 ---
 

@@ -1,15 +1,15 @@
-# 4.2.5.1 医疗健康管理模型
+# 4.4.1 医疗健康管理模型
 
-## 4.2.5.1.1 概述
+## 4.4.1.1 概述
 
 医疗健康管理是组织通过系统化方法优化医疗服务流程，确保患者安全和医疗质量的管理活动。本模型提供医疗健康管理的形式化理论基础和实践应用框架。
 
-### 4.2.5.1.1.1 核心概念
+### 4.4.1.1.1 核心概念
 
-**定义 4.2.5.1.1.1.1 (医疗健康管理)**
+**定义 4.4.1.1.1.1 (医疗健康管理)**
 医疗健康管理是组织通过系统化方法优化医疗服务流程，确保患者安全和医疗质量的管理活动。
 
-**定义 4.2.5.1.1.1.2 (医疗系统)**
+**定义 4.4.1.1.1.2 (医疗系统)**
 医疗系统 $HS = (P, S, R, Q)$ 其中：
 
 - $P$ 是患者集合
@@ -17,40 +17,40 @@
 - $R$ 是医疗资源集合
 - $Q$ 是质量指标集合
 
-### 4.2.5.1.1.2 模型框架
+### 4.4.1.1.2 模型框架
 
 ```text
 医疗健康管理模型框架
-├── 4.2.5.1.1 概述
-│   ├── 4.2.5.1.1.1 核心概念
-│   └── 4.2.5.1.1.2 模型框架
-├── 4.2.5.1.2 医疗服务模型
-│   ├── 4.2.5.1.2.1 服务流程模型
-│   ├── 4.2.5.1.2.2 资源调度模型
-│   └── 4.2.5.1.2.3 患者管理模型
-├── 4.2.5.1.3 质量管理模型
-│   ├── 4.2.5.1.3.1 质量评估模型
-│   ├── 4.2.5.1.3.2 风险控制模型
-│   └── 4.2.5.1.3.3 持续改进模型
-├── 4.2.5.1.4 患者安全模型
-│   ├── 4.2.5.1.4.1 安全风险评估模型
-│   ├── 4.2.5.1.4.2 不良事件管理模型
-│   └── 4.2.5.1.4.3 安全文化模型
-├── 4.2.5.1.5 医疗信息化模型
-│   ├── 4.2.5.1.5.1 电子病历模型
-│   ├── 4.2.5.1.5.2 临床决策支持模型
-│   └── 4.2.5.1.5.3 远程医疗模型
-└── 4.2.5.1.6 实际应用
-    ├── 4.2.5.1.6.1 医院管理应用
-    ├── 4.2.5.1.6.2 医疗信息化平台
-    └── 4.2.5.1.6.3 智能化医疗系统
+├── 4.4.1.1 概述
+│   ├── 4.4.1.1.1 核心概念
+│   └── 4.4.1.1.2 模型框架
+├── 4.4.1.2 医疗服务模型
+│   ├── 4.4.1.2.1 服务流程模型
+│   ├── 4.4.1.2.2 资源调度模型
+│   └── 4.4.1.2.3 患者管理模型
+├── 4.4.1.3 质量管理模型
+│   ├── 4.4.1.3.1 质量评估模型
+│   ├── 4.4.1.3.2 风险控制模型
+│   └── 4.4.1.3.3 持续改进模型
+├── 4.4.1.4 患者安全模型
+│   ├── 4.4.1.4.1 安全风险评估模型
+│   ├── 4.4.1.4.2 不良事件管理模型
+│   └── 4.4.1.4.3 安全文化模型
+├── 4.4.1.5 医疗信息化模型
+│   ├── 4.4.1.5.1 电子病历模型
+│   ├── 4.4.1.5.2 临床决策支持模型
+│   └── 4.4.1.5.3 远程医疗模型
+└── 4.4.1.6 实际应用
+    ├── 4.4.1.6.1 医院管理应用
+    ├── 4.4.1.6.2 医疗信息化平台
+    └── 4.4.1.6.3 智能化医疗系统
 ```
 
-## 4.2.5.1.2 医疗服务模型
+## 4.4.1.2 医疗服务模型
 
-### 4.2.5.1.2.1 服务流程模型
+### 4.4.1.2.1 服务流程模型
 
-**定义 4.2.5.1.2.1.1 (医疗服务流程)**
+**定义 4.4.1.2.1.1 (医疗服务流程)**
 医疗服务流程函数 $MSP = f(A, T, R, Q)$ 其中：
 
 - $A$ 是医疗活动集合
@@ -58,7 +58,7 @@
 - $R$ 是资源分配
 - $Q$ 是质量要求
 
-**示例 4.2.5.1.2.1.1 (医疗服务流程优化)**:
+**示例 4.4.1.2.1.1 (医疗服务流程优化)**:
 
 ```rust
 #[derive(Debug, Clone)]
@@ -75,12 +75,12 @@ impl MedicalServiceProcess {
         let mut optimizer = MedicalProcessOptimizer::new();
         optimizer.optimize(self)
     }
-    
+
     pub fn calculate_wait_time(&self, patient: &Patient) -> f64 {
         // 计算患者等待时间
         self.estimate_wait_time(patient)
     }
-    
+
     pub fn assess_service_quality(&self) -> ServiceQuality {
         // 评估服务质量
         self.evaluate_quality_metrics()
@@ -88,9 +88,9 @@ impl MedicalServiceProcess {
 }
 ```
 
-### 4.2.5.1.2.2 资源调度模型
+### 4.4.1.2.2 资源调度模型
 
-**定义 4.2.5.1.2.2.1 (医疗资源调度)**
+**定义 4.4.1.2.2.1 (医疗资源调度)**
 医疗资源调度函数 $MRS = \min \sum_{i=1}^n c_i x_i$
 
 $$\text{s.t.} \quad \sum_{j=1}^m a_{ij} x_i \geq d_j, \quad j = 1,2,\ldots,m$$
@@ -103,7 +103,7 @@ $$x_i \geq 0, \quad i = 1,2,\ldots,n$$
 - $a_{ij}$ 是资源 $i$ 对需求 $j$ 的满足程度
 - $d_j$ 是需求 $j$ 的要求量
 
-**示例 4.2.5.1.2.2.1 (医疗资源调度)**:
+**示例 4.4.1.2.2.1 (医疗资源调度)**:
 
 ```haskell
 data MedicalResourceScheduling = MedicalResourceScheduling
@@ -114,16 +114,16 @@ data MedicalResourceScheduling = MedicalResourceScheduling
     }
 
 optimizeResourceScheduling :: MedicalResourceScheduling -> [Double]
-optimizeResourceScheduling mrs = 
+optimizeResourceScheduling mrs =
     let costs = costs mrs
         demands = demands mrs
         constraints = constraints mrs
     in linearProgramming costs demands constraints
 ```
 
-### 4.2.5.1.2.3 患者管理模型
+### 4.4.1.2.3 患者管理模型
 
-**定义 4.2.5.1.2.3.1 (患者管理)**
+**定义 4.4.1.2.3.1 (患者管理)**
 患者管理函数 $PM = f(R, T, F, C)$ 其中：
 
 - $R$ 是患者注册
@@ -131,7 +131,7 @@ optimizeResourceScheduling mrs =
 - $F$ 是随访管理
 - $C$ 是护理协调
 
-**示例 4.2.5.1.2.3.1 (患者管理系统)**:
+**示例 4.4.1.2.3.1 (患者管理系统)**:
 
 ```lean
 structure PatientManagement :=
@@ -148,11 +148,11 @@ def managePatient (pm : PatientManagement) (patient : Patient) : PatientOutcome 
   PatientOutcome registration treatment followUp coordination
 ```
 
-## 4.2.5.1.3 质量管理模型
+## 4.4.1.3 质量管理模型
 
-### 4.2.5.1.3.1 质量评估模型
+### 4.4.1.3.1 质量评估模型
 
-**定义 4.2.5.1.3.1.1 (医疗质量)**
+**定义 4.4.1.3.1.1 (医疗质量)**
 医疗质量函数 $MQ = f(S, E, P, O)$ 其中：
 
 - $S$ 是安全性
@@ -160,7 +160,7 @@ def managePatient (pm : PatientManagement) (patient : Patient) : PatientOutcome 
 - $P$ 是患者中心性
 - $O$ 是及时性
 
-**定义 4.2.5.1.3.1.2 (质量指标)**
+**定义 4.4.1.3.1.2 (质量指标)**
 质量指标 $QI = \sum_{i=1}^n w_i \cdot q_i$
 
 其中：
@@ -168,7 +168,7 @@ def managePatient (pm : PatientManagement) (patient : Patient) : PatientOutcome 
 - $w_i$ 是第 $i$ 个质量维度的权重
 - $q_i$ 是第 $i$ 个质量维度的得分
 
-**示例 4.2.5.1.3.1.1 (医疗质量评估)**:
+**示例 4.4.1.3.1.1 (医疗质量评估)**:
 
 ```rust
 #[derive(Debug)]
@@ -183,22 +183,22 @@ pub struct MedicalQuality {
 impl MedicalQuality {
     pub fn assess_quality(&self) -> f64 {
         let mut total_score = 0.0;
-        
+
         let safety_score = self.assess_safety();
         total_score += self.weights[0] * safety_score;
-        
+
         let effectiveness_score = self.assess_effectiveness();
         total_score += self.weights[1] * effectiveness_score;
-        
+
         let patient_centered_score = self.assess_patient_centered();
         total_score += self.weights[2] * patient_centered_score;
-        
+
         let timeliness_score = self.assess_timeliness();
         total_score += self.weights[3] * timeliness_score;
-        
+
         total_score
     }
-    
+
     pub fn get_quality_level(&self) -> QualityLevel {
         let score = self.assess_quality();
         match score {
@@ -211,9 +211,9 @@ impl MedicalQuality {
 }
 ```
 
-### 4.2.5.1.3.2 风险控制模型
+### 4.4.1.3.2 风险控制模型
 
-**定义 4.2.5.1.3.2.1 (医疗风险)**
+**定义 4.4.1.3.2.1 (医疗风险)**
 医疗风险函数 $MR = f(C, T, M, E)$ 其中：
 
 - $C$ 是临床风险
@@ -221,7 +221,7 @@ impl MedicalQuality {
 - $M$ 是管理风险
 - $E$ 是环境风险
 
-**示例 4.2.5.1.3.2.1 (医疗风险控制)**:
+**示例 4.4.1.3.2.1 (医疗风险控制)**:
 
 ```haskell
 data MedicalRiskControl = MedicalRiskControl
@@ -232,7 +232,7 @@ data MedicalRiskControl = MedicalRiskControl
     }
 
 assessRiskLevel :: MedicalRiskControl -> RiskLevel
-assessRiskLevel mrc = 
+assessRiskLevel mrc =
     let clinicalScore = assessClinicalRisk (clinicalRisk mrc)
         technicalScore = assessTechnicalRisk (technicalRisk mrc)
         managementScore = assessManagementRisk (managementRisk mrc)
@@ -243,9 +243,9 @@ assessRiskLevel mrc =
        else Low
 ```
 
-### 4.2.5.1.3.3 持续改进模型
+### 4.4.1.3.3 持续改进模型
 
-**定义 4.2.5.1.3.3.1 (持续改进)**
+**定义 4.4.1.3.3.1 (持续改进)**
 持续改进函数 $CI = f(P, D, C, A)$ 其中：
 
 - $P$ 是计划阶段
@@ -253,7 +253,7 @@ assessRiskLevel mrc =
 - $C$ 是检查阶段
 - $A$ 是行动阶段
 
-**示例 4.2.5.1.3.3.1 (PDCA循环)**:
+**示例 4.4.1.3.3.1 (PDCA循环)**:
 
 ```lean
 structure ContinuousImprovement :=
@@ -270,11 +270,11 @@ def implementPDCA (ci : ContinuousImprovement) : ImprovementResult :=
   ImprovementResult plan execution check action
 ```
 
-## 4.2.5.1.4 患者安全模型
+## 4.4.1.4 患者安全模型
 
-### 4.2.5.1.4.1 安全风险评估模型
+### 4.4.1.4.1 安全风险评估模型
 
-**定义 4.2.5.1.4.1.1 (患者安全风险)**
+**定义 4.4.1.4.1.1 (患者安全风险)**
 患者安全风险函数 $PSR = f(M, P, S, E)$ 其中：
 
 - $M$ 是医疗错误风险
@@ -282,7 +282,7 @@ def implementPDCA (ci : ContinuousImprovement) : ImprovementResult :=
 - $S$ 是手术安全风险
 - $E$ 是感染风险
 
-**示例 4.2.5.1.4.1.1 (患者安全评估)**:
+**示例 4.4.1.4.1.1 (患者安全评估)**:
 
 ```rust
 #[derive(Debug)]
@@ -300,14 +300,14 @@ impl PatientSafetyRisk {
         let fall_score = self.fall_risk.assess(patient);
         let surgical_score = self.surgical_safety_risk.assess(patient);
         let infection_score = self.infection_risk.assess(patient);
-        
+
         SafetyAssessment {
             overall_risk: (medical_error_score + fall_score + surgical_score + infection_score) / 4.0,
             risk_factors: self.identify_risk_factors(patient),
             mitigation_strategies: self.recommend_mitigation_strategies(patient),
         }
     }
-    
+
     pub fn generate_safety_alert(&self, patient: &Patient) -> Option<SafetyAlert> {
         // 生成安全警报
         let assessment = self.assess_patient_safety(patient);
@@ -320,9 +320,9 @@ impl PatientSafetyRisk {
 }
 ```
 
-### 4.2.5.1.4.2 不良事件管理模型
+### 4.4.1.4.2 不良事件管理模型
 
-**定义 4.2.5.1.4.2.1 (不良事件)**
+**定义 4.4.1.4.2.1 (不良事件)**
 不良事件函数 $AE = f(I, R, A, P)$ 其中：
 
 - $I$ 是事件识别
@@ -330,7 +330,7 @@ impl PatientSafetyRisk {
 - $A$ 是事件分析
 - $P$ 是事件预防
 
-**示例 4.2.5.1.4.2.1 (不良事件管理)**:
+**示例 4.4.1.4.2.1 (不良事件管理)**:
 
 ```haskell
 data AdverseEventManagement = AdverseEventManagement
@@ -341,7 +341,7 @@ data AdverseEventManagement = AdverseEventManagement
     }s
 
 manageAdverseEvent :: AdverseEventManagement -> AdverseEvent -> EventOutcome
-manageAdverseEvent aem event = 
+manageAdverseEvent aem event =
     let identification := identifyEvent (eventIdentification aem) event
         reporting := reportEvent (eventReporting aem) identification
         analysis := analyzeEvent (eventAnalysis aem) reporting
@@ -349,9 +349,9 @@ manageAdverseEvent aem event =
     in EventOutcome identification reporting analysis prevention
 ```
 
-### 4.2.5.1.4.3 安全文化模型
+### 4.4.1.4.3 安全文化模型
 
-**定义 4.2.5.1.4.3.1 (安全文化)**
+**定义 4.4.1.4.3.1 (安全文化)**
 安全文化函数 $SC = f(A, R, L, T)$ 其中：
 
 - $A$ 是安全意识
@@ -359,7 +359,7 @@ manageAdverseEvent aem event =
 - $L$ 是学习文化
 - $T$ 是团队合作
 
-**示例 4.2.5.1.4.3.1 (安全文化评估)**:
+**示例 4.4.1.4.3.1 (安全文化评估)**:
 
 ```lean
 structure SafetyCulture :=
@@ -376,11 +376,11 @@ def assessSafetyCulture (sc : SafetyCulture) : CultureScore :=
   (awarenessScore + reportingScore + learningScore + teamworkScore) / 4.0
 ```
 
-## 4.2.5.1.5 医疗信息化模型
+## 4.4.1.5 医疗信息化模型
 
-### 4.2.5.1.5.1 电子病历模型
+### 4.4.1.5.1 电子病历模型
 
-**定义 4.2.5.1.5.1.1 (电子病历)**
+**定义 4.4.1.5.1.1 (电子病历)**
 电子病历函数 $EMR = f(P, D, T, A)$ 其中：
 
 - $P$ 是患者信息
@@ -388,7 +388,7 @@ def assessSafetyCulture (sc : SafetyCulture) : CultureScore :=
 - $T$ 是治疗记录
 - $A$ 是访问控制
 
-**示例 4.2.5.1.5.1.1 (电子病历系统)**:
+**示例 4.4.1.5.1.1 (电子病历系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -405,7 +405,7 @@ impl ElectronicMedicalRecord {
         let patient_info = self.patient_info.create(patient);
         let diagnostic_data = self.diagnostic_data.collect(patient);
         let treatment_records = self.treatment_records.initialize();
-        
+
         EMRRecord {
             patient_info,
             diagnostic_data,
@@ -413,7 +413,7 @@ impl ElectronicMedicalRecord {
             created_at: SystemTime::now(),
         }
     }
-    
+
     pub fn update_record(&mut self, record: &mut EMRRecord, update: &EMRUpdate) -> Result<(), EMRError> {
         // 更新电子病历记录
         if self.access_control.can_update(update.user, record) {
@@ -423,7 +423,7 @@ impl ElectronicMedicalRecord {
             Err(EMRError::AccessDenied)
         }
     }
-    
+
     pub fn query_records(&self, query: &EMRQuery) -> Vec<EMRRecord> {
         // 查询电子病历记录
         self.search_records(query)
@@ -431,9 +431,9 @@ impl ElectronicMedicalRecord {
 }
 ```
 
-### 4.2.5.1.5.2 临床决策支持模型
+### 4.4.1.5.2 临床决策支持模型
 
-**定义 4.2.5.1.5.2.1 (临床决策支持)**
+**定义 4.4.1.5.2.1 (临床决策支持)**
 临床决策支持函数 $CDS = f(D, K, R, A)$ 其中：
 
 - $D$ 是诊断支持
@@ -441,7 +441,7 @@ impl ElectronicMedicalRecord {
 - $R$ 是推荐系统
 - $A$ 是警报系统
 
-**示例 4.2.5.1.5.2.1 (临床决策支持系统)**:
+**示例 4.4.1.5.2.1 (临床决策支持系统)**:
 
 ```haskell
 data ClinicalDecisionSupport = ClinicalDecisionSupport
@@ -452,7 +452,7 @@ data ClinicalDecisionSupport = ClinicalDecisionSupport
     }
 
 provideDecisionSupport :: ClinicalDecisionSupport -> PatientData -> ClinicalRecommendation
-provideDecisionSupport cds patientData = 
+provideDecisionSupport cds patientData =
     let diagnosis := supportDiagnosis (diagnosticSupport cds) patientData
         knowledge := queryKnowledge (knowledgeBase cds) diagnosis
         recommendations := generateRecommendations (recommendationSystem cds) knowledge
@@ -460,9 +460,9 @@ provideDecisionSupport cds patientData =
     in ClinicalRecommendation diagnosis knowledge recommendations alerts
 ```
 
-### 4.2.5.1.5.3 远程医疗模型
+### 4.4.1.5.3 远程医疗模型
 
-**定义 4.2.5.1.5.3.1 (远程医疗)**
+**定义 4.4.1.5.3.1 (远程医疗)**
 远程医疗函数 $TM = f(C, T, M, F)$ 其中：
 
 - $C$ 是通信技术
@@ -470,7 +470,7 @@ provideDecisionSupport cds patientData =
 - $M$ 是远程监控
 - $F$ 是随访管理
 
-**示例 4.2.5.1.5.3.1 (远程医疗系统)**:
+**示例 4.4.1.5.3.1 (远程医疗系统)**:
 
 ```lean
 structure Telemedicine :=
@@ -487,11 +487,11 @@ def conductTelemedicine (tm : Telemedicine) (patient : Patient) : TelemedicineSe
   TelemedicineSession communication diagnosis monitoring followUp
 ```
 
-## 4.2.5.1.6 实际应用
+## 4.4.1.6 实际应用
 
-### 4.2.5.1.6.1 医院管理应用
+### 4.4.1.6.1 医院管理应用
 
-**应用 4.2.5.1.6.1.1 (医院管理系统)**
+**应用 4.4.1.6.1.1 (医院管理系统)**
 医院管理模型 $HMS = (P, S, Q, I)$ 其中：
 
 - $P$ 是患者管理
@@ -499,7 +499,7 @@ def conductTelemedicine (tm : Telemedicine) (patient : Patient) : TelemedicineSe
 - $Q$ 是质量管理
 - $I$ 是信息化管理
 
-**示例 4.2.5.1.6.1.1 (医院管理系统)**:
+**示例 4.4.1.6.1.1 (医院管理系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -516,7 +516,7 @@ impl HospitalManagementSystem {
         let mut optimizer = HospitalOptimizer::new();
         optimizer.optimize(self)
     }
-    
+
     pub fn predict_patient_outcomes(&self, patient: &Patient) -> OutcomePrediction {
         // 预测患者预后
         self.quality_management.predict_outcomes(patient)
@@ -524,9 +524,9 @@ impl HospitalManagementSystem {
 }
 ```
 
-### 4.2.5.1.6.2 医疗信息化平台
+### 4.4.1.6.2 医疗信息化平台
 
-**应用 4.2.5.1.6.2.1 (HIS平台)**
+**应用 4.4.1.6.2.1 (HIS平台)**
 医院信息系统平台 $HIS = (E, C, A, I)$ 其中：
 
 - $E$ 是电子病历
@@ -534,7 +534,7 @@ impl HospitalManagementSystem {
 - $A$ 是管理应用
 - $I$ 是集成服务
 
-**示例 4.2.5.1.6.2.1 (HIS平台)**:
+**示例 4.4.1.6.2.1 (HIS平台)**:
 
 ```haskell
 data HISPlatform = HISPlatform
@@ -545,17 +545,17 @@ data HISPlatform = HISPlatform
     }
 
 generateMedicalReports :: HISPlatform -> [MedicalReport]
-generateMedicalReports his = 
+generateMedicalReports his =
     integrationServices his >>= generateReport
 
 analyzeMedicalMetrics :: HISPlatform -> MedicalMetrics
-analyzeMedicalMetrics his = 
+analyzeMedicalMetrics his =
     analyzeMetrics (electronicRecords his)
 ```
 
-### 4.2.5.1.6.3 智能化医疗系统
+### 4.4.1.6.3 智能化医疗系统
 
-**应用 4.2.5.1.6.3.1 (AI驱动医疗)**
+**应用 4.4.1.6.3.1 (AI驱动医疗)**
 AI驱动医疗模型 $AIM = (M, P, A, L)$ 其中：
 
 - $M$ 是机器学习
@@ -563,7 +563,7 @@ AI驱动医疗模型 $AIM = (M, P, A, L)$ 其中：
 - $A$ 是自动化医疗
 - $L$ 是学习算法
 
-**示例 4.2.5.1.6.3.1 (智能医疗系统)**:
+**示例 4.4.1.6.3.1 (智能医疗系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -579,12 +579,12 @@ impl AIMedicalSystem {
         // 基于AI预测疾病风险
         self.machine_learning.predict_disease_risk(patient_data)
     }
-    
+
     pub fn recommend_treatment(&self, diagnosis: &Diagnosis) -> Vec<TreatmentRecommendation> {
         // 基于AI推荐治疗方案
         self.predictive_analytics.recommend_treatments(diagnosis)
     }
-    
+
     pub fn automate_medical_processes(&self, medical_workflow: &MedicalWorkflow) -> MedicalWorkflow {
         // 自动化医疗流程
         self.automation.automate_processes(medical_workflow)
@@ -592,7 +592,7 @@ impl AIMedicalSystem {
 }
 ```
 
-## 4.2.5.1.7 总结
+## 4.4.1.7 总结
 
 医疗健康管理模型提供了系统化的方法来优化医疗服务流程。通过形式化建模和数据分析，可以实现：
 
@@ -602,3 +602,19 @@ impl AIMedicalSystem {
 4. **信息化管理**：通过电子病历和临床决策支持
 
 该模型为现代医疗健康管理提供了理论基础和实践指导，支持智能化医疗和数字化健康管理。
+
+## 4.4.1.8 引用关系
+
+- 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
+- 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
+- 质量管理：参见 [2.4 质量管理模型](../../02-project-management/quality-models.md)
+- Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+3. ISO 9001:2015. Quality management systems - Requirements.
+4. ISO 14001:2015. Environmental management systems - Requirements with guidance for use.
+5. Joint Commission. (2023). Comprehensive Accreditation Manual for Hospitals. Joint Commission Resources.

@@ -1,15 +1,15 @@
-# 4.2.5.4 物流供应链管理模型
+# 4.4.4 物流供应链管理模型
 
-## 4.2.5.4.1 概述
+## 4.4.4.1 概述
 
 物流供应链管理是组织通过系统化方法优化物流网络和供应链流程，实现高效配送和成本控制的管理活动。本模型提供物流供应链管理的形式化理论基础和实践应用框架。
 
-### 4.2.5.4.1.1 核心概念
+### 4.4.4.1.1 核心概念
 
-**定义 4.2.5.4.1.1.1 (物流供应链管理)**
+**定义 4.4.4.1.1.1 (物流供应链管理)**
 物流供应链管理是组织通过系统化方法优化物流网络和供应链流程，实现高效配送和成本控制的管理活动。
 
-**定义 4.2.5.4.1.1.2 (物流系统)**
+**定义 4.4.4.1.1.2 (物流系统)**
 物流系统 $LS = (N, F, T, C)$ 其中：
 
 - $N$ 是网络节点集合
@@ -17,40 +17,40 @@
 - $T$ 是运输方式集合
 - $C$ 是成本结构集合
 
-### 4.2.5.4.1.2 模型框架
+### 4.4.4.1.2 模型框架
 
 ```text
 物流供应链管理模型框架
-├── 4.2.5.4.1 概述
-│   ├── 4.2.5.4.1.1 核心概念
-│   └── 4.2.5.4.1.2 模型框架
-├── 4.2.5.4.2 网络优化模型
-│   ├── 4.2.5.4.2.1 设施选址模型
-│   ├── 4.2.5.4.2.2 路径优化模型
-│   └── 4.2.5.4.2.3 网络设计模型
-├── 4.2.5.4.3 库存管理模型
-│   ├── 4.2.5.4.3.1 需求预测模型
-│   ├── 4.2.5.4.3.2 库存控制模型
-│   └── 4.2.5.4.3.3 补货策略模型
-├── 4.2.5.4.4 运输管理模型
-│   ├── 4.2.5.4.4.1 车辆调度模型
-│   ├── 4.2.5.4.4.2 运输规划模型
-│   └── 4.2.5.4.4.3 配送优化模型
-├── 4.2.5.4.5 供应链协调模型
-│   ├── 4.2.5.4.5.1 信息共享模型
-│   ├── 4.2.5.4.5.2 协同规划模型
-│   └── 4.2.5.4.5.3 风险分担模型
-└── 4.2.5.4.6 实际应用
-    ├── 4.2.5.4.6.1 智能物流平台
-    ├── 4.2.5.4.6.2 供应链管理系统
-    └── 4.2.5.4.6.3 智能化物流系统
+├── 4.4.4.1 概述
+│   ├── 4.4.4.1.1 核心概念
+│   └── 4.4.4.1.2 模型框架
+├── 4.4.4.2 网络优化模型
+│   ├── 4.4.4.2.1 设施选址模型
+│   ├── 4.4.4.2.2 路径优化模型
+│   └── 4.4.4.2.3 网络设计模型
+├── 4.4.4.3 库存管理模型
+│   ├── 4.4.4.3.1 需求预测模型
+│   ├── 4.4.4.3.2 库存控制模型
+│   └── 4.4.4.3.3 补货策略模型
+├── 4.4.4.4 运输管理模型
+│   ├── 4.4.4.4.1 车辆调度模型
+│   ├── 4.4.4.4.2 运输规划模型
+│   └── 4.4.4.4.3 配送优化模型
+├── 4.4.4.5 供应链协调模型
+│   ├── 4.4.4.5.1 信息共享模型
+│   ├── 4.4.4.5.2 协同规划模型
+│   └── 4.4.4.5.3 风险分担模型
+└── 4.4.4.6 实际应用
+    ├── 4.4.4.6.1 智能物流平台
+    ├── 4.4.4.6.2 供应链管理系统
+    └── 4.4.4.6.3 智能化物流系统
 ```
 
-## 4.2.5.4.2 网络优化模型
+## 4.4.4.2 网络优化模型
 
-### 4.2.5.4.2.1 设施选址模型
+### 4.4.4.2.1 设施选址模型
 
-**定义 4.2.5.4.2.1.1 (设施选址)**
+**定义 4.4.4.2.1.1 (设施选址)**
 设施选址函数 $FL = \min \sum_{i=1}^n \sum_{j=1}^m c_{ij} x_{ij} + \sum_{i=1}^n f_i y_i$
 
 $$\text{s.t.} \quad \sum_{j=1}^m x_{ij} = d_i, \quad i = 1,2,\ldots,n$$
@@ -66,7 +66,7 @@ $$y_j \in \{0,1\}, \quad x_{ij} \geq 0$$
 - $d_i$ 是需求点 $i$ 的需求量
 - $M_j$ 是设施 $j$ 的容量
 
-**示例 4.2.5.4.2.1.1 (设施选址优化)**:
+**示例 4.4.4.2.1.1 (设施选址优化)**:
 
 ```rust
 #[derive(Debug, Clone)]
@@ -83,7 +83,7 @@ impl FacilityLocation {
         let mut optimizer = LocationOptimizer::new();
         optimizer.optimize(self)
     }
-    
+
     pub fn calculate_total_cost(&self, locations: &[bool]) -> f64 {
         // 计算总成本
         let mut total_cost = 0.0;
@@ -97,9 +97,9 @@ impl FacilityLocation {
 }
 ```
 
-### 4.2.5.4.2.2 路径优化模型
+### 4.4.4.2.2 路径优化模型
 
-**定义 4.2.5.4.2.2.1 (路径优化)**
+**定义 4.4.4.2.2.1 (路径优化)**
 路径优化函数 $RO = \min \sum_{i=1}^n \sum_{j=1}^n c_{ij} x_{ij}$
 
 $$\text{s.t.} \quad \sum_{j=1}^n x_{ij} = 1, \quad i = 1,2,\ldots,n$$
@@ -110,7 +110,7 @@ $$x_{ij} \in \{0,1\}$$
 
 其中 $c_{ij}$ 是从节点 $i$ 到节点 $j$ 的距离。
 
-**示例 4.2.5.4.2.2.1 (路径优化系统)**:
+**示例 4.4.4.2.2.1 (路径优化系统)**:
 
 ```haskell
 data RouteOptimization = RouteOptimization
@@ -120,15 +120,15 @@ data RouteOptimization = RouteOptimization
     }
 
 optimizeRoute :: RouteOptimization -> [Node]
-optimizeRoute ro = 
+optimizeRoute ro =
     let distanceMatrix = distances ro
         constraints = constraints ro
     in tspOptimization distanceMatrix constraints
 ```
 
-### 4.2.5.4.2.3 网络设计模型
+### 4.4.4.2.3 网络设计模型
 
-**定义 4.2.5.4.2.3.1 (网络设计)**
+**定义 4.4.4.2.3.1 (网络设计)**
 网络设计函数 $ND = f(T, C, F, R)$ 其中：
 
 - $T$ 是拓扑结构
@@ -136,7 +136,7 @@ optimizeRoute ro =
 - $F$ 是流量分配
 - $R$ 是冗余设计
 
-**示例 4.2.5.4.2.3.1 (网络设计系统)**:
+**示例 4.4.4.2.3.1 (网络设计系统)**:
 
 ```lean
 structure NetworkDesign :=
@@ -153,11 +153,11 @@ def designNetwork (nd : NetworkDesign) : NetworkDesignResult :=
   NetworkDesignResult topology capacity flow redundancy
 ```
 
-## 4.2.5.4.3 库存管理模型
+## 4.4.4.3 库存管理模型
 
-### 4.2.5.4.3.1 需求预测模型
+### 4.4.4.3.1 需求预测模型
 
-**定义 4.2.5.4.3.1.1 (需求预测)**
+**定义 4.4.4.3.1.1 (需求预测)**
 需求预测函数 $DF = f(H, T, S, E)$ 其中：
 
 - $H$ 是历史数据
@@ -165,7 +165,7 @@ def designNetwork (nd : NetworkDesign) : NetworkDesignResult :=
 - $S$ 是季节性
 - $E$ 是外部因素
 
-**示例 4.2.5.4.3.1.1 (需求预测系统)**:
+**示例 4.4.4.3.1.1 (需求预测系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -183,14 +183,14 @@ impl DemandForecasting {
         let trend = self.time_series.analyze_trend(&historical);
         let seasonal = self.seasonality.analyze_seasonality(&historical);
         let external = self.analyze_external_factors(product, period);
-        
+
         DemandForecast {
             base_forecast: self.calculate_base_forecast(&trend, &seasonal),
             external_impact: external,
             confidence_interval: self.calculate_confidence_interval(),
         }
     }
-    
+
     pub fn update_forecast(&mut self, actual_demand: &DemandData) -> ForecastUpdate {
         // 更新预测
         self.update_model(actual_demand)
@@ -198,9 +198,9 @@ impl DemandForecasting {
 }
 ```
 
-### 4.2.5.4.3.2 库存控制模型
+### 4.4.4.3.2 库存控制模型
 
-**定义 4.2.5.4.3.2.1 (库存控制)**
+**定义 4.4.4.3.2.1 (库存控制)**
 库存控制函数 $IC = f(R, S, L, O)$ 其中：
 
 - $R$ 是再订货点
@@ -208,7 +208,7 @@ impl DemandForecasting {
 - $L$ 是提前期
 - $O$ 是订货量
 
-**定理 4.2.5.4.3.2.1 (经济订货量)**
+**定理 4.4.4.3.2.1 (经济订货量)**
 经济订货量 $EOQ = \sqrt{\frac{2DS}{h}}$
 
 其中：
@@ -217,7 +217,7 @@ impl DemandForecasting {
 - $S$ 是订货成本
 - $h$ 是单位持有成本
 
-**示例 4.2.5.4.3.2.1 (库存控制系统)**:
+**示例 4.4.4.3.2.1 (库存控制系统)**:
 
 ```haskell
 data InventoryControl = InventoryControl
@@ -228,23 +228,23 @@ data InventoryControl = InventoryControl
     }
 
 calculateEOQ :: InventoryControl -> Double
-calculateEOQ ic = 
+calculateEOQ ic =
     let annualDemand = getAnnualDemand ic
         orderingCost = getOrderingCost ic
         holdingCost = getHoldingCost ic
     in sqrt (2 * annualDemand * orderingCost / holdingCost)
 
 calculateReorderPoint :: InventoryControl -> Double
-calculateReorderPoint ic = 
+calculateReorderPoint ic =
     let dailyDemand = getDailyDemand ic
         leadTime = leadTime ic
         safetyStock = safetyStock ic
     in dailyDemand * leadTime + safetyStock
 ```
 
-### 4.2.5.4.3.3 补货策略模型
+### 4.4.4.3.3 补货策略模型
 
-**定义 4.2.5.4.3.3.1 (补货策略)**
+**定义 4.4.4.3.3.1 (补货策略)**
 补货策略函数 $RS = f(P, T, Q, F)$ 其中：
 
 - $P$ 是补货策略
@@ -252,7 +252,7 @@ calculateReorderPoint ic =
 - $Q$ 是补货数量
 - $F$ 是补货频率
 
-**示例 4.2.5.4.3.3.1 (补货策略系统)**:
+**示例 4.4.4.3.3.1 (补货策略系统)**:
 
 ```lean
 structure ReplenishmentStrategy :=
@@ -269,11 +269,11 @@ def determineReplenishment (rs : ReplenishmentStrategy) : ReplenishmentDecision 
   ReplenishmentDecision policy timing quantity frequency
 ```
 
-## 4.2.5.4.4 运输管理模型
+## 4.4.4.4 运输管理模型
 
-### 4.2.5.4.4.1 车辆调度模型
+### 4.4.4.4.1 车辆调度模型
 
-**定义 4.2.5.4.4.1.1 (车辆调度)**
+**定义 4.4.4.4.1.1 (车辆调度)**
 车辆调度函数 $VD = \min \sum_{i=1}^n \sum_{j=1}^m \sum_{k=1}^p c_{ijk} x_{ijk}$
 
 $$\text{s.t.} \quad \sum_{j=1}^m x_{ijk} \leq 1, \quad i = 1,2,\ldots,n, k = 1,2,\ldots,p$$
@@ -287,7 +287,7 @@ $$x_{ijk} \in \{0,1\}$$
 - $c_{ijk}$ 是车辆 $k$ 从 $i$ 到 $j$ 的成本
 - $x_{ijk}$ 是车辆 $k$ 是否从 $i$ 到 $j$ 的决策变量
 
-**示例 4.2.5.4.4.1.1 (车辆调度系统)**:
+**示例 4.4.4.4.1.1 (车辆调度系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -304,7 +304,7 @@ impl VehicleDispatch {
         let mut optimizer = DispatchOptimizer::new();
         optimizer.optimize(self)
     }
-    
+
     pub fn calculate_total_cost(&self, dispatch: &DispatchPlan) -> f64 {
         // 计算总成本
         let mut total_cost = 0.0;
@@ -316,9 +316,9 @@ impl VehicleDispatch {
 }
 ```
 
-### 4.2.5.4.4.2 运输规划模型
+### 4.4.4.4.2 运输规划模型
 
-**定义 4.2.5.4.4.2.1 (运输规划)**
+**定义 4.4.4.4.2.1 (运输规划)**
 运输规划函数 $TP = f(M, R, S, C)$ 其中：
 
 - $M$ 是运输方式
@@ -326,7 +326,7 @@ impl VehicleDispatch {
 - $S$ 是调度安排
 - $C$ 是成本控制
 
-**示例 4.2.5.4.4.2.1 (运输规划系统)**:
+**示例 4.4.4.4.2.1 (运输规划系统)**:
 
 ```haskell
 data TransportationPlanning = TransportationPlanning
@@ -337,7 +337,7 @@ data TransportationPlanning = TransportationPlanning
     }
 
 planTransportation :: TransportationPlanning -> TransportationPlan
-planTransportation tp = 
+planTransportation tp =
     let modes := selectModes (transportationModes tp)
         routes := planRoutes (routePlanning tp) modes
         schedule := createSchedule (scheduling tp) routes
@@ -345,9 +345,9 @@ planTransportation tp =
     in TransportationPlan modes routes schedule costOptimized
 ```
 
-### 4.2.5.4.4.3 配送优化模型
+### 4.4.4.4.3 配送优化模型
 
-**定义 4.2.5.4.4.3.1 (配送优化)**
+**定义 4.4.4.4.3.1 (配送优化)**
 配送优化函数 $DO = \min \sum_{i=1}^n \sum_{j=1}^m d_{ij} x_{ij}$
 
 $$\text{s.t.} \quad \sum_{j=1}^m x_{ij} = 1, \quad i = 1,2,\ldots,n$$
@@ -361,7 +361,7 @@ $$x_{ij} \in \{0,1\}$$
 - $d_{ij}$ 是从配送中心 $i$ 到客户 $j$ 的距离
 - $c_j$ 是配送中心 $j$ 的容量
 
-**示例 4.2.5.4.4.3.1 (配送优化系统)**:
+**示例 4.4.4.4.3.1 (配送优化系统)**:
 
 ```lean
 structure DeliveryOptimization :=
@@ -376,11 +376,11 @@ def optimizeDelivery (do : DeliveryOptimization) : DeliveryPlan :=
   DeliveryPlan assignments routes schedule
 ```
 
-## 4.2.5.4.5 供应链协调模型
+## 4.4.4.5 供应链协调模型
 
-### 4.2.5.4.5.1 信息共享模型
+### 4.4.4.5.1 信息共享模型
 
-**定义 4.2.5.4.5.1.1 (信息共享)**
+**定义 4.4.4.5.1.1 (信息共享)**
 信息共享函数 $IS = f(D, S, T, P)$ 其中：
 
 - $D$ 是数据交换
@@ -388,7 +388,7 @@ def optimizeDelivery (do : DeliveryOptimization) : DeliveryPlan :=
 - $T$ 是实时传输
 - $P$ 是隐私保护
 
-**示例 4.2.5.4.5.1.1 (信息共享系统)**:
+**示例 4.4.4.5.1.1 (信息共享系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -406,7 +406,7 @@ impl InformationSharing {
         let integrated_data = self.system_integration.integrate(&validated_data);
         self.real_time_transmission.transmit(&integrated_data)
     }
-    
+
     pub fn ensure_data_security(&self, data: &SupplyChainData) -> SecurityAssessment {
         // 确保数据安全
         self.privacy_protection.assess_security(data)
@@ -414,9 +414,9 @@ impl InformationSharing {
 }
 ```
 
-### 4.2.5.4.5.2 协同规划模型
+### 4.4.4.5.2 协同规划模型
 
-**定义 4.2.5.4.5.2.1 (协同规划)**
+**定义 4.4.4.5.2.1 (协同规划)**
 协同规划函数 $CP = f(C, P, S, I)$ 其中：
 
 - $C$ 是协作机制
@@ -424,7 +424,7 @@ impl InformationSharing {
 - $S$ 是同步执行
 - $I$ 是信息集成
 
-**示例 4.2.5.4.5.2.1 (协同规划系统)**:
+**示例 4.4.4.5.2.1 (协同规划系统)**:
 
 ```haskell
 data CollaborativePlanning = CollaborativePlanning
@@ -435,7 +435,7 @@ data CollaborativePlanning = CollaborativePlanning
     }
 
 implementCollaborativePlanning :: CollaborativePlanning -> CollaborativeResult
-implementCollaborativePlanning cp = 
+implementCollaborativePlanning cp =
     let collaboration := establishCollaboration (collaborationMechanism cp)
         coordination := coordinatePlans (planCoordination cp)
         execution := synchronizeExecution (synchronizedExecution cp)
@@ -443,9 +443,9 @@ implementCollaborativePlanning cp =
     in CollaborativeResult collaboration coordination execution integration
 ```
 
-### 4.2.5.4.5.3 风险分担模型
+### 4.4.4.5.3 风险分担模型
 
-**定义 4.2.5.4.5.3.1 (风险分担)**
+**定义 4.4.4.5.3.1 (风险分担)**
 风险分担函数 $RS = f(R, A, S, C)$ 其中：
 
 - $R$ 是风险识别
@@ -453,7 +453,7 @@ implementCollaborativePlanning cp =
 - $S$ 是风险分担
 - $C$ 是成本分担
 
-**示例 4.2.5.4.5.3.1 (风险分担系统)**:
+**示例 4.4.4.5.3.1 (风险分担系统)**:
 
 ```lean
 structure RiskSharing :=
@@ -470,11 +470,11 @@ def implementRiskSharing (rs : RiskSharing) : RiskSharingResult :=
   RiskSharingResult identified allocated shared costShared
 ```
 
-## 4.2.5.4.6 实际应用
+## 4.4.4.6 实际应用
 
-### 4.2.5.4.6.1 智能物流平台
+### 4.4.4.6.1 智能物流平台
 
-**应用 4.2.5.4.6.1.1 (智能物流平台)**
+**应用 4.4.4.6.1.1 (智能物流平台)**
 智能物流平台模型 $ILP = (O, T, A, I)$ 其中：
 
 - $O$ 是运营管理
@@ -482,7 +482,7 @@ def implementRiskSharing (rs : RiskSharing) : RiskSharingResult :=
 - $A$ 是自动化
 - $I$ 是智能化
 
-**示例 4.2.5.4.6.1.1 (智能物流平台)**:
+**示例 4.4.4.6.1.1 (智能物流平台)**:
 
 ```rust
 #[derive(Debug)]
@@ -499,7 +499,7 @@ impl IntelligentLogisticsPlatform {
         let mut optimizer = LogisticsOptimizer::new();
         optimizer.optimize(self)
     }
-    
+
     pub fn predict_delivery_time(&self, shipment: &Shipment) -> DeliveryPrediction {
         // 预测配送时间
         self.intelligence.predict_delivery(shipment)
@@ -507,9 +507,9 @@ impl IntelligentLogisticsPlatform {
 }
 ```
 
-### 4.2.5.4.6.2 供应链管理系统
+### 4.4.4.6.2 供应链管理系统
 
-**应用 4.2.5.4.6.2.1 (SCM系统)**
+**应用 4.4.4.6.2.1 (SCM系统)**
 供应链管理系统模型 $SCMS = (P, I, C, A)$ 其中：
 
 - $P$ 是计划管理
@@ -517,7 +517,7 @@ impl IntelligentLogisticsPlatform {
 - $C$ 是协作管理
 - $A$ 是分析报告
 
-**示例 4.2.5.4.6.2.1 (供应链管理系统)**:
+**示例 4.4.4.6.2.1 (供应链管理系统)**:
 
 ```haskell
 data SCMSystem = SCMSystem
@@ -528,17 +528,17 @@ data SCMSystem = SCMSystem
     }
 
 generateSCMReports :: SCMSystem -> [SCMReport]
-generateSCMReports scm = 
+generateSCMReports scm =
     analyticsReporting scm >>= generateReport
 
 analyzeSCMMetrics :: SCMSystem -> SCMMetrics
-analyzeSCMMetrics scm = 
+analyzeSCMMetrics scm =
     analyzeMetrics (planningManagement scm)
 ```
 
-### 4.2.5.4.6.3 智能化物流系统
+### 4.4.4.6.3 智能化物流系统
 
-**应用 4.2.5.4.6.3.1 (AI驱动物流)**
+**应用 4.4.4.6.3.1 (AI驱动物流)**
 AI驱动物流模型 $AIL = (M, P, A, L)$ 其中：
 
 - $M$ 是机器学习
@@ -546,7 +546,7 @@ AI驱动物流模型 $AIL = (M, P, A, L)$ 其中：
 - $A$ 是自动化物流
 - $L$ 是学习算法
 
-**示例 4.2.5.4.6.3.1 (智能物流系统)**:
+**示例 4.4.4.6.3.1 (智能物流系统)**:
 
 ```rust
 #[derive(Debug)]
@@ -562,12 +562,12 @@ impl AILogisticsSystem {
         // 基于AI预测需求模式
         self.machine_learning.predict_demand_patterns(historical_data)
     }
-    
+
     pub fn optimize_route_planning(&self, delivery_requests: &[DeliveryRequest]) -> Vec<OptimizedRoute> {
         // 基于AI优化路线规划
         self.predictive_analytics.optimize_routes(delivery_requests)
     }
-    
+
     pub fn automate_warehouse_operations(&self, warehouse_data: &WarehouseData) -> WarehouseAutomation {
         // 自动化仓库运营
         self.automation.automate_warehouse(warehouse_data)
@@ -575,7 +575,7 @@ impl AILogisticsSystem {
 }
 ```
 
-## 4.2.5.4.7 总结
+## 4.4.4.7 总结
 
 物流供应链管理模型提供了系统化的方法来优化物流网络和供应链流程。通过形式化建模和数据分析，可以实现：
 
@@ -585,3 +585,20 @@ impl AILogisticsSystem {
 4. **供应链协调**：通过信息共享和协同规划
 
 该模型为现代物流供应链管理提供了理论基础和实践指导，支持智能化物流和数字化供应链管理。
+
+## 4.4.4.8 引用关系
+
+- 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
+- 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
+- 资源管理：参见 [2.2 资源管理模型](../../02-project-management/resource-models.md)
+- IoT管理：参见 [4.5.3 物联网管理模型](../iot-management/iot-management.md)
+- Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Chopra, S., & Meindl, P. (2019). Supply Chain Management: Strategy, Planning, and Operation (7th ed.). Pearson.
+2. Simchi-Levi, D., Kaminsky, P., & Simchi-Levi, E. (2020). Designing and Managing the Supply Chain: Concepts, Strategies and Case Studies (4th ed.). McGraw-Hill/Irwin.
+3. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+4. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+5. ISO 28000:2007. Specification for security management systems for the supply chain.

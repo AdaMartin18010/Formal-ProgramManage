@@ -671,13 +671,13 @@ impl LifecycleOptimizer {
 - **最佳实践**: 行业最佳实践
 - **专业发展**: 专业发展路径
 
-## 2.1.7 相关链接
+## 2.1.7 引用关系
 
-- [2.2 资源管理模型](./resource-models.md)
-- [2.3 风险管理模型](./risk-models.md)
-- [2.4 质量管理模型](./quality-models.md)
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
+- 资源管理：参见 [2.2 资源管理模型](./resource-models.md)
+- 风险管理：参见 [2.3 风险管理模型](./risk-models.md)
+- 质量管理：参见 [2.4 质量管理模型](./quality-models.md)
+- 基础理论：参见 [1.1 形式化基础理论](../01-foundations/README.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
 ## 参考文献
 

@@ -1,17 +1,18 @@
-# 4.2.2.4 电气工程模型
+# 4.2.4 电气工程模型
 
-## 4.2.2.4.1 概述
+## 4.2.4.1 概述
 
 电气工程是涉及电路设计、电力系统和自动化控制的项目管理领域。本节提供电气工程的形式化数学模型。
 
-## 4.2.2.4.2 形式化定义
+## 4.2.4.2 形式化定义
 
-### 4.2.2.4.2.1 电气工程基础
+### 4.2.4.2.1 电气工程基础
 
-**定义 4.2.2.4.1** (电气项目) 电气项目是一个七元组：
+**定义 4.2.4.1** (电气项目) 电气项目是一个七元组：
 $$\mathcal{EE} = (C, P, S, Q, T, R, \mathcal{F})$$
 
 其中：
+
 - $C = \{c_1, c_2, \ldots, c_n\}$ 是电路(Circuit)集合
 - $P = \{p_1, p_2, \ldots, p_m\}$ 是电源(Power)集合
 - $S = \{s_1, s_2, \ldots, s_k\}$ 是系统(System)集合
@@ -20,12 +21,13 @@ $$\mathcal{EE} = (C, P, S, Q, T, R, \mathcal{F})$$
 - $R = \{r_1, r_2, \ldots, r_q\}$ 是规范(Requirement)集合
 - $\mathcal{F}$ 是电气工程函数
 
-### 4.2.2.4.2.2 电气阶段
+### 4.2.4.2.2 电气阶段
 
-**定义 4.2.2.4.2** (电气阶段) 电气项目包含六个主要阶段：
+**定义 4.2.4.2** (电气阶段) 电气项目包含六个主要阶段：
 $$P = (design, simulation, prototyping, manufacturing, integration, testing)$$
 
 其中：
+
 - $design$: 电路设计和分析
 - $simulation$: 电路仿真和验证
 - $prototyping$: 原型制作和测试
@@ -33,12 +35,13 @@ $$P = (design, simulation, prototyping, manufacturing, integration, testing)$$
 - $integration$: 系统集成
 - $testing$: 性能测试和验证
 
-### 4.2.2.4.2.3 状态转移模型
+### 4.2.4.2.3 状态转移模型
 
-**定义 4.2.2.4.3** (电气状态) 电气状态是一个七元组：
+**定义 4.2.4.3** (电气状态) 电气状态是一个七元组：
 $$s = (current\_stage, progress, quality, reliability, efficiency, cost, safety)$$
 
 其中：
+
 - $current\_stage \in P$ 是当前阶段
 - $progress \in [0,1]$ 是项目进度
 - $quality \in [0,1]$ 是产品质量
@@ -47,14 +50,15 @@ $$s = (current\_stage, progress, quality, reliability, efficiency, cost, safety)
 - $cost \in \mathbb{R}^+$ 是项目成本
 - $safety \in [0,1]$ 是安全指标
 
-## 4.2.2.4.3 数学模型
+## 4.2.4.3 数学模型
 
-### 4.2.2.4.3.1 电气转移函数
+### 4.2.4.3.1 电气转移函数
 
-**定义 4.2.2.4.4** (电气转移) 电气转移函数定义为：
+**定义 4.2.4.4** (电气转移) 电气转移函数定义为：
 $$T_{EE}: S \times A \times S \rightarrow [0,1]$$
 
 其中动作空间 $A$ 包含：
+
 - $a_1$: 开始设计
 - $a_2$: 完成仿真
 - $a_3$: 开始制造
@@ -62,45 +66,45 @@ $$T_{EE}: S \times A \times S \rightarrow [0,1]$$
 - $a_5$: 系统集成
 - $a_6$: 性能测试
 
-### 4.2.2.4.3.2 可靠性模型
+### 4.2.4.3.2 可靠性模型
 
-**定理 4.2.2.4.1** (可靠性累积) 电气项目可靠性计算为：
+**定理 4.2.4.1** (可靠性累积) 电气项目可靠性计算为：
 $$reliability = \prod_{i=1}^{n} reliability_i^{\alpha_i}$$
 
 其中 $reliability_i$ 是组件 $i$ 的可靠性，$\alpha_i \in [0,1]$ 是权重系数。
 
-### 4.2.2.4.3.3 效率模型
+### 4.2.4.3.3 效率模型
 
-**定义 4.2.2.4.5** (效率函数) 电气效率函数定义为：
+**定义 4.2.4.5** (效率函数) 电气效率函数定义为：
 $$E(s) = \frac{output\_power}{input\_power} \cdot quality\_factor$$
 
 其中 $output\_power$ 是输出功率，$input\_power$ 是输入功率，$quality\_factor$ 是质量因子。
 
-### 4.2.2.4.3.4 安全模型
+### 4.2.4.3.4 安全模型
 
-**定义 4.2.2.4.6** (安全函数) 电气安全函数定义为：
+**定义 4.2.4.6** (安全函数) 电气安全函数定义为：
 $$S(s) = \prod_{i=1}^{n} safety_i^{\beta_i} \cdot protection\_factor$$
 
 其中 $safety_i$ 是组件 $i$ 的安全指标，$\beta_i \in [0,1]$ 是权重系数，$protection\_factor$ 是保护因子。
 
-## 4.2.2.4.4 验证规范
+## 4.2.4.4 验证规范
 
-### 4.2.2.4.4.1 设计完整性验证
+### 4.2.4.4.1 设计完整性验证
 
-**公理 4.2.2.4.1** (设计完整性) 对于任意电气项目 $\mathcal{EE}$：
+**公理 4.2.4.1** (设计完整性) 对于任意电气项目 $\mathcal{EE}$：
 $$\forall c \in C: \text{电路设计必须满足所有电气规范}$$
 
-### 4.2.2.4.4.2 安全标准验证
+### 4.2.4.4.2 安全标准验证
 
-**公理 4.2.2.4.2** (安全标准) 对于任意状态 $s$：
+**公理 4.2.4.2** (安全标准) 对于任意状态 $s$：
 $$safety(s) \geq safety\_threshold \Rightarrow \text{安全达标}$$
 
-### 4.2.2.4.4.3 可靠性验证
+### 4.2.4.4.3 可靠性验证
 
-**公理 4.2.2.4.3** (可靠性验证) 对于任意状态 $s$：
+**公理 4.2.4.3** (可靠性验证) 对于任意状态 $s$：
 $$reliability(s) \geq reliability\_threshold \Rightarrow \text{可靠性达标}$$
 
-## 4.2.2.4.5 Rust实现
+## 4.2.4.5 Rust实现
 
 ```rust
 use std::collections::HashMap;
@@ -382,7 +386,7 @@ impl ElectricalEngineeringManager {
         let completed_components = self.components.values()
             .filter(|c| matches!(c.status, ComponentStatus::Tested))
             .count();
-        
+
         if total_components > 0 {
             self.current_state.progress = completed_components as f64 / total_components as f64;
         }
@@ -568,7 +572,7 @@ mod tests {
     #[test]
     fn test_add_component() {
         let mut manager = ElectricalEngineeringManager::new("测试电气项目".to_string(), 200000.0);
-        
+
         let component = CircuitComponent {
             id: "COMP_001".to_string(),
             name: "功率电阻".to_string(),
@@ -592,7 +596,7 @@ mod tests {
     #[test]
     fn test_add_power_system() {
         let mut manager = ElectricalEngineeringManager::new("测试电气项目".to_string(), 200000.0);
-        
+
         let power_system = PowerSystem {
             id: "PWR_001".to_string(),
             name: "主电源".to_string(),
@@ -611,7 +615,7 @@ mod tests {
     #[test]
     fn test_start_design() {
         let mut manager = ElectricalEngineeringManager::new("测试电气项目".to_string(), 200000.0);
-        
+
         let component = CircuitComponent {
             id: "COMP_001".to_string(),
             name: "功率电阻".to_string(),
@@ -643,11 +647,11 @@ mod tests {
 }
 ```
 
-## 4.2.2.4.6 形式化证明
+## 4.2.4.6 形式化证明
 
-### 4.2.2.4.6.1 可靠性累积性证明
+### 4.2.4.6.1 可靠性累积性证明
 
-**定理 4.2.2.4.2** (可靠性累积性) 电气项目的总体可靠性是各组件可靠性的乘积。
+**定理 4.2.4.2** (可靠性累积性) 电气项目的总体可靠性是各组件可靠性的乘积。
 
 **证明**：
 由定义 4.2.2.4.1，可靠性计算为：
@@ -655,9 +659,9 @@ $$reliability = \prod_{i=1}^{n} reliability_i^{\alpha_i}$$
 
 由于每个组件的可靠性 $reliability_i \in [0,1]$，因此 $0 \leq reliability \leq 1$。
 
-### 4.2.2.4.6.2 效率演进性证明
+### 4.2.4.6.2 效率演进性证明
 
-**定理 4.2.2.4.3** (效率演进性) 在电气工程中，效率随质量提高而增加。
+**定理 4.2.4.3** (效率演进性) 在电气工程中，效率随质量提高而增加。
 
 **证明**：
 由定义 4.2.2.4.5，效率函数为：
@@ -665,9 +669,9 @@ $$E(s) = \frac{output\_power}{input\_power} \cdot quality\_factor$$
 
 由于 $quality\_factor$ 随质量提高而增加，因此 $E(s)$ 递增。
 
-### 4.2.2.4.6.3 安全累积性证明
+### 4.2.4.6.3 安全累积性证明
 
-**定理 4.2.2.4.4** (安全累积性) 电气项目的总体安全指标是各组件安全指标的乘积。
+**定理 4.2.4.4** (安全累积性) 电气项目的总体安全指标是各组件安全指标的乘积。
 
 **证明**：
 由定义 4.2.2.4.6，安全函数为：
@@ -675,16 +679,24 @@ $$S(s) = \prod_{i=1}^{n} safety_i^{\beta_i} \cdot protection\_factor$$
 
 由于每个组件的安全指标 $safety_i \in [0,1]$，因此 $0 \leq S(s) \leq 1$。
 
-## 4.2.2.4.7 引用关系
+## 4.2.4.7 引用关系
 
 - 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
 - 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
 - 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 系统工程：参见 [4.2.2.1 系统工程模型](./systems-engineering.md)
-- 建筑工程：参见 [4.2.2.2 建筑工程模型](./construction-engineering.md)
-- 机械工程：参见 [4.2.2.3 机械工程模型](./mechanical-engineering.md)
+- 系统工程：参见 [4.2.1 系统工程模型](./systems-engineering.md)
+- 建筑工程：参见 [4.2.2 建筑工程模型](./construction-engineering.md)
+- 机械工程：参见 [4.2.3 机械工程模型](./mechanical-engineering.md)
 - Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+3. IEEE Std 141-1993. IEEE recommended practice for electric power distribution for industrial plants.
+4. IEEE Std 242-2001. IEEE recommended practice for protection and coordination of industrial and commercial power systems.
+5. ISO/IEC 15288:2015. Systems and software engineering - System life cycle processes.
 
 ---
 
-**持续构建中...** 返回 [行业应用模型](../README.md) | [项目主页](../../../README.md) 
+**持续构建中...** 返回 [行业应用模型](../README.md) | [项目主页](../../../README.md)

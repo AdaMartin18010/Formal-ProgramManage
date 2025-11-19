@@ -12,6 +12,7 @@
 $$\mathcal{Q} = (F, E, M, P, S, U)$$
 
 其中：
+
 - $F$ 是功能性质量属性，满足 $F: \mathcal{F} \rightarrow [0,1]$
 - $E$ 是效率性质量属性，满足 $E: \mathcal{E} \rightarrow [0,1]$
 - $M$ 是维护性质量属性，满足 $M: \mathcal{M} \rightarrow [0,1]$
@@ -31,6 +32,7 @@ $$\text{Quality}(q) = \alpha \cdot F + \beta \cdot E + \gamma \cdot M + \delta \
 $$C = (Q, L, U)$$
 
 其中：
+
 - $Q$ 是质量属性
 - $L$ 是下界约束，满足 $L \in [0,1]$
 - $U$ 是上界约束，满足 $U \in [0,1]$ 且 $U \geq L$
@@ -48,6 +50,7 @@ $$\text{QualityGoal}: \mathcal{P} \times \mathcal{T} \rightarrow [0,1]$$
 $$B = (M, T, V, C)$$
 
 其中：
+
 - $M$ 是度量指标集合
 - $T$ 是目标值集合
 - $V$ 是验证方法集合
@@ -203,10 +206,10 @@ impl QualityPlanner {
             historical_data: Vec::new(),
         }
     }
-    
+
     fn initialize_standards() -> HashMap<String, QualityStandard> {
         let mut standards = HashMap::new();
-        
+
         // ISO/IEC 25010 标准
         standards.insert("ISO25010".to_string(), QualityStandard {
             name: "ISO/IEC 25010".to_string(),
@@ -256,13 +259,13 @@ impl QualityPlanner {
                 },
             ],
         });
-        
+
         standards
     }
-    
+
     fn initialize_templates() -> HashMap<String, QualityTemplate> {
         let mut templates = HashMap::new();
-        
+
         // 软件开发质量模板
         templates.insert("software_development".to_string(), QualityTemplate {
             name: "软件开发质量模板".to_string(),
@@ -352,19 +355,19 @@ impl QualityPlanner {
                 },
             ],
         });
-        
+
         templates
     }
-    
+
     pub fn create_quality_plan(&self, project_type: &str, project_id: &str) -> QualityPlan {
         let template = self.quality_templates.get(project_type)
             .expect("Quality template not found");
-        
+
         let mut quality_goals = HashMap::new();
         for attr in &template.quality_attributes {
             quality_goals.insert(attr.name.clone(), attr.target);
         }
-        
+
         QualityPlan {
             project_id: project_id.to_string(),
             quality_attributes: template.quality_attributes.clone(),
@@ -374,36 +377,36 @@ impl QualityPlanner {
             quality_improvements: Vec::new(),
         }
     }
-    
+
     pub fn add_quality_improvement(&mut self, plan: &mut QualityPlan, improvement: QualityImprovement) {
         plan.quality_improvements.push(improvement);
     }
-    
+
     pub fn calculate_quality_score(&self, plan: &QualityPlan) -> f64 {
         let mut total_score = 0.0;
         let mut total_weight = 0.0;
-        
+
         for attr in &plan.quality_attributes {
             total_score += attr.value * attr.weight;
             total_weight += attr.weight;
         }
-        
+
         if total_weight > 0.0 {
             total_score / total_weight
         } else {
             0.0
         }
     }
-    
+
     pub fn check_quality_compliance(&self, plan: &QualityPlan) -> Vec<QualityIssue> {
         let mut issues = Vec::new();
-        
+
         for attr in &plan.quality_attributes {
             let deviation = (attr.value - attr.target).abs();
             if deviation > attr.tolerance {
                 issues.push(QualityIssue {
                     id: format!("issue_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
-                    description: format!("质量属性 '{}' 不符合要求: 当前值 {:.2}, 目标值 {:.2}", 
+                    description: format!("质量属性 '{}' 不符合要求: 当前值 {:.2}, 目标值 {:.2}",
                                        attr.name, attr.value, attr.target),
                     severity: if deviation > attr.tolerance * 2.0 { Severity::High } else { Severity::Medium },
                     category: attr.name.clone(),
@@ -411,7 +414,7 @@ impl QualityPlanner {
                 });
             }
         }
-        
+
         issues
     }
 }
@@ -509,15 +512,15 @@ impl QualityAssurance {
             quality_metrics: HashMap::new(),
         }
     }
-    
+
     pub fn add_activity(&mut self, activity: QualityActivity) {
         self.quality_activities.push(activity);
     }
-    
+
     pub fn execute_activity(&mut self, activity_id: &str) -> Result<Vec<ActivityResult>, String> {
         if let Some(activity) = self.quality_activities.iter_mut().find(|a| a.id == activity_id) {
             activity.status = ActivityStatus::InProgress;
-            
+
             let results = match activity.activity_type {
                 ActivityType::Planning => self.execute_planning_activity(activity),
                 ActivityType::Review => self.execute_review_activity(activity),
@@ -525,19 +528,19 @@ impl QualityAssurance {
                 ActivityType::Monitoring => self.execute_monitoring_activity(activity),
                 ActivityType::Reporting => self.execute_reporting_activity(activity),
             };
-            
+
             activity.results = results.clone();
             activity.status = ActivityStatus::Completed;
-            
+
             Ok(results)
         } else {
             Err("Activity not found".to_string())
         }
     }
-    
+
     fn execute_planning_activity(&self, activity: &QualityActivity) -> Vec<ActivityResult> {
         let mut results = Vec::new();
-        
+
         // 质量规划活动
         for metric in &self.quality_plan.quality_metrics {
             let result = ActivityResult {
@@ -549,20 +552,20 @@ impl QualityAssurance {
             };
             results.push(result);
         }
-        
+
         results
     }
-    
+
     fn execute_review_activity(&self, activity: &QualityActivity) -> Vec<ActivityResult> {
         let mut results = Vec::new();
-        
+
         // 代码审查活动
         let code_review_metrics = vec![
             ("CODE_QUALITY", 0.85, 0.80),
             ("DOCUMENTATION", 0.90, 0.85),
             ("STANDARDS_COMPLIANCE", 0.95, 0.90),
         ];
-        
+
         for (metric_name, measured_value, target_value) in code_review_metrics {
             let status = if measured_value >= target_value {
                 ResultStatus::Pass
@@ -571,7 +574,7 @@ impl QualityAssurance {
             } else {
                 ResultStatus::Fail
             };
-            
+
             let result = ActivityResult {
                 metric_id: metric_name.to_string(),
                 measured_value,
@@ -581,13 +584,13 @@ impl QualityAssurance {
             };
             results.push(result);
         }
-        
+
         results
     }
-    
+
     fn execute_testing_activity(&self, activity: &QualityActivity) -> Vec<ActivityResult> {
         let mut results = Vec::new();
-        
+
         // 测试活动
         let testing_metrics = vec![
             ("CODE_COVERAGE", 92.5, 90.0),
@@ -595,7 +598,7 @@ impl QualityAssurance {
             ("PERFORMANCE_TEST_PASS_RATE", 96.0, 90.0),
             ("SECURITY_TEST_PASS_RATE", 100.0, 95.0),
         ];
-        
+
         for (metric_name, measured_value, target_value) in testing_metrics {
             let status = if measured_value >= target_value {
                 ResultStatus::Pass
@@ -604,7 +607,7 @@ impl QualityAssurance {
             } else {
                 ResultStatus::Fail
             };
-            
+
             let result = ActivityResult {
                 metric_id: metric_name.to_string(),
                 measured_value,
@@ -614,20 +617,20 @@ impl QualityAssurance {
             };
             results.push(result);
         }
-        
+
         results
     }
-    
+
     fn execute_monitoring_activity(&self, activity: &QualityActivity) -> Vec<ActivityResult> {
         let mut results = Vec::new();
-        
+
         // 质量监控活动
         let monitoring_metrics = vec![
             ("DEFECT_DENSITY", 0.8, 1.0),
             ("MEAN_TIME_TO_RESOLVE", 2.5, 3.0),
             ("CUSTOMER_SATISFACTION", 4.2, 4.0),
         ];
-        
+
         for (metric_name, measured_value, target_value) in monitoring_metrics {
             let status = if measured_value >= target_value {
                 ResultStatus::Pass
@@ -636,7 +639,7 @@ impl QualityAssurance {
             } else {
                 ResultStatus::Fail
             };
-            
+
             let result = ActivityResult {
                 metric_id: metric_name.to_string(),
                 measured_value,
@@ -646,17 +649,17 @@ impl QualityAssurance {
             };
             results.push(result);
         }
-        
+
         results
     }
-    
+
     fn execute_reporting_activity(&self, activity: &QualityActivity) -> Vec<ActivityResult> {
         let mut results = Vec::new();
-        
+
         // 质量报告活动
         let overall_quality_score = self.calculate_overall_quality_score();
         let target_score = 0.85;
-        
+
         let result = ActivityResult {
             metric_id: "OVERALL_QUALITY_SCORE".to_string(),
             measured_value: overall_quality_score,
@@ -669,50 +672,50 @@ impl QualityAssurance {
             comments: "质量报告生成完成".to_string(),
         };
         results.push(result);
-        
+
         results
     }
-    
+
     fn calculate_overall_quality_score(&self) -> f64 {
         // 计算整体质量分数
         let mut total_score = 0.0;
         let mut total_weight = 0.0;
-        
+
         for attr in &self.quality_plan.quality_attributes {
             let current_value = self.quality_metrics.get(&attr.name).unwrap_or(&0.0);
             total_score += current_value * attr.weight;
             total_weight += attr.weight;
         }
-        
+
         if total_weight > 0.0 {
             total_score / total_weight
         } else {
             0.0
         }
     }
-    
+
     pub fn generate_quality_report(&mut self) -> QualityReport {
         let quality_score = self.calculate_overall_quality_score();
         let mut issues = Vec::new();
         let mut recommendations = Vec::new();
-        
+
         // 分析质量问题
         for attr in &self.quality_plan.quality_attributes {
             let current_value = self.quality_metrics.get(&attr.name).unwrap_or(&0.0);
             if current_value < &attr.target {
                 issues.push(QualityIssue {
                     id: format!("issue_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
-                    description: format!("质量属性 '{}' 未达标: {:.2} < {:.2}", 
+                    description: format!("质量属性 '{}' 未达标: {:.2} < {:.2}",
                                        attr.name, current_value, attr.target),
                     severity: if current_value < &(attr.target * 0.8) { Severity::High } else { Severity::Medium },
                     category: attr.name.clone(),
                     status: IssueStatus::Open,
                 });
-                
+
                 recommendations.push(format!("改进质量属性 '{}' 到目标值 {:.2}", attr.name, attr.target));
             }
         }
-        
+
         let report = QualityReport {
             id: format!("report_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
             report_date: std::time::SystemTime::now()
@@ -724,7 +727,7 @@ impl QualityAssurance {
             issues,
             recommendations,
         };
-        
+
         self.quality_reports.push(report.clone());
         report
     }
@@ -744,6 +747,7 @@ $$\text{QualityControl}: \mathcal{P} \times \mathcal{M} \rightarrow \mathcal{A}$
 $$CC = (D, LCL, UCL)$$
 
 其中：
+
 - $D$ 是数据点集合
 - $LCL$ 是下控制限
 - $UCL$ 是上控制限
@@ -823,7 +827,7 @@ impl QualityController {
             control_actions: Vec::new(),
         }
     }
-    
+
     fn initialize_control_rules() -> Vec<ControlRule> {
         vec![
             ControlRule {
@@ -849,40 +853,40 @@ impl QualityController {
             },
         ]
     }
-    
+
     pub fn add_control_chart(&mut self, metric_id: String, chart: ControlChart) {
         self.control_charts.insert(metric_id, chart);
     }
-    
+
     pub fn add_data_point(&mut self, metric_id: &str, data_point: DataPoint) -> Vec<ControlAction> {
         if let Some(chart) = self.control_charts.get_mut(metric_id) {
             chart.data_points.push_back(data_point.clone());
-            
+
             // 保持控制图大小
             if chart.data_points.len() > 100 {
                 chart.data_points.pop_front();
             }
-            
+
             // 检查控制规则
             self.check_control_rules(chart, &data_point)
         } else {
             Vec::new()
         }
     }
-    
+
     fn check_control_rules(&mut self, chart: &ControlChart, data_point: &DataPoint) -> Vec<ControlAction> {
         let mut actions = Vec::new();
-        
+
         for rule in &self.control_rules {
             if self.evaluate_rule(rule, chart, data_point) {
                 let action = self.create_control_action(rule, data_point);
                 actions.push(action);
             }
         }
-        
+
         actions
     }
-    
+
     fn evaluate_rule(&self, rule: &ControlRule, chart: &ControlChart, data_point: &DataPoint) -> bool {
         match rule.condition {
             RuleCondition::PointAboveUCL => {
@@ -905,18 +909,18 @@ impl QualityController {
             }
         }
     }
-    
+
     fn check_trend(&self, chart: &ControlChart, upward: bool) -> bool {
         if chart.data_points.len() < 7 {
             return false;
         }
-        
+
         let recent_points: Vec<f64> = chart.data_points.iter()
             .rev()
             .take(7)
             .map(|p| p.value)
             .collect();
-        
+
         let mut trend_count = 0;
         for i in 1..recent_points.len() {
             if upward && recent_points[i] > recent_points[i-1] {
@@ -925,21 +929,21 @@ impl QualityController {
                 trend_count += 1;
             }
         }
-        
+
         trend_count >= 6 // 至少6个点呈趋势
     }
-    
+
     fn check_run(&self, chart: &ControlChart, above_center: bool) -> bool {
         if chart.data_points.len() < 8 {
             return false;
         }
-        
+
         let recent_points: Vec<f64> = chart.data_points.iter()
             .rev()
             .take(8)
             .map(|p| p.value)
             .collect();
-        
+
         let mut run_count = 0;
         for &value in &recent_points {
             if above_center && value > chart.center_line {
@@ -950,15 +954,15 @@ impl QualityController {
                 break;
             }
         }
-        
+
         run_count >= 8
     }
-    
+
     fn create_control_action(&self, rule: &ControlRule, data_point: &DataPoint) -> ControlAction {
         let mut parameters = HashMap::new();
         parameters.insert("value".to_string(), data_point.value);
         parameters.insert("timestamp".to_string(), data_point.timestamp);
-        
+
         ControlAction {
             id: format!("action_{}", uuid::Uuid::new_v4().to_string().split('-').next().unwrap()),
             name: rule.name.clone(),
@@ -967,24 +971,24 @@ impl QualityController {
             parameters,
         }
     }
-    
+
     pub fn calculate_control_limits(&mut self, metric_id: &str) -> Result<(f64, f64, f64), String> {
         if let Some(chart) = self.control_charts.get(metric_id) {
             if chart.data_points.len() < 20 {
                 return Err("Insufficient data for control limit calculation".to_string());
             }
-            
+
             let values: Vec<f64> = chart.data_points.iter().map(|p| p.value).collect();
             let mean = values.iter().sum::<f64>() / values.len() as f64;
-            
+
             let variance = values.iter()
                 .map(|x| (x - mean).powi(2))
                 .sum::<f64>() / values.len() as f64;
             let std_dev = variance.sqrt();
-            
+
             let ucl = mean + 3.0 * std_dev;
             let lcl = mean - 3.0 * std_dev;
-            
+
             Ok((mean, lcl, ucl))
         } else {
             Err("Control chart not found".to_string())
@@ -1081,40 +1085,40 @@ impl QualityImprovement {
             improvement_history: Vec::new(),
         }
     }
-    
+
     pub fn add_improvement_project(&mut self, project: ImprovementProject) {
         self.improvement_projects.push(project);
     }
-    
+
     pub fn execute_improvement_project(&mut self, project_id: &str) -> Result<ImprovementRecord, String> {
         if let Some(project) = self.improvement_projects.iter_mut().find(|p| p.id == project_id) {
             project.status = ProjectStatus::InProgress;
-            
+
             let before_value = project.current_value;
             let mut total_cost = 0.0;
             let mut total_improvement = 0.0;
-            
+
             // 执行改进措施
             for action in &mut project.improvement_actions {
                 action.status = ActionStatus::InProgress;
-                
+
                 let improvement = self.execute_improvement_action(action);
                 total_improvement += improvement;
                 total_cost += action.cost;
-                
+
                 action.status = ActionStatus::Completed;
             }
-            
+
             let after_value = before_value + total_improvement;
             let roi = if total_cost > 0.0 {
                 total_improvement / total_cost
             } else {
                 0.0
             };
-            
+
             project.status = ProjectStatus::Completed;
             project.current_value = after_value;
-            
+
             let record = ImprovementRecord {
                 project_id: project_id.to_string(),
                 metric_id: project.target_metric.clone(),
@@ -1128,16 +1132,16 @@ impl QualityImprovement {
                     .unwrap()
                     .as_secs() as f64,
             };
-            
+
             self.improvement_history.push(record.clone());
             self.improvement_metrics.insert(project.target_metric.clone(), after_value);
-            
+
             Ok(record)
         } else {
             Err("Improvement project not found".to_string())
         }
     }
-    
+
     fn execute_improvement_action(&self, action: &ImprovementAction) -> f64 {
         // 模拟改进措施的执行效果
         match action.action_type {
@@ -1155,32 +1159,32 @@ impl QualityImprovement {
             }
         }
     }
-    
+
     pub fn calculate_improvement_roi(&self) -> f64 {
         let total_improvement: f64 = self.improvement_history.iter()
             .map(|r| r.improvement)
             .sum();
-        
+
         let total_cost: f64 = self.improvement_history.iter()
             .map(|r| r.cost)
             .sum();
-        
+
         if total_cost > 0.0 {
             total_improvement / total_cost
         } else {
             0.0
         }
     }
-    
+
     pub fn get_improvement_trend(&self, metric_id: &str) -> Vec<(f64, f64)> {
         let mut trend = Vec::new();
-        
+
         for record in &self.improvement_history {
             if record.metric_id == metric_id {
                 trend.push((record.completion_date, record.after_value));
             }
         }
-        
+
         trend.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap());
         trend
     }
@@ -1208,13 +1212,13 @@ impl QualityImprovement {
 - **成熟度等级**: 5个成熟度等级
 - **最佳实践**: 软件工程最佳实践
 
-## 2.4.7 相关链接
+## 2.4.7 引用关系
 
-- [2.1 项目生命周期模型](./lifecycle-models.md)
-- [2.2 资源管理模型](./resource-models.md)
-- [2.3 风险管理模型](./risk-models.md)
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
+- 生命周期模型：参见 [2.1 项目生命周期模型](./lifecycle-models.md)
+- 资源管理：参见 [2.2 资源管理模型](./resource-models.md)
+- 风险管理：参见 [2.3 风险管理模型](./risk-models.md)
+- 基础理论：参见 [1.1 形式化基础理论](../01-foundations/README.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
 ## 参考文献
 

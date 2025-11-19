@@ -2,7 +2,8 @@
 
 ## 概述
 
-数学模型基础为Formal-ProgramManage提供严格的数学工具和理论支撑。本理论体系对标MIT 18.06 (线性代数)、Stanford CS229 (机器学习)、CMU 15-251 (计算理论)、Berkeley CS70 (离散数学)等国际顶尖课程标准。
+数学模型基础为Formal-ProgramManage提供严格的数学工具和理论支撑。
+本理论体系对标MIT 18.06 (线性代数)、Stanford CS229 (机器学习)、CMU 15-251 (计算理论)、Berkeley CS70 (离散数学)等国际顶尖课程标准。
 
 ## 1.2.1 集合论基础
 
@@ -81,15 +82,15 @@ impl PartialOrd for State {
 fn dijkstra(graph: &Vec<Vec<(usize, i32)>>, start: usize) -> Vec<i32> {
     let mut dist = vec![i32::MAX; graph.len()];
     let mut heap = BinaryHeap::new();
-    
+
     dist[start] = 0;
     heap.push(State { cost: 0, position: start });
-    
+
     while let Some(State { cost, position }) = heap.pop() {
         if cost > dist[position] {
             continue;
         }
-        
+
         for &(next, weight) in &graph[position] {
             let next_cost = cost + weight;
             if next_cost < dist[next] {
@@ -98,7 +99,7 @@ fn dijkstra(graph: &Vec<Vec<(usize, i32)>>, start: usize) -> Vec<i32> {
             }
         }
     }
-    
+
     dist
 }
 ```
@@ -108,7 +109,7 @@ fn dijkstra(graph: &Vec<Vec<(usize, i32)>>, start: usize) -> Vec<i32> {
 ```rust
 fn floyd_warshall(graph: &mut Vec<Vec<i32>>) {
     let n = graph.len();
-    
+
     for k in 0..n {
         for i in 0..n {
             for j in 0..n {
@@ -201,7 +202,7 @@ use rand::thread_rng;
 fn generate_normal_samples(mean: f64, std_dev: f64, n: usize) -> Vec<f64> {
     let mut rng = thread_rng();
     let normal = Normal::new(mean, std_dev).unwrap();
-    
+
     (0..n).map(|_| normal.sample(&mut rng)).collect()
 }
 ```
@@ -342,16 +343,16 @@ $$a^{\phi(n)} \equiv 1 \pmod{n}$$
 - **Zentralblatt MATH**: 数学文献数据库标准
 - **MathSciNet**: 数学评论数据库标准
 
-## 1.2.9 相关链接
+## 1.2.9 引用关系
 
-- [1.1 形式化基础理论](./README.md)
-- [1.3 语义模型理论](./semantic-models.md)
-- [1.4 量子项目管理理论](./quantum-project-theory.md)
-- [1.5 生物启发式项目管理理论](./bio-inspired-project-theory.md)
-- [1.6 全息项目管理理论](./holographic-project-theory.md)
-- [1.7 星际项目管理理论](./interstellar-project-theory.md)
-- [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
-- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
+- 基础理论：参见 [1.1 形式化基础理论](./README.md)
+- 语义模型：参见 [1.3 语义模型理论](./semantic-models.md)
+- 量子理论：参见 [1.4 量子项目管理理论](./quantum-project-theory.md)
+- 生物启发理论：参见 [1.5 生物启发式项目管理理论](./bio-inspired-project-theory.md)
+- 全息理论：参见 [1.6 全息项目管理理论](./holographic-project-theory.md)
+- 星际理论：参见 [1.7 星际项目管理理论](./interstellar-project-theory.md)
+- 项目管理：参见 [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
 ## 参考文献
 

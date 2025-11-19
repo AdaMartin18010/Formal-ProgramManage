@@ -589,13 +589,13 @@ pub enum AdjustmentType {
 - **资源计划**: 资源计划和分配
 - **资源控制**: 资源使用控制
 
-## 2.2.6 相关链接
+## 2.2.6 引用关系
 
-- [2.1 项目生命周期模型](./lifecycle-models.md)
-- [2.3 风险管理模型](./risk-models.md)
-- [2.4 质量管理模型](./quality-models.md)
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
+- 生命周期模型：参见 [2.1 项目生命周期模型](./lifecycle-models.md)
+- 风险管理：参见 [2.3 风险管理模型](./risk-models.md)
+- 质量管理：参见 [2.4 质量管理模型](./quality-models.md)
+- 基础理论：参见 [1.1 形式化基础理论](../01-foundations/README.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
 ## 参考文献
 

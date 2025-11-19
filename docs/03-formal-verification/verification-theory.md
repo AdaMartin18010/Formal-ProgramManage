@@ -106,23 +106,23 @@ impl KripkeStructure {
             }
         }
     }
-    
+
     fn check_globally(&self, phi: &LTLFormula) -> bool {
         // 使用深度优先搜索检查所有可达状态
         let mut visited = HashSet::new();
         let mut stack: Vec<String> = self.initial_states.iter().cloned().collect();
-        
+
         while let Some(state) = stack.pop() {
             if visited.contains(&state) {
                 continue;
             }
             visited.insert(state.clone());
-            
+
             // 检查当前状态是否满足phi
             if !self.state_satisfies(&state, phi) {
                 return false;
             }
-            
+
             // 添加后继状态到栈中
             if let Some(successors) = self.transitions.get(&state) {
                 for successor in successors {
@@ -132,23 +132,23 @@ impl KripkeStructure {
         }
         true
     }
-    
+
     fn check_finally(&self, phi: &LTLFormula) -> bool {
         // 使用深度优先搜索检查是否存在满足phi的状态
         let mut visited = HashSet::new();
         let mut stack: Vec<String> = self.initial_states.iter().cloned().collect();
-        
+
         while let Some(state) = stack.pop() {
             if visited.contains(&state) {
                 continue;
             }
             visited.insert(state.clone());
-            
+
             // 检查当前状态是否满足phi
             if self.state_satisfies(&state, phi) {
                 return true;
             }
-            
+
             // 添加后继状态到栈中
             if let Some(successors) = self.transitions.get(&state) {
                 for successor in successors {
@@ -158,7 +158,7 @@ impl KripkeStructure {
         }
         false
     }
-    
+
     fn state_satisfies(&self, state: &str, phi: &LTLFormula) -> bool {
         match phi {
             LTLFormula::Atom(prop) => {
@@ -240,16 +240,16 @@ impl KripkeStructure {
             _ => HashSet::new()
         }
     }
-    
+
     fn compute_eg(&self, sat_states: HashSet<String>) -> HashSet<String> {
         // 计算EG phi的满足状态集合
         let mut result = sat_states.clone();
         let mut changed = true;
-        
+
         while changed {
             changed = false;
             let mut new_result = HashSet::new();
-            
+
             for state in &result {
                 // 检查state的所有后继是否都在result中
                 if let Some(successors) = self.transitions.get(state) {
@@ -258,13 +258,13 @@ impl KripkeStructure {
                     }
                 }
             }
-            
+
             if new_result.len() != result.len() {
                 result = new_result;
                 changed = true;
             }
         }
-        
+
         result
     }
 }
@@ -329,7 +329,7 @@ impl KripkeStructure {
     pub fn reachability_analysis(&self) -> HashSet<String> {
         let mut reachable = self.initial_states.clone();
         let mut worklist: Vec<String> = self.initial_states.iter().cloned().collect();
-        
+
         while let Some(state) = worklist.pop() {
             if let Some(successors) = self.transitions.get(&state) {
                 for successor in successors {
@@ -339,10 +339,10 @@ impl KripkeStructure {
                 }
             }
         }
-        
+
         reachable
     }
-    
+
     pub fn deadlock_detection(&self) -> Vec<String> {
         let reachable = self.reachability_analysis();
         reachable.into_iter()
@@ -405,12 +405,12 @@ begin
 end
 ```
 
-## 3.1.8 相关链接
+## 3.1.8 引用关系
 
-- [1.1 形式化基础理论](../01-foundations/README.md)
-- [3.2 模型检验方法](./model-checking.md)
-- [3.3 定理证明系统](./theorem-proving.md)
-- [6.1 自动化验证流程](../06-ci-verification/automated-verification.md)
+- 基础理论：参见 [1.1 形式化基础理论](../01-foundations/README.md)
+- 模型检验：参见 [3.2 模型检验方法](./model-checking.md)
+- 定理证明：参见 [3.3 定理证明系统](./theorem-proving.md)
+- 自动化验证：参见 [6.1 自动化验证流程](../06-ci-verification/automated-verification.md)
 
 ## 参考文献
 

@@ -156,31 +156,31 @@ impl Project {
             resources: HashMap::new(),
         }
     }
-    
+
     pub fn add_state(&mut self, state: State) {
         self.states.push(state);
     }
-    
+
     pub fn add_transition(&mut self, from: State, event: String, to: State) {
         let key = (from, event);
         self.transitions.entry(key).or_insert_with(Vec::new).push(to);
     }
-    
+
     pub fn is_reachable(&self, target_state: &State) -> bool {
         let mut visited = HashSet::new();
         let mut queue = Vec::new();
-        
+
         // 从初始状态开始BFS
         for initial_state in &self.initial_states {
             queue.push(initial_state.clone());
             visited.insert(initial_state.clone());
         }
-        
+
         while let Some(current_state) = queue.pop() {
             if current_state == *target_state {
                 return true;
             }
-            
+
             for event in &self.events {
                 if let Some(next_states) = self.transitions.get(&(current_state.clone(), event.clone())) {
                     for next_state in next_states {
@@ -192,15 +192,15 @@ impl Project {
                 }
             }
         }
-        
+
         false
     }
-    
+
     pub fn verify_safety_property(&self, property: &SafetyProperty) -> bool {
         // 实现安全性属性验证
         property.verify(self)
     }
-    
+
     pub fn verify_liveness_property(&self, property: &LivenessProperty) -> bool {
         // 实现活性属性验证
         property.verify(self)
@@ -257,7 +257,7 @@ data Project = Project {
 
 -- 可达性检查
 isReachable :: Project -> State -> Bool
-isReachable project targetState = 
+isReachable project targetState =
     any (\initialState -> bfs project initialState targetState) (initialStates project)
   where
     bfs :: Project -> State -> State -> Bool
@@ -268,7 +268,7 @@ isReachable project targetState =
           | current == target = True
           | otherwise = go newQueue newVisited
           where
-            nextStates = concatMap (\event -> 
+            nextStates = concatMap (\event ->
                 Map.findWithDefault [] (current, event) (transitions proj)) (events proj)
             unvisited = filter (`Set.notMember` visited) nextStates
             newQueue = queue ++ unvisited
@@ -276,12 +276,12 @@ isReachable project targetState =
 
 -- 安全性属性验证
 verifySafetyProperty :: Project -> (State -> Bool) -> Bool
-verifySafetyProperty project property = 
+verifySafetyProperty project property =
     all property (states project)
 
 -- 活性属性验证
 verifyLivenessProperty :: Project -> (State -> Bool) -> Bool
-verifyLivenessProperty project property = 
+verifyLivenessProperty project property =
     -- 实现活性属性验证
     True -- 简化实现
 ```
@@ -311,16 +311,16 @@ verifyLivenessProperty project property =
 - **CMMI-DEV**: 能力成熟度模型集成
 - **ITIL 4**: IT服务管理最佳实践
 
-## 1.1.8 相关链接
+## 1.1.8 引用关系
 
-- [1.2 数学模型基础](./mathematical-models.md)
-- [1.3 语义模型理论](./semantic-models.md)
-- [1.4 量子项目管理理论](./quantum-project-theory.md)
-- [1.5 生物启发式项目管理理论](./bio-inspired-project-theory.md)
-- [1.6 全息项目管理理论](./holographic-project-theory.md)
-- [1.7 星际项目管理理论](./interstellar-project-theory.md)
-- [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
-- [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
+- 数学模型：参见 [1.2 数学模型基础](./mathematical-models.md)
+- 语义模型：参见 [1.3 语义模型理论](./semantic-models.md)
+- 量子理论：参见 [1.4 量子项目管理理论](./quantum-project-theory.md)
+- 生物启发理论：参见 [1.5 生物启发式项目管理理论](./bio-inspired-project-theory.md)
+- 全息理论：参见 [1.6 全息项目管理理论](./holographic-project-theory.md)
+- 星际理论：参见 [1.7 星际项目管理理论](./interstellar-project-theory.md)
+- 项目管理：参见 [2.1 项目生命周期模型](../02-project-management/lifecycle-models.md)
+- 形式化验证：参见 [3.1 形式化验证理论](../03-formal-verification/verification-theory.md)
 
 ## 参考文献
 

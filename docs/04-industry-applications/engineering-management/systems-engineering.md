@@ -1,14 +1,14 @@
-# 4.2.2.1 系统工程模型
+# 4.2.1 系统工程模型
 
-## 4.2.2.1.1 概述
+## 4.2.1.1 概述
 
 系统工程是处理复杂系统设计、开发、集成和管理的跨学科方法。本节提供系统工程的形式化数学模型。
 
-## 4.2.2.1.2 形式化定义
+## 4.2.1.2 形式化定义
 
-### 4.2.2.1.2.1 系统工程基础
+### 4.2.1.2.1 系统工程基础
 
-**定义 4.2.2.1.1** (系统工程项目) 系统工程项目是一个八元组：
+**定义 4.2.1.1** (系统工程项目) 系统工程项目是一个八元组：
 $$\mathcal{SE} = (S, C, I, R, T, P, \mathcal{F}, \mathcal{V})$$
 
 其中：
@@ -22,9 +22,9 @@ $$\mathcal{SE} = (S, C, I, R, T, P, \mathcal{F}, \mathcal{V})$$
 - $\mathcal{F}$ 是系统集成函数
 - $\mathcal{V}$ 是验证函数
 
-### 4.2.2.1.2.2 系统架构
+### 4.2.1.2.2 系统架构
 
-**定义 4.2.2.1.2** (系统架构) 系统架构是一个四元组：
+**定义 4.2.1.2** (系统架构) 系统架构是一个四元组：
 $$A = (components, interfaces, constraints, properties)$$
 
 其中：
@@ -34,9 +34,9 @@ $$A = (components, interfaces, constraints, properties)$$
 - $constraints$ 是系统约束
 - $properties$ 是系统属性
 
-### 4.2.2.1.2.3 状态转移模型
+### 4.2.1.2.3 状态转移模型
 
-**定义 4.2.2.1.3** (系统状态) 系统状态是一个七元组：
+**定义 4.2.1.3** (系统状态) 系统状态是一个七元组：
 $$s = (architecture, integration\_level, performance, reliability, cost, schedule, quality)$$
 
 其中：
@@ -49,11 +49,11 @@ $$s = (architecture, integration\_level, performance, reliability, cost, schedul
 - $schedule \in \mathbb{R}^+$ 是进度时间
 - $quality \in [0,1]$ 是系统质量
 
-## 4.2.2.1.3 数学模型
+## 4.2.1.3 数学模型
 
-### 4.2.2.1.3.1 系统集成函数
+### 4.2.1.3.1 系统集成函数
 
-**定义 4.2.2.1.4** (系统集成) 系统集成函数定义为：
+**定义 4.2.1.4** (系统集成) 系统集成函数定义为：
 $$T_{SE}: S \times A \times S \rightarrow [0,1]$$
 
 其中动作空间 $A$ 包含：
@@ -65,45 +65,45 @@ $$T_{SE}: S \times A \times S \rightarrow [0,1]$$
 - $a_5$: 系统测试
 - $a_6$: 系统验证
 
-### 4.2.2.1.3.2 性能模型
+### 4.2.1.3.2 性能模型
 
-**定理 4.2.2.1.1** (系统性能) 系统性能计算为：
+**定理 4.2.1.1** (系统性能) 系统性能计算为：
 $$performance = \frac{\sum_{i=1}^{n} w_i \cdot perf_i}{\sum_{i=1}^{n} w_i} \cdot integration\_factor$$
 
 其中 $w_i$ 是组件 $i$ 的权重，$perf_i$ 是组件性能，$integration\_factor$ 是集成因子。
 
-### 4.2.2.1.3.3 可靠性模型
+### 4.2.1.3.3 可靠性模型
 
-**定义 4.2.2.1.5** (可靠性函数) 系统可靠性函数定义为：
+**定义 4.2.1.5** (可靠性函数) 系统可靠性函数定义为：
 $$R(s) = \prod_{i=1}^{n} R_i^{w_i}$$
 
 其中 $R_i$ 是组件 $i$ 的可靠性，$w_i$ 是权重系数。
 
-### 4.2.2.1.3.4 成本模型
+### 4.2.1.3.4 成本模型
 
-**定义 4.2.2.1.6** (成本函数) 系统成本函数定义为：
+**定义 4.2.1.6** (成本函数) 系统成本函数定义为：
 $$C(s) = \sum_{i=1}^{n} (component\_cost_i + integration\_cost_i + test\_cost_i)$$
 
 其中 $component\_cost_i$ 是组件成本，$integration\_cost_i$ 是集成成本，$test\_cost_i$ 是测试成本。
 
-## 4.2.2.1.4 验证规范
+## 4.2.1.4 验证规范
 
-### 4.2.2.1.4.1 需求满足性验证
+### 4.2.1.4.1 需求满足性验证
 
-**公理 4.2.2.1.1** (需求满足性) 对于任意系统工程项目 $\mathcal{SE}$：
+**公理 4.2.1.1** (需求满足性) 对于任意系统工程项目 $\mathcal{SE}$：
 $$\forall r \in R: \text{系统必须满足需求 } r$$
 
-### 4.2.2.1.4.2 接口兼容性验证
+### 4.2.1.4.2 接口兼容性验证
 
-**公理 4.2.2.1.2** (接口兼容性) 对于任意接口 $i \in I$：
+**公理 4.2.1.2** (接口兼容性) 对于任意接口 $i \in I$：
 $$interface\_compatible(i) \Rightarrow \text{接口兼容}$$
 
-### 4.2.2.1.4.3 性能达标验证
+### 4.2.1.4.3 性能达标验证
 
-**公理 4.2.2.1.3** (性能达标) 对于任意状态 $s$：
+**公理 4.2.1.3** (性能达标) 对于任意状态 $s$：
 $$performance(s) \geq threshold \Rightarrow \text{性能达标}$$
 
-## 4.2.2.1.5 Rust实现
+## 4.2.1.5 Rust实现
 
 ```rust
 use std::collections::HashMap;
@@ -259,16 +259,16 @@ impl SystemsEngineeringManager {
     fn update_project_state(&mut self) {
         // 计算集成程度
         self.current_state.integration_level = self.calculate_integration_level();
-        
+
         // 计算性能
         self.current_state.performance = self.calculate_performance();
-        
+
         // 计算可靠性
         self.current_state.reliability = self.calculate_reliability();
-        
+
         // 计算成本
         self.current_state.cost = self.calculate_cost();
-        
+
         // 计算质量
         self.current_state.quality = self.calculate_quality();
     }
@@ -297,10 +297,10 @@ impl SystemsEngineeringManager {
         let total_performance: f64 = components.values()
             .map(|c| c.performance)
             .sum();
-        
+
         let avg_performance = total_performance / components.len() as f64;
         let integration_factor = self.current_state.integration_level;
-        
+
         avg_performance * integration_factor
     }
 
@@ -314,7 +314,7 @@ impl SystemsEngineeringManager {
         let reliability_product: f64 = components.values()
             .map(|c| c.reliability)
             .product();
-        
+
         reliability_product
     }
 
@@ -323,10 +323,10 @@ impl SystemsEngineeringManager {
         let component_cost: f64 = self.architecture.components.values()
             .map(|c| c.cost)
             .sum();
-        
+
         let integration_cost = component_cost * 0.2; // 集成成本为组件成本的20%
         let test_cost = component_cost * 0.15; // 测试成本为组件成本的15%
-        
+
         component_cost + integration_cost + test_cost
     }
 
@@ -335,14 +335,14 @@ impl SystemsEngineeringManager {
         let performance_score = self.current_state.performance / self.performance_threshold;
         let reliability_score = self.current_state.reliability / self.reliability_threshold;
         let integration_score = self.current_state.integration_level;
-        
+
         (performance_score + reliability_score + integration_score) / 3.0
     }
 
     /// 验证需求满足性
     pub fn verify_requirements(&self) -> Vec<String> {
         let mut unsatisfied = Vec::new();
-        
+
         for requirement in self.requirements.values() {
             match requirement.category {
                 RequirementCategory::Performance => {
@@ -360,20 +360,20 @@ impl SystemsEngineeringManager {
                 }
             }
         }
-        
+
         unsatisfied
     }
 
     /// 检查接口兼容性
     pub fn check_interface_compatibility(&self) -> Vec<String> {
         let mut incompatibilities = Vec::new();
-        
+
         for interface in self.architecture.interfaces.values() {
             if interface.compatibility < 0.8 {
                 incompatibilities.push(format!("接口 '{}' 兼容性不足", interface.id));
             }
         }
-        
+
         incompatibilities
     }
 
@@ -440,7 +440,7 @@ mod tests {
     #[test]
     fn test_add_requirement() {
         let mut manager = SystemsEngineeringManager::new("测试系统".to_string(), 100000.0);
-        
+
         let requirement = Requirement {
             id: "REQ_001".to_string(),
             description: "系统响应时间小于100ms".to_string(),
@@ -457,7 +457,7 @@ mod tests {
     #[test]
     fn test_add_component() {
         let mut manager = SystemsEngineeringManager::new("测试系统".to_string(), 100000.0);
-        
+
         let component = Component {
             id: "COMP_001".to_string(),
             name: "用户界面组件".to_string(),
@@ -476,7 +476,7 @@ mod tests {
     #[test]
     fn test_add_interface() {
         let mut manager = SystemsEngineeringManager::new("测试系统".to_string(), 100000.0);
-        
+
         let interface = Interface {
             id: "UI_API".to_string(),
             name: "用户界面API".to_string(),
@@ -499,11 +499,11 @@ mod tests {
     }
 }
 
-## 4.2.2.1.6 形式化证明
+## 4.2.1.6 形式化证明
 
-### 4.2.2.1.6.1 系统集成收敛性证明
+### 4.2.1.6.1 系统集成收敛性证明
 
-**定理 4.2.2.1.2** (集成收敛性) 系统工程项目在有限时间内收敛到完全集成状态。
+**定理 4.2.1.2** (集成收敛性) 系统工程项目在有限时间内收敛到完全集成状态。
 
 **证明**：
 设 $\{s_n\}$ 是系统状态序列，其中 $s_n = (a_n, i_n, p_n, r_n, c_n, sch_n, q_n)$。
@@ -515,9 +515,9 @@ mod tests {
 
 根据单调收敛定理，序列收敛到完全集成状态。
 
-### 4.2.2.1.6.2 性能单调性证明
+### 4.2.1.6.2 性能单调性证明
 
-**定理 4.2.2.1.3** (性能单调性) 在系统工程中，系统性能随集成程度递增。
+**定理 4.2.1.3** (性能单调性) 在系统工程中，系统性能随集成程度递增。
 
 **证明**：
 由定义 4.2.2.1.5，性能函数为：
@@ -525,9 +525,9 @@ $$performance = \frac{\sum_{i=1}^{n} w_i \cdot perf_i}{\sum_{i=1}^{n} w_i} \cdot
 
 由于 $integration\_factor$ 随集成程度递增，因此 $performance$ 递增。
 
-### 4.2.2.1.6.3 可靠性乘积性证明
+### 4.2.1.6.3 可靠性乘积性证明
 
-**定理 4.2.2.1.4** (可靠性乘积性) 系统可靠性是各组件可靠性的乘积。
+**定理 4.2.1.4** (可靠性乘积性) 系统可靠性是各组件可靠性的乘积。
 
 **证明**：
 由定义 4.2.2.1.5，可靠性函数为：
@@ -535,13 +535,21 @@ $$R(s) = \prod_{i=1}^{n} R_i^{w_i}$$
 
 由于 $R_i \in [0,1]$ 且 $w_i > 0$，因此 $0 \leq R(s) \leq 1$。
 
-## 4.2.2.1.7 引用关系
+## 4.2.1.7 引用关系
 
 - 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
 - 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
 - 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 敏捷模型：参见 [4.2.1.1 敏捷开发模型](../software-development/agile-models.md)
+- 敏捷模型：参见 [4.1.1 敏捷开发模型](../software-development/agile-models.md)
 - Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. INCOSE. (2015). Systems Engineering Handbook: A Guide for System Life Cycle Processes and Activities (4th ed.). John Wiley & Sons.
+2. Blanchard, B. S., & Fabrycky, W. J. (2011). Systems Engineering and Analysis (5th ed.). Prentice Hall.
+3. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+4. ISO/IEC 15288:2015. Systems and software engineering - System life cycle processes.
+5. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
 
 ---
 

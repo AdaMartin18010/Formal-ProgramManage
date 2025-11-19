@@ -214,19 +214,19 @@ impl FoundationTheory for QuantumProjectTheory {
         self.quantum_state = QuantumState::new(self.qubits);
         self.hamiltonian = self.build_hamiltonian();
     }
-    
+
     fn evolve(&mut self) {
         self.quantum_state = self.apply_evolution_operator(&self.quantum_state);
     }
-    
+
     fn evaluate(&self) -> f64 {
         self.calculate_quantum_expectation_value()
     }
-    
+
     fn optimize(&mut self) {
         self.quantum_annealer.anneal();
     }
-    
+
     fn validate(&self) -> bool {
         self.verify_quantum_constraints()
     }
@@ -238,19 +238,19 @@ impl FoundationTheory for BioInspiredProjectTheory {
         self.population = self.generate_initial_population();
         self.fitness_function = self.define_fitness_function();
     }
-    
+
     fn evolve(&mut self) {
         self.population = self.evolution_step(&self.population);
     }
-    
+
     fn evaluate(&self) -> f64 {
         self.calculate_population_fitness()
     }
-    
+
     fn optimize(&mut self) {
         self.genetic_algorithm.optimize();
     }
-    
+
     fn validate(&self) -> bool {
         self.verify_evolution_constraints()
     }
@@ -262,19 +262,19 @@ impl FoundationTheory for HolographicProjectTheory {
         self.hologram = self.create_hologram();
         self.projection_operators = self.define_projection_operators();
     }
-    
+
     fn evolve(&mut self) {
         self.hologram = self.evolve_hologram(&self.hologram);
     }
-    
+
     fn evaluate(&self) -> f64 {
         self.calculate_holographic_coherence()
     }
-    
+
     fn optimize(&mut self) {
         self.optimize_holographic_projection();
     }
-    
+
     fn validate(&self) -> bool {
         self.verify_holographic_constraints()
     }
@@ -346,14 +346,14 @@ instance FoundationTheory HolographicProjectTheory where
 fn test_quantum_project_evolution() {
     let mut quantum_theory = QuantumProjectTheory::new(4);
     quantum_theory.initialize();
-    
+
     let initial_state = quantum_theory.get_quantum_state();
     quantum_theory.evolve();
     let evolved_state = quantum_theory.get_quantum_state();
-    
+
     // 验证量子演化保持归一化
     assert!(quantum_theory.validate_normalization(&evolved_state));
-    
+
     // 验证量子演化保持厄米性
     assert!(quantum_theory.validate_hermiticity(&evolved_state));
 }
@@ -366,18 +366,18 @@ fn test_quantum_project_evolution() {
 fn test_bio_inspired_project_evolution() {
     let mut bio_theory = BioInspiredProjectTheory::new(100);
     bio_theory.initialize();
-    
+
     let initial_fitness = bio_theory.evaluate();
-    
+
     for _ in 0..50 {
         bio_theory.evolve();
     }
-    
+
     let final_fitness = bio_theory.evaluate();
-    
+
     // 验证进化提高适应度
     assert!(final_fitness > initial_fitness);
-    
+
     // 验证种群多样性
     assert!(bio_theory.validate_population_diversity());
 }
@@ -390,18 +390,18 @@ fn test_bio_inspired_project_evolution() {
 fn test_holographic_project_reconstruction() {
     let mut holographic_theory = HolographicProjectTheory::new();
     holographic_theory.initialize();
-    
+
     let original_project = holographic_theory.get_project();
     let hologram = holographic_theory.create_hologram(&original_project);
     let reconstructed_project = holographic_theory.reconstruct_project(&hologram);
-    
+
     // 验证全息重建的保真度
     let fidelity = holographic_theory.calculate_reconstruction_fidelity(
-        &original_project, 
+        &original_project,
         &reconstructed_project
     );
     assert!(fidelity > 0.95);
-    
+
     // 验证全息相干性
     assert!(holographic_theory.validate_coherence(&hologram));
 }
@@ -416,7 +416,7 @@ fn test_holographic_project_reconstruction() {
 fn bench_quantum_optimization(b: &mut Bencher) {
     let mut quantum_theory = QuantumProjectTheory::new(8);
     quantum_theory.initialize();
-    
+
     b.iter(|| {
         quantum_theory.optimize();
     });
@@ -430,7 +430,7 @@ fn bench_quantum_optimization(b: &mut Bencher) {
 fn bench_bio_inspired_optimization(b: &mut Bencher) {
     let mut bio_theory = BioInspiredProjectTheory::new(1000);
     bio_theory.initialize();
-    
+
     b.iter(|| {
         bio_theory.optimize();
     });
@@ -444,7 +444,7 @@ fn bench_bio_inspired_optimization(b: &mut Bencher) {
 fn bench_holographic_reconstruction(b: &mut Bencher) {
     let mut holographic_theory = HolographicProjectTheory::new();
     holographic_theory.initialize();
-    
+
     b.iter(|| {
         let hologram = holographic_theory.create_hologram(&project);
         holographic_theory.reconstruct_project(&hologram);

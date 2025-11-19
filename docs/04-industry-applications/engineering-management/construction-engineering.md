@@ -1,14 +1,14 @@
-# 4.2.2.2 建筑工程模型
+# 4.2.2 建筑工程模型
 
-## 4.2.2.2.1 概述
+## 4.2.2.1 概述
 
 建筑工程是涉及建筑结构设计、施工管理和质量控制的项目管理领域。本节提供建筑工程的形式化数学模型。
 
-## 4.2.2.2.2 形式化定义
+## 4.2.2.2 形式化定义
 
-### 4.2.2.2.2.1 建筑工程基础
+### 4.2.2.2.1 建筑工程基础
 
-**定义 4.2.2.2.1** (建筑项目) 建筑项目是一个七元组：
+**定义 4.2.2.1** (建筑项目) 建筑项目是一个七元组：
 $$\mathcal{CE} = (S, M, E, Q, T, C, \mathcal{F})$$
 
 其中：
@@ -21,9 +21,9 @@ $$\mathcal{CE} = (S, M, E, Q, T, C, \mathcal{F})$$
 - $C = \{c_1, c_2, \ldots, c_q\}$ 是约束(Constraint)集合
 - $\mathcal{F}$ 是建筑工程函数
 
-### 4.2.2.2.2.2 建筑阶段
+### 4.2.2.2.2 建筑阶段
 
-**定义 4.2.2.2.2** (建筑阶段) 建筑项目包含六个主要阶段：
+**定义 4.2.2.2** (建筑阶段) 建筑项目包含六个主要阶段：
 $$P = (planning, design, foundation, structure, finishing, inspection)$$
 
 其中：
@@ -35,9 +35,9 @@ $$P = (planning, design, foundation, structure, finishing, inspection)$$
 - $finishing$: 装修和收尾
 - $inspection$: 质量检查和验收
 
-### 4.2.2.2.2.3 状态转移模型
+### 4.2.2.2.3 状态转移模型
 
-**定义 4.2.2.2.3** (建筑状态) 建筑状态是一个六元组：
+**定义 4.2.2.3** (建筑状态) 建筑状态是一个六元组：
 $$s = (current\_stage, progress, quality, safety, cost, schedule)$$
 
 其中：
@@ -49,11 +49,11 @@ $$s = (current\_stage, progress, quality, safety, cost, schedule)$$
 - $cost \in \mathbb{R}^+$ 是项目成本
 - $schedule \in \mathbb{R}^+$ 是进度时间
 
-## 4.2.2.2.3 数学模型
+## 4.2.2.3 数学模型
 
-### 4.2.2.2.3.1 建筑转移函数
+### 4.2.2.3.1 建筑转移函数
 
-**定义 4.2.2.2.4** (建筑转移) 建筑转移函数定义为：
+**定义 4.2.2.4** (建筑转移) 建筑转移函数定义为：
 $$T_{CE}: S \times A \times S \rightarrow [0,1]$$
 
 其中动作空间 $A$ 包含：
@@ -65,45 +65,45 @@ $$T_{CE}: S \times A \times S \rightarrow [0,1]$$
 - $a_5$: 成本控制
 - $a_6$: 进度调整
 
-### 4.2.2.2.3.2 进度累积模型
+### 4.2.2.3.2 进度累积模型
 
-**定理 4.2.2.2.1** (进度累积) 建筑项目进度计算为：
+**定理 4.2.2.1** (进度累积) 建筑项目进度计算为：
 $$progress = \frac{\sum_{i=1}^{n} w_i \cdot stage\_progress_i}{\sum_{i=1}^{n} w_i}$$
 
 其中 $w_i$ 是阶段 $i$ 的权重，$stage\_progress_i \in [0,1]$ 是阶段进度。
 
-### 4.2.2.2.3.3 质量累积模型
+### 4.2.2.3.3 质量累积模型
 
-**定义 4.2.2.2.5** (质量函数) 建筑质量函数定义为：
+**定义 4.2.2.5** (质量函数) 建筑质量函数定义为：
 $$Q(s) = \prod_{i=1}^{n} quality_i^{\alpha_i} \cdot safety_i^{\beta_i}$$
 
 其中 $quality_i$ 是阶段 $i$ 的质量，$safety_i$ 是阶段 $i$ 的安全指标，$\alpha_i, \beta_i \in [0,1]$ 是权重系数。
 
-### 4.2.2.2.3.4 成本累积模型
+### 4.2.2.3.4 成本累积模型
 
-**定义 4.2.2.2.6** (成本函数) 建筑成本函数定义为：
+**定义 4.2.2.6** (成本函数) 建筑成本函数定义为：
 $$C(s) = \sum_{i=1}^{n} (material\_cost_i + labor\_cost_i + equipment\_cost_i + overhead_i)$$
 
 其中 $material\_cost_i$ 是材料成本，$labor\_cost_i$ 是人工成本，$equipment\_cost_i$ 是设备成本，$overhead_i$ 是管理成本。
 
-## 4.2.2.2.4 验证规范
+## 4.2.2.4 验证规范
 
-### 4.2.2.2.4.1 阶段顺序验证
+### 4.2.2.4.1 阶段顺序验证
 
-**公理 4.2.2.2.1** (阶段顺序性) 对于任意建筑项目 $\mathcal{CE}$：
+**公理 4.2.2.1** (阶段顺序性) 对于任意建筑项目 $\mathcal{CE}$：
 $$\forall p_i, p_j \in P: i < j \Rightarrow p_i \text{ 必须在 } p_j \text{ 之前完成}$$
 
-### 4.2.2.2.4.2 质量门控验证
+### 4.2.2.4.2 质量门控验证
 
-**公理 4.2.2.2.2** (质量门控) 对于任意阶段 $p_i$：
+**公理 4.2.2.2** (质量门控) 对于任意阶段 $p_i$：
 $$quality(p_i) \geq threshold_i \land safety(p_i) \geq safety\_threshold_i \Rightarrow \text{可以进入下一阶段}$$
 
-### 4.2.2.2.4.3 成本控制验证
+### 4.2.2.4.3 成本控制验证
 
-**公理 4.2.2.2.3** (成本控制) 对于任意状态 $s$：
+**公理 4.2.2.3** (成本控制) 对于任意状态 $s$：
 $$C(s) \leq budget \Rightarrow \text{项目可以继续}$$
 
-## 4.2.2.2.5 Rust实现
+## 4.2.2.5 Rust实现
 
 ```rust
 use std::collections::HashMap;
@@ -279,7 +279,7 @@ impl ConstructionEngineeringManager {
         let completed_tasks = self.tasks.values()
             .filter(|t| matches!(t.status, TaskStatus::Completed))
             .count();
-        
+
         if total_tasks > 0 {
             self.current_state.progress = completed_tasks as f64 / total_tasks as f64;
         }
@@ -434,10 +434,10 @@ impl ConstructionEngineeringValidator {
                         let prev_stage_tasks: Vec<_> = manager.tasks.values()
                             .filter(|t| std::mem::discriminant(&t.stage) == std::mem::discriminant(&stage_order[j]))
                             .collect();
-                        
+
                         let all_prev_completed = prev_stage_tasks.iter()
                             .all(|t| matches!(t.status, TaskStatus::Completed));
-                        
+
                         if !all_prev_completed {
                             return false;
                         }
@@ -475,7 +475,7 @@ mod tests {
     #[test]
     fn test_add_task() {
         let mut manager = ConstructionEngineeringManager::new("测试建筑项目".to_string(), 1000000.0);
-        
+
         let task = ConstructionTask {
             id: "TASK_001".to_string(),
             name: "地基施工".to_string(),
@@ -495,7 +495,7 @@ mod tests {
     #[test]
     fn test_add_material() {
         let mut manager = ConstructionEngineeringManager::new("测试建筑项目".to_string(), 1000000.0);
-        
+
         let material = Material {
             id: "MAT_001".to_string(),
             name: "混凝土".to_string(),
@@ -513,7 +513,7 @@ mod tests {
     #[test]
     fn test_start_task() {
         let mut manager = ConstructionEngineeringManager::new("测试建筑项目".to_string(), 1000000.0);
-        
+
         let task = ConstructionTask {
             id: "TASK_001".to_string(),
             name: "地基施工".to_string(),
@@ -540,47 +540,55 @@ mod tests {
     }
 }
 
-## 4.2.2.2.6 形式化证明
+## 4.2.2.6 形式化证明
 
-### 4.2.2.2.6.1 阶段顺序性证明
+### 4.2.2.6.1 阶段顺序性证明
 
-**定理 4.2.2.2.2** (阶段顺序性) 建筑项目严格遵循阶段顺序。
+**定理 4.2.2.2** (阶段顺序性) 建筑项目严格遵循阶段顺序。
 
 **证明**：
 设 $\{p_1, p_2, \ldots, p_n\}$ 是建筑阶段序列，其中 $p_i$ 必须在 $p_{i+1}$ 之前完成。
 
 对于任意阶段 $p_i$，其依赖集合包含所有前置阶段 $\{p_1, p_2, \ldots, p_{i-1}\}$。
 
-根据公理 4.2.2.2.1，所有依赖阶段必须完成才能开始 $p_i$。
+根据公理 4.2.2.1，所有依赖阶段必须完成才能开始 $p_i$。
 
-### 4.2.2.2.6.2 质量累积性证明
+### 4.2.2.6.2 质量累积性证明
 
-**定理 4.2.2.2.3** (质量累积性) 建筑项目的总体质量是各阶段质量的乘积。
+**定理 4.2.2.3** (质量累积性) 建筑项目的总体质量是各阶段质量的乘积。
 
 **证明**：
-由定义 4.2.2.2.5，质量函数为：
+由定义 4.2.2.5，质量函数为：
 $$Q(s) = \prod_{i=1}^{n} quality_i^{\alpha_i} \cdot safety_i^{\beta_i}$$
 
 由于每个阶段的质量 $quality_i \in [0,1]$ 且 $safety_i \in [0,1]$，因此：
 $$0 \leq Q(s) \leq 1$$
 
-### 4.2.2.2.6.3 成本累积性证明
+### 4.2.2.6.3 成本累积性证明
 
-**定理 4.2.2.2.4** (成本累积性) 建筑项目的总成本是各阶段成本之和。
+**定理 4.2.2.4** (成本累积性) 建筑项目的总成本是各阶段成本之和。
 
 **证明**：
-由定义 4.2.2.2.6，成本函数为：
+由定义 4.2.2.6，成本函数为：
 $$C(s) = \sum_{i=1}^{n} (material\_cost_i + labor\_cost_i + equipment\_cost_i + overhead_i)$$
 
 由于所有成本项都为正数，因此 $C(s) \geq 0$。
 
-## 4.2.2.2.7 引用关系
+## 4.2.2.7 引用关系
 
 - 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
 - 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
 - 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 系统工程：参见 [4.2.2.1 系统工程模型](./systems-engineering.md)
+- 系统工程：参见 [4.2.1 系统工程模型](./systems-engineering.md)
 - Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+
+## 参考文献
+
+1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+3. ISO 9001:2015. Quality management systems - Requirements.
+4. ISO 14001:2015. Environmental management systems - Requirements with guidance for use.
+5. OHSAS 18001:2007. Occupational health and safety management systems - Requirements.
 
 ---
 
