@@ -144,7 +144,7 @@ def updateProjectState (project : Project) : Project :=
   let quality := calculateQuality project.tasks
   let risk := calculateRisk project.risks
   let satisfaction := calculateSatisfaction progress quality risk
-  
+
   let newState : ProjectState := {
     progress := progress
     quality := quality
@@ -155,7 +155,7 @@ def updateProjectState (project : Project) : Project :=
     risk_bounded := by simp [risk, calculateRisk]
     satisfaction_bounded := by simp [satisfaction, calculateSatisfaction]
   }
-  
+
   { project with state := newState }
 ```
 
@@ -195,11 +195,11 @@ theorem riskBounded (risks : List Risk) :
   · simp [min_def]
 
 -- 定理：满意度计算在合理范围内
-theorem satisfactionBounded (progress quality risk : ℝ) 
+theorem satisfactionBounded (progress quality risk : ℝ)
   (hp : 0 ≤ progress ∧ progress ≤ 1)
   (hq : 0 ≤ quality ∧ quality ≤ 1)
   (hr : 0 ≤ risk ∧ risk ≤ 1) :
-  0 ≤ calculateSatisfaction progress quality risk ∧ 
+  0 ≤ calculateSatisfaction progress quality risk ∧
   calculateSatisfaction progress quality risk ≤ 1 :=
   by
   simp [calculateSatisfaction]
@@ -220,7 +220,7 @@ theorem stateUpdatePreservesValidation (project : Project) (h : validateProject 
     · exact progressBounded project.tasks
     · exact qualityBounded project.tasks
     · exact riskBounded project.risks
-    · exact satisfactionBounded _ _ _ 
+    · exact satisfactionBounded _ _ _
         (projectStateValid project h).left
         (projectStateValid project h).right.left
         (projectStateValid project h).right.right.left
@@ -261,7 +261,7 @@ def createProject (id name description : String) : Project :=
     risk_bounded := by simp
     satisfaction_bounded := by simp
   }
-  
+
   {
     id := id
     name := name

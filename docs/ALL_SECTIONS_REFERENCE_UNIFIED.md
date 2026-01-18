@@ -11,6 +11,7 @@
 ## 工作范围
 
 统一了以下所有部分的引用关系格式：
+
 1. 基础理论部分（`docs/01-foundations/`）- 7个文件
 2. 项目管理部分（`docs/02-project-management/`）- 4个文件
 3. 形式化验证部分（`docs/03-formal-verification/`）- 3个文件
@@ -30,16 +31,16 @@
 
 ### 2. 项目管理部分（4个文件）✅
 
-8. ✅ `lifecycle-models.md` - 项目生命周期模型
-9. ✅ `resource-models.md` - 资源管理模型
-10. ✅ `quality-models.md` - 质量管理模型
-11. ✅ `risk-models.md` - 风险管理模型
+1. ✅ `lifecycle-models.md` - 项目生命周期模型
+2. ✅ `resource-models.md` - 资源管理模型
+3. ✅ `quality-models.md` - 质量管理模型
+4. ✅ `risk-models.md` - 风险管理模型
 
 ### 3. 形式化验证部分（3个文件）✅
 
-12. ✅ `verification-theory.md` - 形式化验证理论
-13. ✅ `model-checking.md` - 模型检验方法
-14. ✅ `theorem-proving.md` - 定理证明系统
+1. ✅ `verification-theory.md` - 形式化验证理论
+2. ✅ `model-checking.md` - 模型检验方法
+3. ✅ `theorem-proving.md` - 定理证明系统
 
 ### 4. 行业应用模型部分（25个文件）✅
 

@@ -217,14 +217,14 @@ createProject pid name desc startDate endDate = do
         , projectRisks = Map.empty
         , projectState = initialState
         }
-  
+
   -- 验证项目
   unless (validateProject project) $
     throwError "项目验证失败"
-  
+
   -- 设置当前项目
   modify $ \s -> s { currentProject = Just project }
-  
+
   return project
 
 -- | 添加任务
@@ -243,16 +243,16 @@ addTask taskId name desc priority effort = do
             , taskDependencies = Set.empty
             , taskEffort = effort
             }
-      
+
       -- 验证任务
       unless (validateTask task) $
         throwError "任务验证失败"
-      
+
       let updatedProject = project { projectTasks = Map.insert taskId task (projectTasks project) }
-      
+
       -- 更新项目状态
       modify $ \s -> s { currentProject = Just updatedProject }
-      
+
       return task
 
 -- | 更新任务状态
@@ -267,10 +267,10 @@ updateTaskStatus taskId newStatus = do
         Just task -> do
           let updatedTask = task { taskStatus = newStatus }
           let updatedProject = project { projectTasks = Map.insert taskId updatedTask (projectTasks project) }
-          
+
           -- 重新计算项目状态
           let recalculatedProject = recalculateProjectState updatedProject
-          
+
           modify $ \s -> s { currentProject = Just recalculatedProject }
 
 -- | 添加资源
@@ -287,15 +287,15 @@ addResource resourceId resourceType capacity cost = do
             , resourceCost = cost
             , resourceAvailability = True
             }
-      
+
       -- 验证资源
       unless (validateResource resource) $
         throwError "资源验证失败"
-      
+
       let updatedProject = project { projectResources = Map.insert resourceId resource (projectResources project) }
-      
+
       modify $ \s -> s { currentProject = Just updatedProject }
-      
+
       return resource
 
 -- | 添加风险
@@ -313,18 +313,18 @@ addRisk riskId riskType desc probability impact mitigation = do
             , riskImpact = impact
             , riskMitigation = mitigation
             }
-      
+
       -- 验证风险
       unless (validateRisk risk) $
         throwError "风险验证失败"
-      
+
       let updatedProject = project { projectRisks = Map.insert riskId risk (projectRisks project) }
-      
+
       -- 重新计算项目状态
       let recalculatedProject = recalculateProjectState updatedProject
-      
+
       modify $ \s -> s { currentProject = Just recalculatedProject }
-      
+
       return risk
 ```
 
@@ -423,17 +423,17 @@ validateProjectFormally project =
 testProjectManagement :: IO ()
 testProjectManagement = do
   putStrLn "开始Haskell项目管理测试..."
-  
+
   -- 创建初始状态
   let initialState = ProjectManagerState
         { currentProject = Nothing
         , projectHistory = []
         , environment = ProjectEnvironment Map.empty Map.empty Map.empty
         }
-  
+
   -- 运行测试
   result <- runProjectManagerIO testWorkflow initialState
-  
+
   case result of
     Left err -> putStrLn $ "测试失败: " <> err
     Right (_, finalState) -> do
@@ -445,13 +445,13 @@ testProjectManagement = do
           putStrLn $ "任务数量: " <> show (Map.size $ projectTasks project)
           putStrLn $ "资源数量: " <> show (Map.size $ projectResources project)
           putStrLn $ "风险数量: " <> show (Map.size $ projectRisks project)
-          
+
           let state = projectState project
           putStrLn $ "项目进度: " <> show (progress state)
           putStrLn $ "项目质量: " <> show (quality state)
           putStrLn $ "项目风险: " <> show (risk state)
           putStrLn $ "客户满意度: " <> show (satisfaction state)
-          
+
           -- 形式化验证
           let isValid = validateProjectFormally project
           putStrLn $ "形式化验证结果: " <> show isValid
@@ -462,32 +462,32 @@ testWorkflow = do
   -- 创建项目
   currentTime <- liftIO getCurrentTime
   let endTime = addUTCTime (24 * 60 * 60) currentTime -- 1天后
-  
+
   project <- createProject "proj_001" "测试项目" "这是一个测试项目" currentTime endTime
   liftIO $ putStrLn "项目创建成功"
-  
+
   -- 添加任务
   _ <- addTask "task_001" "需求分析" "分析用户需求" 5 8.0
   _ <- addTask "task_002" "系统设计" "设计系统架构" 4 16.0
   _ <- addTask "task_003" "编码实现" "实现核心功能" 3 24.0
   liftIO $ putStrLn "任务添加成功"
-  
+
   -- 添加资源
   _ <- addResource "res_001" (Human "张三") 40.0 100.0
   _ <- addResource "res_002" (Human "李四") 40.0 120.0
   _ <- addResource "res_003" (Equipment "开发服务器") 168.0 50.0
   liftIO $ putStrLn "资源添加成功"
-  
+
   -- 添加风险
   _ <- addRisk "risk_001" Technical "技术风险" 0.3 0.7 "增加技术评审"
   _ <- addRisk "risk_002" Schedule "进度风险" 0.2 0.6 "增加缓冲时间"
   liftIO $ putStrLn "风险添加成功"
-  
+
   -- 更新任务状态
   updateTaskStatus "task_001" Completed
   updateTaskStatus "task_002" InProgress
   liftIO $ putStrLn "任务状态更新成功"
-  
+
   liftIO $ putStrLn "测试工作流完成"
 
 -- | 主函数
