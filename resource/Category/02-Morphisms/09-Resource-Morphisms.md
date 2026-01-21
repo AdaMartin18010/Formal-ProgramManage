@@ -4,6 +4,7 @@
 
 - [Resource Management Morphisms / 资源管理态射](#resource-management-morphisms--资源管理态射)
   - [📋 Table of Contents / 目录](#-table-of-contents--目录)
+  - [0. 所属层与转换关系 / Layer and Transformation](#0-所属层与转换关系--layer-and-transformation)
   - [1. Overview / 概述](#1-overview--概述)
   - [2. Category Theory Definition / 范畴论定义](#2-category-theory-definition--范畴论定义)
     - [2.1 Resource Allocation Morphism / 资源分配态射](#21-resource-allocation-morphism--资源分配态射)

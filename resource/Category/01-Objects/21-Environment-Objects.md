@@ -36,6 +36,11 @@
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；环境对象支撑形式化验证）
 - **转换关系**：**Environment Objects** 作为**模型转换**的实体（环境构建、环境扩展作为模型构建方法）；与 06-编程语言理论概念/04-变量与环境、Category/04-Functors/06-Environment-Functors、Category/05-Natural-Transformations/05-Type-Environment-Natural-Transformation 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- 指称语义 $\llbracket e \rrbracket: \mathbf{Env} \to \mathbf{Val}$、类型判断 $\Gamma \vdash e : A$ 中的 $\Gamma$ → $\mathbf{Env}$ 对象；与 verification-theory、程序分析中的上下文、状态一致。
+- 操作语义 $\langle e,\sigma\rangle \Downarrow v$ 的 $\sigma$、Kripke 的 $L: S \to 2^{AP}$ 的赋值 → 环境扩展、查找态射；与 06-Environment-Functors、05-Type-Environment 衔接。
+
 ---
 
 ## 1. Overview / 概述

@@ -23,6 +23,7 @@ This directory contains transformation type frameworks organized from multiple p
 
 - `resource/Concept/09-高级概念/02-项目变换类型.md` → Project transformation types
 - `resource/Concept/10-Transfer概念/02-项目变换类型框架.md` → Transformation type frameworks
+- **docs**：`docs/02-project-management/lifecycle-models`、`docs/KNOWLEDGE_NETWORK`（$\delta$、$T$、层次转换；与 01–03 的 0. 对应）
 
 ### Cross-References / 交叉引用
 

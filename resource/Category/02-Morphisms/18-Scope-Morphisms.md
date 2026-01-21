@@ -4,6 +4,7 @@
 
 - [Scope Morphisms / 作用域态射](#scope-morphisms--作用域态射)
   - [📋 Table of Contents / 目录](#-table-of-contents--目录)
+  - [0. 所属层与转换关系 / Layer and Transformation](#0-所属层与转换关系--layer-and-transformation)
   - [1. Overview / 概述](#1-overview--概述)
   - [2. Category Theory Definition / 范畴论定义](#2-category-theory-definition--范畴论定义)
     - [2.1 Scope Extension Morphism / 作用域扩展态射](#21-scope-extension-morphism--作用域扩展态射)
@@ -32,6 +33,11 @@
 
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；作用域态射支撑形式化验证）
 - **转换关系**：**Scope Morphisms** = **状态转换**（作用域扩展、作用域查找作为状态转换）；与 06-编程语言理论概念、Category/01-Objects/22-Scope-Objects 对应。
+
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- 指称语义 $\llbracket e \rrbracket: \mathbf{Env} \to \mathbf{Val}$、类型判断 $\Gamma \vdash e : A$ 中的 $\Gamma$ → 作用域 $S$、$extend(S,x:A)$、$lookup(S,x)$ 与 21-Environment-Objects 的 环境扩展、查找态射 一致。
+- 操作语义 $\langle e,\sigma\rangle \Downarrow v$ 的 $\sigma$、model-checking 的 Kripke 赋值 $L: S \to 2^{AP}$ → 作用域嵌套、shadowing；与 06-ci-verification 的程序分析、上下文管理 衔接。
 
 ---
 

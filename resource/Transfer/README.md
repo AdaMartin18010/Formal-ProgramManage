@@ -83,6 +83,7 @@ resource/Transfer/
 - `resource/Concept/13-综合实践概念/` → Comprehensive practice concepts
 - `resource/Concept/14-高级实践概念/` → Advanced practice concepts
 - `resource/Concept/08-行业应用概念/` → Industry application concepts
+- **docs**：`docs/01-foundations`、`docs/02-project-management/lifecycle-models`、`docs/06-ci-verification`、`docs/KNOWLEDGE_NETWORK`、`docs/04-industry-applications`、`docs/05-implementations`（与 01–07 子目录及上表转换对应）
 
 ## 📚 Key Frameworks / 关键框架
 

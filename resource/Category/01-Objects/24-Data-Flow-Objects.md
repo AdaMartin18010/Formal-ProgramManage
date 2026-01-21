@@ -4,6 +4,7 @@
 
 - [Data Flow Objects / 数据流对象](#data-flow-objects--数据流对象)
   - [📋 Table of Contents / 目录](#-table-of-contents--目录)
+  - [0. 所属层与转换关系 / Layer and Transformation](#0-所属层与转换关系--layer-and-transformation)
   - [1. Overview / 概述](#1-overview--概述)
   - [2. Category Theory Definition / 范畴论定义](#2-category-theory-definition--范畴论定义)
     - [2.1 Category of Data Flow Graphs / 数据流图范畴](#21-category-of-data-flow-graphs--数据流图范畴)
@@ -34,6 +35,11 @@
 
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；数据流对象支撑程序分析）
 - **转换关系**：**Data Flow Objects** 作为**状态转换**的实体（数据流图作为状态转换图）；与 06-编程语言理论概念/06-数据流、Category/02-Morphisms/16-Dataflow-Morphisms、Category/04-Functors/09-Data-Flow-Functors、Category/06-Categories/02-Data-Flow-Category 对应。
+
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- 数据流图 $DFG=(D,E)$、数据依赖、def-use、reaching definitions → $\mathbf{DFG}$ 的对象；与数据流分析、抽象解释、模型检验中的信息流结构一致。
+- 程序分析中的格、传递函数、不动点 → 数据流对象上的运算；与 06-ci-verification 的自动化验证衔接。
 
 ---
 

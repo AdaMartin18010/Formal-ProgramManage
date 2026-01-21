@@ -24,6 +24,7 @@ This directory contains comprehensive application frameworks organized from mult
 
 - `resource/Concept/11-综合应用概念/` → Comprehensive application concepts
 - `resource/Concept/08-行业应用概念/` → Industry application concepts
+- **docs**：`docs/KNOWLEDGE_NETWORK`、`docs/04-industry-applications`（层次转换、综合应用；与 01、02 的 0. 对应）
 
 ### Cross-References / 交叉引用
 

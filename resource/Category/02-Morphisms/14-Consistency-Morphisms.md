@@ -4,6 +4,7 @@
 
 - [Consistency Morphisms / 一致性态射](#consistency-morphisms--一致性态射)
   - [📋 Table of Contents / 目录](#-table-of-contents--目录)
+  - [0. 所属层与转换关系 / Layer and Transformation](#0-所属层与转换关系--layer-and-transformation)
   - [1. Overview / 概述](#1-overview--概述)
   - [2. Category Theory Definition / 范畴论定义](#2-category-theory-definition--范畴论定义)
     - [2.1 Consistency Check Morphism / 一致性检查态射](#21-consistency-check-morphism--一致性检查态射)
@@ -31,6 +32,11 @@
 
 - **所属层**：**验证理论层**（对应 docs/06-ci-verification、docs/03-formal-verification；一致性检查）
 - **转换关系**：**Consistency Morphisms** = **模型转换**（一致性检查、一致性保持作为模型转换方法）；与 Category/01-Objects/14-Consistency-Objects、Category/02-Morphisms/12-Verification-Morphisms 对应。
+
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- 模型一致性检查（model-consistency）的 $ConsistencyChecker$、$ConsistencyResult$、$Violation$ → 一致性检查态射 $check: Model_1 \times Model_2 \to Bool$；与 06-ci-verification 的自动化一致性检查一致。
+- $ConsistencyRule$、$ModelDefinition$ → 一致性保持、恢复态射作用的结构；与 03-formal-verification 的 $VS=(M,\Phi,\mathcal{L},\models,\mathcal{V},\mathcal{R})$ 衔接。
 
 ---
 

@@ -34,6 +34,11 @@
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；类型构造支撑形式化验证）
 - **转换关系**：**Type Constructions** 支撑**模型转换**（类型构造作为模型构建的泛性质，支撑类型系统、形式化验证）；与 06-编程语言理论概念、Category/06-Categories/04-Type-Category、Category/04-Functors/05-Type-Functors 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- 积/和/函数类型 $\tau_1 \times \tau_2$、$\tau_1 + \tau_2$、$\tau_1 \to \tau_2$ 及 $\text{Hom}(\sigma,\tau_1 \times \tau_2) \cong \text{Hom}(\sigma,\tau_1) \times \text{Hom}(\sigma,\tau_2)$ 等泛性质 → 验证系统 $VS=(M,\Phi,\mathcal{L},\models,\mathcal{V},\mathcal{R})$ 中的 $\mathcal{L}$、$\Phi$、类型化项与公式；与 20-Type-Objects、05-Type-Functors 一致。
+- 类型构造、类型检查、类型推断 → 06-ci-verification 的 类型系统、形式化验证；与 03-formal-verification 的 类型论、theorem-proving 衔接。
+
 ---
 
 ## 1. Overview / 概述

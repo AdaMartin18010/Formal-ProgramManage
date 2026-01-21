@@ -36,6 +36,11 @@
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；类型系统支撑形式化验证）
 - **转换关系**：**Type Objects** 作为**模型转换**的实体（类型检查、类型推断作为模型一致性验证）；与 06-编程语言理论概念/01-类型系统基础、Category/06-Categories/04-Type-Category、Category/04-Functors/05-Type-Functors 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- 验证系统 $VS=(M,\Phi,\mathcal{L},\models,\mathcal{V},\mathcal{R})$ 中的 $\mathcal{L}$、$\Phi$、$m \models \phi$ 的项与公式 → 类型范畴 $\mathbf{Type}$ 的对象；类型检查、推断与模型/属性验证衔接。
+- theorem-proving、model-checking 中的类型化项、逻辑公式 → 类型构造子、$\mathbf{Type}$ 的态射；与 05-Type-Functors、04-Type-Category 一致。
+
 ---
 
 ## 1. Overview / 概述
@@ -233,7 +238,7 @@ representing functions from strings to integers.
 ### 8.3 Related Files / 相关文件
 
 - [Environment Objects](21-Environment-Objects.md)
-- [Type Functors](../../04-Functors/06-Type-Functors.md)
+- [Type Functors](../../04-Functors/05-Type-Functors.md)
 - [Type-Environment Natural Transformation](../../05-Natural-Transformations/05-Type-Environment-Natural-Transformation.md)
 - **docs**：`docs/03-formal-verification`、`docs/06-ci-verification`（类型系统、类型检查；与 0. 对应）
 

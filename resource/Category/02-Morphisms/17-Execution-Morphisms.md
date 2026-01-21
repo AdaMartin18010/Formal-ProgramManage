@@ -36,6 +36,11 @@
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；执行流支撑程序分析）
 - **转换关系**：**Execution Morphisms** = **状态转换**（执行步骤、操作语义作为状态转换）；与 06-编程语言理论概念/07-执行流与语义、Category/06-Categories/03-Execution-Category、Category/04-Functors/10-Execution-Functors 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- Kripke $K=(S,S_0,R,L)$ 的 $R \subseteq S \times S$ → 执行步骤态射 $step: S_i \to S_j$、操作语义 $\langle e,\sigma\rangle \Downarrow v$ 的状态转换；与 verification-theory、model-checking 的 $m \models \phi$ 输入一致。
+- 指称语义 $\llbracket e \rrbracket$、公理语义 $\{P\}C\{Q\}$ → 执行态射的语义类；与 theorem-proving、模型一致性检查衔接。
+
 ---
 
 ## 1. Overview / 概述

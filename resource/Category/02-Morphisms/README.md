@@ -13,7 +13,7 @@ This directory contains **Formal-ProgramManage** project management operations a
 - **生命周期转换** $\delta$：`08-Lifecycle-Morphisms.md` 对应 docs/02-project-management/lifecycle-models 的 $\delta: S \times \Sigma \rightarrow S$、转换点 $T$
 - **状态转换** $\rightarrow$：`01-Formal-Morphisms.md`、`02-Mathematical-Morphisms.md`、`03-Semantic-Morphisms.md` 对应 docs/01-foundations 的 Kripke 结构、语义模型中的 $\rightarrow \subseteq S \times S$
 - **资源/风险/质量转换**：`09-Resource-Morphisms.md`、`10-Risk-Morphisms.md`、`11-Quality-Morphisms.md` 对应核心模型层的状态转换
-- **模型/等价转换**：`12-Verification-Morphisms.md`、`14-Consistency-Morphisms.md` 对应 docs/06-ci-verification 的模型检验、一致性检查
+- **模型/等价转换**：`12-Verification-Morphisms.md`、`13-Proof-Morphisms.md`、`14-Consistency-Morphisms.md` 对应 docs/06-ci-verification 的模型检验、一致性检查、定理证明；**13–22 已补「与 docs 的公式对应」**
 
 ## 📁 Files / 文件（25 文件，含 0. 所属层与转换关系）
 

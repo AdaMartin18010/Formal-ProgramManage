@@ -4,6 +4,7 @@
 
 - [Category Definition / 范畴定义](#category-definition--范畴定义)
   - [📋 Table of Contents / 目录](#-table-of-contents--目录)
+  - [0. 所属层与转换关系 / Layer and Transformation](#0-所属层与转换关系--layer-and-transformation)
   - [1. Overview / 概述](#1-overview--概述)
   - [2. Definition / 定义](#2-definition--定义)
     - [2.1 Formal Definition / 形式定义](#21-formal-definition--形式定义)

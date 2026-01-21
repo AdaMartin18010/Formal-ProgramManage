@@ -27,6 +27,7 @@ This directory contains industry-specific project management application framewo
 **From Concept / 从概念**:
 
 - `resource/Concept/08-行业应用概念/` → Industry application concepts
+- **docs**：`docs/04-industry-applications`（软件、工程、商业、AI 行业应用；与 01–04 的 0. 对应）
 
 ### Cross-References / 交叉引用
 

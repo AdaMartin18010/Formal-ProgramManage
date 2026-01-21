@@ -394,7 +394,7 @@
 | 类型构造子 | $\mathbf{TypeCon}$ | `Category/03-Constructions/06-Type-Constructions.md` | 高 |
 | 类型类 | $\mathbf{TypeClass}$ | `Category/04-Functors/05-Type-Class-Functors.md` | 高 |
 | 单子 | $\mathbf{Monad}$ | `Category/03-Constructions/04-Monads.md` | 高 |
-| 函子 | $\mathbf{Functor}$ | `Category/04-Functors/06-Type-Functors.md` | 高 |
+| 函子 | $\mathbf{Functor}$ | `Category/04-Functors/05-Type-Functors.md` | 高 |
 
 #### 2.2 变量和环境内容
 
@@ -452,7 +452,7 @@
 
 | 函子 | 定义 | 文档位置 |
 |------|------|---------|
-| 类型函子 | $T: \mathbf{Type} \to \mathbf{Type}$ | `Category/04-Functors/06-Type-Functors.md` |
+| 类型函子 | $T: \mathbf{Type} \to \mathbf{Type}$ | `Category/04-Functors/05-Type-Functors.md` |
 | 环境函子 | $E: \mathbf{Env} \to \mathbf{Env}$ | `Category/04-Functors/07-Environment-Functors.md` |
 | 控制流函子 | $C: \mathbf{CFG} \to \mathbf{CFG}$ | `Category/04-Functors/08-Control-Flow-Functors.md` |
 | 数据流函子 | $D: \mathbf{DFG} \to \mathbf{DFG}$ | `Category/04-Functors/09-Data-Flow-Functors.md` |

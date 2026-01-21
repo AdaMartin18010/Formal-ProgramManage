@@ -4,6 +4,7 @@
 
 - [Control Flow Objects / 控制流对象](#control-flow-objects--控制流对象)
   - [📋 Table of Contents / 目录](#-table-of-contents--目录)
+  - [0. 所属层与转换关系 / Layer and Transformation](#0-所属层与转换关系--layer-and-transformation)
   - [1. Overview / 概述](#1-overview--概述)
   - [2. Category Theory Definition / 范畴论定义](#2-category-theory-definition--范畴论定义)
     - [2.1 Category of Control Flow Graphs / 控制流图范畴](#21-category-of-control-flow-graphs--控制流图范畴)
@@ -34,6 +35,11 @@
 
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；控制流对象支撑程序分析）
 - **转换关系**：**Control Flow Objects** 作为**状态转换**的实体（控制流图作为状态转换图）；与 06-编程语言理论概念/05-控制流、Category/02-Morphisms/15-Control-Morphisms、Category/04-Functors/08-Control-Flow-Functors、Category/06-Categories/01-Control-Category 对应。
+
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- Kripke $K=(S,S_0,R,L)$（verification-theory）的 $S$、$R \subseteq S \times S$ → 控制流对象 $CFG=(B,E)$ 的节点与边；基本块 $B$ 对应状态，$E$ 对应 $R$ 的转换。
+- 模型检验的输入（CFG、LTL）→ $\mathbf{CFG}$ 对象；与 model-checking、程序分析中的控制流图一致。
 
 ---
 

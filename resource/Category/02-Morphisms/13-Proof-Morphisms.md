@@ -33,6 +33,11 @@
 - **所属层**：**验证理论层**（对应 docs/06-ci-verification、docs/03-formal-verification；定理证明）
 - **转换关系**：**Proof Morphisms** = **模型转换**（证明构造、证明变换作为模型转换方法）；与 Category/01-Objects/13-Proof-Objects、Category/02-Morphisms/12-Verification-Morphisms 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- 验证问题 $V(m,\phi)$、$m \models \phi$（verification-theory 定义 3.1.2）→ 证明态射 $construct: Goal \to ProofTree$、$transform: ProofTree_1 \to ProofTree_2$ 建立的 $m \models \phi$ 的证明。
+- 定理证明、自然演绎、Hoare 逻辑 $\{P\}C\{Q\}$ → 证明态射的规则与复合；与 theorem-proving、model-checking 互补。
+
 ---
 
 ## 1. Overview / 概述

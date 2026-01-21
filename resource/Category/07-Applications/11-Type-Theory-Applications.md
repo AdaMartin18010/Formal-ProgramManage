@@ -4,6 +4,7 @@
 
 - [Category Theory in Type Theory Applications / 类型理论应用中的范畴论](#category-theory-in-type-theory-applications--类型理论应用中的范畴论)
   - [📋 Table of Contents / 目录](#-table-of-contents--目录)
+  - [0. 所属层与转换关系 / Layer and Transformation](#0-所属层与转换关系--layer-and-transformation)
   - [📋 Overview / 概述](#-overview--概述)
   - [1. Categorical Semantics / 范畴语义](#1-categorical-semantics--范畴语义)
     - [1.1 Simply Typed Lambda Calculus / 简单类型λ演算](#11-simply-typed-lambda-calculus--简单类型λ演算)

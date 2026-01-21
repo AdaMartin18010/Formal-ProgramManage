@@ -22,6 +22,7 @@ This directory contains transformation relationship network frameworks organized
 
 - `resource/Concept/09-高级概念/03-项目变换关系网络.md` → Project transformation relationship networks
 - `resource/Concept/10-Transfer概念/03-项目变换关系网络框架.md` → Transformation network frameworks
+- **docs**：`docs/02-project-management`、`docs/KNOWLEDGE_NETWORK`（变换图、变换路径；与 01、02 的 0. 对应）
 
 ### Cross-References / 交叉引用
 

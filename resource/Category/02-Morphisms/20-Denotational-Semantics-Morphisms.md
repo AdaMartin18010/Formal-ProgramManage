@@ -4,6 +4,7 @@
 
 - [Denotational Semantics Morphisms / 指称语义态射](#denotational-semantics-morphisms--指称语义态射)
   - [📋 Table of Contents / 目录](#-table-of-contents--目录)
+  - [0. 所属层与转换关系 / Layer and Transformation](#0-所属层与转换关系--layer-and-transformation)
   - [1. Overview / 概述](#1-overview--概述)
   - [2. Category Theory Definition / 范畴论定义](#2-category-theory-definition--范畴论定义)
     - [2.1 Meaning Function Morphism / 含义函数态射](#21-meaning-function-morphism--含义函数态射)
@@ -32,6 +33,11 @@
 
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；指称语义态射支撑程序分析）
 - **转换关系**：**Denotational Semantics Morphisms** = **状态转换**（含义函数作为状态转换的语义模型）；与 06-编程语言理论概念/07-执行流与语义、Category/02-Morphisms/17-Execution-Morphisms 对应。
+
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- $\llbracket \cdot \rrbracket: \mathbf{Syn} \to \mathbf{Sem}$、$\llbracket e \rrbracket: \mathbf{Env} \to \mathbf{Val}$、$\llbracket e_1;e_2 \rrbracket = \llbracket e_2 \rrbracket \circ \llbracket e_1 \rrbracket$ → 指称语义、语义等价、程序分析；与 21-Environment-Objects、17-Execution-Morphisms 一致。
+- 组合性（compositionality）→ 模型/语义的 组合验证、modular verification；与 06-ci-verification 的 语义层面的等价与验证 衔接。
 
 ---
 

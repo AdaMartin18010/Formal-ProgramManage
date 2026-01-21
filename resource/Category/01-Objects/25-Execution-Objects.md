@@ -36,6 +36,11 @@
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；执行对象支撑程序分析）
 - **转换关系**：**Execution Objects** 作为**状态转换**的实体（执行状态、执行步骤作为状态转换）；与 06-编程语言理论概念/07-执行流与语义、Category/02-Morphisms/17-Execution-Morphisms、Category/04-Functors/10-Execution-Functors、Category/06-Categories/03-Execution-Category 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- Kripke 的 $S$、$R \subseteq S \times S$ → 执行对象：状态 $S \in \mathbf{Exec}$、步骤 $S_i \to S_j$；$m \models \phi$ 的 $m$ 可视为执行模型。
+- 操作语义 $\langle e,\sigma\rangle \Downarrow v$、指称 $\llbracket e \rrbracket$、公理 $\{P\}C\{Q\}$ → 执行对象的不同语义实例；与 verification-theory、theorem-proving 衔接。
+
 ---
 
 ## 1. Overview / 概述

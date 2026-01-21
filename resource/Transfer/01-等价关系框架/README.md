@@ -24,6 +24,7 @@ This directory contains equivalence relation frameworks organized from multiple 
 
 - `resource/Concept/09-高级概念/01-项目等价关系.md` → Project equivalence relations
 - `resource/Concept/10-Transfer概念/01-项目等价关系框架.md` → Equivalence frameworks
+- **docs**：`docs/06-ci-verification`、`docs/01-foundations`（等价、模型一致性；与 01、02 的 0. 对应）
 
 ### Cross-References / 交叉引用
 

@@ -4,6 +4,7 @@
 
 - [Control Flow Morphisms / 控制流态射](#control-flow-morphisms--控制流态射)
   - [📋 Table of Contents / 目录](#-table-of-contents--目录)
+  - [0. 所属层与转换关系 / Layer and Transformation](#0-所属层与转换关系--layer-and-transformation)
   - [1. Overview / 概述](#1-overview--概述)
   - [2. Category Theory Definition / 范畴论定义](#2-category-theory-definition--范畴论定义)
     - [2.1 Sequential Composition Morphism / 顺序复合态射](#21-sequential-composition-morphism--顺序复合态射)
@@ -33,6 +34,11 @@
 
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；控制流支撑程序分析）
 - **转换关系**：**Control Morphisms** = **状态转换**（控制流操作作为状态转换）；与 06-编程语言理论概念/05-控制流、Category/06-Categories/01-Control-Category、Category/04-Functors/08-Control-Flow-Functors 对应。
+
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- Kripke 结构 $K=(S,S_0,R,L)$（verification-theory 定义 3.1.3）中 $R \subseteq S \times S$ → 控制流态射 $f;g$、$\mathrm{if}\;c\;\mathrm{then}\;f\;\mathrm{else}\;g$ 实现的状态转换。
+- CFG 基本块与边 → 控制流范畴 $\mathbf{CFG}$ 的对象与态射；$f;g$、条件/循环 与 model-checking、程序分析中的控制流图一致。
 
 ---
 

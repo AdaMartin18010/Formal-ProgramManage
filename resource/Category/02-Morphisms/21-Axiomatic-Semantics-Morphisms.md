@@ -34,6 +34,11 @@
 - **所属层**：**验证理论层**（对应 docs/06-ci-verification、docs/03-formal-verification；公理语义）
 - **转换关系**：**Axiomatic Semantics Morphisms** = **模型转换**（Hoare三元组、程序验证作为模型转换方法）；与 Category/01-Objects/12-Verification-Objects、Category/02-Morphisms/12-Verification-Morphisms 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- Hoare 三元组 $\{P\}C\{Q\}$、规则 $\{Q[v/x]\}x:=v\{Q\}$、$\{P\}e_1\{R\},\{R\}e_2\{Q\} \Rightarrow \{P\}e_1;e_2\{Q\}$ → 验证系统 $V(m,\phi)$、$m \models \phi$、theorem-proving；与 13-Proof-Morphisms、12-Verification-Morphisms 一致。
+- 程序验证、正确性证明 → 06-ci-verification 的 形式化验证、Hoare 逻辑、验证条件生成 衔接。
+
 ---
 
 ## 1. Overview / 概述

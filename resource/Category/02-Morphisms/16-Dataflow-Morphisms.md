@@ -35,6 +35,11 @@
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；数据流支撑程序分析）
 - **转换关系**：**Dataflow Morphisms** = **状态转换**（数据流操作作为状态转换）；与 06-编程语言理论概念/06-数据流、Category/06-Categories/02-Data-Flow-Category、Category/04-Functors/09-Data-Flow-Functors 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- 数据流图 $DFG=(D,E)$、数据依赖 → 数据流态射 $f: D_1 \to D_2$、$merge$、$split$ 表示的状态/数据转换；与 model-checking、数据流分析中的 def-use、reaching definitions 等一致。
+- 程序分析中的传递函数、不动点 → 态射复合与 $\mathbf{DFG}$ 中的转换；与 06-ci-verification 的自动化验证、抽象解释衔接。
+
 ---
 
 ## 1. Overview / 概述

@@ -25,6 +25,7 @@ This directory contains practice application frameworks organized from multiple 
 
 - `resource/Concept/13-综合实践概念/` → Comprehensive practice concepts
 - `resource/Concept/14-高级实践概念/` → Advanced practice concepts
+- **docs**：`docs/05-implementations`、`docs/06-ci-verification`（实践、工具、案例；与 01–03 的 0. 对应）
 
 ### Cross-References / 交叉引用
 

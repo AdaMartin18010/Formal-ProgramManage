@@ -24,6 +24,7 @@ This directory contains governance and portfolio application frameworks organize
 
 - `resource/Concept/14-高级实践概念/` → Advanced practice concepts
 - `resource/Concept/13-综合实践概念/` → Comprehensive practice concepts
+- **docs**：`docs/KNOWLEDGE_NETWORK`、`docs/02-project-management`（治理、组合；与 01、02 的 0. 对应）
 
 ### Cross-References / 交叉引用
 

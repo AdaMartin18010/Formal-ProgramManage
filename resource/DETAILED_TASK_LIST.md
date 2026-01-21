@@ -88,7 +88,7 @@
 - [ ] `03-Risk-Management-Functor.md` - 风险管理函子
 - [ ] `04-Quality-Management-Functor.md` - 质量管理函子
 - [ ] `05-Type-Class-Functors.md` - 类型类函子
-- [ ] `06-Type-Functors.md` - 类型函子
+- [ ] `05-Type-Functors.md` - 类型函子（实际 04-Functors 中为 05；06=Environment-Functors）
 - [ ] `07-Environment-Functors.md` - 环境函子
 - [ ] `08-Control-Flow-Functors.md` - 控制流函子
 - [ ] `09-Data-Flow-Functors.md` - 数据流函子

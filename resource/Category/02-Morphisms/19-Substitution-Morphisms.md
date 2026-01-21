@@ -34,6 +34,11 @@
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；替换态射支撑形式化验证）
 - **转换关系**：**Substitution Morphisms** = **模型转换**（变量替换、项替换、类型替换作为模型转换方法）；与 06-编程语言理论概念、Category/03-Constructions/01-Type-Constructions 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- $subst(t,\sigma)=t[\sigma]$、$(\sigma_2\circ\sigma_1)(t)=\sigma_2(\sigma_1(t))$ → 定理证明、类型论中的 项重写、$\beta$-归约、等式推理；$[x \mapsto v]$、$[t/x]$、$[\sigma/\alpha]$ 与 13-Proof-Morphisms、20-Type-Objects 衔接。
+- 验证系统 $VS=(M,\Phi,\mathcal{L},\models,\mathcal{V},\mathcal{R})$ 中的 模型变换、项/公式的代换 → 替换态射；与 06-ci-verification 的程序变换、等价转换 对应。
+
 ---
 
 ## 1. Overview / 概述

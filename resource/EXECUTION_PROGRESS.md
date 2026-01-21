@@ -240,6 +240,10 @@
 - [x] **Transfer 全量 18 个 10.2 补 docs**：01-等价 01/02、02-变换 01/02/03、03-变换 01/02、04-综合 01/02、05-实践 01/02/03、06-治理 01/02、07-行业 01/02/03/04 的 10.2 Related Files 均已补 **docs**（06-ci-verification、01-foundations、02-project-management、KNOWLEDGE_NETWORK、04-industry-applications、05-implementations）。
 - [x] **Concept 09–14 子目录 README 补 docs / 所属层**：09–11 的 Overview 补**所属层**，09–14 的 Alignment 补 **docs**（06-ci-verification、01-foundations、02-project-management、04-industry-applications、05-implementations、07-practical-guidance、KNOWLEDGE_NETWORK）；CONCEPT_INDEX、EXECUTION_PROGRESS 检查清单与 RUNBOOK 已更新。
 - [x] **04-Functors 数量 10→9 一致化**：04-Functors 实际 9 个（01–06、08–10）；INDEX、QUICK_INDEX、Category/README、04-Functors/README、EXECUTION_PROGRESS 的 Functors 数量均已改为 9。
+- [x] **Transfer 01–07 子目录 README 补 docs**：01-等价、02-变换类型、03-变换关系网络、04-综合应用、05-实践应用、06-治理组合、07-行业应用 的 Alignment 均已补 **docs**（06-ci-verification、01-foundations、02-project-management、lifecycle-models、KNOWLEDGE_NETWORK、04-industry-applications、05-implementations）。
+- [x] **02-Morphisms 13–17、01-Objects 20–25 补「与 docs 的公式对应」**：13–17（Proof、Consistency、Control、Dataflow、Execution）、20–25（Type、Environment、Control-Flow、Data-Flow、Execution）的 0. 节均已补与 docs/03-formal-verification、06-ci-verification 的公式对应（Kripke、$m \models \phi$、CFG、DFG、操作/指称/公理语义、ConsistencyChecker、类型/环境等）。
+- [x] **20-Type-Objects 8.3 链接修正**：Type Functors 链接由 `04-Functors/06-Type-Functors` 改为 `04-Functors/05-Type-Functors`（04-Functors 中 05=Type、06=Environment）。
+- [x] **02-Morphisms 18–22、03-Constructions/01-Type-Constructions 补「与 docs 的公式对应」**：18-Scope、19-Substitution、20-Denotational-Semantics、21-Axiomatic-Semantics、22-Replacement、01-Type-Constructions 的 0. 节均已补与 docs/03-formal-verification、06-ci-verification 的公式对应；02-Morphisms/README 模型/等价转换补 13-Proof，并注明 **13–22 已补「与 docs 的公式对应」**。
 
 ## 📊 进度统计
 
@@ -274,7 +278,7 @@
 
 1. **与 docs 的公式对应深化**：行业 04-Industry-Application-Objects、32-Industry-Application-Morphisms 已补；05/06/07/15/18/19 及 30–36 所属层已含「对应 docs/04-industry-applications」。对尚未有公式对应的其他对象/态射（若有）按需补一句。
 2. **索引与进度表一致性**：EXECUTION_PROGRESS、Category/README、INDEX、QUICK_INDEX 的数量与「已加 0.」「归档」说明保持同步。
-3. **子目录 README**：Transfer 04–07、Concept 02–14 子目录 README 的「所属层与转换」及 **docs** 已补全；后续新增 .md 时同步加 0. 节。
+3. **子目录 README**：Transfer 01–07、Concept 02–14 子目录 README 的「所属层与转换」及 **docs** 已补全；后续新增 .md 时同步加 0. 节。
 
 ### 中优先级（可选拓展）
 
@@ -298,10 +302,10 @@
 - **数量**：Category 01-Objects 25、02-Morphisms 25、04-Functors 9、05-Natural 7、06-Categories 4、07-Applications 3、03-Constructions 1；与 INDEX、QUICK_INDEX、各子目录 README 一致。
 - **0. 所属层**：`grep "## 0. 所属层" resource/Category` ≈80；`resource/Concept` ≈53；`resource/Transfer` 18。**Concept 02–14** 均有子目录 README（所属层、**docs**、转换、与 Category/docs 衔接）。
 - **归档**：`_archive` 仅在 ARCHIVE_LIST、各 README 的「已归档」说明中出现；主 INDEX/README 不将归档文件列为主列表。
-- **与 docs 公式对应**：08/09/10/11/12-Objects 与 04-Functors 01–04、02-Morphisms 08–12；04-Industry、32-Industry；12-Verification、04-Functors 05,06,08,09,10。
-- **8.x Related Files 的 docs**：**01-Objects** 25、**02-Morphisms** 25、**04-Functors** 9、**05-Natural** 7、**06-Categories** 4、**03-Constructions** 1、**07-Applications** 3；**00-Foundations** 01/03/04（8.3/9.4）、**08-Advanced** 01（7.3）、**09-Mappings** 01/02（5.3/8.3）；**Concept** 01-项目管理基础 README、02–14 子目录 README（02–08、09–14 均已补 **docs** / 所属层）；**Transfer** 18 个（10.2）均已补 **docs**。
+- **与 docs 公式对应**：08/09/10/11/12-Objects 与 04-Functors 01–04、02-Morphisms 08–12；04-Industry、32-Industry；12-Verification、04-Functors 05,06,08,09,10；**01-Objects 20–25**（Type、Env、Control-Flow、Data-Flow、Execution）、**02-Morphisms 13–22**（Proof、Consistency、Control、Dataflow、Execution、Scope、Substitution、Denotational-Semantics、Axiomatic-Semantics、Replacement）、**03-Constructions/01-Type-Constructions** 均已补与 docs/03-formal-verification、06-ci-verification 的公式对应。
+- **8.x Related Files 的 docs**：**01-Objects** 25、**02-Morphisms** 25、**04-Functors** 9、**05-Natural** 7、**06-Categories** 4、**03-Constructions** 1、**07-Applications** 3；**00-Foundations** 01/03/04（8.3/9.4）、**08-Advanced** 01（7.3）、**09-Mappings** 01/02（5.3/8.3）；**Concept** 01-项目管理基础 README、02–14 子目录 README（02–08、09–14 均已补 **docs** / 所属层）；**Transfer** 18 个（10.2）均已补 **docs**；**Transfer 01–07 子目录 README** 均已补 **docs**。
 
-**RUNBOOK 定期检查**（可选）：① `grep "## 0. 所属层" resource/Category` ≈80、`resource/Concept` ≈53、`resource/Transfer` 18；② `grep "**docs**：" resource/Category/01-Objects` 25、`resource/Category/02-Morphisms` 25、`resource/Category/04-Functors` 9、`resource/Category/05-Natural-Transformations` 7、`resource/Transfer` 18；`grep "**docs**：" resource/Concept` 含 01 及 02–14 子目录 README；③ 数量与 INDEX、QUICK_INDEX、各 README 一致（04-Functors 9）；④ 归档仅见 ARCHIVE_LIST、README「已归档」。
+**RUNBOOK 定期检查**（可选）：① `grep "## 0. 所属层" resource/Category` ≈80、`resource/Concept` ≈53、`resource/Transfer` 18；② `grep "**docs**：" resource/Category/01-Objects` 25、`resource/Category/02-Morphisms` 25、`resource/Category/04-Functors` 9、`resource/Category/05-Natural-Transformations` 7、`resource/Transfer` 18（10.2）+ 01–07 子目录 README（7）；`grep "**docs**：" resource/Concept` 含 01 及 02–14 子目录 README；③ 数量与 INDEX、QUICK_INDEX、各 README 一致（04-Functors 9）；④ 归档仅见 ARCHIVE_LIST、README「已归档」。
 
 ---
 

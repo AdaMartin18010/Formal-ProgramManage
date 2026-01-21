@@ -33,6 +33,11 @@
 - **所属层**：**验证理论层（支撑）**（对应 docs/03-formal-verification、06-ci-verification；替换态射支撑形式化验证）
 - **转换关系**：**Replacement Morphisms** = **模型转换**（组件替换、资源替换、结构替换作为模型转换方法）；与 Category/02-Morphisms/19-Substitution-Morphisms 对应。
 
+**与 docs/03-formal-verification、06-ci-verification 的公式对应**：
+
+- $replace(x,y)=x'$、$replace(f \circ g, h) = replace(f,h) \circ replace(g,h)$ → 模型/结构的 等价替换、重写；与 19-Substitution-Morphisms 的 $subst(t,\sigma)$、$\sigma_2 \circ \sigma_1$ 在结构层面的推广 一致。
+- 组件/资源/计划替换 → 06-ci-verification 的 程序变换、模块替换、等价转换；与 03-formal-verification 的 项重写、模型变换 衔接。
+
 ---
 
 ## 1. Overview / 概述
