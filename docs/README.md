@@ -67,6 +67,7 @@ graph TB
 
 ### 2. 项目管理核心模型
 
+- [2.0 项目管理核心模型索引](./02-project-management/README.md) - 项目管理核心模型总览
 - [2.1 项目生命周期模型](./02-project-management/lifecycle-models.md) - 基于PMBOK 7th Edition
 - [2.2 资源管理模型](./02-project-management/resource-models.md) - 资源优化配置
 - [2.3 风险管理模型](./02-project-management/risk-models.md) - 风险识别与缓解

@@ -600,6 +600,7 @@ impl MonteCarloAnalyzer {
                 }
             }
             ImpactDistribution::Exponential { lambda } => {
+                let u = rng.gen::<f64>();
                 -u.ln() / lambda
             }
         }
