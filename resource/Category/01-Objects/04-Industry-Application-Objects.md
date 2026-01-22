@@ -21,6 +21,7 @@
     - [6.2 Construction Project Example / 建筑项目例子](#62-construction-project-example--建筑项目例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Standards / 标准](#81-standards--标准)
     - [8.2 Related Files / 相关文件](#82-related-files--相关文件)
@@ -170,6 +171,12 @@ with construction-specific components.
 - **Industry Pattern Application**: Applying industry patterns
 - **Industry Best Practices**: Using industry best practices
 - **Industry Standard Compliance**: Complying with industry standards
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (Industry Application as Specialized Templates / 行业应用即专业化模板)
+
+行业应用对象 $P_{industry} \in \mathbf{IndustryApp}$ 可看作**行业特定的项目模板**：每个行业（软件、建筑、工程、商业、AI）有自己的模式与约束。范畴 $\mathbf{IndustryApp}$ 中的态射 $f: P_{sw} \to P_{eng}$ 表示跨行业的项目转换（如将软件敏捷模式适配到工程项目）。例如软件开发项目 $P_{sw}=(Features, Timeline, DevTeam, TechStack, QualityStandards)$：$Features$ 对应功能需求，$TechStack$ 是技术栈，$QualityStandards$ 包含代码质量、测试覆盖率等；而建筑项目 $P_{constr}=(Building, Timeline, Workers, WeatherRisks, SafetyQuality)$ 则关注建筑结构、天气风险、安全质量标准。函子 $Industry: \mathbf{IndustryApp} \to \mathbf{Project}$ 将行业特定项目映射为通用项目结构，保留行业特征的同时统一管理。
 
 ---
 

@@ -25,6 +25,7 @@
     - [6.2 Graph Example / 图例子](#62-graph-example--图例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Mathematics / 数学](#81-mathematics--数学)
     - [8.2 Category Theory / 范畴论](#82-category-theory--范畴论)
@@ -216,6 +217,12 @@ representing task dependencies.
 - **Graph Analysis**: Analyzing project networks
 - **Probability Modeling**: Modeling project uncertainties
 - **Mathematical Modeling**: Mathematical project models
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (Mathematical Objects as Building Blocks / 数学对象即基础积木)
+
+数学对象（集合、图、概率空间）可看作项目管理的**基础积木**：集合 $\mathcal{P} \in \mathbf{Set}$ 是项目的容器（如项目集合 $\{P_{sw}, P_{constr}\}$），图 $G \in \mathbf{Graph}$ 是任务依赖网络（如 $G_{tasks}=(\{t_1, t_2, t_3\}, \{(t_1, t_2), (t_2, t_3)\})$ 表示任务依赖关系），概率空间 $(\Omega, \mathcal{F}, P) \in \mathbf{Prob}$ 是风险与不确定性的模型。范畴 $\mathbf{Set}$、$\mathbf{Graph}$、$\mathbf{Prob}$ 中的态射表示集合映射、图同态、概率测度变换。例如项目网络 $G_{tasks}$：通过图分析可找出关键路径；函子 $Graph: \mathbf{Project} \to \mathbf{Graph}$ 将项目结构映射为依赖图，支持任务调度与资源优化。
 
 ---
 

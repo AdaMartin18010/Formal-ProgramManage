@@ -9,6 +9,7 @@
 ### 规则1：标题编号与内部编号对应
 
 如果文件标题是 `# X.Y`，那么：
+
 - 一级子章节应该是 `## X.Y.1`, `## X.Y.2`, ...
 - 二级子章节应该是 `### X.Y.Z.1`, `### X.Y.Z.2`, ...
 - 定义/定理/算法编号应该是 `定义 X.Y.Z`, `定理 X.Y.Z`, ...
@@ -85,11 +86,13 @@ grep -r "4\.2\.\d\.\d\.\d" docs/04-industry-applications/
 对于每个文件：
 
 1. **检查文件标题编号**
+
    ```bash
    head -1 <file>
    ```
 
 2. **查找所有需要替换的编号**
+
    ```bash
    grep -n "4\.2\.\d\.\d\.\d" <file>
    ```
@@ -115,6 +118,7 @@ grep -r "^## " docs/04-industry-applications/ | head -20
 ### 示例1：agile-models.md
 
 **修复前：**
+
 ```markdown
 # 4.1.1 敏捷开发模型
 
@@ -123,6 +127,7 @@ grep -r "^## " docs/04-industry-applications/ | head -20
 ```
 
 **修复后：**
+
 ```markdown
 # 4.1.1 敏捷开发模型
 
@@ -133,6 +138,7 @@ grep -r "^## " docs/04-industry-applications/ | head -20
 ### 示例2：construction-engineering.md ✅
 
 **修复前：**
+
 ```markdown
 # 4.2.2 建筑工程模型
 
@@ -141,6 +147,7 @@ grep -r "^## " docs/04-industry-applications/ | head -20
 ```
 
 **修复后：**
+
 ```markdown
 # 4.2.2 建筑工程模型
 

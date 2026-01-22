@@ -194,7 +194,7 @@ impl KnowledgeEvolutionSystem {
     pub fn evolve(&self, current_state: &KnowledgeState, event: &EvolutionEvent, time: Time) -> KnowledgeState {
         self.evolution_function.apply(current_state, event, time)
     }
-    
+
     pub fn predict(&self, current_state: &KnowledgeState, future_time: Time) -> KnowledgeState {
         self.prediction_function.predict(current_state, future_time)
     }
@@ -230,9 +230,9 @@ structure AutomatedVerificationSystem :=
   (algorithms : list Algorithm)
   (report_generators : list ReportGenerator)
 
-theorem verification_completeness : 
+theorem verification_completeness :
   ∀ (avs : AutomatedVerificationSystem) (m : Model),
-  m ∈ avs.models → 
+  m ∈ avs.models →
   ∃ (v : Verifier), v ∈ avs.verifiers ∧ v.can_verify m :=
 begin
   -- 证明验证系统的完备性
@@ -260,14 +260,14 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run Knowledge Evolution Analysis
       run: cargo run --bin knowledge-evolution
-      
+
   cross-domain-integration:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Run Cross-Domain Integration
       run: cargo run --bin cross-domain-integration
-      
+
   automated-verification:
     runs-on: ubuntu-latest
     steps:
@@ -290,27 +290,27 @@ pub struct VerificationToolIntegration {
 impl VerificationToolIntegration {
     pub fn verify_model(&self, model: &Model) -> VerificationResult {
         let mut results = Vec::new();
-        
+
         // 模型检验
         for checker in &self.model_checkers {
             results.push(checker.check(model));
         }
-        
+
         // 定理证明
         for prover in &self.theorem_provers {
             results.push(prover.prove(model));
         }
-        
+
         // 静态分析
         for analyzer in &self.static_analyzers {
             results.push(analyzer.analyze(model));
         }
-        
+
         // 动态测试
         for tester in &self.dynamic_testers {
             results.push(tester.test(model));
         }
-        
+
         self.aggregate_results(results)
     }
 }

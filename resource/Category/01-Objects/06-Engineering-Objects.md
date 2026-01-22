@@ -20,6 +20,7 @@
     - [6.2 Electrical Engineering Example / 电气工程例子](#62-electrical-engineering-example--电气工程例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Standards / 标准](#81-standards--标准)
     - [8.2 Related Files / 相关文件](#82-related-files--相关文件)
@@ -163,6 +164,12 @@ with electrical-specific components.
 - **Safety Management**: Managing engineering safety
 - **Quality Control**: Controlling engineering quality
 - **Standard Compliance**: Complying with engineering standards
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (Engineering Project as Safety-Critical System / 工程项目即安全关键系统)
+
+工程对象 $P_{eng}=(System, Timeline, EngTeam, Materials, SafetyStandards)$ 可看作一个**安全关键系统**：$System$ 是工程系统（如机械、电气），$Materials$ 是工程材料，$SafetyStandards$ 是安全标准（如 ISO 26262 汽车安全、IEC 61508 功能安全）。范畴 $\mathbf{Engineering}$ 中的态射 $f: P_{mech} \to P_{elec}$ 表示工程类型转换（如机械系统电气化）。例如机械工程项目 $P_{mech}$：$System=MechanicalSystem$（传动系统），$SafetyStandards=\{LoadFactor \geq 2.0, FatigueLife \geq 10^6 cycles\}$；函子 $Quality: \mathbf{Engineering} \to \mathbf{Quality}$ 从工程项目中提取质量与安全维度，确保系统可靠性、材料强度、安全系数符合工程标准。
 
 ---
 

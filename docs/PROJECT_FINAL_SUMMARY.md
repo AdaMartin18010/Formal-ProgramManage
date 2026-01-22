@@ -115,16 +115,16 @@
 
 ### 进度跟踪文档
 
-4. `NUMBERING_PROGRESS.md` - 编号修复进度跟踪
-5. `NUMBERING_COMPLETION_SUMMARY.md` - 编号完成总结
-6. `NUMBERING_FIX_COMPLETE.md` - 编号修复完成总结
-7. `REFERENCE_COMPLETION_SUMMARY.md` - 参考文献完成总结
-8. `REFERENCE_LINK_FIX_SUMMARY.md` - 引用链接修复总结
+1. `NUMBERING_PROGRESS.md` - 编号修复进度跟踪
+2. `NUMBERING_COMPLETION_SUMMARY.md` - 编号完成总结
+3. `NUMBERING_FIX_COMPLETE.md` - 编号修复完成总结
+4. `REFERENCE_COMPLETION_SUMMARY.md` - 参考文献完成总结
+5. `REFERENCE_LINK_FIX_SUMMARY.md` - 引用链接修复总结
 
 ### 知识体系文档
 
-9. `KNOWLEDGE_GRAPH.md` - 概念知识图谱
-10. `FINAL_STRUCTURE_REVIEW.md` - 结构梳理最终总结
+1. `KNOWLEDGE_GRAPH.md` - 概念知识图谱
+2. `FINAL_STRUCTURE_REVIEW.md` - 结构梳理最终总结
 
 ## 工作流程
 

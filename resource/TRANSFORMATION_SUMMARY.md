@@ -3,6 +3,7 @@
 ## 🔗 与主线对应 / Alignment with Main Thread
 
 **层与转换主线**：本转换工作总结的任务与 resource 的**层、转换**主线对齐：
+
 - **层**：基础理论层（01-项目管理基础）→ 核心模型层（02–05）→ 验证理论层（06–07）→ 应用模型层（08）→ 实现验证层（09–14）
 - **转换**：生命周期转换（02、Transfer/02–03）、状态转换（01/03、09、Transfer/01）、层次转换（09、10、12、Transfer）、模型/等价转换（07、10、12、Transfer/01）
 - **快速入口**：[resource/README.md](README.md) 的「与 docs 的层、转换对应」表、[Concept/README.md](Concept/README.md)、[Transfer/README.md](Transfer/README.md)

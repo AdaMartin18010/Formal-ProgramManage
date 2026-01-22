@@ -21,6 +21,7 @@
     - [6.2 Mobile Application Example / 移动应用例子](#62-mobile-application-example--移动应用例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Standards / 标准](#81-standards--标准)
     - [8.2 Related Files / 相关文件](#82-related-files--相关文件)
@@ -175,6 +176,12 @@ with mobile-specific components.
 - **Agile Management**: Managing agile software projects
 - **DevOps Integration**: Integrating DevOps practices
 - **Quality Assurance**: Ensuring software quality
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (Software Project as Iterative Code Factory / 软件项目即迭代代码工厂)
+
+软件对象 $P_{sw}=(Features, Timeline, DevTeam, TechStack, QualityStandards)$ 可看作一个**迭代的代码工厂**：$Features$ 是待实现的功能清单，$DevTeam$ 是开发团队，$TechStack$ 是技术栈（如 React、Node.js），$QualityStandards$ 是质量标准（代码覆盖率、性能指标等）。范畴 $\mathbf{Software}$ 中的态射 $f: P_{web} \to P_{mobile}$ 表示项目类型转换（如将 Web 应用迁移到移动端）。例如 Web 应用项目 $P_{web}$：$TechStack=\{React, Node.js, PostgreSQL\}$，$QualityStandards=\{TestCoverage \geq 80\%, ResponseTime < 200ms\}$；函子 $Quality: \mathbf{Software} \to \mathbf{Quality}$ 从软件项目中提取质量维度，确保代码质量、测试覆盖、性能指标符合标准。
 
 ---
 

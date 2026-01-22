@@ -20,6 +20,7 @@
     - [6.2 Market Expansion Example / 市场扩张例子](#62-market-expansion-example--市场扩张例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Standards / 标准](#81-standards--标准)
     - [8.2 Related Files / 相关文件](#82-related-files--相关文件)
@@ -163,6 +164,12 @@ with market expansion components.
 - **ROI Management**: Managing return on investment
 - **Value Delivery**: Delivering business value
 - **Stakeholder Management**: Managing business stakeholders
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (Business Project as Value Creation Engine / 商业项目即价值创造引擎)
+
+商业对象 $P_{biz}=(Initiative, Timeline, BizTeam, Budget, ROI)$ 可看作一个**价值创造引擎**：$Initiative$ 是商业倡议（如产品发布、市场扩张），$Budget$ 是预算，$ROI$ 是投资回报率。范畴 $\mathbf{Business}$ 中的态射 $f: P_{launch} \to P_{expansion}$ 表示商业项目转换（如从产品发布扩展到市场扩张）。例如产品发布项目 $P_{launch}=(NewProduct, 3Months, MarketingTeam, Budget, ExpectedROI)$：$ExpectedROI=150\%$，$Budget=\$500K$；函子 $Resource: \mathbf{Business} \to \mathbf{Resource}$ 从商业项目中提取资源维度（团队、预算、时间），确保资源配置与 ROI 目标对齐。
 
 ---
 

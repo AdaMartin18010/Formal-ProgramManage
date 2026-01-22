@@ -24,35 +24,35 @@
 
 ### 4.2 工程管理模型（4个文件）
 
-6. ✅ `engineering-management/systems-engineering.md`
-7. ✅ `engineering-management/construction-engineering.md`
-8. ✅ `engineering-management/mechanical-engineering.md`
-9. ✅ `engineering-management/electrical-engineering.md`
+1. ✅ `engineering-management/systems-engineering.md`
+2. ✅ `engineering-management/construction-engineering.md`
+3. ✅ `engineering-management/mechanical-engineering.md`
+4. ✅ `engineering-management/electrical-engineering.md`
 
 ### 4.3 商业管理模型（7个文件）
 
-10. ✅ `business-management/strategic-management.md`
-11. ✅ `business-management/operational-management.md` - **新增**
-12. ✅ `business-management/financial-management.md` - **新增**
-13. ✅ `business-management/human-resource-management.md` - **新增**
-14. ✅ `business-management/innovation-management.md` - **新增**
-15. ✅ `business-management/knowledge-management.md` - **新增**
-16. ✅ `business-management/change-management.md` - **新增**
+1. ✅ `business-management/strategic-management.md`
+2. ✅ `business-management/operational-management.md` - **新增**
+3. ✅ `business-management/financial-management.md` - **新增**
+4. ✅ `business-management/human-resource-management.md` - **新增**
+5. ✅ `business-management/innovation-management.md` - **新增**
+6. ✅ `business-management/knowledge-management.md` - **新增**
+7. ✅ `business-management/change-management.md` - **新增**
 
 ### 4.4 专业领域模型（5个文件）
 
-17. ✅ `healthcare-management/healthcare-management.md` - **新增**
-18. ✅ `education-management/education-management.md` - **新增**
-19. ✅ `fintech-management/fintech-management.md` - **新增**
-20. ✅ `logistics-management/logistics-management.md` - **新增**
-21. ✅ `energy-management/energy-management.md` - **新增**
+1. ✅ `healthcare-management/healthcare-management.md` - **新增**
+2. ✅ `education-management/education-management.md` - **新增**
+3. ✅ `fintech-management/fintech-management.md` - **新增**
+4. ✅ `logistics-management/logistics-management.md` - **新增**
+5. ✅ `energy-management/energy-management.md` - **新增**
 
 ### 4.5 新兴技术模型（4个文件）
 
-22. ✅ `ai-management/ai-management.md` - **新增**
-23. ✅ `blockchain-management/blockchain-management.md` - **新增**
-24. ✅ `iot-management/iot-management.md` - **新增**
-25. ✅ `quantum-management/quantum-management.md` - **新增**
+1. ✅ `ai-management/ai-management.md` - **新增**
+2. ✅ `blockchain-management/blockchain-management.md` - **新增**
+3. ✅ `iot-management/iot-management.md` - **新增**
+4. ✅ `quantum-management/quantum-management.md` - **新增**
 
 ## 标准格式
 

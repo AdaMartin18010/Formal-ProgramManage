@@ -3,6 +3,7 @@
 ## 🔗 与主线对应 / Alignment with Main Thread
 
 **层与转换主线**：本计划的任务与 resource 的**层、转换**主线对齐：
+
 - **层**：基础理论层（01-项目管理基础）→ 核心模型层（02–05）→ 验证理论层（06–07）→ 应用模型层（08）→ 实现验证层（09–14）
 - **转换**：生命周期转换（02、Transfer/02–03）、状态转换（01/03、09、Transfer/01）、层次转换（09、10、12、Transfer）、模型/等价转换（07、10、12、Transfer/01）
 - **快速入口**：[resource/README.md](README.md) 的「与 docs 的层、转换对应」表、[Concept/README.md](Concept/README.md)、[Transfer/README.md](Transfer/README.md)
@@ -255,7 +256,7 @@
 
 - [x] **本批已完成**：Concept `01-项目管理基础`、`02-生命周期概念` 共 10 篇添加「7.3 直观解释配例」；Transfer `01-等价关系框架`（2 篇）、`02-变换类型框架`（3 篇）、`03-变换关系网络框架`（1 篇）共 6 篇添加「9.2 应用案例」；`QUICK_INDEX.md`、`resource/README.md` 已更新为 PM 向并补充按主题/生命周期导航
 - [x] **直观解释 + 一例**：为 **Concept 文档** 续批完成 — `03-资源管理概念`（4）、`04-风险管理概念`（4）、`05-质量管理概念`（4）、`08-行业应用概念`（6）、`06-编程语言理论概念`（8）、`07-程序分析概念`（2）已添加；**本批** `09-高级概念`（3）、`10-Transfer概念`（3）、`11-综合应用概念`（1）、`12-Transfer应用`（3）共 10 篇已添加「7.3 直观解释配例」；**续批** `13-综合实践概念`（3）、`14-高级实践概念`（2）共 5 篇已添加「7.3 直观解释配例」
-- [x] **直观解释 + 一例**：为 **Category 文档**（Objects/Morphisms 中 PM 相关）**本批** 9 篇已添加「7.3 直观解释与一例」— Objects：`01-Project`、`08-Lifecycle`、`09-Resource`、`10-Risk`、`11-Quality`（5）；Morphisms：`08-Lifecycle`、`09-Resource`、`10-Risk`、`11-Quality`（4）；[ ] 续批：其余 PM 相关 Objects/Morphisms（约 6+ 篇）
+- [x] **直观解释 + 一例**：为 **Category 文档**（Objects/Morphisms 中 PM 相关）**本批** 9 篇已添加「7.3 直观解释与一例」— Objects：`01-Project`、`08-Lifecycle`、`09-Resource`、`10-Risk`、`11-Quality`（5）；Morphisms：`08-Lifecycle`、`09-Resource`、`10-Risk`、`11-Quality`（4）；[x] **续批**：其余 PM 相关 Objects 已添加 — `02-Mathematical`、`03-Semantic`、`04-Industry-Application`、`05-Software`、`06-Engineering`、`07-Business`、`12-Verification`、`15-AI`、`18-Construction`、`19-Healthcare`（10 篇）
 - [x] **一案例**：为 **Transfer 框架** 续批完成 — 04-综合应用（2）、05-实践应用（3）、06-治理组合（2）、07-行业应用（4）共 11 篇已添加「9.2 应用案例」；**本批** `03-变换关系网络框架/02-项目变换路径框架` 已添加「9.2 应用案例」
 - [ ] **索引与导航**：`MASTER_INDEX`（如有）及 Category/Transfer 下 INDEX 与 README 仅反映 PM 向与归档后布局（QUICK_INDEX、resource/README 已完成）
 

@@ -20,6 +20,7 @@
     - [6.2 Deep Learning Example / 深度学习例子](#62-deep-learning-example--深度学习例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Standards / 标准](#81-standards--标准)
     - [8.2 Related Files / 相关文件](#82-related-files--相关文件)
@@ -163,6 +164,12 @@ with deep learning components.
 - **Data Management**: Managing training data
 - **Model Training**: Training AI models
 - **Model Deployment**: Deploying AI models
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (AI Project as Data-Driven Learning Pipeline / AI项目即数据驱动学习流水线)
+
+AI对象 $P_{ai}=(Model, Data, Training, Validation, Deployment)$ 可看作一个**数据驱动的学习流水线**：$Model$ 是AI/ML模型（如神经网络、决策树），$Data$ 是训练数据，$Training$ 是训练过程，$Validation$ 是验证过程，$Deployment$ 是部署过程。范畴 $\mathbf{AI}$ 中的态射 $f: P_{ml} \to P_{dl}$ 表示模型类型转换（如从传统ML迁移到深度学习）。例如机器学习项目 $P_{ml}=(MLModel, Dataset, TrainingPipeline, ValidationSet, DeploymentConfig)$：$Model=RandomForest$，$Data=\{100K samples, 50 features\}$，$Validation=\{Accuracy \geq 0.85, Precision \geq 0.80\}$；函子 $DataFlow: \mathbf{AI} \to \mathbf{DFG}$ 从AI项目中提取数据流维度，建模数据从采集→预处理→训练→验证→部署的流动路径。
 
 ---
 

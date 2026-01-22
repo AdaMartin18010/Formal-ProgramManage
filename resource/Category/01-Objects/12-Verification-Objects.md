@@ -22,6 +22,7 @@
     - [6.2 Consistency Checking Example / 一致性检查例子](#62-consistency-checking-example--一致性检查例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Verification Theory / 验证理论](#81-verification-theory--验证理论)
     - [8.2 Category Theory / 范畴论](#82-category-theory--范畴论)
@@ -175,6 +176,12 @@ verifying consistency between models.
 - **Property Verification**: Verifying project properties
 - **Consistency Verification**: Verifying model consistency
 - **Theorem Proving**: Proving project theorems
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (Verification Objects as Quality Checkers / 验证对象即质量检查器)
+
+验证对象 $V=(StateSpace, Paths, Properties) \in \mathbf{Verification}$ 可看作项目管理的**质量检查器**：$StateSpace$ 是项目状态空间，$Paths$ 是执行路径，$Properties$ 是待验证性质（如安全性、活性）。模型检验 $check(M, P)$ 检查模型 $M$ 是否满足性质 $P$，定理证明通过逻辑推理验证性质，一致性检查 $verify(Model_1, Model_2)$ 确保模型间的一致性。范畴 $\mathbf{Verification}$ 中的态射表示验证变换。例如安全性质验证：$check(Model, \mathbf{G}(safe)) = True$ 表示模型在所有路径上满足安全性质；函子 $Verify: \mathbf{Project} \to \mathbf{Verification}$ 将项目映射为验证对象，支持自动化的模型检验与性质验证。
 
 ---
 

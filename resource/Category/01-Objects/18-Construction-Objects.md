@@ -20,6 +20,7 @@
     - [6.2 Infrastructure Construction Example / 基础设施建设例子](#62-infrastructure-construction-example--基础设施建设例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Standards / 标准](#81-standards--标准)
     - [8.2 Related Files / 相关文件](#82-related-files--相关文件)
@@ -163,6 +164,12 @@ with infrastructure-specific components.
 - **Safety Management**: Managing construction safety
 - **Quality Control**: Controlling construction quality
 - **Standard Compliance**: Complying with building codes
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (Construction Project as Physical Assembly Line / 建筑项目即物理装配线)
+
+建筑对象 $P_{constr}=(Building, Timeline, Workers, Materials, SafetyStandards)$ 可看作一个**物理装配线**：$Building$ 是建筑结构（如住宅、基础设施），$Workers$ 是施工人员，$Materials$ 是建筑材料（混凝土、钢材），$SafetyStandards$ 是安全标准（如 OSHA 建筑安全、建筑规范）。范畴 $\mathbf{Construction}$ 中的态射 $f: P_{residential} \to P_{infra}$ 表示建筑类型转换（如从住宅建设扩展到基础设施建设）。例如住宅建筑项目 $P_{residential}=(ResidentialBuilding, 18Months, ConstructionTeam, Materials, SafetyStandards)$：$Materials=\{Concrete, Steel, Wood\}$，$SafetyStandards=\{FallProtection, HardHatRequired, SiteSafetyPlan\}$；函子 $Quality: \mathbf{Construction} \to \mathbf{Quality}$ 从建筑项目中提取质量维度，确保结构强度、材料耐久性、安全合规性符合建筑规范。
 
 ---
 

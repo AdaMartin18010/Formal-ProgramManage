@@ -20,6 +20,7 @@
     - [6.2 Healthcare System Example / 医疗系统例子](#62-healthcare-system-example--医疗系统例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Standards / 标准](#81-standards--标准)
     - [8.2 Related Files / 相关文件](#82-related-files--相关文件)
@@ -163,6 +164,12 @@ with healthcare IT components.
 - **Safety Management**: Managing healthcare safety
 - **Quality Control**: Controlling healthcare quality
 - **Regulatory Compliance**: Complying with healthcare regulations
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (Healthcare Project as Patient-Centric Care Pipeline / 医疗项目即以患者为中心的护理流水线)
+
+医疗对象 $P_{health}=(Initiative, Timeline, MedicalTeam, Resources, QualityStandards)$ 可看作一个**以患者为中心的护理流水线**：$Initiative$ 是医疗倡议（如临床试验、医疗信息系统），$MedicalTeam$ 是医疗团队（医生、护士、研究人员），$Resources$ 是医疗资源（设备、药品、数据），$QualityStandards$ 是质量标准（如 FDA 临床试验规范、HIPAA 隐私保护）。范畴 $\mathbf{Healthcare}$ 中的态射 $f: P_{trial} \to P_{his}$ 表示医疗项目转换（如从临床试验扩展到医疗信息系统）。例如临床试验项目 $P_{trial}=(ClinicalTrial, 36Months, ResearchTeam, Resources, QualityStandards)$：$QualityStandards=\{FDA GCP Compliance, IRB Approval, PatientSafetyMonitoring\}$；函子 $Quality: \mathbf{Healthcare} \to \mathbf{Quality}$ 从医疗项目中提取质量维度，确保患者安全、数据隐私、监管合规性符合医疗标准。
 
 ---
 

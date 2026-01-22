@@ -23,6 +23,7 @@
     - [6.2 Operational Semantics Example / 操作语义例子](#62-operational-semantics-example--操作语义例子)
   - [7. Applications / 应用](#7-applications--应用)
     - [7.1 Project Management Applications / 项目管理应用](#71-project-management-applications--项目管理应用)
+    - [7.3 直观解释与一例 / Intuitive Explanation with One Example](#73-直观解释与一例--intuitive-explanation-with-one-example)
   - [8. References / 参考文献](#8-references--参考文献)
     - [8.1 Semantics Theory / 语义理论](#81-semantics-theory--语义理论)
     - [8.2 Category Theory / 范畴论](#82-category-theory--范畴论)
@@ -186,6 +187,12 @@ representing task execution step.
 - **Operational Modeling**: Modeling project operations
 - **Semantic Verification**: Verifying project semantics
 - **Operational Analysis**: Analyzing project operations
+
+### 7.3 直观解释与一例 / Intuitive Explanation with One Example
+
+**Example 7.3** (Semantic Objects as Meaning Interpreters / 语义对象即意义解释器)
+
+语义对象可看作项目管理的**意义解释器**：指称语义 $[\![P]\!] \in \mathbf{Sem}$ 将项目 $P$ 映射到其数学含义（如状态空间、值域），操作语义 $\langle Task, State \rangle \Downarrow NewState$ 描述项目操作的执行步骤（如任务执行的状态转换）。范畴 $\mathbf{Sem}$ 和 $\mathbf{OpSem}$ 中的态射表示语义变换与操作变换。例如项目执行操作：$\langle Task, State \rangle \Downarrow NewState$ 表示从当前状态 $State$ 执行 $Task$ 后得到新状态 $NewState$；函子 $Sem: \mathbf{Project} \to \mathbf{Sem}$ 将项目结构映射为语义模型，支持项目行为的精确分析与验证。
 
 ---
 

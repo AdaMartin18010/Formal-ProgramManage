@@ -3,6 +3,7 @@
 ## 🔗 与主线对应 / Alignment with Main Thread
 
 **层与转换主线**：本文档的范畴论映射与 resource 的**层、转换**主线对应：
+
 - **层**：基础理论层 → 核心模型层 → 验证理论层 → 应用模型层（见 [resource/README.md](README.md) 的「与 docs 的层、转换对应」表）
 - **转换**：态射 = 转换（生命周期转换 $\delta$、状态转换 $\rightarrow$）、函子 = 层间映射（L1→…→L5）、自然变换 = 函子间转换（等价、模型一致性）
 - **快速入口**：[Concept/README.md](Concept/README.md)、[Transfer/README.md](Transfer/README.md)、[Category/README.md](Category/README.md)
