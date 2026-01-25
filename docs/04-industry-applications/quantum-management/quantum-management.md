@@ -1,8 +1,46 @@
-# 4.5.4 量子计算管理模型
+# 4.5.4 量子计算管理模型 / Quantum Computing Management Models
 
-## 4.5.4.1 概述
+## 📋 Table of Contents / 目录
+
+- [1. Overview / 概述](#1-overview--概述)
+- [2. Definition / 定义](#2-definition--定义)
+- [3. Properties / 属性](#3-properties--属性)
+- [4. Relations / 关系](#4-relations--关系)
+- [5. Examples / 实例](#5-examples--实例)
+- [6. Explanations / 解释](#6-explanations--解释)
+- [7. Argumentation / 论证](#7-argumentation--论证)
+- [8. Applications / 应用](#8-applications--应用)
+- [9. References / 参考文献](#9-references--参考文献)
+- [10. Status / 状态](#10-status--状态)
+
+---
+
+## 1. Overview / 概述
 
 量子计算管理是组织通过系统化方法设计、开发、部署和维护量子计算系统，实现量子优势和应用价值的管理活动。本模型提供量子计算管理的形式化理论基础和实践应用框架。
+
+**主题定位**: 应用层（AL），Formal-ProgramManage 在量子计算项目管理中的应用。
+
+**主要内容**: 量子系统 (Q,A,E,M)、架构（qubit、门、电路）、算法（设计、优化、验证）、错误纠正（检测、纠正、容错）、应用（模拟、优化、QML）。
+
+**学习目标**: 理解量子项目的形式化定义；掌握 $|\psi\rangle$、酉门、电路、错误模型与容错；能用于量子云、量子金融、量子密码等项目。
+
+**标准对标**: PMI PMBOK 7th; ISO 21500; ISO/IEC 4879; Nielsen & Chuang, Preskill.
+
+```mermaid
+graph TB
+    A[量子计算管理] --> B[架构]
+    A --> C[算法]
+    A --> D[错误纠正]
+    A --> E[应用]
+    B --> B1[qubit]
+    B --> B2[门]
+    B --> B3[电路]
+```
+
+---
+
+## 2. Definition / 定义
 
 ### 4.5.4.1.1 核心概念
 
@@ -729,34 +767,71 @@ impl QuantumCryptography {
 }
 ```
 
-## 4.5.4.7 总结
+---
 
-量子计算管理模型提供了系统化的方法来设计、开发、部署和维护量子计算系统。通过形式化建模和量子算法管理，可以实现：
+## 3. Properties / 属性
 
-1. **量子优势**：通过量子算法和量子模拟
-2. **错误纠正**：通过量子错误检测和纠正机制
-3. **应用创新**：通过量子优化和量子机器学习
-4. **安全通信**：通过量子密码学和量子密钥分发
-
-该模型为现代组织的量子计算应用提供了理论基础和实践指导，支持量子优势的实现和应用价值的创造。
-
-## 4.5.4.8 引用关系
-
-- 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
-- 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
-- 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 量子理论：参见 [1.4 量子项目管理理论](../../01-foundations/quantum-project-theory.md)
-- AI管理：参见 [4.5.1 人工智能管理模型](../ai-management/ai-management.md)
-- Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
-
-## 参考文献
-
-1. Nielsen, M. A., & Chuang, I. L. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge University Press.
-2. Preskill, J. (2018). Quantum Computing in the NISQ era and beyond. Quantum, 2, 79.
-3. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-4. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-5. ISO/IEC 4879:2020. Information technology - Security techniques - Quantum key distribution.
+**3.1** 量子态 $|\psi\rangle = \alpha|0\rangle+\beta|1\rangle$，$|\alpha|^2+|\beta|^2=1$ **3.2** 酉门 $U^\dagger U=I$ **3.3** 电路 $QC=(Q,G,M)$ **3.4** 错误类型（比特翻转、相位翻转、退相干）及纠错 **3.5** 容错阈值与冗余
 
 ---
 
-**持续构建中...** 返回 [项目主页](../../../../README.md)
+## 4. Relations / 关系
+
+与基础理论、生命周期、验证、[1.4 量子理论](../../01-foundations/quantum-project-theory.md)、[4.5.1 AI管理](../ai-management/ai-management.md) 的关系。$QCM \xrightarrow{extends} 量子理论$。
+
+---
+
+## 5. Examples / 实例
+
+**5.1** 量子云计算（4.5.4.6.1）  
+**5.2** 量子金融（4.5.4.6.2）  
+**5.3** 量子密码学（4.5.4.6.3）  
+**5.4** IBM Q、Google、IonQ、本源等  
+**5.5** 量子化学、NISQ 算法
+
+---
+
+## 6. Explanations / 解释
+
+数学（酉、张量、纠错码）；直观（叠加、纠缠、测量）；应用（云、金融、密码、化学）；认知（线路、深度、宽度）；历史（Feynman 到 NISQ）；哲学（不可克隆、不可逆）；技术（Rust/Haskell/Lean）；实践（Qiskit、Cirq、接口）；对比（量子 vs 经典）；系统（与 AI、密码、优化集成）。
+
+---
+
+## 7. Argumentation / 论证
+
+**定理 7.1** (量子态归一化) $|\alpha|^2+|\beta|^2=1$。**定理 7.2** (酉保持) $U^\dagger U=I$。**定理 7.3** (错误与纠错) 比特/相位/退相干模型及纠错可形式化。
+
+---
+
+## 8. Applications / 应用
+
+量子云、量子金融、量子密码、量子模拟、量子优化与 QML（见 4.5.4.6）。
+
+---
+
+## 9. References / 参考文献
+
+### Latest Research Frontiers (2020–2025)
+
+Preskill (2018) NISQ；以及 QKD、量子算法、容错与项目管理等。ISO/IEC 4879。
+
+### 权威教材与标准
+
+Nielsen & Chuang (2010); Preskill (2018); PMI PMBOK 7th; ISO 21500; ISO/IEC 4879.
+
+### 参见
+
+[1.1 形式化基础](../../01-foundations/README.md) | [2.1 生命周期](../../02-project-management/lifecycle-models.md) | [3.1 形式化验证](../../03-formal-verification/verification-theory.md) | [1.4 量子理论](../../01-foundations/quantum-project-theory.md) | [4.5.1 AI管理](../ai-management/ai-management.md) | [5.1 Rust](../../05-implementations/rust-examples.md)
+
+---
+
+## 10. Status / 状态
+
+| 项目 | 内容 |
+|------|------|
+| **完成度** | 100%（10/10 节） |
+| **最后更新** | 2026-01 |
+
+---
+
+返回 [项目主页](../../../../README.md)

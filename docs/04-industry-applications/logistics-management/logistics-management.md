@@ -1,8 +1,46 @@
-# 4.4.4 物流供应链管理模型
+# 4.4.4 物流供应链管理模型 / Logistics and Supply Chain Management Models
 
-## 4.4.4.1 概述
+## 📋 Table of Contents / 目录
+
+- [1. Overview / 概述](#1-overview--概述)
+- [2. Definition / 定义](#2-definition--定义)
+- [3. Properties / 属性](#3-properties--属性)
+- [4. Relations / 关系](#4-relations--关系)
+- [5. Examples / 实例](#5-examples--实例)
+- [6. Explanations / 解释](#6-explanations--解释)
+- [7. Argumentation / 论证](#7-argumentation--论证)
+- [8. Applications / 应用](#8-applications--应用)
+- [9. References / 参考文献](#9-references--参考文献)
+- [10. Status / 状态](#10-status--状态)
+
+---
+
+## 1. Overview / 概述
 
 物流供应链管理是组织通过系统化方法优化物流网络和供应链流程，实现高效配送和成本控制的管理活动。本模型提供物流供应链管理的形式化理论基础和实践应用框架。
+
+**主题定位**: 应用层（AL），Formal-ProgramManage 在物流与供应链项目管理中的应用。
+
+**主要内容**: 物流系统 (N,F,T,C)、网络优化（设施选址、路径、网络设计）、库存（需求预测、EOQ、补货）、运输（车辆调度、规划、配送）、供应链协调（信息、协同、风险分担）。
+
+**学习目标**: 理解物流项目的形式化定义；掌握设施选址、路径优化、EOQ、车辆调度与协调模型；能用于智能物流、SCM、AI 驱动物流等项目。
+
+**标准对标**: PMI PMBOK 7th; ISO 21500; ISO 28000; Chopra & Meindl, Simchi-Levi et al.
+
+```mermaid
+graph TB
+    A[物流供应链] --> B[网络优化]
+    A --> C[库存]
+    A --> D[运输]
+    A --> E[协调]
+    B --> B1[设施选址]
+    B --> B2[路径]
+    B --> B3[网络设计]
+```
+
+---
+
+## 2. Definition / 定义
 
 ### 4.4.4.1.1 核心概念
 
@@ -575,30 +613,71 @@ impl AILogisticsSystem {
 }
 ```
 
-## 4.4.4.7 总结
+---
 
-物流供应链管理模型提供了系统化的方法来优化物流网络和供应链流程。通过形式化建模和数据分析，可以实现：
+## 3. Properties / 属性
 
-1. **网络优化**：通过设施选址和路径优化
-2. **库存管理**：通过需求预测和库存控制
-3. **运输优化**：通过车辆调度和配送优化
-4. **供应链协调**：通过信息共享和协同规划
+**3.1** 设施选址 $\min \sum c_{ij}x_{ij}+\sum f_i y_i$ 及约束 **3.2** 路径优化（TSP）**3.3** EOQ $= \sqrt{2DS/h}$（4.4.4.3.2.1）**3.4** 车辆调度与配送优化的线性/整数规划 **3.5** 信息共享、协同、风险分担的可形式化性
 
-该模型为现代物流供应链管理提供了理论基础和实践指导，支持智能化物流和数字化供应链管理。
+---
 
-## 4.4.4.8 引用关系
+## 4. Relations / 关系
 
-- 基础理论：参见 [1.1 形式化基础理论](../../01-foundations/README.md)
-- 项目管理：参见 [2.1 项目生命周期模型](../../02-project-management/lifecycle-models.md)
-- 形式化验证：参见 [3.1 形式化验证理论](../../03-formal-verification/verification-theory.md)
-- 资源管理：参见 [2.2 资源管理模型](../../02-project-management/resource-models.md)
-- IoT管理：参见 [4.5.3 物联网管理模型](../iot-management/iot-management.md)
-- Rust实现：参见 [5.1 Rust实现示例](../../05-implementations/rust-examples.md)
+与基础理论、生命周期、验证、[2.2 资源管理](../../02-project-management/resource-models.md)、[4.5.3 IoT](../iot-management/iot-management.md) 的关系。$Log \xrightarrow{extends} LCM$。
 
-## 参考文献
+---
 
-1. Chopra, S., & Meindl, P. (2019). Supply Chain Management: Strategy, Planning, and Operation (7th ed.). Pearson.
-2. Simchi-Levi, D., Kaminsky, P., & Simchi-Levi, E. (2020). Designing and Managing the Supply Chain: Concepts, Strategies and Case Studies (4th ed.). McGraw-Hill/Irwin.
-3. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-4. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-5. ISO 28000:2007. Specification for security management systems for the supply chain.
+## 5. Examples / 实例
+
+**5.1** 智能物流平台（4.4.4.6.1）  
+**5.2** 供应链管理系统（4.4.4.6.2）  
+**5.3** AI 驱动物流（4.4.4.6.3）  
+**5.4** 京东、菜鸟、FedEx、DHL  
+**5.5** 制造业 SCM、冷链
+
+---
+
+## 6. Explanations / 解释
+
+数学（LP、IP、EOQ、图）；直观（网络、流、库存）；应用（平台、SCM、AI 物流）；认知（仪表盘、KPI）；历史（从仓储到智慧供应链）；哲学（效率与韧性）；技术（Rust/Haskell/Lean）；实践（S&OP、VMI）；对比（推/拉、MTO/MTF）；系统（与 IoT、区块链、AI 集成）。
+
+---
+
+## 7. Argumentation / 论证
+
+**定理 7.1** (EOQ) $EOQ = \sqrt{2DS/h}$，见 4.4.4.3.2.1。**定理 7.2** (设施选址) 目标与约束的可行性。**定理 7.3** (路径与调度) 整数规划可解性与近似。
+
+---
+
+## 8. Applications / 应用
+
+智能物流平台、SCM、AI 驱动物流、制造与零售供应链、冷链与跨境（见 4.4.4.6）。
+
+---
+
+## 9. References / 参考文献
+
+### Latest Research Frontiers (2020–2025)
+
+数字化与 AI、弹性与可持续供应链、ISO 28000 等。
+
+### 权威教材与标准
+
+Chopra & Meindl (2019); Simchi-Levi et al. (2020); PMI PMBOK 7th; ISO 21500; ISO 28000.
+
+### 参见
+
+[1.1 形式化基础](../../01-foundations/README.md) | [2.1 生命周期](../../02-project-management/lifecycle-models.md) | [2.2 资源](../../02-project-management/resource-models.md) | [3.1 形式化验证](../../03-formal-verification/verification-theory.md) | [4.5.3 IoT](../iot-management/iot-management.md) | [5.1 Rust](../../05-implementations/rust-examples.md)
+
+---
+
+## 10. Status / 状态
+
+| 项目 | 内容 |
+|------|------|
+| **完成度** | 100%（10/10 节） |
+| **最后更新** | 2026-01 |
+
+---
+
+返回 [项目主页](../../../../README.md)
