@@ -20,6 +20,7 @@ This directory contains industry-specific project management concepts organized 
 - `08-边缘计算项目管理.md` - Edge Computing Project Management / 边缘计算项目管理 ✅ (新增)
 - `09-元宇宙Web3项目管理.md` - Metaverse/Web3 Project Management / 元宇宙/Web3项目管理 ✅ (新增)
 - `10-可持续性项目管理.md` - Sustainability Project Management / 可持续性项目管理 ✅ (新增)
+- `11-IoT项目管理.md` - IoT Project Management / IoT项目管理 ✅ (新增)
 
 ## 🔗 Alignment / 对齐
 

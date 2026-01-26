@@ -75,21 +75,29 @@ Quick reference index for all category theory files. For detailed index, see [`C
 | `02-Diff-Category.md` | Category of differentiable functions / 可微函数范畴 |
 | `03-Integrable-Category.md` | Category of integrable functions / 可积函数范畴 |
 
-### 07-Applications / 应用 (12 files)
+### 07-Applications / 应用 (10 files)
+
+**程序分析应用**（对应 docs/06-ci-verification、docs/03-formal-verification）：
 
 | File / 文件 | Description / 描述 |
 |:---|:---|
-| `01-Physics-Applications.md` | Physics applications / 物理学应用 |
-| `02-Engineering-Applications.md` | Engineering applications / 工程应用 |
-| `03-Optimization-Applications.md` | Optimization applications / 优化应用 |
-| `04-Signal-Processing.md` | Signal processing / 信号处理 |
-| `05-Numerical-Methods.md` | Numerical methods / 数值方法 |
-| `06-Machine-Learning.md` | Machine learning / 机器学习 |
-| `07-Differential-Equations.md` | Differential equations / 微分方程 |
-| `09-Topology-Applications.md` | Topology applications / 拓扑应用 |
-| `10-Algebraic-Geometry-Applications.md` | Algebraic geometry applications / 代数几何应用 |
-| `11-Type-Theory-Applications.md` | Type theory applications / 类型理论应用 |
-| `12-Quantum-Theory-Applications.md` | Quantum theory applications / 量子理论应用 |
+| `01-Data-Flow-Analysis.md` | Data flow analysis / 数据流分析（模型转换应用） |
+| `02-Program-Analysis.md` | Program analysis / 程序分析（模型转换应用） |
+| `11-Type-Theory-Applications.md` | Type theory applications / 类型理论应用（模型转换应用） |
+
+**范畴论高级应用**（对应 docs/02-project-management、docs/03-formal-verification）：
+
+| File / 文件 | Description / 描述 |
+|:---|:---|
+| `04-String-Diagrams-Process-Modeling.md` | String diagrams in process modeling / 字符串图在流程建模中的应用 ✅ |
+| `05-Symmetric-Monoidal-Resource-Scheduling.md` | Symmetric monoidal categories in resource scheduling / 对称幺半范畴在资源调度中的应用 ✅ |
+| `06-Uncertainty-Quantification.md` | Uncertainty quantification / 不确定性量化 ✅ (新增，基于2024-2025最新研究) |
+| `07-Parametric-Design-Optimization.md` | Parametric design optimization / 参数设计优化 ✅ (新增，基于2024-2025最新研究) |
+| `08-Markov-Categories.md` | Markov categories in project management / Markov范畴在项目管理中的应用 ✅ (新增，P2任务) |
+| `09-CMGVC-Framework.md` | CMGVC framework / CMGVC框架 ✅ (新增，P2任务) |
+| `10-Compositional-Methods.md` | Compositional methods / 组合方法深化应用 ✅ (新增，P2任务) |
+
+**注意**：微积分/与项目主线无关应用已移动至 `_archive/07-Applications/`。详见 [ARCHIVE_LIST.md](../ARCHIVE_LIST.md)
 
 ### 08-Advanced / 高级 (5 files)
 

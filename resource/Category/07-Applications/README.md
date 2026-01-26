@@ -23,6 +23,11 @@ This directory contains applications of category theory for **Formal-ProgramMana
 
 - `04-String-Diagrams-Process-Modeling.md` - String diagrams in process modeling / 字符串图在流程建模中的应用 ✅ (新增，基于NIST研究)
 - `05-Symmetric-Monoidal-Resource-Scheduling.md` - Symmetric monoidal categories in resource scheduling / 对称幺半范畴在资源调度中的应用 ✅ (新增，基于ETH Zurich研究)
+- `06-Uncertainty-Quantification.md` - Uncertainty quantification / 不确定性量化 ✅ (新增，基于2024-2025最新研究)
+- `07-Parametric-Design-Optimization.md` - Parametric design optimization / 参数设计优化 ✅ (新增，基于2024-2025最新研究)
+- `08-Markov-Categories.md` - Markov categories in project management / Markov范畴在项目管理中的应用 ✅ (新增，P2任务)
+- `09-CMGVC-Framework.md` - CMGVC framework / CMGVC框架 ✅ (新增，P2任务)
+- `10-Compositional-Methods.md` - Compositional methods / 组合方法深化应用 ✅ (新增，P2任务)
 
 **注意**：微积分/与项目主线无关应用（Optimization、Signal-Processing、Numerical-Methods、Machine-Learning、Differential-Equations、Topology、Algebraic-Geometry、Quantum-Theory，即 `03-Optimization-Applications.md`、`04-Signal-Processing.md`、`05-Numerical-Methods.md`、`06-Machine-Learning.md`、`07-Differential-Equations.md`、`09-Topology-Applications.md`、`10-Algebraic-Geometry-Applications.md`、`12-Quantum-Theory-Applications.md`）已移动至 `_archive/07-Applications/`。详见 [ARCHIVE_LIST.md](../../ARCHIVE_LIST.md)
 

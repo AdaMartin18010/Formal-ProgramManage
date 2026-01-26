@@ -12,6 +12,8 @@
 - `02-资源分配.md` - Resource allocation / 资源分配
 - `03-资源调度.md` - Resource scheduling / 资源调度
 - `04-资源优化.md` - Resource optimization / 资源优化
+- `05-挣值管理.md` - Earned Value Management / 挣值管理 ✅ (新增，ISO 21512:2024)
+- `06-采购策略.md` - Procurement Strategy / 采购策略 ✅ (新增，PMBOK 8th更新)
 
 ## 🔗 Alignment / 对齐
 

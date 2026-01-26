@@ -1,7 +1,7 @@
 # ISO标准更新跟踪机制 / ISO Standards Tracking Mechanism
 
-**创建日期**: 2026-01-27  
-**版本**: 1.0  
+**创建日期**: 2026-01-27
+**版本**: 1.0
 **状态**: ✅ 已建立
 
 ---
@@ -37,14 +37,14 @@ This document establishes an ISO standards tracking mechanism to ensure project 
 
 ### 风险管理标准 / Risk Management Standards
 
-4. **ISO 31000** - Risk management
+1. **ISO 31000** - Risk management
    - **当前版本**: ISO 31000:2018
    - **开发中版本**: ISO/CD 31000 (Edition 3) - Committee Draft
    - **检查频率**: 每月（开发中版本）
    - **下次检查**: 2026-02-27
    - **跟踪状态**: ⏳ 跟踪Edition 3开发进展
 
-5. **ISO/TS 31050** - Emerging risk management
+2. **ISO/TS 31050** - Emerging risk management
    - **当前版本**: ISO/TS 31050:2023
    - **检查频率**: 每季度
    - **下次检查**: 2026-04-27
@@ -203,7 +203,7 @@ This document establishes an ISO standards tracking mechanism to ensure project 
 
 ---
 
-**Last Updated / 最后更新**: 2026-01-27  
-**Next Check / 下次检查**: 2026-02-27 (ISO 31000 Edition 3)  
-**Version / 版本**: 1.0  
+**Last Updated / 最后更新**: 2026-01-27
+**Next Check / 下次检查**: 2026-02-27 (ISO 31000 Edition 3)
+**Version / 版本**: 1.0
 **Status / 状态**: ✅ 已建立并运行中
