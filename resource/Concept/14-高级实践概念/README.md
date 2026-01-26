@@ -15,6 +15,7 @@ This directory contains advanced project management practice concepts organized 
 
 - `01-项目治理框架.md` - Project Governance Framework / 项目治理框架 ✅
 - `02-项目组合管理.md` - Project Portfolio Management / 项目组合管理 ✅
+- `03-项目管理办公室.md` - Project Management Office (PMO) / 项目管理办公室 ✅ (新增)
 
 ## 🔗 Alignment / 对齐
 

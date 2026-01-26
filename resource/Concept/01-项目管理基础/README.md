@@ -33,7 +33,8 @@ This directory contains fundamental project management concepts, organized from 
 ├── 02-项目管理定义.md             # Project Management Definition
 ├── 03-项目状态空间.md             # Project State Space
 ├── 04-项目约束条件.md             # Project Constraints
-└── 05-项目目标函数.md             # Project Objective Function
+├── 05-项目目标函数.md             # Project Objective Function
+└── 06-PMBOK8核心原则.md           # PMBOK 8th Edition Core Principles ✅ (新增)
 ```
 
 ## 📋 Content Standards / 内容标准

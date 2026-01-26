@@ -13,6 +13,8 @@
 - `03-项目执行.md` - Project execution / 项目执行
 - `04-项目监控.md` - Project monitoring / 项目监控
 - `05-项目收尾.md` - Project closure / 项目收尾
+- `06-PMBOK8绩效域.md` - PMBOK 8th Edition Performance Domains / PMBOK 8th Edition绩效域 ✅
+- `07-PMBOK8焦点领域.md` - PMBOK 8th Edition Focus Areas / PMBOK 8th Edition焦点领域 ✅ (新增)
 
 ## 🔗 Alignment / 对齐
 

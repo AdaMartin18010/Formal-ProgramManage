@@ -143,18 +143,23 @@ $$quality(s) \geq threshold \Rightarrow \text{质量达标}$$
 ## 3. Properties / 属性
 
 ### 3.1 迭代完整性 (Iteration Completeness)
+
 $\forall i \in I$：每个迭代须完成规划、开发、测试、部署四阶段（公理 4.1.4.1）。
 
 ### 3.2 功能递增性 (Functionality Monotonicity)
+
 $functionality_{i_j} \geq functionality_{i_{j-1}}$（公理 4.1.4.2）。
 
 ### 3.3 质量保持性 (Quality Gate)
+
 $quality(s) \geq threshold$ 方为质量达标。
 
 ### 3.4 功能加权聚合 (Functionality Weighted Aggregation)
+
 $functionality = \frac{\sum w_i \cdot feature\_completeness_i}{\sum w_i} \in [0,1]$。
 
 ### 3.5 质量演进 (Quality Evolution)
+
 $Q(s) = \alpha Q_{prev} + (1-\alpha) Q_{current} + \beta \cdot testing\_coverage$。
 
 ---
@@ -176,18 +181,23 @@ graph TB
 ## 5. Examples / 实例
 
 ### 5.1 NASA 航天软件迭代
+
 航天任务地面与飞行软件的增量式需求、多轮 V&V、形式化与迭代结合。
 
 ### 5.2 大型企业 ERP 迭代（如 SAP）
+
 模块化发布、多波次迭代、功能与质量门控在大型 ERP 中的实践。
 
 ### 5.3 银行核心系统迭代
+
 合规与稳定性约束下的迭代、阶段门控与回归测试、功能递增性验证。
 
 ### 5.4 车企 V 模型与迭代融合
+
 嵌入式与车联网的 V 模型内多轮迭代、ASPICE 与迭代的衔接。
 
 ### 5.5 微软 Windows / Office 迭代发布
+
 多版本迭代、质量与功能完整性度量、$Q(s)$ 与 $P(s)$ 在大规模产品中的应用。
 
 ---
@@ -200,15 +210,15 @@ graph TB
 
 ## 7. Argumentation / 论证
 
-**定理 7.1** (迭代收敛性) 有限迭代、有界 $p_n,q_n,f_n$ 则存在收敛子序列（见 4.1.4.6.1）。  
-**定理 7.2** (功能递增性) $functionality$ 随 $feature\_completeness_i$ 递增。  
+**定理 7.1** (迭代收敛性) 有限迭代、有界 $p_n,q_n,f_n$ 则存在收敛子序列（见 4.1.4.6.1）。
+**定理 7.2** (功能递增性) $functionality$ 随 $feature\_completeness_i$ 递增。
 **定理 7.3** (质量演进性) $Q(s)$ 随 $testing\_coverage$ 与 $Q_{current}$ 演进递增。
 
 ---
 
 ## 8. Applications / 应用
 
-航天与防务软件；大型 ERP/CRM；金融与电信核心；汽车与嵌入式；消费软件与 SaaS 的增量发布。  
+航天与防务软件；大型 ERP/CRM；金融与电信核心；汽车与嵌入式；消费软件与 SaaS 的增量发布。
 
 ---
 

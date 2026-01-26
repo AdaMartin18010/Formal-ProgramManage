@@ -11,13 +11,18 @@ This directory contains applications of category theory for **Formal-ProgramMana
 - **程序分析应用**：数据流分析、程序分析等对应 docs/06-ci-verification、docs/03-formal-verification
 - **应用层**：对应 docs/04-industry-applications 的行业应用
 
-## 📁 Files / 文件（3 文件，8 个已归档）
+## 📁 Files / 文件（5 文件，8 个已归档）
 
 **程序分析应用**（对应 docs/06-ci-verification、docs/03-formal-verification）：
 
 - `01-Data-Flow-Analysis.md` - Data flow analysis / 数据流分析（模型转换应用）
 - `02-Program-Analysis.md` - Program analysis / 程序分析（模型转换应用）
 - `11-Type-Theory-Applications.md` - Type theory applications / 类型理论应用（模型转换应用）
+
+**范畴论高级应用**（对应 docs/02-project-management、docs/03-formal-verification）：
+
+- `04-String-Diagrams-Process-Modeling.md` - String diagrams in process modeling / 字符串图在流程建模中的应用 ✅ (新增，基于NIST研究)
+- `05-Symmetric-Monoidal-Resource-Scheduling.md` - Symmetric monoidal categories in resource scheduling / 对称幺半范畴在资源调度中的应用 ✅ (新增，基于ETH Zurich研究)
 
 **注意**：微积分/与项目主线无关应用（Optimization、Signal-Processing、Numerical-Methods、Machine-Learning、Differential-Equations、Topology、Algebraic-Geometry、Quantum-Theory，即 `03-Optimization-Applications.md`、`04-Signal-Processing.md`、`05-Numerical-Methods.md`、`06-Machine-Learning.md`、`07-Differential-Equations.md`、`09-Topology-Applications.md`、`10-Algebraic-Geometry-Applications.md`、`12-Quantum-Theory-Applications.md`）已移动至 `_archive/07-Applications/`。详见 [ARCHIVE_LIST.md](../../ARCHIVE_LIST.md)
 

@@ -16,6 +16,10 @@ This directory contains comprehensive project management practice concepts organ
 - `01-项目管理最佳实践.md` - Project Management Best Practices / 项目管理最佳实践 ✅
 - `02-项目管理工具应用.md` - Project Management Tool Applications / 项目管理工具应用 ✅
 - `03-项目管理案例分析.md` - Project Management Case Studies / 项目管理案例分析 ✅
+- `04-工具集成指南.md` - Tool Integration Guide / 工具集成指南 ✅ (新增，2024-2025最新工具和实践)
+- `05-数据驱动决策框架.md` - Data-Driven Decision Framework / 数据驱动决策框架 ✅ (新增)
+- `06-混合交付方法.md` - Hybrid Delivery Methods / 混合交付方法 ✅ (新增)
+- `05-数据驱动决策框架.md` - Data-Driven Decision Framework / 数据驱动决策框架 ✅ (新增)
 
 ## 🔗 Alignment / 对齐
 

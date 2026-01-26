@@ -13,9 +13,13 @@ This directory contains industry-specific project management concepts organized 
 - `01-软件项目管理.md` - Software Project Management / 软件项目管理 ✅
 - `02-工程项目管理.md` - Engineering Project Management / 工程项目管理 ✅
 - `03-商业项目管理.md` - Business Project Management / 商业项目管理 ✅
-- `04-AI项目管理.md` - AI Project Management / AI项目管理 ✅
+- `04-AI项目管理.md` - AI Project Management / AI项目管理 ✅ (已更新到2024-2025)
 - `05-建筑项目管理.md` - Construction Project Management / 建筑项目管理 ✅
 - `06-医疗项目管理.md` - Healthcare Project Management / 医疗项目管理 ✅
+- `07-量子计算项目管理.md` - Quantum Computing Project Management / 量子计算项目管理 ✅ (新增)
+- `08-边缘计算项目管理.md` - Edge Computing Project Management / 边缘计算项目管理 ✅ (新增)
+- `09-元宇宙Web3项目管理.md` - Metaverse/Web3 Project Management / 元宇宙/Web3项目管理 ✅ (新增)
+- `10-可持续性项目管理.md` - Sustainability Project Management / 可持续性项目管理 ✅ (新增)
 
 ## 🔗 Alignment / 对齐
 
