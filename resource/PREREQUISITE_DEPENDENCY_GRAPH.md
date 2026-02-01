@@ -22,7 +22,7 @@ graph TD
         E7[PMBOK Basics<br>PMBOK基础]
         E8[Programming<br>编程]
     end
-    
+
     subgraph FL[Foundation Layer 基础理论层]
         FL1[FL-1.1.1 Kripke Structure]
         FL2[FL-1.1.2 State Transition]
@@ -32,67 +32,67 @@ graph TD
         FL6[FL-1.2.2 Value Function]
         FL7[FL-1.3.1 Semantics]
     end
-    
+
     subgraph CML[Core Model Layer 核心模型层]
         CML1[CML-2.1 Lifecycle]
         CML2[CML-2.2 Resources]
         CML3[CML-2.3 Risk]
         CML4[CML-2.4 Quality]
     end
-    
+
     subgraph VL[Verification Layer 验证理论层]
         VL1[VL-3.1 Model Checking]
         VL2[VL-3.2 Theorem Proving]
         VL3[VL-3.3 Consistency]
     end
-    
+
     subgraph AL[Application Layer 应用模型层]
         AL1[AL-4.1 Software]
         AL2[AL-4.2 Engineering]
         AL3[AL-4.3 Business]
         AL4[AL-4.4+ Emerging]
     end
-    
+
     subgraph IL[Implementation Layer 实现验证层]
         IL1[IL-5.1 Rust]
         IL2[IL-5.2 Haskell]
         IL3[IL-5.3 Lean]
     end
-    
+
     %% External to FL
     E1 --> FL1
     E2 --> FL1
     E2 --> FL3
     E3 --> FL5
     E5 --> FL5
-    
+
     %% FL internal
     FL1 --> FL2
     FL3 --> FL4
     FL5 --> FL6
     FL1 --> FL7
-    
+
     %% FL to CML
     FL2 --> CML1
     FL5 --> CML2
     FL5 --> CML3
     FL1 --> CML4
     E7 --> CML1
-    
+
     %% CML to VL
     FL3 --> VL1
     FL4 --> VL1
     CML1 --> VL1
     E2 --> VL2
     FL7 --> VL3
-    
+
     %% CML to AL
     CML1 --> AL1
     CML1 --> AL2
     CML1 --> AL3
     CML1 --> AL4
     VL1 --> AL4
-    
+
     %% VL to IL
     VL1 --> IL1
     VL2 --> IL2
@@ -209,29 +209,29 @@ flowchart TD
         P1A[Logic + Set Theory]
         P1B[Probability + Statistics]
     end
-    
+
     subgraph Phase2[Phase 2: Formal - 4 weeks]
         P2A[Kripke + Transitions]
         P2B[LTL + CTL]
         P2C[MDP]
     end
-    
+
     subgraph Phase3[Phase 3: PM Core - 4 weeks]
         P3A[Lifecycle]
         P3B[Resources]
         P3C[Risk + Quality]
     end
-    
+
     subgraph Phase4[Phase 4: Verification - 4 weeks]
         P4A[Model Checking]
         P4B[Theorem Proving]
     end
-    
+
     subgraph Phase5[Phase 5: Application - 4 weeks]
         P5A[Software Dev]
         P5B[Emerging Tech]
     end
-    
+
     Phase1 --> Phase2 --> Phase3 --> Phase4 --> Phase5
 ```
 
@@ -281,6 +281,7 @@ Before studying a concept, verify prerequisites:
 **Next Review / 下次审查**: 2026-05-02
 
 **Related Documents / 相关文档**:
+
 - [Concept Linking Index](./CONCEPT_LINKING_INDEX.md)
 - [Learning Prerequisites](../docs/12-learning-support/01-learning-prerequisites.md)
 - [Theme Hierarchy Master](../templates_and_standards/THEME_HIERARCHY_MASTER.md)
