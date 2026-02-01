@@ -40,15 +40,18 @@ REQUIRED_CONTENT = {
 def check_sections(content: str) -> Dict[str, bool]:
     """检查必需章节是否存在"""
     results = {}
-    content_lower = content.lower()
     
     for section_name, pattern in REQUIRED_SECTIONS:
-        # 检查章节标题（## 或 ###）
-        section_pattern = rf"^##+\s+.*{pattern}"
-        if re.search(section_pattern, content, re.MULTILINE | re.IGNORECASE):
-            results[section_name] = True
+        if section_name == "title":
+            # title 特例：文档首行或任意行存在一级标题 # xxx
+            results[section_name] = bool(re.search(r"^#\s+.+", content, re.MULTILINE))
         else:
-            results[section_name] = False
+            # 检查章节标题（## 或 ### 包含对应关键词）
+            section_pattern = rf"^##+\s+.*{pattern}"
+            if re.search(section_pattern, content, re.MULTILINE | re.IGNORECASE):
+                results[section_name] = True
+            else:
+                results[section_name] = False
     
     return results
 
