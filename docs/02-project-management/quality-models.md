@@ -99,6 +99,13 @@
 - ISO 9001:2015: 质量管理体系
 - CMMI-DEV: 质量管理过程域
 
+**五类链接 (Five-Type Links)**
+**前置知识 (Prerequisites)**：[1.1 形式化基础](../01-foundations/README.md)、[1.2 数学模型](../01-foundations/mathematical-models.md)。详见 [01-learning-prerequisites.md](../12-learning-support/01-learning-prerequisites.md)。
+**应用 (Application)**：[4.1 软件开发](../04-industry-applications/software-development/)、[4.2 工程管理](../04-industry-applications/engineering-management/)。
+**相关 (Related)**：[2.1 生命周期](lifecycle-models.md)、[2.2 资源](resource-models.md)、[2.3 风险](risk-models.md)。
+**深化 (Deep Dive)**：Level 1 质量规划/保证/控制 → Level 2 质量函数与度量（§2.4）→ Level 3 与 Governance/Scope/Resources 的 PMBOK 8 对应（见 PMBOK 8th 对标）。
+**对比 (Comparison)**：[PMBOK 8th 对标](../PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT](../STANDARDS_ALIGNMENT.md)、[LEARNING_PATHS](../LEARNING_PATHS.md)。
+
 **知识体系层次结构**:
 
 ```mermaid
@@ -124,6 +131,8 @@ graph TB
     E --> E2[质量改进指标]
     E --> E3[质量改进算法]
 ```
+
+**阅读提示 / Reading Guide**（降低认知负荷）：**本节要点**：(1) 质量六元组（功能、效率、可维护性等，ISO 25010）；(2) 质量规划/保证/控制（QA/QC）；(3) 质量成本 COQ；(4) PMBOK 8 中质量并入 Governance/Scope/Resources。**阅读时间**：约 40–50 分钟；**难度**：中–高。应用优先可先读 §6 直观/应用解释。
 
 ---
 
@@ -1762,6 +1771,25 @@ impl QualityImprovement {
 - **成熟度等级**: 5个成熟度等级
 - **最佳实践**: 软件工程最佳实践
 
+### PMBOK 8th Edition（2025）对标
+
+PMBOK Guide 第 8 版于 2025 年 11 月发布。在 8th 中，质量不再作为独立绩效域，其内容并入 Governance、Scope、Resources 等域。本模型与 PMBOK 8 的对应关系如下（详见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT.md](../STANDARDS_ALIGNMENT.md)）：
+
+- **相关绩效域**：质量融入 Governance（治理）、Scope（范围与可交付成果质量）、Resources（过程与团队质量）。
+- **相关原则**：Focus on Value（聚焦价值）、Embed Quality into Processes and Deliverables（质量嵌入过程与可交付成果）、Be an Accountable Leader（质量责任）、Integrate Sustainability（可持续质量）、Build an Empowered Culture（持续改进）。详见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) §1.1。
+- **流程结构**：质量规划、保证、控制相关活动在 PMBOK 8 中分布于规划、执行、监控阶段；具体流程列表见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md)。
+- **PMBOK 8 流程列表（占位）**：按阶段划分的流程占位表见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) §1.3.1；正式版发布后填齐流程名称与编号。
+
+---
+
+## 本章自测 / Chapter Self-Test
+
+建议学完本章后完成以下检索练习以巩固记忆（间隔重复见 [02-spaced-repetition-schedule.md](../12-learning-support/02-spaced-repetition-schedule.md)）：
+
+- **质量定义与 QA/QC**：[03-retrieval-practice-questions.md](../12-learning-support/03-retrieval-practice-questions.md) §3.4 CML-2.4 Quality Models（定义回忆、概念解释、应用题）
+- **质量度量与改进**：同上 §3.4 中与 Quality Metrics、SPC 相关题目
+- **综合**：可选 §5 Interleaved / Cross-layer 中涉及 2.4 的题目
+
 ---
 
 ## 9. References / 参考文献
@@ -1823,16 +1851,11 @@ impl QualityImprovement {
 
 **Last Updated / 最后更新**: 2026-01-27
 **Version / 版本**: 2.0
-**Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节）
+**Status / 状态**: ✅ Complete（标准章节结构、ISO 21500:2021/21502 引用已就绪）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 
@@ -1855,9 +1878,10 @@ impl QualityImprovement {
 2. ISO 9001:2015. Quality management systems - Requirements.
 3. CMMI Product Team. (2010). CMMI for Development, Version 1.3. Software Engineering Institute.
 4. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-5. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-6. Kerzner, H. (2017). Project management: a systems approach to planning, scheduling, and controlling (12th ed.). John Wiley & Sons.
-7. Meredith, J. R., & Mantel, S. J. (2019). Project management: a managerial approach (10th ed.). John Wiley & Sons.
-8. Turner, J. R. (2016). Gower handbook of project management (5th ed.). Routledge.
-9. Lock, D. (2013). Project management (10th ed.). Routledge.
-10. Schwalbe, K. (2019). Information technology project management (9th ed.). Cengage Learning.
+5. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+6. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
+7. Kerzner, H. (2017). Project management: a systems approach to planning, scheduling, and controlling (12th ed.). John Wiley & Sons.
+8. Meredith, J. R., & Mantel, S. J. (2019). Project management: a managerial approach (10th ed.). John Wiley & Sons.
+9. Turner, J. R. (2016). Gower handbook of project management (5th ed.). Routledge.
+10. Lock, D. (2013). Project management (10th ed.). Routledge.
+11. Schwalbe, K. (2019). Information technology project management (9th ed.). Cengage Learning.

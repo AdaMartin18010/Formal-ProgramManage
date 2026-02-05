@@ -4,9 +4,9 @@
 
 ### 1.1 Introduction / 简介
 
-**English**: This document provides a comprehensive question bank for retrieval practice across all knowledge layers. Questions are designed to enhance memory consolidation through active recall, following the testing effect research.
+**English**: This document provides a comprehensive question bank for retrieval practice across all knowledge layers. Questions are designed to enhance memory consolidation through active recall, following the testing effect research. Each section below links to the corresponding content document and section for "study then practice" and spaced review by topic.
 
-**中文**: 本文档为所有知识层次提供全面的检索练习问题库。问题设计遵循测试效应研究，通过主动回忆来增强记忆巩固。
+**中文**: 本文档为所有知识层次提供全面的检索练习问题库。问题设计遵循测试效应研究，通过主动回忆来增强记忆巩固。各节均标注对应文档与章节，便于“学完即练”和按主题间隔复习。
 
 ### 1.2 Question Types / 问题类型
 
@@ -24,6 +24,8 @@
 ## 2. Foundation Layer (FL) Questions / 基础理论层问题
 
 ### 2.1 FL-1.1 Formal Foundations / 形式化基础
+
+**对应章节 / Source**: [01-foundations/README.md](../01-foundations/README.md) — §2 定义（状态转换系统、Kripke、LTL）、§3 属性（安全性、活性）
 
 #### Definition Recall / 定义回忆
 
@@ -79,6 +81,8 @@
 
 ### 2.2 FL-1.2 Mathematical Models / 数学模型
 
+**对应章节 / Source**: [01-foundations/mathematical-models.md](../01-foundations/mathematical-models.md) — MDP、价值函数、优化模型
+
 #### Definition Recall / 定义回忆
 
 1. **Q**: What is a Markov Decision Process (MDP)? What are its five components?
@@ -105,6 +109,8 @@
 ## 3. Core Model Layer (CML) Questions / 核心模型层问题
 
 ### 3.1 CML-2.1 Lifecycle Models / 生命周期模型
+
+**对应章节 / Source**: [02-project-management/lifecycle-models.md](../02-project-management/lifecycle-models.md) — 过程组、绩效域、形式化生命周期
 
 #### Definition Recall / 定义回忆
 
@@ -135,6 +141,8 @@
 
 ### 3.2 CML-2.2 Resource Models / 资源管理模型
 
+**对应章节 / Source**: [02-project-management/resource-models.md](../02-project-management/resource-models.md) — 资源分配、约束、调度
+
 #### Application / 应用
 
 1. **Q**: You have 3 developers and 5 tasks. Task durations: T1=2d, T2=3d, T3=2d, T4=4d, T5=1d. Dependencies: T2→T4, T3→T5. Find an optimal allocation.
@@ -150,6 +158,8 @@
     **A**: ∀r ∈ Resources: Σ(allocation(t,r) for t ∈ Tasks) ≤ capacity(r)
 
 ### 3.3 CML-2.3 Risk Models / 风险管理模型
+
+**对应章节 / Source**: [02-project-management/risk-models.md](../02-project-management/risk-models.md) — 风险暴露、应对策略
 
 #### Definition Recall / 定义回忆
 
@@ -176,6 +186,8 @@
 
 ### 3.4 CML-2.4 Quality Models / 质量管理模型
 
+**对应章节 / Source**: [02-project-management/quality-models.md](../02-project-management/quality-models.md) — QA/QC、COQ
+
 #### Definition Recall / 定义回忆
 
 1. **Q**: What is the difference between quality assurance and quality control?
@@ -195,6 +207,8 @@
 ## 4. Verification Layer (VL) Questions / 验证理论层问题
 
 ### 4.1 VL-3.1 Model Checking / 模型检验
+
+**对应章节 / Source**: [03-formal-verification/verification-theory.md](../03-formal-verification/verification-theory.md)、[model-checking.md](../03-formal-verification/model-checking.md) — 模型检验问题、反例、LTL/CTL
 
 #### Definition Recall / 定义回忆
 
@@ -218,6 +232,8 @@
 
 ### 4.2 VL-3.2 Theorem Proving / 定理证明
 
+**对应章节 / Source**: [03-formal-verification/verification-theory.md](../03-formal-verification/verification-theory.md)、[theorem-proving.md](../03-formal-verification/theorem-proving.md) — 定理证明、Hoare 逻辑
+
 #### Concept Explanation / 概念解释
 
 1. **Q**: Explain the difference between model checking and theorem proving.
@@ -237,6 +253,8 @@
 
 ### 5.1 Software Development / 软件开发
 
+**对应章节 / Source**: [04-industry-applications/software-development/agile-models.md](../04-industry-applications/software-development/agile-models.md) 等
+
 1. **Q**: What are the key ceremonies in Scrum?
 
     **A**: Sprint Planning, Daily Standup, Sprint Review, Sprint Retrospective
@@ -248,6 +266,8 @@
     - **CD**: Automatically deploy tested code to production
 
 ### 5.2 Emerging Technologies / 新兴技术
+
+**对应章节 / Source**: [04-industry-applications/ai-management/ai-management.md](../04-industry-applications/ai-management/ai-management.md)、[blockchain-management](../04-industry-applications/blockchain-management/) 等
 
 1. **Q**: What unique challenges does AI project management face?
 
@@ -314,18 +334,81 @@
 4. **Retest**: Focus on missed questions
 5. **Space**: Wait before next session
 
+### 7.3 与三层解释 25 概念覆盖 (Coverage of 25 THREE_LAYER Concepts)
+
+以下表格将 [THREE_LAYER_EXPLANATIONS.md](../THREE_LAYER_EXPLANATIONS.md) 中 25 个概念与本问题库对应；**难度**见 [04-concept-difficulty-ranking.md](./04-concept-difficulty-ranking.md)。缺失或薄弱概念已在对应节补题。
+
+| # | 概念 (Concept) | 对应问题节 | 难度 |
+|---|----------------|------------|------|
+| 1 | Project Definition | §3.1 生命周期（过程组/阶段） | 1 |
+| 2 | State Space | §2.1 Kripke（S 即状态集）、§7.4 补题 | 2 |
+| 3 | Transition Systems | §2.1 状态转换系统 | 2 |
+| 4 | Set Theory Basics | §2.2 数学模型、§7.4 补题 | 1 |
+| 5 | Graph Theory | §3.2 资源（依赖/分配）、§7.4 Critical Path | 2 |
+| 6 | Project Phases | §3.1 过程组 | 1 |
+| 7 | PMBOK Process Groups | §3.1 定义回忆 Q1 | 1 |
+| 8 | Risk Definition | §3.3 定义回忆、§7.4 风险五元组 | 2 |
+| 9 | Quality Definition | §3.4 QA/QC | 2 |
+| 10 | Resource Types | §3.2 资源、§7.4 补题 | 2 |
+| 11 | Phase Transitions | §3.1、§7.4 阶段转换 | 3 |
+| 12 | Probability Basics | §2.2 MDP、§3.3 风险暴露 | 2 |
+| 13 | Syntax vs Semantics | §7.4 补题 | 3 |
+| 14 | Kripke Structures | §2.1 定义回忆 Q1 | 3 |
+| 15 | LTL | §2.1、§4.1 应用 | 3 |
+| 16 | Resource Allocation | §3.2 应用 | 2 |
+| 17 | Risk Identification | §3.3、§7.4 补题 | 2 |
+| 18 | QA vs QC | §3.4 定义回忆 Q1 | 2 |
+| 19 | Formal Lifecycle Model | §3.1、§7.4 补题 | 3 |
+| 20 | Model Checking | §4.1 模型检验 | 4 |
+| 21 | Critical Path | §7.4 补题 | 3 |
+| 22 | WBS | §7.4 补题 | 2 |
+| 23 | Theorem Proving | §4.2 定理证明 vs 模型检验 | 4 |
+| 24 | CTL | §4.1 应用 Q1 | 4 |
+| 25 | Verification vs Validation | §7.4 补题 | 3 |
+
+### 7.4 补题：覆盖 25 概念中薄弱项 (Additional Questions for 25-Concept Coverage)
+
+**对应文档**: [THREE_LAYER_EXPLANATIONS.md](../THREE_LAYER_EXPLANATIONS.md)、[04-concept-difficulty-ranking.md](./04-concept-difficulty-ranking.md)
+
+#### State Space, Set Theory, Phase Transitions (FL/CML)
+
+1. **Q** (State Space): What is the state space of a project in our formal model? **A**: The set of all possible project configurations (e.g. phase, resource allocation, risk register). In Kripke structure it is the set S. See [01-foundations/README.md](../01-foundations/README.md) and [verification-theory.md](../03-formal-verification/verification-theory.md).
+
+2. **Q** (Set Theory): How are sets used in project models (tasks, resources, phases)? **A**: Tasks T, Resources R, Phases P are sets; relations (e.g. allocation, dependency) are subsets of Cartesian products (e.g. D ⊆ T×T). See [mathematical-models.md](../01-foundations/mathematical-models.md).
+
+3. **Q** (Phase Transitions): What is a phase transition in the formal lifecycle? **A**: A valid move from one project phase to another under defined conditions (e.g. gate criteria, deliverables). Formally: transition relation or function between states/phases. See [lifecycle-models.md](../02-project-management/lifecycle-models.md) formal lifecycle.
+
+4. **Q** (Formal Lifecycle Model): Name one safety and one liveness property for a project lifecycle. **A**: Safety: "Never exceed budget" (□¬over_budget). Liveness: "Project eventually reaches Closing" (◇phase=Closing). See [lifecycle-models.md](../02-project-management/lifecycle-models.md) §3 Properties.
+
+#### Risk, WBS, Critical Path (CML)
+
+1. **Q** (Risk Definition): What are the five components of the risk quintuple in risk-models? **A**: Event E, Probability P, Impact I, Time window T, Response cost C (or equivalent per [risk-models.md](../02-project-management/risk-models.md) definition 2.3.1).
+
+2. **Q** (WBS): What is a WBS and why is it important for scope and schedule? **A**: Work Breakdown Structure: hierarchical decomposition of deliverables into work packages. Basis for scope baseline, scheduling, and resource estimation. See [lifecycle-models.md](../02-project-management/lifecycle-models.md), [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) Scope.
+
+3. **Q** (Critical Path): What is the critical path and why does it determine project duration? **A**: The longest path from start to finish with zero slack; any delay on this path delays the project. See [resource-models.md](../02-project-management/resource-models.md) §2.2.3 CPM/PERT, [THREE_LAYER_EXPLANATIONS.md](../THREE_LAYER_EXPLANATIONS.md) §21.
+
+#### VL: Syntax vs Semantics, Verification vs Validation
+
+1. **Q** (Syntax vs Semantics): In formal specification, what is the difference between syntax and semantics? **A**: Syntax: rules for well-formed formulas (how to write). Semantics: meaning of formulas in a structure (what they denote). See [semantic-models.md](../01-foundations/semantic-models.md).
+
+2. **Q** (Verification vs Validation): State the difference between verification and validation in one sentence each. **A**: Verification: "Did we build it right?" (conformance to spec). Validation: "Did we build the right thing?" (meeting needs). See [verification-theory.md](../03-formal-verification/verification-theory.md), [quality-models.md](../02-project-management/quality-models.md).
+
 ---
 
 ## 8. Status / 状态
 
-**Document Version / 文档版本**: 1.0
-**Last Updated / 最后更新**: 2026-02-02
-**Status / 状态**: ✅ Complete
-**Total Questions / 总问题数**: 31+ across all layers
-**Next Review / 下次审查**: 2026-05-02
+**Document Version / 文档版本**: 1.1
+**Last Updated / 最后更新**: 2026-02-04
+**Status / 状态**: ✅ Complete；25 概念覆盖表与补题已加入（§7.3–7.4）
+**Total Questions / 总问题数**: 40+ across all layers（含 §7.4 补题 9 道）
+**Next Review / 下次审查**: 2026-05-02（季度审查时核对 25 概念与 [04-concept-difficulty-ranking.md](./04-concept-difficulty-ranking.md) 一致性）
 
 **Related Documents / 相关文档**:
 
 - [Learning Prerequisites](./01-learning-prerequisites.md)
 - [Spaced Repetition Schedule](./02-spaced-repetition-schedule.md)
 - [Concept Difficulty Ranking](./04-concept-difficulty-ranking.md)
+- [Interleaved Learning Paths](./05-interleaved-learning-paths.md)
+
+**Bidirectional links**: Each question section above links to the source doc (FL/CML/VL/AL). To link from content docs back to questions, add in their "Related Documents": [12-learning-support/03-retrieval-practice-questions.md](../12-learning-support/03-retrieval-practice-questions.md).

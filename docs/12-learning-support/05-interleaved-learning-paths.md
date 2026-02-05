@@ -13,8 +13,10 @@
 Based on:
 
 - **Interleaving Effect** (Rohrer & Taylor, 2007): Mixed practice beats blocked practice
-- **Discriminative Contrast** (Kang & Pashler, 2012): Comparison aids learning
+- **Discriminative Contrast** (Kang & Pashler, 2012): Comparison aids learning — interleaving works by requiring discrimination between concepts, not by rest periods (unlike spacing).
 - **Desirable Difficulties** (Bjork, 1994): Productive struggle enhances retention
+
+**Spacing vs Interleaving**: This document covers **interleaving** — mixing different topics *within* a session to improve discrimination (e.g. LTL vs CTL). **Spaced repetition** is reviewing the *same* topic at *different* times; see [02-spaced-repetition-schedule.md](./02-spaced-repetition-schedule.md). Use both: space reviews over time and interleave related concepts within study sessions.
 
 ---
 
@@ -172,6 +174,23 @@ Interleave these concepts within sessions:
 | Model Checking | QA Audit | Code Review | Finding issues |
 | Counterexample | Risk Event | Bug Report | Failure evidence |
 | Theorem | Quality Standard | Requirement | Must-hold property |
+
+**易混概念显式交错（推荐）**：
+
+- **模型检验 vs 定理证明 (Model Checking vs Theorem Proving)**：模型检验适用于有限状态、自动穷举、输出反例；定理证明可处理无限状态、常需交互、输出证明。在 [03-retrieval-practice-questions.md](./03-retrieval-practice-questions.md) §4.2 有比较题；混合练习见 §5.2 Mixed Problem Set 2 Q1。
+- **LTL vs CTL**：见 Set A（时序概念集）；Path 2 验证整合路径。
+
+### 4.4 Set D: Risk Analysis Concepts / 风险分析概念集
+
+| Concept 1 | Concept 2 | Concept 3 | Connection |
+|-----------|-----------|-----------|------------|
+| 风险定性分析 | 风险定量分析 | 风险暴露 | 识别→评估→量化 |
+| Qualitative Risk | Quantitative Risk | Monte Carlo | 概率与影响 |
+| 风险登记册 | 概率–影响矩阵 | 应对策略 | CML 风险管理 |
+
+**易混概念显式交错（推荐）**：
+
+- **风险定性 vs 定量 (Qualitative vs Quantitative Risk Analysis)**：定性用概率–影响矩阵、等级排序；定量用数值概率、EMV、蒙特卡洛。两者互补，先定性筛选再定量对关键风险。对应 [risk-models.md](../02-project-management/risk-models.md)；混合练习见 [03-retrieval-practice-questions.md](./03-retrieval-practice-questions.md) §3.3。
 
 ---
 

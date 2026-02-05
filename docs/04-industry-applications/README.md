@@ -17,6 +17,8 @@
 
 本章节整合截至2025年所有最成熟的行业应用模型，涵盖软件开发、工程管理、商业管理等各个领域的项目管理形式化模型。
 
+**本层依赖 (Prerequisites)**：各子模块依赖 CML（[2.1 生命周期](../02-project-management/lifecycle-models.md)、[2.2 资源](../02-project-management/resource-models.md)、[2.3 风险](../02-project-management/risk-models.md)、[2.4 质量](../02-project-management/quality-models.md)）及可选 VL（[3.1 验证理论](../03-formal-verification/verification-theory.md)）。各文档概述中「**本模块依赖**」列出该篇所需先备概念；详见 [01-learning-prerequisites.md](../12-learning-support/01-learning-prerequisites.md)。
+
 ## 4.2 目录结构
 
 ### 4.2.1 软件开发模型
@@ -182,6 +184,9 @@ PMBOK 7th, SAFe 5.0, Scrum Guide 2020, 及各行业应用与形式化验证、�
 
 ### 参见 / See Also
 
+**相关章节 / Related Sections**：前置 FL [1.1 形式化基础](../01-foundations/README.md)、CML [2.1 生命周期](../02-project-management/lifecycle-models.md)～[2.4 质量](../02-project-management/quality-models.md)；VL [3.1 验证理论](../03-formal-verification/verification-theory.md)、[模型检验](../03-formal-verification/model-checking.md)、[定理证明](../03-formal-verification/theorem-proving.md)。术语见 [GLOSSARY](../GLOSSARY.md)。
+
+- **Learning support / 学习支持**: [先备知识](../12-learning-support/01-learning-prerequisites.md) | [间隔重复](../12-learning-support/02-spaced-repetition-schedule.md) | [检索练习](../12-learning-support/03-retrieval-practice-questions.md) | [难度分级](../12-learning-support/04-concept-difficulty-ranking.md) | [交错路径](../12-learning-support/05-interleaved-learning-paths.md)
 - [1.1 形式化基础理论](../01-foundations/README.md) | [2.1 项目生命周期](../02-project-management/lifecycle-models.md) | [3.1 形式化验证](../03-formal-verification/verification-theory.md) | [5.1 Rust](../05-implementations/rust-examples.md) | [6.1 CI 验证](../06-ci-verification/automated-verification.md)
 
 ### 权威教材与标准

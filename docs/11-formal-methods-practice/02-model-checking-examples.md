@@ -14,8 +14,8 @@
 |--------------|-------------------|-----------|
 | Clarke et al. | Model Checking (MIT Press) | Standard textbook |
 | Baier & Katoen | Principles of Model Checking | Comprehensive theory |
-| SPIN Model Checker | Verification tool | https://spinroot.com |
-| NuSMV | Symbolic model checker | https://nusmv.fbk.eu |
+| SPIN Model Checker | Verification tool | <https://spinroot.com> |
+| NuSMV | Symbolic model checker | <https://nusmv.fbk.eu> |
 
 ---
 
@@ -32,6 +32,7 @@
 **Formal Statement / 形式陈述**:
 
 Given:
+
 - $M$: Kripke structure (system model)
 - $\phi$: Temporal logic formula (specification)
 
@@ -40,6 +41,7 @@ Model checking answers: $M \models \phi$ ?
 $$M = (S, S_0, R, L)$$
 
 Where:
+
 - $S$: Set of states
 - $S_0 \subseteq S$: Initial states
 - $R \subseteq S \times S$: Transition relation
@@ -120,13 +122,13 @@ graph LR
         L3 --> L4[Monitoring]
         L4 --> L5[Closing]
     end
-    
+
     subgraph Verification[Model Checking]
         V1[State Model]
         V2[Properties]
         V3[Verification]
     end
-    
+
     Lifecycle --> V1
     V1 --> V2
     V2 --> V3
@@ -165,7 +167,7 @@ proctype Task(int id) {
         :: !deps[id][i] -> skip;
         fi
     }
-    
+
     /* Execute task */
     task_start[id] = time;
     time = time + task_duration[id];
@@ -179,14 +181,14 @@ init {
     task_duration[2] = 15;
     task_duration[3] = 25;
     task_duration[4] = 10;
-    
+
     /* Initialize dependencies */
     deps[1][0] = true;  /* Task 1 depends on Task 0 */
     deps[2][0] = true;  /* Task 2 depends on Task 0 */
     deps[3][1] = true;  /* Task 3 depends on Task 1 */
     deps[3][2] = true;  /* Task 3 depends on Task 2 */
     deps[4][3] = true;  /* Task 4 depends on Task 3 */
-    
+
     /* Run all tasks concurrently */
     atomic {
         run Task(0);
@@ -201,7 +203,7 @@ init {
 ltl deadline_met { <> (task_done[NUM_TASKS-1] && time <= DEADLINE) }
 
 /* LTL Property: All tasks eventually complete */
-ltl all_complete { <> (task_done[0] && task_done[1] && task_done[2] && 
+ltl all_complete { <> (task_done[0] && task_done[1] && task_done[2] &&
                         task_done[3] && task_done[4]) }
 ```
 
@@ -224,7 +226,7 @@ ASSIGN
     init(task1_status) := waiting;
     init(task2_status) := waiting;
     init(task3_status) := waiting;
-    
+
     next(resource) := case
         resource = free & task1_status = waiting : {free, task1};
         resource = free & task2_status = waiting : {free, task2};
@@ -234,19 +236,19 @@ ASSIGN
         resource = task3 & task3_status = running : {free, task3};
         TRUE : resource;
     esac;
-    
+
     next(task1_status) := case
         task1_status = waiting & resource = task1 : running;
         task1_status = running & resource = free : done;
         TRUE : task1_status;
     esac;
-    
+
     next(task2_status) := case
         task2_status = waiting & resource = task2 : running;
         task2_status = running & resource = free : done;
         TRUE : task2_status;
     esac;
-    
+
     next(task3_status) := case
         task3_status = waiting & resource = task3 : running;
         task3_status = running & resource = free : done;
@@ -277,7 +279,7 @@ SPEC AG EF (task1_status = done & task2_status = done & task3_status = done)
 --------------------------- MODULE RiskEscalation ---------------------------
 EXTENDS Naturals, Sequences
 
-CONSTANTS 
+CONSTANTS
     Risks,          \* Set of all risks
     PM,             \* Project Manager
     Sponsor,        \* Project Sponsor
@@ -292,20 +294,20 @@ VARIABLES
 RiskLevels == {"Low", "Medium", "High", "Critical"}
 Owners == {PM, Sponsor, SteeringComm}
 
-TypeOK == 
+TypeOK ==
     /\ riskLevel \in [Risks -> RiskLevels]
     /\ owner \in [Risks -> Owners]
     /\ escalated \in [Risks -> BOOLEAN]
     /\ resolved \in [Risks -> BOOLEAN]
 
-Init == 
+Init ==
     /\ riskLevel = [r \in Risks |-> "Low"]
     /\ owner = [r \in Risks |-> PM]
     /\ escalated = [r \in Risks |-> FALSE]
     /\ resolved = [r \in Risks |-> FALSE]
 
 \* Risk level increases
-IncreaseRiskLevel(r) == 
+IncreaseRiskLevel(r) ==
     /\ ~resolved[r]
     /\ \/ /\ riskLevel[r] = "Low"
           /\ riskLevel' = [riskLevel EXCEPT ![r] = "Medium"]
@@ -316,7 +318,7 @@ IncreaseRiskLevel(r) ==
     /\ UNCHANGED <<owner, escalated, resolved>>
 
 \* Escalation based on level
-Escalate(r) == 
+Escalate(r) ==
     /\ ~resolved[r]
     /\ ~escalated[r]
     /\ \/ /\ riskLevel[r] = "High"
@@ -329,12 +331,12 @@ Escalate(r) ==
     /\ UNCHANGED <<riskLevel, resolved>>
 
 \* Risk resolution
-Resolve(r) == 
+Resolve(r) ==
     /\ ~resolved[r]
     /\ resolved' = [resolved EXCEPT ![r] = TRUE]
     /\ UNCHANGED <<riskLevel, owner, escalated>>
 
-Next == 
+Next ==
     \E r \in Risks:
         \/ IncreaseRiskLevel(r)
         \/ Escalate(r)
@@ -343,18 +345,18 @@ Next ==
 \* PROPERTIES
 
 \* Safety: High risks must have sponsor or higher as owner
-HighRiskOwnership == 
-    \A r \in Risks: 
-        riskLevel[r] \in {"High", "Critical"} => 
+HighRiskOwnership ==
+    \A r \in Risks:
+        riskLevel[r] \in {"High", "Critical"} =>
             owner[r] \in {Sponsor, SteeringComm}
 
 \* Safety: Critical risks must have steering committee as owner
-CriticalRiskOwnership == 
+CriticalRiskOwnership ==
     \A r \in Risks:
         riskLevel[r] = "Critical" => owner[r] = SteeringComm
 
 \* Liveness: All risks eventually resolved
-AllRisksResolved == 
+AllRisksResolved ==
     <>(\A r \in Risks: resolved[r])
 
 Spec == Init /\ [][Next]_<<riskLevel, owner, escalated, resolved>>
@@ -374,6 +376,7 @@ Spec == Init /\ [][Next]_<<riskLevel, owner, escalated, resolved>>
 ### 6.2 Formal Explanation / 形式解释
 
 Model checking algorithms:
+
 1. **Explicit-State**: Enumerate all reachable states (SPIN, TLC)
 2. **Symbolic**: Use BDDs to represent state sets (NuSMV)
 3. **Bounded**: Check up to depth k (SAT-based)
@@ -383,6 +386,7 @@ Complexity: PSPACE-complete for LTL, PTIME for CTL
 ### 6.3 Geometric Interpretation / 几何解释
 
 Think of the state space as a directed graph:
+
 - Nodes = states (project configurations)
 - Edges = transitions (actions)
 - Properties = path constraints
@@ -391,6 +395,7 @@ Think of the state space as a directed graph:
 ### 6.4 Physical Interpretation / 物理解释
 
 Like testing a physical system under all operating conditions:
+
 - State = system configuration
 - Transition = state change
 - Property = safety requirement
@@ -399,6 +404,7 @@ Like testing a physical system under all operating conditions:
 ### 6.5 Historical Context / 历史背景
 
 Model checking developed from:
+
 - 1981: Clarke & Emerson propose CTL model checking
 - 1986: Vardi & Wolper develop LTL model checking
 - 2007: Turing Award to Clarke, Emerson, Sifakis
@@ -406,6 +412,7 @@ Model checking developed from:
 ### 6.6 Motivation / 动机
 
 Why model check project management?
+
 - Automated verification of complex workflows
 - Detection of subtle process errors
 - Proof of compliance with standards
@@ -433,7 +440,7 @@ graph TD
         S4 --> S7[Success State]
         S5 --> S7
     end
-    
+
     S6 -.->|Counterexample Path| S0
 ```
 
@@ -447,7 +454,8 @@ graph TD
 
 **Criticism**: State explosion makes model checking impractical for real projects.
 
-**Response**: 
+**Response**:
+
 - Abstraction techniques reduce state space
 - Bounded model checking handles large systems
 - Partial verification still valuable
@@ -461,6 +469,7 @@ graph TD
 **Claim**: Model checking improves project process reliability.
 
 **Premises**:
+
 1. Model checking verifies all possible execution paths
 2. Counterexamples reveal hidden process flaws
 3. Fixed flaws prevent real project failures
@@ -479,6 +488,7 @@ graph TD
 ### 7.3 Theoretical Justification / 理论论证
 
 Based on:
+
 - Automata theory (Büchi automata for LTL)
 - Fixed-point computation (CTL algorithms)
 - Computational complexity theory
@@ -490,6 +500,7 @@ Based on:
 ### 8.1 Workflow Verification / 工作流验证
 
 Verify project workflows:
+
 - Approval processes
 - Change management
 - Release procedures
@@ -497,6 +508,7 @@ Verify project workflows:
 ### 8.2 Compliance Checking / 合规检查
 
 Verify compliance with:
+
 - ISO 21500 processes
 - PMBOK guidelines
 - Industry regulations
@@ -504,6 +516,7 @@ Verify compliance with:
 ### 8.3 Risk Analysis / 风险分析
 
 Automated discovery of:
+
 - Deadlock conditions
 - Resource conflicts
 - Schedule violations
@@ -520,9 +533,9 @@ Automated discovery of:
 
 ### 9.2 Secondary Sources / 次要来源
 
-1. SPIN Documentation: https://spinroot.com/spin/Doc/
-2. NuSMV User Manual: https://nusmv.fbk.eu/NuSMV/userman/
-3. TLA+ Toolbox: https://lamport.azurewebsites.net/tla/toolbox.html
+1. SPIN Documentation: <https://spinroot.com/spin/Doc/>
+2. NuSMV User Manual: <https://nusmv.fbk.eu/NuSMV/userman/>
+3. TLA+ Toolbox: <https://lamport.azurewebsites.net/tla/toolbox.html>
 
 ---
 
@@ -534,6 +547,7 @@ Automated discovery of:
 **Next Review / 下次审查**: 2026-05-02
 
 **Related Documents / 相关文档**:
+
 - [TLA+ Specifications](./01-tla-plus-specifications.md)
 - [Theorem Proving Applications](./03-theorem-proving-applications.md)
 - [Formal Verification Tools](./04-formal-verification-tools.md)

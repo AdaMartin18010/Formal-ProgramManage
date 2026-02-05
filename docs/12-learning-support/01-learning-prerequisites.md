@@ -16,6 +16,7 @@ Based on:
 - **Zone of Proximal Development** (Vygotsky): Optimal learning challenge
 - **Cognitive Load Theory** (Sweller): Working memory constraints
 - **Prerequisite Learning** (Gagné): Learning sequences
+- **Dunlosky et al. (2013)**: Improving students' learning with effective learning techniques — practice testing and distributed practice (spacing) as high-utility strategies. *Psychological Science in the Public Interest*, 14(1), 4–58.
 
 ---
 
@@ -214,6 +215,8 @@ graph LR
 ---
 
 ## 4. Learning Path Recommendations / 学习路径推荐
+
+**Content links (路径对应内容文档)**: FL-1.1 → [01-foundations/README.md](../01-foundations/README.md); FL-1.2 → [mathematical-models.md](../01-foundations/mathematical-models.md); FL-1.3 → [semantic-models.md](../01-foundations/semantic-models.md); CML-2.1 → [lifecycle-models.md](../02-project-management/lifecycle-models.md); CML-2.2 → [resource-models.md](../02-project-management/resource-models.md); CML-2.3 → [risk-models.md](../02-project-management/risk-models.md); CML-2.4 → [quality-models.md](../02-project-management/quality-models.md); VL-3.x → [verification-theory.md](../03-formal-verification/verification-theory.md), [model-checking.md](../03-formal-verification/model-checking.md), [theorem-proving.md](../03-formal-verification/theorem-proving.md).
 
 ### 4.1 Path A: For PM Practitioners / 路径A：项目管理从业者
 

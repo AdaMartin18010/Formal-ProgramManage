@@ -70,6 +70,15 @@
 
 ---
 
+**五类链接 (Five-Type Links)**
+**前置知识 (Prerequisites)**：[1.1 形式化基础](../01-foundations/README.md)、[1.3 语义模型](../01-foundations/semantic-models.md)、[3.1 验证理论](verification-theory.md)。详见 [01-learning-prerequisites.md](../12-learning-support/01-learning-prerequisites.md) §2.3。
+**应用 (Application)**：[4.1 软件开发](../04-industry-applications/software-development/)、[5 实现示例 Lean](../05-implementations/lean-examples.md)、[6 CI 验证](../06-ci-verification/)。
+**相关 (Related)**：[3.1 验证理论](verification-theory.md)、[3.2 模型检验](model-checking.md)、[2.1 生命周期](../02-project-management/lifecycle-models.md)。
+**深化 (Deep Dive)**：Level 1 Hoare 逻辑与规范 → Level 2 自然演绎/归结/类型论（见本章 §3.3.x）→ Level 3 Lean/Coq/Isabelle 与 [05-implementations](../05-implementations/)。
+**对比 (Comparison)**：[README 大学课程表](../README.md)、[STANDARDS_ALIGNMENT](../STANDARDS_ALIGNMENT.md)、[05-interleaved-learning-paths 模型检验 vs 定理证明](../12-learning-support/05-interleaved-learning-paths.md)、[LEARNING_PATHS](../LEARNING_PATHS.md)。
+
+---
+
 ## 1. Overview / 概述
 
 定理证明系统是Formal-ProgramManage的核心验证技术，通过形式化的逻辑推理来证明系统属性的正确性。本文档涵盖自然演绎、归结、类型理论等先进定理证明技术。
@@ -1683,14 +1692,9 @@ $$\forall P: \text{semantics}(\text{compile}(P)) = \text{semantics}(P)$$
 **Version / 版本**: 2.0
 **Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节，并添加了实际项目案例）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 

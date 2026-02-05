@@ -73,9 +73,17 @@
 
 ---
 
+**先备知识 / Prerequisites**：FL-1.1 形式化基础、基础 PM 概念（详见 [01-learning-prerequisites.md](../12-learning-support/01-learning-prerequisites.md) §2.2）。
+**难度 / Difficulty**：CML 整体为 Medium；各概念分级见 [04-concept-difficulty-ranking.md](../12-learning-support/04-concept-difficulty-ranking.md) §3。
+**学习路径**：参见 [LEARNING_PATHS.md](../LEARNING_PATHS.md) 轨道 A/B。
+
+**应用优先 / 跳过数学**：若仅需应用层面，可先读 [lifecycle-models.md](./lifecycle-models.md)、[resource-models.md](./resource-models.md)、[risk-models.md](./risk-models.md)、[quality-models.md](./quality-models.md) 各文档中的 §6 Explanations「直观解释」「应用解释」及 [THREE_LAYER_EXPLANATIONS.md](../THREE_LAYER_EXPLANATIONS.md)；形式化定义与定理可后续按需深入。
+
+---
+
 ## 1. Overview / 概述
 
-项目管理核心模型是Formal-ProgramManage的核心理论体系，定义了项目管理的四个核心维度：生命周期、资源、风险和质量。本理论体系严格对标PMBOK 7th Edition、ISO 21500:2012、ISO 31000:2018、ISO/IEC 25010、PRINCE2 2017、CMMI-DEV等国际项目管理标准。
+项目管理核心模型是Formal-ProgramManage的核心理论体系，定义了项目管理的四个核心维度：生命周期、资源、风险和质量。本理论体系严格对标PMBOK 7th Edition、ISO 21500:2021、ISO 21502:2020、ISO 31000:2018、ISO/IEC 25010、PRINCE2 2017、CMMI-DEV等国际项目管理标准。
 
 **主题定位**: 本模型属于核心模型层（CML），是Formal-ProgramManage知识体系的核心，整合了生命周期、资源、风险和质量四个核心管理维度，形成完整的项目管理理论体系。
 
@@ -97,7 +105,7 @@
 **标准对标**:
 
 - PMBOK 7th Edition: 项目管理知识领域和绩效域
-- ISO 21500:2012: 项目管理指南
+- ISO 21500:2021: 项目/项目群/项目组合管理 — 背景与概念；ISO 21502:2020: 项目管理指南
 - ISO 31000:2018: 风险管理指南
 - ISO/IEC 25010:2011: 软件质量模型
 - PRINCE2 2017: 项目管理方法
@@ -158,7 +166,7 @@ graph TB
 ### 2.2.1 生命周期模型
 
 - **[2.1 项目生命周期模型](./lifecycle-models.md)** - 项目从启动到收尾的完整演进过程
-  - 对标标准：PMBOK 7th Edition、ISO 21500:2012、PRINCE2 2017、APM Body of Knowledge 7th Edition
+  - 对标标准：PMBOK 7th Edition、ISO 21500:2021、ISO 21502:2020、PRINCE2 2017、APM Body of Knowledge 7th Edition
   - 核心内容：生命周期基础理论、标准生命周期模型、生命周期优化、生命周期验证
 
 ### 2.2.2 资源管理模型
@@ -716,7 +724,7 @@ graph TB
 
 ### 2.8.2 ISO 标准
 
-- **ISO 21500:2012**: 项目管理指南
+- **ISO 21500:2021、ISO 21502:2020**: 项目管理标准族
 - **ISO 31000:2018**: 风险管理指南
 - **ISO/IEC 25010:2011**: 软件质量模型
 - **ISO 9001:2015**: 质量管理体系
@@ -762,28 +770,28 @@ graph TB
 
 1. Project Management Institute. (2021). *A guide to the project management body of knowledge (PMBOK guide)* (7th ed.). Project Management Institute.
 
-2. ISO 21500:2012. *Guidance on project management*. International Organization for Standardization.
+2. ISO 21500:2021. *Project, programme and portfolio management — Context and concepts*. International Organization for Standardization.
+3. ISO 21502:2020. *Project management — Guidance on project management*. International Organization for Standardization.
+4. ISO 31000:2018. *Risk management - Guidelines*. International Organization for Standardization.
 
-3. ISO 31000:2018. *Risk management - Guidelines*. International Organization for Standardization.
+5. ISO/IEC 25010:2011. *Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models*. International Organization for Standardization.
 
-4. ISO/IEC 25010:2011. *Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models*. International Organization for Standardization.
+6. ISO 9001:2015. *Quality management systems - Requirements*. International Organization for Standardization.
 
-5. ISO 9001:2015. *Quality management systems - Requirements*. International Organization for Standardization.
+7. AXELOS. (2017). *Managing Successful Projects with PRINCE2 2017 Edition*. TSO (The Stationery Office).
 
-6. AXELOS. (2017). *Managing Successful Projects with PRINCE2 2017 Edition*. TSO (The Stationery Office).
+8. CMMI Product Team. (2010). *CMMI for Development, Version 1.3*. Software Engineering Institute.
 
-7. CMMI Product Team. (2010). *CMMI for Development, Version 1.3*. Software Engineering Institute.
+9. Association for Project Management. (2019). *APM Body of Knowledge 7th Edition*. APM.
 
-8. Association for Project Management. (2019). *APM Body of Knowledge 7th Edition*. APM.
+10. Kerzner, H. (2017). *Project management: a systems approach to planning, scheduling, and controlling* (12th ed.). John Wiley & Sons.
 
-9. Kerzner, H. (2017). *Project management: a systems approach to planning, scheduling, and controlling* (12th ed.). John Wiley & Sons.
-
-10. Meredith, J. R., & Mantel, S. J. (2019). *Project management: a managerial approach* (10th ed.). John Wiley & Sons.
+11. Meredith, J. R., & Mantel, S. J. (2019). *Project management: a managerial approach* (10th ed.). John Wiley & Sons.
 
 ### 9.3 国际标准 / International Standards
 
 1. PMI PMBOK 7th Edition (2021) - 项目管理知识体系
-2. ISO 21500:2012 - 项目管理指南
+2. ISO 21500:2021、ISO 21502:2020 - 项目管理标准族
 3. ISO 31000:2018 - 风险管理指南
 4. ISO/IEC 25010:2011 - 软件质量模型
 5. ISO 9001:2015 - 质量管理体系
@@ -802,21 +810,19 @@ graph TB
 
 **Last Updated / 最后更新**: 2026-01-27
 **Version / 版本**: 2.0
-**Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节）
+**Status / 状态**: ✅ Complete（标准章节结构、ISO 21500:2021/21502、学习支持链接已就绪）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前2个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 
+**相关章节 / Related Sections**：本层 [2.1 生命周期](./lifecycle-models.md)～[2.4 质量](./quality-models.md)；前置 FL [1.1 形式化基础](../01-foundations/README.md)、[1.2 数学模型](../01-foundations/mathematical-models.md)；VL [3.1 验证理论](../03-formal-verification/verification-theory.md)；AL [4.1 软件开发](../04-industry-applications/software-development/)。术语见 [GLOSSARY](../GLOSSARY.md)。
+
 **Related Documents / 相关文档**:
 
+- **Learning support / 学习支持**: [先备知识](../12-learning-support/01-learning-prerequisites.md) | [间隔重复计划](../12-learning-support/02-spaced-repetition-schedule.md) | [检索练习题](../12-learning-support/03-retrieval-practice-questions.md) | [概念难度分级](../12-learning-support/04-concept-difficulty-ranking.md) | [交错学习路径](../12-learning-support/05-interleaved-learning-paths.md)
 - [2.1 项目生命周期模型](./lifecycle-models.md) - 项目生命周期模型
 - [2.2 资源管理模型](./resource-models.md) - 资源管理模型
 - [2.3 风险管理模型](./risk-models.md) - 风险管理模型
@@ -827,7 +833,7 @@ graph TB
 **Standards References / 标准参考**:
 
 - PMI PMBOK 7th Edition: 项目管理知识体系
-- ISO 21500:2012: 项目管理指南
+- ISO 21500:2021: 项目/项目群/项目组合管理 — 背景与概念；ISO 21502:2020: 项目管理指南
 - ISO 31000:2018: 风险管理指南
 - ISO/IEC 25010:2011: 软件质量模型
 - PRINCE2 2017: 项目管理方法

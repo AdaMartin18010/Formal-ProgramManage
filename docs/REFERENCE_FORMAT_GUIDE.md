@@ -47,10 +47,13 @@ Leffingwell, D. (2020). SAFe 6.0 Distilled: Achieving Business Agility with the 
 **示例：**
 
 ```
-ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
 ISO/IEC 25010:2011. Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models.
 IEEE Std 830-1998. IEEE recommended practice for software requirements specifications.
 ```
+
+项目标准版本与采用说明见 [STANDARDS_ALIGNMENT.md](./STANDARDS_ALIGNMENT.md)。ISO 21500:2012 已由 ISO 21500:2021 取代；项目管理详细指导见 ISO 21502:2020。
 
 ### 4. 会议论文格式
 
@@ -90,7 +93,7 @@ Schwaber, K., & Sutherland, J. (2020). The Scrum Guide. Scrum.org. https://scrum
 ## 参考文献
 
 1. Author, A. (Year). Title. Journal, Volume(Issue), Pages.
-2. ISO 21500:2012. Title. Organization.
+2. ISO 21500:2021. Title. Organization.
 3. Author, A. (Year). Title. Publisher.
 ```
 
@@ -142,13 +145,13 @@ Clarke, E. M., Grumberg, O., & Peled, D. A. (1999). Model checking. MIT press.
 **错误：**
 
 ```
-ISO 21500:2012 Guidance on project management International Organization for Standardization
+ISO 21500:2021 Project, programme and portfolio management — Context and concepts. International Organization for Standardization
 ```
 
 **正确：**
 
 ```
-ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
 ```
 
 ## 参考文献检查清单
@@ -201,8 +204,9 @@ ISO 21500:2012. Guidance on project management. International Organization for S
 ```markdown
 ## 参考文献
 
-1. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-2. ISO/IEC 25010:2011. Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models.
+1. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+2. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
+3. ISO/IEC 25010:2011. Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models.
 3. IEEE Std 830-1998. IEEE recommended practice for software requirements specifications.
 ```
 
@@ -232,12 +236,13 @@ ISO 21500:2012. Guidance on project management. International Organization for S
 2. Baier, C., & Katoen, J. P. (2008). Principles of model checking. MIT press.
 3. Hoare, C. A. R. (1969). An axiomatic basis for computer programming. Communications of the ACM, 12(10), 576-580.
 4. Cousot, P., & Cousot, R. (1977). Abstract interpretation: a unified lattice model for static analysis of programs by construction or approximation of fixpoints. In Proceedings of the 4th ACM SIGACT-SIGPLAN symposium on Principles of programming languages (pp. 238-252).
-5. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-6. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-7. ISO/IEC 25010:2011. Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models.
-8. IEEE Std 830-1998. IEEE recommended practice for software requirements specifications.
-9. Schwaber, K., & Sutherland, J. (2020). The Scrum Guide. Scrum.org.
-10. Leffingwell, D. (2020). SAFe 6.0 Distilled: Achieving Business Agility with the Scaled Agile Framework. Addison-Wesley Professional.
+5. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+6. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
+7. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.). Project Management Institute.
+8. ISO/IEC 25010:2011. Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models.
+9. IEEE Std 830-1998. IEEE recommended practice for software requirements specifications.
+10. Schwaber, K., & Sutherland, J. (2020). The Scrum Guide. Scrum.org.
+11. Leffingwell, D. (2020). SAFe 6.0 Distilled: Achieving Business Agility with the Scaled Agile Framework. Addison-Wesley Professional.
 ```
 
 ## 更新日志

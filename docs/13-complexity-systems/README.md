@@ -65,12 +65,20 @@ graph TD
 | Analyzing feedback loops | Systems Dynamics |
 | Managing uncertainty | Cynefin + CAS |
 
+## When to Use Formal Methods vs Cynefin / 何时用形式化方法 vs Cynefin
+
+形式化方法（状态机、LTL/CTL、模型检验、定理证明）适合 **Clear** 与 **Complicated** 域：需求与因果关系可界定、状态与转换可穷举或可分析时，用 [形式化基础理论](../01-foundations/README.md) 与 [形式化验证](../03-formal-verification/verification-theory.md) 可得到严格的可验证结论。
+**Complex** 域（涌现、不可预测）宜用 Cynefin 的 **Probe–Sense–Respond**：先小规模试验再感知、再响应，而非先建完整形式规范。**Chaotic** 域需先稳定再归类，形式化可后续引入。
+详见 [Cynefin 框架](./01-cynefin-framework.md) 与 [形式化验证理论](../03-formal-verification/verification-theory.md) 的交叉引用。
+
 ## Authority Sources / 权威来源
 
 - Dave Snowden (Cynefin)
 - Jay Forrester, John Sterman (Systems Dynamics)
 - Santa Fe Institute, John Holland (CAS)
 - Ralph Stacey (Complexity and Management)
+
+**MIT ESD.36 对标**：本模块与 [docs/README.md](../README.md) 大学课程对标表中的 **MIT ESD.36 — System Project Management** 对应。系统动力学见 [02-systems-dynamics.md](./02-systems-dynamics.md)；设计结构矩阵 (DSM)、CPM、PERT 与生命周期/进度的对应见 [02-project-management/lifecycle-models.md](../02-project-management/lifecycle-models.md) §2.1.6 设计结构矩阵 (DSM) 与 MIT ESD.36 对标。
 
 ---
 

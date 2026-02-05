@@ -76,6 +76,16 @@
 
 ---
 
+**五类链接 (Five-Type Links)**
+**前置知识 (Prerequisites)**：[1.1 形式化基础](../01-foundations/README.md)、[1.3 语义模型](../01-foundations/semantic-models.md)；自动机与时序逻辑（详见 [01-learning-prerequisites.md](../12-learning-support/01-learning-prerequisites.md) §2.3）。
+**应用 (Application)**：[4.1 软件开发](../04-industry-applications/software-development/)、[5 实现示例](../05-implementations/)。
+**相关 (Related)**：[3.2 模型检验](model-checking.md)、[3.3 定理证明](theorem-proving.md)、[2.1 生命周期](../02-project-management/lifecycle-models.md)。
+**深化 (Deep Dive)**：Level 1 验证概念 → Level 2 Kripke/LTL/CTL 与 Hoare 逻辑（见本章 §2）→ Level 3 工具（NuSMV/SPIN、Lean/Coq）与 [05-implementations](../05-implementations/)。
+**对比 (Comparison)**：[README 大学课程表](../README.md)、[STANDARDS_ALIGNMENT](../STANDARDS_ALIGNMENT.md)、[LEARNING_PATHS](../LEARNING_PATHS.md)。
+**难度 / Difficulty**：VL 整体为 High–Very High；各概念分级见 [04-concept-difficulty-ranking.md](../12-learning-support/04-concept-difficulty-ranking.md) §4。
+
+---
+
 ## 1. Overview / 概述
 
 形式化验证理论是Formal-ProgramManage的核心验证框架，确保项目管理模型的正确性、安全性和活性。本理论基于模型检验、定理证明和静态分析等先进技术。
@@ -103,6 +113,15 @@
 - Principles of Model Checking (Baier, Katoen)
 - Hoare Logic (Hoare)
 - Static Analysis (Cousot & Cousot)
+
+**大学课程对标（形式化验证）**:
+
+- **Stanford CS 357S** (Formal Methods for Computer Systems): SAT/SMT、模型检验、符号执行、定理证明、程序综合、Fuzzing，与本文模型检验、定理证明、静态分析对应。
+- **Stanford CS 256** (Formal Methods for Reactive Systems): 时序逻辑 LTL/CTL、模型检验、反应式系统，与本文 Kripke、LTL、CTL 对应。
+- **CMU 15-414** (Bug Catching: Automated Program Verification): 正确性规范、形式语义、演绎验证（如 Why3），与本文定理证明与验证框架对应。
+- 更多课程与 FL/VL 映射见 [docs/README.md](../README.md) 中“大学课程对标表”。
+
+**何时用形式化验证 vs 复杂情境**：在因果关系明确或可分析（Cynefin 的 Clear/Complicated）时，形式化验证最适用；在 Complex 或 Chaotic 情境下应先采用探针–感知–响应或先稳定再归类。参见 [13-complexity-systems/README.md](../13-complexity-systems/README.md) 中“When to Use Formal Methods vs Cynefin”及 [Cynefin 框架](../13-complexity-systems/01-cynefin-framework.md)。
 
 **知识体系层次结构**:
 
@@ -1007,6 +1026,16 @@ end
 
 ---
 
+## 本章自测 / Chapter Self-Test
+
+建议学完本章后完成以下检索练习以巩固记忆（间隔重复见 [02-spaced-repetition-schedule.md](../12-learning-support/02-spaced-repetition-schedule.md)）：
+
+- **验证框架与模型检验**：[03-retrieval-practice-questions.md](../12-learning-support/03-retrieval-practice-questions.md) §2.1 FL-1.1（Kripke、LTL）、§4.1 VL-3.1 Model Checking
+- **定理证明与 Hoare 逻辑**：同上 §4.2 VL-3.2 Theorem Proving
+- **综合**：可选 §5 Interleaved / Cross-layer 中涉及 VL 的题目
+
+---
+
 ## 9. References / 参考文献
 
 ### 9.1 Latest Research Frontiers (2020-2025) / 最新研究前沿 (2020-2025)
@@ -1090,21 +1119,19 @@ end
 
 **Last Updated / 最后更新**: 2026-01-27
 **Version / 版本**: 2.0
-**Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节，并添加了实际项目案例）
+**Status / 状态**: ✅ Complete（标准章节结构、大学课程对标、Cynefin 与形式化方法选择、学习支持链接已就绪）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 
+**相关章节 / Related Sections**：本层 [3.2 模型检验](./model-checking.md)、[3.3 定理证明](./theorem-proving.md)；前置 FL [1.1 形式化基础](../01-foundations/README.md)、[1.2 数学模型](../01-foundations/mathematical-models.md)；CML [2.1 生命周期](../02-project-management/lifecycle-models.md)～[2.4 质量](../02-project-management/quality-models.md)；AL [4.1 软件开发](../04-industry-applications/software-development/)；CI [6.1 自动化验证](../06-ci-verification/automated-verification.md)。术语见 [GLOSSARY](../GLOSSARY.md)。
+
 **Related Documents / 相关文档**:
 
+- **Learning support / 学习支持**: [先备知识](../12-learning-support/01-learning-prerequisites.md) | [间隔重复计划](../12-learning-support/02-spaced-repetition-schedule.md) | [检索练习题](../12-learning-support/03-retrieval-practice-questions.md) | [概念难度分级](../12-learning-support/04-concept-difficulty-ranking.md) | [交错学习路径](../12-learning-support/05-interleaved-learning-paths.md)
 - [1.1 形式化基础理论](../01-foundations/README.md) - 形式化基础理论
 - [3.2 模型检验方法](./model-checking.md) - 模型检验方法
 - [3.3 定理证明系统](./theorem-proving.md) - 定理证明系统

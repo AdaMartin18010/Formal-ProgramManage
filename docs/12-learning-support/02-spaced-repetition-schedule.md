@@ -15,13 +15,21 @@ Based on:
 - **Ebbinghaus Forgetting Curve** (1885): Memory decay over time
 - **Spacing Effect** (Cepeda et al., 2006): Distributed practice superiority
 - **Retrieval Practice** (Roediger & Karpicke, 2006): Testing enhances learning
+- **Dunlosky et al. (2013)**: Improving students' learning with effective learning techniques — practice testing and distributed practice (spacing) among highest-utility strategies. *Psychological Science in the Public Interest*, 14(1), 4–58.
 - **Neural Consolidation** (Nature, 2025): Time-dependent memory stabilization
+
+### 1.3 Spacing vs Interleaving / 间隔与交错的区分
+
+本文档描述的是 **Spaced Repetition（间隔重复）**：同一主题在**不同时间**分多次复习，利用间隔期工作记忆恢复与巩固。
+**Interleaving（交错学习）** 指在**同一次学习时段内**混合不同主题进行练习，通过对比促进区分（如 LTL 与 CTL）。两者机制不同，不可混用。交错学习见 [05-interleaved-learning-paths.md](./05-interleaved-learning-paths.md)。计划表中“Review”为间隔复习；“Interleaved Practice”为交错练习。
 
 ---
 
 ## 2. Core Principles / 核心原则
 
 ### 2.1 Optimal Spacing Intervals / 最佳间隔
+
+**难度–间隔绑定**：概念难度（见 [04-concept-difficulty-ranking.md](./04-concept-difficulty-ranking.md)）越高，建议首次复习越早、前几轮间隔越短；汇总表见 [README.md](./README.md) §难度与间隔的绑定。
 
 Research-based review intervals:
 
@@ -279,9 +287,10 @@ For concepts marked "High" or "Very High" difficulty:
 ### 9.1 Primary Sources / 主要来源
 
 1. Ebbinghaus, H. (1885). *Memory: A Contribution to Experimental Psychology*.
-2. Cepeda, N. J., et al. (2006). "Distributed practice in verbal recall tasks". *Psychological Bulletin*.
-3. Roediger, H. L., & Karpicke, J. D. (2006). "The Power of Testing Memory". *Perspectives on Psychological Science*.
-4. Nature (2025). "Time-dependent consolidation mechanisms of durable memory in spaced learning".
+2. Cepeda, N. J., Pashler, H., Vul, E., & Wixted, J. T. (2006). Distributed practice in verbal recall tasks: A review and quantitative synthesis. *Psychological Bulletin*, 132(3), 354–380.
+3. Roediger, H. L., & Karpicke, J. D. (2006). The power of testing memory: Basic research and implications for educational practice. *Perspectives on Psychological Science*, 1(3), 181–210.
+4. **Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). Improving students' learning with effective learning techniques: Promising directions from cognitive and educational psychology. *Psychological Science in the Public Interest*, 14(1), 4–58.**
+5. Nature (2025). Time-dependent consolidation mechanisms of durable memory in spaced learning.
 
 ---
 

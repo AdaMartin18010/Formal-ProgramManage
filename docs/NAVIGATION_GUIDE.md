@@ -9,8 +9,9 @@
 ### 新用户入门
 
 1. **项目概览**: 从 [主README](./README.md) 开始，了解项目整体结构
-2. **项目完成总结**: 查看 [项目主完成总结](./MASTER_COMPLETION_SUMMARY.md) 了解项目完成情况
-3. **文档索引**: 使用 [项目文档完整索引](./PROJECT_DOCUMENTATION_INDEX.md) 查找具体文档
+2. **学习路径**: 按角色与目标选择 [LEARNING_PATHS.md](./LEARNING_PATHS.md) 中的轨道 A（入门）/ B（进阶）/ C（专家）
+3. **项目完成总结**: 查看 [项目主完成总结](./MASTER_COMPLETION_SUMMARY.md) 了解项目完成情况
+4. **文档索引**: 使用 [项目文档完整索引](./PROJECT_DOCUMENTATION_INDEX.md) 查找具体文档
 
 ### 快速查找
 
@@ -45,11 +46,11 @@
 
 ### 4. 行业应用模型
 
-- [软件开发模型](./04-industry-applications/software-development/) - 5个软件开发模型
-- [工程管理模型](./04-industry-applications/engineering-management/) - 4个工程管理模型
+- [软件开发模型](./04-industry-applications/software-development/) - 5个软件开发模型（agile, waterfall, spiral, iterative, devops）
+- [工程管理模型](./04-industry-applications/engineering-management/) - 4个工程管理模型（systems, construction, mechanical, electrical）
 - [商业管理模型](./04-industry-applications/business-management/) - 7个商业管理模型
-- [专业领域模型](./04-industry-applications/professional-domains/) - 5个专业领域模型
-- [新兴技术模型](./04-industry-applications/emerging-technologies/) - 4个新兴技术模型
+- 专业领域模型： [医疗健康](./04-industry-applications/healthcare-management/)、[教育](./04-industry-applications/education-management/)、[金融科技](./04-industry-applications/fintech-management/)、[物流](./04-industry-applications/logistics-management/)、[能源](./04-industry-applications/energy-management/)
+- 新兴技术模型： [人工智能](./04-industry-applications/ai-management/)、[区块链](./04-industry-applications/blockchain-management/)、[物联网](./04-industry-applications/iot-management/)、[量子](./04-industry-applications/quantum-management/)
 - [跨领域知识整合](./04-industry-applications/cross-domain-integration.md) - 跨领域整合
 
 ### 5. 实现示例
@@ -90,6 +91,13 @@
 
 ### 规范文档
 
+- [标准对齐说明](./STANDARDS_ALIGNMENT.md) - ISO/PMBOK 版本与项目采用
+- [PMBOK 8 对齐计划](./PMBOK_8_ALIGNMENT_PLAN.md) - PMBOK 8th 原则/绩效域/流程映射与 CML 更新指导
+- [主题分析与改进方案摘要](./THEME_ANALYSIS_AND_IMPROVEMENT_SUMMARY.md) - 权威对齐、认知与学习、链接/补充、可持续任务执行摘要
+- [学习路径](./LEARNING_PATHS.md) - 轨道 A/B/C 与先备知识、难度
+- [三层解释（前 20 概念）](./THREE_LAYER_EXPLANATIONS.md) - 核心概念一句话/段落/形式化解释
+- [案例库](./case-library/README.md) - 案例结构规范与样板
+- [术语表索引](./GLOSSARY.md) - 术语表单一权威入口与概念链接
 - [统一编号系统规范](./STRUCTURE_GUIDE.md) - 编号系统规范
 - [参考文献格式规范](./REFERENCE_FORMAT_GUIDE.md) - 参考文献格式规范
 - [批量编号修复指南](./BATCH_NUMBERING_GUIDE.md) - 批量编号修复指南

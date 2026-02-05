@@ -19,6 +19,8 @@
 
 建筑工程涉及建筑结构设计、施工管理和质量控制。本模型提供建筑工程的形式化数学模型与项目化管理框架。
 
+**本模块依赖 (Prerequisites)**：建议先掌握 CML 的 [2.1 生命周期](../../02-project-management/lifecycle-models.md)（阶段与关口）、[2.2 资源](../../02-project-management/resource-models.md)（资源约束与调度）、[2.4 质量](../../02-project-management/quality-models.md)（质量规划/保证/控制）；FL 的 [1.2 数学模型](../../01-foundations/mathematical-models.md)（图论、约束）有助于形式化定义。详见 [01-learning-prerequisites.md](../../12-learning-support/01-learning-prerequisites.md)。
+
 **主题定位**: 应用层（AL），Formal-ProgramManage 在建筑工程领域的应用。
 
 **主要内容**: 建筑项目七元组、六阶段（规划、设计、地基、结构、装修、验收）、状态转移、进度/质量/成本模型、质量门控与成本控制。
@@ -680,7 +682,7 @@ mod tests {
 
 ### 国际标准 / Standards
 
-- ISO 21500:2012. Guidance on project management.
+- ISO 21500:2021 / ISO 21502:2020. Project management standards.
 - ISO 9001:2015. Quality management systems - Requirements.
 - ISO 14001:2015. Environmental management systems.
 - ISO 19650 (BIM): Organization and digitization of information.

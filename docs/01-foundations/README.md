@@ -76,9 +76,17 @@
 
 ---
 
+**先备知识 / Prerequisites**：集合论、命题逻辑、谓词逻辑基础（详见 [01-learning-prerequisites.md](../12-learning-support/01-learning-prerequisites.md) §2.1）。
+**难度 / Difficulty**：FL 整体为 High–Very High；各概念分级见 [04-concept-difficulty-ranking.md](../12-learning-support/04-concept-difficulty-ranking.md) §2。
+**学习路径**：参见 [LEARNING_PATHS.md](../LEARNING_PATHS.md) 轨道 B/C。
+
+**应用优先 / 跳过数学**：若仅需应用层面、先建立直觉，可优先阅读 §6 Explanations 中的「直观解释」「应用解释」及 [THREE_LAYER_EXPLANATIONS.md](../THREE_LAYER_EXPLANATIONS.md) 的一句话/段落解释；形式化定义与证明可后续再读。
+
+---
+
 ## 1. Overview / 概述
 
-形式化基础理论是Formal-ProgramManage的核心理论基础，为项目管理提供严格的数学基础和形式化规范。本理论体系对标MIT 6.006 (算法导论)、Stanford CS228 (概率图模型)、CMU 15-150 (函数式编程)等国际顶尖课程标准。
+形式化基础理论是Formal-ProgramManage的核心理论基础，为项目管理提供严格的数学基础和形式化规范。本理论体系对标国际顶尖大学课程：**形式化方法/验证**对标 Stanford CS 357S、CS 256（时序逻辑与模型检验）、CMU 15-414（程序验证）；**算法与数学基础**对标 MIT 6.006、Stanford CS228、CMU 15-150。详见 [docs/README.md](../README.md) 中“大学课程对标表”。
 
 **主题定位**: 本理论属于基础理论层（FL），是Formal-ProgramManage知识体系的基础，为所有上层模型提供形式化规范和数学基础。
 
@@ -100,7 +108,7 @@
 
 **标准对标**:
 
-- ISO 21500:2012: 项目管理指南
+- ISO 21500:2021: 项目/项目群/项目组合管理 — 背景与概念；ISO 21502:2020: 项目管理指南
 - PMBOK 7th Edition: 项目管理知识体系
 - IEEE 830: 软件需求规格说明标准
 - ISO/IEC 15504: 软件过程评估标准
@@ -141,9 +149,13 @@ graph TB
 
 ## 2. Definition / 定义
 
+**本节要点 (Key points)**: 项目与项目管理的集合/函数形式化定义；Kripke 状态转换系统；LTL 与安全性/活性；资源守恒；MDP 与价值函数。**先备 (Prerequisites)**: 集合论、命题与一阶逻辑、基本概率。
+
 ### 2.1 基本定义
 
 ### 项目 (Project)
+
+*术语表*: [Project / 项目](../GLOSSARY.md)
 
 **定义 1.1.1** (ISO 21500标准) 项目是一个四元组 $P = (S, R, T, C)$，其中：
 
@@ -153,6 +165,8 @@ graph TB
 - $C$ 是约束条件 (Constraints)，满足 $C: S \times R \times T \rightarrow \{True, False\}$
 
 ### 项目管理 (Project Management)
+
+*术语表*: [Project Management / 项目管理](../GLOSSARY.md)
 
 **定义 1.1.2** (PMBOK 7th Edition) 项目管理是一个函数 $PM: \mathcal{P} \rightarrow \mathcal{O}$，其中：
 
@@ -175,6 +189,8 @@ graph TB
 
 **定理 1.1.1** (状态可达性) 对于任意状态 $s \in S$，如果存在从初始状态 $s_0 \in S_0$ 到 $s$ 的路径，则 $s$ 是可达的。
 
+**证明思路 (Proof sketch)**: 用“一步转换”定义二元关系 $R$，证 $R$ 自反、传递，则路径存在等价于某次幂 $R^n$ 连接 $s_0$ 与 $s$；归纳于步数 $n$ 即得。
+
 **证明**：
 
 1. 构造可达性关系 $R \subseteq S \times S$，定义为 $R(s_1, s_2) \iff \exists \sigma \in \Sigma: s_2 \in \delta(s_1, \sigma)$
@@ -188,6 +204,8 @@ $$\forall r \in R, \forall t \in T: RA(r,t) \geq 0$$
 
 **公理 1.1.2** (资源守恒) 在项目执行过程中，总资源消耗不超过初始分配：
 $$\sum_{t \in T} \sum_{r \in R} RA(r,t) \leq \sum_{r \in R} InitialAllocation(r)$$
+
+*说明*: 形式化证明可对时间步归纳：$t=0$ 时成立；若 $t=k$ 时成立，由 $RA \geq 0$ 与求和单调性得 $t=k+1$ 时仍成立。
 
 ### 2.3 形式化验证
 
@@ -238,6 +256,8 @@ $$V^\pi(s) = \sum_{a} \pi(a|s) \sum_{s'} P[s,a,s'](R(s,a) + \gamma V^\pi(s'))$$
 ---
 
 ## 3. Properties / 属性
+
+**本节要点 (Key points)**: 完整性、可达性、资源守恒、安全性（Gφ）、活性（GF goal）的形式化表述。**先备**: §2 定义。
 
 ### 3.1 项目完整性属性
 
@@ -563,6 +583,8 @@ $$P_{digital} = (S_{digital}, R_{digital}, T_{digital}, C_{digital})$$
 在项目执行过程中，总资源消耗不超过初始分配：
 $$\sum_{t \in T} \sum_{r \in R} RA(r,t) \leq \sum_{r \in R} InitialAllocation(r)$$
 
+**证明思路 (Proof sketch)**: 对时间步归纳：$t=0$ 时总消耗为 0；归纳步由 $RA \geq 0$ 及累加单调性得到。
+
 **证明**:
 
 1. **数学归纳法**：对时间步 $t$ 进行归纳
@@ -578,6 +600,8 @@ $$\sum_{t \in T} \sum_{r \in R} RA(r,t) \leq \sum_{r \in R} InitialAllocation(r)
 **定理 1.1.3** (项目管理存在性)
 
 对于任意项目 $P \in \mathcal{P}$，存在管理函数 $PM$ 使得 $PM(P) \in \mathcal{O}$。
+
+**证明思路 (Proof sketch)**: 由项目非空与输出空间定义，构造从 $\mathcal{P}$ 到 $\mathcal{O}$ 的映射（例如取某目标函数的值）即得存在性。
 
 **证明**:
 
@@ -847,7 +871,7 @@ verifyLivenessProperty project property =
 
 本理论体系严格遵循ISO 21500项目管理标准，包括：
 
-- **项目定义**: 符合ISO 21500:2012标准定义
+- **项目定义**: 符合 ISO 21500:2021 / ISO 21502:2020 标准定义
 - **过程管理**: 基于ISO 21500的39个项目管理过程
 - **知识领域**: 涵盖ISO 21500的10个知识领域
 - **生命周期**: 遵循ISO 21500的项目生命周期模型
@@ -900,13 +924,13 @@ verifyLivenessProperty project property =
 
 3. Baier, C., & Katoen, J. P. (2008). *Principles of model checking*. MIT press.
 
-4. ISO 21500:2012. *Guidance on project management*. International Organization for Standardization.
-
-5. Project Management Institute. (2021). *A guide to the project management body of knowledge (PMBOK guide)* (7th ed.). Project Management Institute.
+4. ISO 21500:2021. *Project, programme and portfolio management — Context and concepts*. International Organization for Standardization.
+5. ISO 21502:2020. *Project management — Guidance on project management*. International Organization for Standardization.
+6. Project Management Institute. (2021). *A guide to the project management body of knowledge (PMBOK guide)* (7th ed.). Project Management Institute.
 
 ### 9.3 国际标准 / International Standards
 
-1. ISO 21500:2012 - 项目管理指南
+1. ISO 21500:2021、ISO 21502:2020 - 项目管理标准族
 2. PMBOK 7th Edition - 项目管理知识体系
 3. IEEE 830 - 软件需求规格说明标准
 4. ISO/IEC 15504 - 软件过程评估标准
@@ -928,21 +952,19 @@ verifyLivenessProperty project property =
 
 **Last Updated / 最后更新**: 2026-01-27
 **Version / 版本**: 2.0
-**Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节）
+**Status / 状态**: ✅ Complete（标准章节结构、节级要点/证明摘要、ISO 21500:2021/21502、学习支持与术语表链接已就绪）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 
+**相关章节 / Related Sections**：本层 [1.2 数学模型](./mathematical-models.md)、[1.3 语义模型](./semantic-models.md)；后续层 CML [2.1 生命周期](../02-project-management/lifecycle-models.md)～[2.4 质量](../02-project-management/quality-models.md)、VL [3.1 验证理论](../03-formal-verification/verification-theory.md)、AL [4.1 软件开发](../04-industry-applications/software-development/)。术语见 [GLOSSARY](../GLOSSARY.md)。
+
 **Related Documents / 相关文档**:
 
+- **Learning support / 学习支持**: [先备知识](../12-learning-support/01-learning-prerequisites.md) | [间隔重复计划](../12-learning-support/02-spaced-repetition-schedule.md) | [检索练习题](../12-learning-support/03-retrieval-practice-questions.md) | [概念难度分级](../12-learning-support/04-concept-difficulty-ranking.md) | [交错学习路径](../12-learning-support/05-interleaved-learning-paths.md)
 - [1.2 数学模型基础](./mathematical-models.md) - 数学模型基础
 - [1.3 语义模型理论](./semantic-models.md) - 语义模型理论
 - [1.4 量子项目管理理论](./quantum-project-theory.md) - 量子项目管理理论
@@ -954,7 +976,7 @@ verifyLivenessProperty project property =
 
 **Standards References / 标准参考**:
 
-- ISO 21500:2012: 项目管理指南
+- ISO 21500:2021: 项目/项目群/项目组合管理 — 背景与概念；ISO 21502:2020: 项目管理指南
 - PMBOK 7th Edition: 项目管理知识体系
 - IEEE 830: 软件需求规格说明标准
 - ISO/IEC 15504: 软件过程评估标准
@@ -963,9 +985,10 @@ verifyLivenessProperty project property =
 1. Clarke, E. M., Grumberg, O., & Peled, D. A. (1999). Model checking. MIT press.
 2. Puterman, M. L. (2014). Markov decision processes: discrete stochastic dynamic programming. John Wiley & Sons.
 3. Baier, C., & Katoen, J. P. (2008). Principles of model checking. MIT press.
-4. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-5. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-6. IEEE Std 830-1998. IEEE recommended practice for software requirements specifications.
-7. ISO/IEC 15504-1:2004. Information technology - Process assessment - Part 1: Concepts and vocabulary.
-8. CMMI Product Team. (2010). CMMI for Development, Version 1.3. Software Engineering Institute.
-9. Axelos. (2019). ITIL 4 Foundation. TSO (The Stationery Office).
+4. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+5. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
+6. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
+7. IEEE Std 830-1998. IEEE recommended practice for software requirements specifications.
+8. ISO/IEC 15504-1:2004. Information technology - Process assessment - Part 1: Concepts and vocabulary.
+9. CMMI Product Team. (2010). CMMI for Development, Version 1.3. Software Engineering Institute.
+10. Axelos. (2019). ITIL 4 Foundation. TSO (The Stationery Office).

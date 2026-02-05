@@ -367,10 +367,11 @@ impl PerformanceMonitor {
 ## 参考文献
 
 1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-3. Beck, K., et al. (2001). Manifesto for Agile Software Development.
-4. Nielsen, M. A., & Chuang, I. L. (2010). Quantum computation and quantum information. Cambridge university press.
-5. Holland, J. H. (1992). Adaptation in natural and artificial systems: an introductory analysis with applications to biology, control, and artificial intelligence. MIT press.
+2. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+3. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
+4. Beck, K., et al. (2001). Manifesto for Agile Software Development.
+5. Nielsen, M. A., & Chuang, I. L. (2010). Quantum computation and quantum information. Cambridge university press.
+6. Holland, J. H. (1992). Adaptation in natural and artificial systems: an introductory analysis with applications to biology, control, and artificial intelligence. MIT press.
 
 ---
 

@@ -390,12 +390,35 @@
 
 ## 持续改进
 
+### 权威对齐与链接审计（季度/半年度）
+
+以下任务纳入定期审查，确保内容与权威来源一致、链接有效：
+
+- **季度审查 (每季度)**
+  - **权威对齐**：检查 PMI、ISO 官网及大学课程页面，确认 PMBOK、ISO 21500/21502、ISO 21520（AI in P3M）进展、Stanford/CMU 形式化课程等版本与链接是否仍有效。
+  - 更新 [STANDARDS_ALIGNMENT.md](./STANDARDS_ALIGNMENT.md) 及 [docs/README.md](./README.md) 中大学课程对标表（如有变更）。
+  - **术语表与引用**：以 [docs/GLOSSARY.md](./GLOSSARY.md) 为术语单一权威入口，术语全文维护于 [templates_and_standards/术语表-Glossary.md](../templates_and_standards/术语表-Glossary.md)。季度审查时抽查核心文档中对术语表的引用是否一致、有无重复定义需收敛至术语表。
+  - **术语首次出现 → GLOSSARY 抽查**：每季度对 01–04 核心文档做「术语首次出现 → 术语表」抽查清单（至少 5 个文档），记录需补充链接的概念并修正；清单可附于审查记录或 [GLOSSARY.md](./GLOSSARY.md) 维护说明。
+
+- **半年度审查 (每半年)**
+  - **全库链接与引用审计**：检查 docs 下相对路径、锚点、外部链接；修正 [NAVIGATION_GUIDE.md](./NAVIGATION_GUIDE.md) 及新增模块的导航链接。
+  - **案例库增量**：每半年新增 1–2 个案例（决策情境/伦理两难/老手经验类），写入 [case-library](./case-library/README.md)，并链到 [THREE_LAYER_EXPLANATIONS.md](./THREE_LAYER_EXPLANATIONS.md) 或 CML 相关概念；规范见 [case-library/README.md](./case-library/README.md)。
+  - 检查各文档“Related Documents”与 12-learning-support 的双向链接是否完整。
+
+- **年度审查 (每年，建议 9 月)**
+  - **大学课程对标**：核对 MIT、Stanford、CMU、Oxford、Cambridge 等校课程页面，更新 [docs/README.md](./README.md) 中大学课程对标表学年与工具（如 Lean 4、NuSMV 版本）。年度审查时可补充 Oxford Probabilistic Model Checking 等课程行，见 [README.md](./README.md) 课程表。
+  - **验证维度评估**：评估实证验证、实用验证、社会验证的进展（案例库、指标、专家评审），更新路线图或 [COMPREHENSIVE_ANALYSIS_AND_RECOMMENDATIONS_2026.md](../COMPREHENSIVE_ANALYSIS_AND_RECOMMENDATIONS_2026.md)。
+  - **术语表交叉引用**：对术语表词条与文档内“首次出现→术语表”链接做抽样校验，确保 [GLOSSARY.md](./GLOSSARY.md) 入口与术语表全文一致。
+
+- **按需触发**
+  - 新标准发布（如 PMBOK 8th 正式发布）或重大课程变更时，更新对应章节与对标段落，并更新 STANDARDS_ALIGNMENT。
+
 ### 评估机制
 
 #### 定期评估
 
 - **月度评估**: 评估月度目标和完成情况
-- **季度评估**: 评估季度目标和质量指标
+- **季度评估**: 评估季度目标和质量指标（含上述季度权威对齐）
 - **年度评估**: 评估年度目标和长期规划
 
 #### 反馈机制

@@ -19,6 +19,8 @@
 
 电气工程是涉及电路设计、电力系统和自动化控制的项目管理领域。本节提供电气工程的形式化数学模型与项目化管理框架。
 
+**本模块依赖 (Prerequisites)**：建议先掌握 CML [2.1 生命周期](../../02-project-management/lifecycle-models.md)、[2.2 资源](../../02-project-management/resource-models.md)、[2.4 质量](../../02-project-management/quality-models.md)；VL 可选 [3.1 验证理论](../../03-formal-verification/verification-theory.md)。详见 [01-learning-prerequisites.md](../../12-learning-support/01-learning-prerequisites.md)。
+
 **主题定位**: 应用层（AL），Formal-ProgramManage 在电气工程领域的应用。
 
 **主要内容**: 电气项目七元组、六阶段（设计、仿真、原型、制造、集成、测试）、状态转移、可靠性/效率/安全模型、验证规范。
@@ -829,10 +831,11 @@ $$S(s) = \prod_{i=1}^{n} safety_i^{\beta_i} \cdot protection\_factor$$
 ## 参考文献
 
 1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-3. IEEE Std 141-1993. IEEE recommended practice for electric power distribution for industrial plants.
-4. IEEE Std 242-2001. IEEE recommended practice for protection and coordination of industrial and commercial power systems.
-5. ISO/IEC 15288:2015. Systems and software engineering - System life cycle processes.
+2. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+3. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
+4. IEEE Std 141-1993. IEEE recommended practice for electric power distribution for industrial plants.
+5. IEEE Std 242-2001. IEEE recommended practice for protection and coordination of industrial and commercial power systems.
+6. ISO/IEC 15288:2015. Systems and software engineering - System life cycle processes.
 
 ---
 

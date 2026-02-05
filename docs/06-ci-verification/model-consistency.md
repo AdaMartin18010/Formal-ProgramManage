@@ -861,7 +861,8 @@ mod tests {
 2. Baier, C., & Katoen, J. P. (2008). Principles of model checking. MIT press.
 3. ISO/IEC 25010:2011. Systems and software engineering — Systems and software Quality Requirements and Evaluation (SQuaRE) — System and software quality models.
 4. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-5. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+5. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+6. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
 
 ---
 

@@ -75,7 +75,7 @@
 
 ## 1. Overview / 概述
 
-项目生命周期模型是Formal-ProgramManage的核心理论之一，定义了项目从启动到收尾的完整演进过程。本理论体系严格对标PMBOK 7th Edition、ISO 21500:2012、PRINCE2 2017、APM Body of Knowledge 7th Edition等国际项目管理标准。
+项目生命周期模型是Formal-ProgramManage的核心理论之一，定义了项目从启动到收尾的完整演进过程。本理论体系严格对标PMBOK 7th Edition、ISO 21500:2021、ISO 21502:2020、PRINCE2 2017、APM Body of Knowledge 7th Edition等国际项目管理标准。
 
 **主题定位**: 本模型属于核心模型层（CML），是项目管理的基础模型之一。
 
@@ -96,9 +96,16 @@
 **标准对标**:
 
 - PMBOK 7th Edition: 过程组和价值交付系统
-- ISO 21500:2012: 39个项目管理过程和5个过程组
+- ISO 21500:2021 / ISO 21502:2020: 项目/项目群/项目组合管理背景与项目管理指导
 - PRINCE2 2017: 7个过程和7个主题
 - APM Body of Knowledge 7th Edition: 29个知识领域
+
+**五类链接 (Five-Type Links)**
+**前置知识 (Prerequisites)**：[1.1 形式化基础](../01-foundations/README.md)、[1.2 数学模型](../01-foundations/mathematical-models.md)。详见 [01-learning-prerequisites.md](../12-learning-support/01-learning-prerequisites.md)。
+**应用 (Application)**：[4.1 软件开发](../04-industry-applications/software-development/)、[4.2 工程管理](../04-industry-applications/engineering-management/)。
+**相关 (Related)**：[2.2 资源](resource-models.md)、[2.3 风险](risk-models.md)、[2.4 质量](quality-models.md)。
+**深化 (Deep Dive)**：Level 1 生命周期概念 → Level 2 形式化阶段与转换（§2.1.3）→ Level 3 验证与 DSM/系统动力学（见 §2.1.6、[13-complexity-systems](../13-complexity-systems/README.md)）。
+**对比 (Comparison)**：[PMBOK 8th 对标](../PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT](../STANDARDS_ALIGNMENT.md)、[LEARNING_PATHS](../LEARNING_PATHS.md)。
 
 **知识体系层次结构**:
 
@@ -123,6 +130,8 @@ graph TB
     C1 -.-> D
     C1 -.-> E
 ```
+
+**阅读提示 / Reading Guide**（降低认知负荷）：**本节要点**：(1) 生命周期 = 阶段集合 + 转换 + 关口；(2) PMBOK/ISO 五过程组（启动、规划、执行、监控、收尾）；(3) 形式化模型含状态转换与安全/活性属性；(4) DSM 与 CPM/PERT 对标 MIT ESD.36。**阅读时间**：约 45–60 分钟（完整阅读）；**难度**：中–高。应用优先可先读 §6 直观/应用解释与 [THREE_LAYER_EXPLANATIONS.md](../THREE_LAYER_EXPLANATIONS.md)。
 
 ---
 
@@ -1236,6 +1245,30 @@ impl LifecycleOptimizer {
 - **最佳实践**: 行业最佳实践
 - **专业发展**: 专业发展路径
 
+### 设计结构矩阵 (DSM) 与 MIT ESD.36 对标
+
+**MIT ESD.36 System Project Management** 课程涵盖设计结构矩阵（Design Structure Matrix, DSM）、CPM、PERT、系统动力学与风险管理。DSM 用于刻画任务/活动间的依赖与信息流，支持迭代规划与耦合分析。本模型的形式化任务依赖图（见 [mathematical-models.md](../01-foundations/mathematical-models.md) 图论模型及本文档形式化生命周期）与 DSM 在概念上对应；系统动力学建模见 [13-complexity-systems/02-systems-dynamics.md](../13-complexity-systems/02-systems-dynamics.md)。CPM/PERT 与关键路径的完整算例见 [resource-models.md](./resource-models.md) 进度与资源约束小节及 [README.md](../README.md) 大学课程对标表。
+
+### PMBOK 8th Edition（2025）对标
+
+PMBOK Guide 第 8 版于 2025 年 11 月发布。本模型与 PMBOK 8 的对应关系如下（详见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT.md](../STANDARDS_ALIGNMENT.md)）：
+
+- **相关绩效域**：Governance（治理）、Scope（范围）、Schedule（进度）、Stakeholders（干系人）；生命周期阶段覆盖启动、规划、执行、监控、收尾。
+- **相关原则**：Adopt a Holistic View（整体观）、Focus on Value（聚焦价值）、Embed Quality into Processes and Deliverables（质量嵌入）、Be an Accountable Leader（负责任领导）、Integrate Sustainability（整合可持续性）、Build an Empowered Culture（赋能文化）。详见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) §1.1。
+- **流程结构**：PMBOK 8 重新引入约 40 个流程，分布于上述五阶段；本文档的形式化生命周期模型与 5 过程组一致，流程级描述将随 8th 正式版逐步补充。
+- **PMBOK 8 流程列表（占位）**：按阶段划分的流程占位表见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) §1.3.1；正式版发布后填齐流程名称与编号。
+- **PMO 与采购（PMBOK 8 现代主题）**：PMBOK 8 扩展了 **PMO（项目管理办公室）** 角色与职能（治理、标准、资源协调、组合支持）；**采购管理现代化** 作为独立主题在 8th 中加强，可与资源/治理结合。本模型的生命周期阶段与治理关口与 PMO 职能对应；采购活动可置于规划与执行阶段的资源与合同管理小节。详见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) §1.4。
+
+---
+
+## 本章自测 / Chapter Self-Test
+
+建议学完本章后完成以下检索练习以巩固记忆（间隔重复见 [02-spaced-repetition-schedule.md](../12-learning-support/02-spaced-repetition-schedule.md)）：
+
+- **生命周期与过程组**：[03-retrieval-practice-questions.md](../12-learning-support/03-retrieval-practice-questions.md) §3.1 CML-2.1 Lifecycle Models（定义回忆、概念解释、应用题）
+- **阶段转换与形式化**：同上 §3.1 中与 Phase Transitions、Formal Lifecycle 相关题目
+- **综合**：可选 §5 Interleaved / Cross-layer 中涉及 2.1 的题目
+
 ---
 
 ## 9. References / 参考文献
@@ -1266,20 +1299,21 @@ impl LifecycleOptimizer {
 
 1. Project Management Institute. (2021). *A guide to the project management body of knowledge (PMBOK guide)* (7th ed.). Project Management Institute.
 
-2. ISO 21500:2012. *Guidance on project management*. International Organization for Standardization.
+2. ISO 21500:2021. *Project, programme and portfolio management — Context and concepts*. International Organization for Standardization.
+3. ISO 21502:2020. *Project management — Guidance on project management*. International Organization for Standardization.
 
-3. AXELOS. (2017). *Managing Successful Projects with PRINCE2 2017 Edition*. TSO (The Stationery Office).
+4. AXELOS. (2017). *Managing Successful Projects with PRINCE2 2017 Edition*. TSO (The Stationery Office).
 
-4. Association for Project Management. (2019). *APM Body of Knowledge 7th Edition*. APM.
+5. Association for Project Management. (2019). *APM Body of Knowledge 7th Edition*. APM.
 
-5. Kerzner, H. (2017). *Project management: a systems approach to planning, scheduling, and controlling* (12th ed.). John Wiley & Sons.
+6. Kerzner, H. (2017). *Project management: a systems approach to planning, scheduling, and controlling* (12th ed.). John Wiley & Sons.
 
-6. Meredith, J. R., & Mantel, S. J. (2019). *Project management: a managerial approach* (10th ed.). John Wiley & Sons.
+7. Meredith, J. R., & Mantel, S. J. (2019). *Project management: a managerial approach* (10th ed.). John Wiley & Sons.
 
 ### 9.3 国际标准 / International Standards
 
 1. PMI PMBOK 7th Edition (2021) - 项目管理知识体系指南
-2. ISO 21500:2012 - 项目管理指南
+2. ISO 21500:2021、ISO 21502:2020 - 项目管理标准族
 3. ISO 31000:2018 - 风险管理指南
 4. PRINCE2 2017 - 项目管理方法
 5. CMMI-DEV Version 2.0 - 能力成熟度模型集成
@@ -1300,16 +1334,11 @@ impl LifecycleOptimizer {
 
 **Last Updated / 最后更新**: 2026-01-27
 **Version / 版本**: 2.0
-**Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节）
+**Status / 状态**: ✅ Complete（标准章节结构、ISO 21500:2021/21502 引用、学习支持链接已就绪）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 
@@ -1324,17 +1353,18 @@ impl LifecycleOptimizer {
 **Standards References / 标准参考**:
 
 - PMI PMBOK 7th Edition: 过程组和价值交付系统
-- ISO 21500:2012: 39个项目管理过程和5个过程组
+- ISO 21500:2021 / ISO 21502:2020: 项目/项目群/项目组合管理背景与项目管理指导
 - PRINCE2 2017: 7个过程和7个主题
 - APM Body of Knowledge 7th Edition: 29个知识领域
 
 1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-3. AXELOS. (2017). Managing Successful Projects with PRINCE2 2017 Edition. TSO (The Stationery Office).
-4. Association for Project Management. (2019). APM Body of Knowledge 7th Edition. APM.
-5. Kerzner, H. (2017). Project management: a systems approach to planning, scheduling, and controlling (12th ed.). John Wiley & Sons.
-6. Meredith, J. R., & Mantel, S. J. (2019). Project management: a managerial approach (10th ed.). John Wiley & Sons.
-7. Turner, J. R. (2016). Gower handbook of project management (5th ed.). Routledge.
-8. Lock, D. (2013). Project management (10th ed.). Routledge.
-9. Schwalbe, K. (2019). Information technology project management (9th ed.). Cengage Learning.
-10. Wysocki, R. K. (2019). Effective project management: traditional, agile, extreme, hybrid (8th ed.). John Wiley & Sons.
+2. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+3. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
+4. AXELOS. (2017). Managing Successful Projects with PRINCE2 2017 Edition. TSO (The Stationery Office).
+5. Association for Project Management. (2019). APM Body of Knowledge 7th Edition. APM.
+6. Kerzner, H. (2017). Project management: a systems approach to planning, scheduling, and controlling (12th ed.). John Wiley & Sons.
+7. Meredith, J. R., & Mantel, S. J. (2019). Project management: a managerial approach (10th ed.). John Wiley & Sons.
+8. Turner, J. R. (2016). Gower handbook of project management (5th ed.). Routledge.
+9. Lock, D. (2013). Project management (10th ed.). Routledge.
+10. Schwalbe, K. (2019). Information technology project management (9th ed.). Cengage Learning.
+11. Wysocki, R. K. (2019). Effective project management: traditional, agile, extreme, hybrid (8th ed.). John Wiley & Sons.

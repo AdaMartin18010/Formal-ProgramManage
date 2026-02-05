@@ -83,13 +83,13 @@ graph TD
         C[Automated Proving] --> D[ATP Systems]
         E[SMT Solving] --> F[Z3/CVC5]
     end
-    
+
     subgraph Applications[Project Management Applications]
         G[Process Verification]
         H[Constraint Checking]
         I[Optimization Proofs]
     end
-    
+
     B --> G
     D --> H
     F --> I
@@ -127,7 +127,7 @@ structure Task where
 def end_time (t : Task) : Nat := t.start_time + t.duration
 
 -- Define dependency relation
-def depends_on (t1 t2 : Task) : Prop := 
+def depends_on (t1 t2 : Task) : Prop :=
   -- t1 depends on t2 (t2 must complete before t1 starts)
   end_time t2 ≤ t1.start_time
 
@@ -136,8 +136,8 @@ def valid_schedule (tasks : List Task) (deps : List (Task × Task)) : Prop :=
   ∀ (t1 t2 : Task), (t1, t2) ∈ deps → depends_on t1 t2
 
 -- Theorem: If schedule is valid, no circular dependencies exist
-theorem no_circular_deps 
-  (tasks : List Task) 
+theorem no_circular_deps
+  (tasks : List Task)
   (deps : List (Task × Task))
   (h_valid : valid_schedule tasks deps) :
   ∀ t : Task, ¬ depends_on t t := by
@@ -193,26 +193,26 @@ Record Allocation := mkAllocation {
 Fixpoint total_allocated (res : ResourceId) (allocs : list Allocation) : Capacity :=
   match allocs with
   | [] => 0
-  | a :: rest => 
-      if Nat.eqb (alloc_resource a) res 
+  | a :: rest =>
+      if Nat.eqb (alloc_resource a) res
       then alloc_amount a + total_allocated res rest
       else total_allocated res rest
   end.
 
 (* Property: No resource is over-allocated *)
 Definition no_overallocation (resources : list Resource) (allocs : list Allocation) : Prop :=
-  forall r : Resource, 
-    In r resources -> 
+  forall r : Resource,
+    In r resources ->
     total_allocated (res_id r) allocs <= res_capacity r.
 
 (* Theorem: Empty allocation satisfies constraint *)
-Theorem empty_allocation_valid : 
+Theorem empty_allocation_valid :
   forall resources : list Resource,
     no_overallocation resources [].
 Proof.
   unfold no_overallocation.
   intros resources r H_in.
-  simpl. 
+  simpl.
   apply Nat.le_0_l.
 Qed.
 
@@ -220,8 +220,8 @@ Qed.
 Theorem add_allocation_preserves_validity :
   forall (resources : list Resource) (allocs : list Allocation) (new_alloc : Allocation),
     no_overallocation resources allocs ->
-    (forall r : Resource, 
-      res_id r = alloc_resource new_alloc -> 
+    (forall r : Resource,
+      res_id r = alloc_resource new_alloc ->
       In r resources ->
       total_allocated (res_id r) allocs + alloc_amount new_alloc <= res_capacity r) ->
     no_overallocation resources (new_alloc :: allocs).
@@ -255,72 +255,72 @@ def verify_project_budget():
     Verify that project budget constraints are satisfiable
     and find valid allocations.
     """
-    
+
     # Create solver
     s = Solver()
-    
+
     # Define project parameters
     num_tasks = 5
     total_budget = 100000
-    
+
     # Task costs (variables)
     task_costs = [Int(f'cost_{i}') for i in range(num_tasks)]
-    
+
     # Task durations
     task_durations = [Int(f'duration_{i}') for i in range(num_tasks)]
-    
+
     # Constraints
-    
+
     # 1. All costs must be positive
     for cost in task_costs:
         s.add(cost > 0)
-    
+
     # 2. Total cost must not exceed budget
     s.add(Sum(task_costs) <= total_budget)
-    
+
     # 3. Minimum cost per task (based on duration)
     for i in range(num_tasks):
         s.add(task_durations[i] >= 1)
         s.add(task_costs[i] >= task_durations[i] * 1000)  # $1000/day minimum
-    
+
     # 4. Specific task constraints
     # Task 0: Planning - at least 10 days
     s.add(task_durations[0] >= 10)
-    
+
     # Task 1: Development - at least 30 days
     s.add(task_durations[1] >= 30)
-    
+
     # Task 2: Testing - at least 15 days
     s.add(task_durations[2] >= 15)
-    
+
     # Task 3: Deployment - at least 5 days
     s.add(task_durations[3] >= 5)
-    
+
     # Task 4: Documentation - at least 10 days
     s.add(task_durations[4] >= 10)
-    
+
     # 5. Cost efficiency constraint
     # Average cost per day should not exceed $1500
     total_duration = Sum(task_durations)
     total_cost = Sum(task_costs)
     s.add(total_cost <= total_duration * 1500)
-    
+
     # Check satisfiability
     if s.check() == sat:
         m = s.model()
         print("Budget constraints are satisfiable!")
         print("\nValid allocation found:")
-        
+
         total = 0
         for i in range(num_tasks):
             cost = m.evaluate(task_costs[i]).as_long()
             duration = m.evaluate(task_durations[i]).as_long()
             total += cost
             print(f"  Task {i}: Cost=${cost:,}, Duration={duration} days")
-        
+
         print(f"\nTotal project cost: ${total:,}")
         print(f"Budget remaining: ${total_budget - total:,}")
-        
+
         return True
     else:
         print("Budget constraints are UNSATISFIABLE!")
@@ -332,29 +332,29 @@ def prove_budget_theorem():
     Prove: If all individual task budgets are met,
     then total budget constraint is satisfied.
     """
-    
+
     # Create solver for proof
     s = Solver()
-    
+
     # Symbolic values
     budget = Int('total_budget')
     task_budgets = [Int(f'task_budget_{i}') for i in range(3)]
     task_costs = [Int(f'task_cost_{i}') for i in range(3)]
-    
+
     # Hypothesis: Each task stays within its budget
     for i in range(3):
         s.add(task_costs[i] <= task_budgets[i])
         s.add(task_costs[i] >= 0)
         s.add(task_budgets[i] >= 0)
-    
+
     # Hypothesis: Task budgets sum to total budget
     s.add(Sum(task_budgets) == budget)
     s.add(budget >= 0)
-    
+
     # Negation of theorem (try to find counterexample)
     # Theorem: Total cost <= Total budget
     s.add(Sum(task_costs) > budget)
-    
+
     if s.check() == unsat:
         print("THEOREM PROVED: If each task stays within budget,")
         print("then total project cost stays within total budget.")
@@ -367,13 +367,13 @@ if __name__ == "__main__":
     print("=" * 60)
     print("Project Budget Verification")
     print("=" * 60)
-    
+
     verify_project_budget()
-    
+
     print("\n" + "=" * 60)
     print("Budget Theorem Proof")
     print("=" * 60)
-    
+
     prove_budget_theorem()
 ```
 
@@ -443,7 +443,7 @@ graph TD
         A1[Axiom: Resource Def]
         A2[Axiom: Task Def]
         A3[Axiom: Cost Def]
-        
+
         T --> L1
         T --> L2
         T --> L3
@@ -463,7 +463,7 @@ graph TD
 
 **Criticism**: Theorem proving requires too much expertise.
 
-**Response**: 
+**Response**:
 - Modern tools have better automation
 - SMT solvers require minimal proof expertise
 - Libraries provide reusable verified components

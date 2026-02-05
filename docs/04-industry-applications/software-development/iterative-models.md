@@ -666,7 +666,7 @@ mod tests {
 
 ### 国际标准 / Standards
 
-- ISO 21500:2012. Guidance on project management.
+- ISO 21500:2021 / ISO 21502:2020. Project/programme/portfolio management and project management guidance.
 - IEEE Std 830-1998. Software requirements specifications.
 - ISO/IEC 25010:2011. SQuaRE - System and software quality models.
 

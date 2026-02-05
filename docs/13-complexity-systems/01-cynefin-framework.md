@@ -117,7 +117,18 @@ graph TD
     CHAOTIC --> CRISIS
 ```
 
-### 4.2 Cynefin and PMBOK / Cynefin与PMBOK关系
+### 4.2 When to Use Formal Methods vs Cynefin / 何时用形式化方法 vs Cynefin
+
+| Cynefin 域 | 形式化方法适用性 | 说明 |
+|------------|------------------|------|
+| **Clear** | 高 | 因果关系明确，可用状态机、LTL/CTL、模型检验严格验证（见 [形式化基础理论](../01-foundations/README.md)、[形式化验证理论](../03-formal-verification/verification-theory.md)）。 |
+| **Complicated** | 中–高 | 需专家分析后可形式化；分析阶段用 Sense–Analyze–Respond，规范确定后可用形式化验证。 |
+| **Complex** | 低（先探针） | 涌现、不可预测；宜 Probe–Sense–Respond，待模式显现后再考虑局部形式化。 |
+| **Chaotic** | 低（先稳定） | 先 Act–Sense–Respond 稳定局面，再归类到其他域；稳定后可引入形式化。 |
+
+本项目的 [形式化验证](../03-formal-verification/verification-theory.md) 与 [基础理论](../01-foundations/README.md) 主要针对 Clear/Complicated 情境；复杂与混沌情境下应结合本模块的 Cynefin、系统动力学与 CAS 选择方法。
+
+### 4.3 Cynefin and PMBOK / Cynefin与PMBOK关系
 
 | PMBOK Principle | Clear | Complicated | Complex | Chaotic |
 |-----------------|-------|-------------|---------|---------|

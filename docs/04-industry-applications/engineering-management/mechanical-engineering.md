@@ -19,6 +19,8 @@
 
 机械工程是涉及机械设计、制造工艺和质量控制的项目管理领域。本节提供机械工程的形式化数学模型与项目化管理框架。
 
+**本模块依赖 (Prerequisites)**：建议先掌握 CML [2.1 生命周期](../../02-project-management/lifecycle-models.md)、[2.2 资源](../../02-project-management/resource-models.md)、[2.4 质量](../../02-project-management/quality-models.md)。详见 [01-learning-prerequisites.md](../../12-learning-support/01-learning-prerequisites.md)。
+
 **主题定位**: 应用层（AL），Formal-ProgramManage 在机械工程领域的应用。
 
 **主要内容**: 机械项目七元组、五阶段（设计、原型、制造、装配、测试）、状态转移、精度/质量/效率模型、验证规范。
@@ -150,18 +152,23 @@ $$quality(s) \geq threshold \Rightarrow \text{质量达标}$$
 ## 3. Properties / 属性
 
 ### 3.1 设计完整性 (Design Completeness)
+
 $\forall d \in D$：设计须满足所有技术要求（公理 4.2.3.1）。
 
 ### 3.2 制造精度门控 (Precision Gate)
+
 $precision(p_i) \geq tolerance_i$ 方为精度达标。
 
 ### 3.3 质量门控 (Quality Gate)
+
 $quality(s) \geq threshold$ 方为质量达标。
 
 ### 3.4 精度加权聚合 (Precision Weighted Aggregation)
+
 $precision = \frac{\sum w_i \cdot precision_i}{\sum w_i} \in [0,1]$。
 
 ### 3.5 质量乘积性 (Quality Product)
+
 $Q(s) = \prod_i quality_i^{\alpha_i} precision_i^{\beta_i} \in [0,1]$；$E(s) = \frac{output\_quantity}{input\_resources} \cdot quality\_factor$。
 
 ---
@@ -183,18 +190,23 @@ graph TB
 ## 5. Examples / 实例
 
 ### 5.1 BMW 汽车与动力总成
+
 整车与动力总成开发、五阶段流程、精度与质量门控在 automotive 中的应用。
 
 ### 5.2 GE Aviation 航空发动机
+
 发动机从设计到测试的严格阶段、精度与可靠性模型、适航与形式化验证。
 
 ### 5.3 Caterpillar 工程机械
+
 工程机械研发与制造、工艺效率与质量乘积、供应链与项目协同。
 
 ### 5.4 博世 汽车零部件与自动化
+
 汽车电子与机械零部件、制造精度与自动化、$E(s)$ 与 $Q(s)$ 在产线中的应用。
 
 ### 5.5 发那科 数控与机器人
+
 数控系统与工业机器人、精度累积与工艺参数、制造执行与项目管理集成。
 
 ---
@@ -207,15 +219,15 @@ graph TB
 
 ## 7. Argumentation / 论证
 
-**定理 7.1** (精度累积性) $precision = \frac{\sum w_i \cdot precision_i}{\sum w_i} \in [0,1]$。  
-**定理 7.2** (质量累积性) $Q(s) = \prod_i quality_i^{\alpha_i} precision_i^{\beta_i} \in [0,1]$。  
+**定理 7.1** (精度累积性) $precision = \frac{\sum w_i \cdot precision_i}{\sum w_i} \in [0,1]$。
+**定理 7.2** (质量累积性) $Q(s) = \prod_i quality_i^{\alpha_i} precision_i^{\beta_i} \in [0,1]$。
 **定理 7.3** (效率演进性) $E(s)$ 随 $quality\_factor$ 递增。
 
 ---
 
 ## 8. Applications / 应用
 
-汽车与动力总成；航空与防务；工程机械与重型装备；精密制造与数控；机器人及自动化产线。  
+汽车与动力总成；航空与防务；工程机械与重型装备；精密制造与数控；机器人及自动化产线。
 
 ---
 
@@ -688,7 +700,7 @@ mod tests {
 
 ### 国际标准 / Standards
 
-- ISO 21500:2012. Guidance on project management.
+- ISO 21500:2021 / ISO 21502:2020. Project management standards.
 - ISO 9001:2015. Quality management systems - Requirements.
 - ISO/IEC 15288:2015. Systems and software engineering - System life cycle processes.
 

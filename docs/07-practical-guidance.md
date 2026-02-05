@@ -1007,10 +1007,11 @@ struct KnowledgeSharing {
 ## 参考文献
 
 1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-3. Beck, K., et al. (2001). Manifesto for Agile Software Development.
-4. Schwaber, K., & Sutherland, J. (2020). The Scrum Guide. Scrum.org.
-5. Highsmith, J. (2009). Agile project management: creating innovative products. Addison-Wesley Professional.
+2. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+3. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
+4. Beck, K., et al. (2001). Manifesto for Agile Software Development.
+5. Schwaber, K., & Sutherland, J. (2020). The Scrum Guide. Scrum.org.
+6. Highsmith, J. (2009). Agile project management: creating innovative products. Addison-Wesley Professional.
 
 ---
 

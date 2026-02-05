@@ -77,6 +77,8 @@
 
 DevOps是开发(Development)和运维(Operations)的融合，强调自动化、持续集成和持续部署。本节提供DevOps模型的形式化数学模型。
 
+**本模块依赖 (Prerequisites)**：建议先掌握 CML [2.1 生命周期](../../02-project-management/lifecycle-models.md)、[2.2 资源](../../02-project-management/resource-models.md)、[2.4 质量](../../02-project-management/quality-models.md)；VL 可选 [3.1 验证理论](../../03-formal-verification/verification-theory.md)（CI/CD 流程验证）。详见 [01-learning-prerequisites.md](../../12-learning-support/01-learning-prerequisites.md)。
+
 **主题定位**: 本模型属于应用层（AL），是Formal-ProgramManage知识体系在软件开发领域的应用，为DevOps项目管理提供形式化模型。
 
 **主要内容**:
@@ -172,7 +174,7 @@ graph LR
     D --> E[Deploy<br/>部署]
     E --> F[Monitor<br/>监控]
     F -->|反馈| A
-    
+
     style A fill:#e1f5ff
     style B fill:#fff4e1
     style C fill:#ffe1f5
@@ -210,32 +212,32 @@ stateDiagram-v2
     Deploy --> Build: 部署失败
     Monitor --> Plan: 反馈优化
     Monitor --> [*]: 项目完成
-    
+
     note right of Plan
         需求规划和设计
         自动化程度: 低
     end note
-    
+
     note right of Code
         代码开发和版本控制
         自动化程度: 中
     end note
-    
+
     note right of Build
         构建和打包
         自动化程度: 高
     end note
-    
+
     note right of Test
         自动化测试
         自动化程度: 高
     end note
-    
+
     note right of Deploy
         部署和发布
         自动化程度: 高
     end note
-    
+
     note right of Monitor
         监控和反馈
         自动化程度: 中
@@ -1361,19 +1363,19 @@ graph TB
         B --> C[构建服务<br/>Build Service]
         C --> D[测试服务<br/>Test Service]
     end
-    
+
     subgraph "基础设施即代码 / Infrastructure as Code"
         E[Terraform] --> F[云资源<br/>Cloud Resources]
         G[Ansible] --> F
         H[Kubernetes] --> F
     end
-    
+
     subgraph "部署环境 / Deployment"
         D --> I[容器镜像<br/>Container Image]
         I --> J[容器编排<br/>Container Orchestration]
         J --> K[生产环境<br/>Production]
     end
-    
+
     subgraph "监控和反馈 / Monitoring & Feedback"
         K --> L[监控系统<br/>Monitoring System]
         L --> M[日志聚合<br/>Log Aggregation]
@@ -1383,7 +1385,7 @@ graph TB
         N --> B
         O --> B
     end
-    
+
     style A fill:#e1f5ff
     style B fill:#fff4e1
     style F fill:#ffe1f5
@@ -1550,7 +1552,7 @@ graph TB
 
 ### 9.4 国际标准 / International Standards
 
-1. ISO 21500:2012 - 项目管理指南
+1. ISO 21500:2021、ISO 21502:2020 - 项目管理标准族
 2. ISO/IEC 25010:2011 - 系统和软件工程 - 系统和软件质量要求和评估
 3. ITIL 4 - IT服务管理
 4. ISO/IEC 20000 - IT服务管理体系

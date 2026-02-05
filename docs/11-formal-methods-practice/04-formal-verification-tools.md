@@ -98,7 +98,7 @@ flowchart TD
         ALLOY[Alloy]
         PROM[PROMELA]
     end
-    
+
     subgraph Verification[Verification Layer]
         TLC[TLC Model Checker]
         APAL[Apalache]
@@ -106,18 +106,18 @@ flowchart TD
         NUSMV[NuSMV]
         Z3[Z3 SMT]
     end
-    
+
     subgraph Proving[Proving Layer]
         COQ[Coq]
         LEAN[Lean]
         ISA[Isabelle]
     end
-    
+
     TLA --> TLC
     TLA --> APAL
     ALLOY --> Z3
     PROM --> SPIN
-    
+
     TLC --> COQ
     APAL --> COQ
     Z3 --> LEAN
@@ -130,13 +130,13 @@ flowchart TD
     A{What to verify?} --> B{Finite states?}
     B -->|Yes| C{Need counterexamples?}
     B -->|No| D{Need proofs?}
-    
+
     C -->|Yes| E[TLA+/TLC or SPIN]
     C -->|No| F[Alloy]
-    
+
     D -->|Yes| G{Expertise level?}
     D -->|No| H[Z3 SMT]
-    
+
     G -->|High| I[Coq/Isabelle]
     G -->|Medium| J[Lean]
     G -->|Low| K[Z3 with Python]
@@ -151,6 +151,7 @@ flowchart TD
 **Description / 描述**: Integrated development environment for TLA+ specifications.
 
 **Installation / 安装**:
+
 ```bash
 # Download from: https://github.com/tlaplus/tlaplus/releases
 # Or use VS Code extension: vscode-tlaplus
@@ -164,7 +165,7 @@ EXTENDS Integers, Sequences, FiniteSets
 
 CONSTANTS Tasks, Resources, Budget
 
-VARIABLES 
+VARIABLES
     taskStatus,
     resourceAllocation,
     spentBudget
@@ -314,52 +315,52 @@ def optimize_resource_allocation():
     """
     Find optimal resource allocation for project tasks.
     """
-    
+
     # Problem parameters
     num_tasks = 5
     num_resources = 3
-    
+
     # Create optimizer
     opt = Optimize()
-    
+
     # Decision variables
     # allocation[i][j] = 1 if task i uses resource j
-    allocation = [[Bool(f'alloc_{i}_{j}') 
-                   for j in range(num_resources)] 
+    allocation = [[Bool(f'alloc_{i}_{j}')
+                   for j in range(num_resources)]
                   for i in range(num_tasks)]
-    
+
     # Duration variables (depends on resource)
     durations = [Int(f'duration_{i}') for i in range(num_tasks)]
-    
+
     # Start times
     start_times = [Int(f'start_{i}') for i in range(num_tasks)]
-    
+
     # Resource efficiency (affects duration)
     resource_efficiency = [1.0, 0.8, 1.2]  # Resource 0 is fastest
-    
+
     # Constraints
-    
+
     # 1. Each task assigned to exactly one resource
     for i in range(num_tasks):
-        opt.add(Sum([If(allocation[i][j], 1, 0) 
+        opt.add(Sum([If(allocation[i][j], 1, 0)
                      for j in range(num_resources)]) == 1)
-    
+
     # 2. Base task durations (modified by resource efficiency)
     base_durations = [10, 20, 15, 25, 10]
     for i in range(num_tasks):
         for j in range(num_resources):
             opt.add(Implies(allocation[i][j],
                            durations[i] == int(base_durations[i] / resource_efficiency[j])))
-    
+
     # 3. Start times non-negative
     for i in range(num_tasks):
         opt.add(start_times[i] >= 0)
-    
+
     # 4. Task dependencies
     dependencies = [(1, 0), (2, 0), (3, 1), (3, 2), (4, 3)]
     for (t1, t2) in dependencies:
         opt.add(start_times[t1] >= start_times[t2] + durations[t2])
-    
+
     # 5. Resource conflict avoidance
     # Two tasks on same resource cannot overlap
     for i in range(num_tasks):
@@ -370,28 +371,28 @@ def optimize_resource_allocation():
                     Or(start_times[i] >= start_times[k] + durations[k],
                        start_times[k] >= start_times[i] + durations[i])
                 ))
-    
+
     # Objective: Minimize makespan (project completion time)
     makespan = Int('makespan')
     for i in range(num_tasks):
         opt.add(makespan >= start_times[i] + durations[i])
-    
+
     opt.minimize(makespan)
-    
+
     # Solve
     if opt.check() == sat:
         m = opt.model()
         print("Optimal schedule found!")
         print(f"Total project duration: {m.evaluate(makespan)} days")
         print("\nTask allocations:")
-        
+
         for i in range(num_tasks):
             for j in range(num_resources):
                 if is_true(m.evaluate(allocation[i][j])):
                     start = m.evaluate(start_times[i]).as_long()
                     dur = m.evaluate(durations[i]).as_long()
                     print(f"  Task {i}: Resource {j}, Start: Day {start}, Duration: {dur} days")
-        
+
         return True
     else:
         print("No feasible schedule found!")
@@ -401,34 +402,34 @@ def verify_schedule_properties():
     """
     Verify properties of any valid schedule.
     """
-    
+
     s = Solver()
-    
+
     # Symbolic schedule
     num_tasks = 3
     start = [Int(f's_{i}') for i in range(num_tasks)]
     duration = [Int(f'd_{i}') for i in range(num_tasks)]
     end = [Int(f'e_{i}') for i in range(num_tasks)]
-    
+
     # Basic constraints
     for i in range(num_tasks):
         s.add(start[i] >= 0)
         s.add(duration[i] > 0)
         s.add(end[i] == start[i] + duration[i])
-    
+
     # Dependencies: 0 -> 1 -> 2
     s.add(start[1] >= end[0])
     s.add(start[2] >= end[1])
-    
+
     # Property to verify: makespan >= sum of critical path
     makespan = Int('makespan')
     s.add(makespan == end[2])
-    
+
     critical_path_length = duration[0] + duration[1] + duration[2]
-    
+
     # Try to find counterexample where makespan < critical path
     s.add(makespan < critical_path_length)
-    
+
     if s.check() == unsat:
         print("VERIFIED: Makespan is always >= critical path length")
         return True
@@ -441,7 +442,7 @@ if __name__ == "__main__":
     print("Resource Allocation Optimization")
     print("=" * 60)
     optimize_resource_allocation()
-    
+
     print("\n" + "=" * 60)
     print("Schedule Property Verification")
     print("=" * 60)
@@ -470,16 +471,16 @@ bool escalated = false;
 /* Approver process */
 proctype Approver(int id) {
     mtype decision;
-    
+
     /* Wait for project to be pending */
     project_status == PENDING;
-    
+
     /* Make decision */
     if
     :: decision = APPROVED; approvals++;
     :: decision = REJECTED; rejections++;
     fi;
-    
+
     printf("Approver %d: %e\n", id, decision);
 }
 
@@ -487,15 +488,15 @@ proctype Approver(int id) {
 proctype EscalationManager() {
     /* Check if escalation needed */
     (approvals + rejections == NUM_APPROVERS);
-    
+
     if
-    :: (approvals >= APPROVAL_THRESHOLD) -> 
+    :: (approvals >= APPROVAL_THRESHOLD) ->
         project_status = APPROVED;
         printf("Project APPROVED with %d votes\n", approvals);
-    :: (rejections > NUM_APPROVERS - APPROVAL_THRESHOLD) -> 
+    :: (rejections > NUM_APPROVERS - APPROVAL_THRESHOLD) ->
         project_status = REJECTED;
         printf("Project REJECTED with %d votes\n", rejections);
-    :: else -> 
+    :: else ->
         escalated = true;
         project_status = ESCALATED;
         printf("Project ESCALATED for review\n");
@@ -517,19 +518,19 @@ init {
 ltl decision_made { <> (project_status != PENDING) }
 
 /* If approved, had enough votes */
-ltl valid_approval { 
-    [] (project_status == APPROVED -> approvals >= APPROVAL_THRESHOLD) 
+ltl valid_approval {
+    [] (project_status == APPROVED -> approvals >= APPROVAL_THRESHOLD)
 }
 
 /* If rejected, had too many rejections */
-ltl valid_rejection { 
-    [] (project_status == REJECTED -> rejections > NUM_APPROVERS - APPROVAL_THRESHOLD) 
+ltl valid_rejection {
+    [] (project_status == REJECTED -> rejections > NUM_APPROVERS - APPROVAL_THRESHOLD)
 }
 
 /* No decision without all votes */
-ltl complete_voting { 
-    [] ((project_status != PENDING) -> 
-        (approvals + rejections == NUM_APPROVERS)) 
+ltl complete_voting {
+    [] ((project_status != PENDING) ->
+        (approvals + rejections == NUM_APPROVERS))
 }
 ```
 
@@ -581,6 +582,7 @@ graph TD
 **Claim**: Formal verification tools are essential for critical projects.
 
 **Premises**:
+
 1. Critical projects require high reliability
 2. Testing cannot cover all scenarios
 3. Formal verification provides mathematical guarantees
@@ -608,17 +610,17 @@ sequenceDiagram
     participant TLA as TLA+ Toolbox
     participant Z3 as Z3 Solver
     participant COQ as Coq
-    
+
     PM->>TLA: Create process model
     TLA->>TLA: Run TLC model checker
     TLA->>PM: Counterexample found
     PM->>TLA: Fix model
     TLA->>TLA: All properties verified
-    
+
     PM->>Z3: Define constraints
     Z3->>Z3: Solve optimization
     Z3->>PM: Optimal allocation
-    
+
     PM->>COQ: Formalize theorems
     COQ->>COQ: Interactive proving
     COQ->>PM: Proof complete
@@ -647,12 +649,12 @@ sequenceDiagram
 
 | Tool | Documentation URL |
 |------|-------------------|
-| TLA+ | https://lamport.azurewebsites.net/tla/tla.html |
-| SPIN | https://spinroot.com/spin/Doc/ |
-| Alloy | https://alloytools.org/documentation.html |
-| Z3 | https://z3prover.github.io/api/html/ |
-| Coq | https://coq.inria.fr/refman/ |
-| Lean | https://lean-lang.org/lean4/doc/ |
+| TLA+ | <https://lamport.azurewebsites.net/tla/tla.html> |
+| SPIN | <https://spinroot.com/spin/Doc/> |
+| Alloy | <https://alloytools.org/documentation.html> |
+| Z3 | <https://z3prover.github.io/api/html/> |
+| Coq | <https://coq.inria.fr/refman/> |
+| Lean | <https://lean-lang.org/lean4/doc/> |
 
 ---
 
@@ -664,6 +666,7 @@ sequenceDiagram
 **Next Review / 下次审查**: 2026-05-02
 
 **Related Documents / 相关文档**:
+
 - [TLA+ Specifications](./01-tla-plus-specifications.md)
 - [Model Checking Examples](./02-model-checking-examples.md)
 - [Theorem Proving Applications](./03-theorem-proving-applications.md)

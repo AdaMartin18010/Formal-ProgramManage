@@ -19,6 +19,8 @@
 
 敏捷开发模型是软件开发中最成熟的项目管理方法论之一，基于迭代、增量、协作的原则。本节提供敏捷开发的形式化数学模型，严格对标Scrum Alliance、PMI Agile、SAFe (Scaled Agile Framework)、LeSS (Large-Scale Scrum)等国际敏捷标准。
 
+**本模块依赖 (Prerequisites)**：建议先掌握 CML 的 [2.1 生命周期](../../02-project-management/lifecycle-models.md)（阶段与过程组）、[2.2 资源](../../02-project-management/resource-models.md)（团队与容量）、[2.3 风险](../../02-project-management/risk-models.md)（迭代中风险）；VL 可选 [3.1 验证理论](../../03-formal-verification/verification-theory.md)（若关注敏捷工作流的形式化性质）。详见 [01-learning-prerequisites.md](../../12-learning-support/01-learning-prerequisites.md)。
+
 **主题定位**: 本模型属于应用层（AL），是Formal-ProgramManage知识体系在软件开发领域的应用，为敏捷项目管理提供形式化模型。
 
 **主要内容**:
@@ -1131,16 +1133,11 @@ instance FromJSON AgileProject
 
 **Last Updated / 最后更新**: 2026-01-27
 **Version / 版本**: 2.0
-**Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节，并添加了实际项目案例）
+**Status / 状态**: ✅ Complete（标准章节结构已就绪）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../../../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 

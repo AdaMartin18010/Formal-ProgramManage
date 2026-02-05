@@ -79,7 +79,7 @@
 
 1. [作者]. ([年份]). [标题] ([版本]). [出版社].
 2. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-3. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
+3. ISO 21500:2021 / ISO 21502:2020. Project/programme/portfolio management standards. International Organization for Standardization.
 4. [其他相关标准]
 5. [其他相关标准]
 ```

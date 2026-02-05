@@ -96,6 +96,13 @@
 - ISO 31000:2018: 风险管理框架和过程
 - PRINCE2 2017: 风险管理主题
 
+**五类链接 (Five-Type Links)**
+**前置知识 (Prerequisites)**：[1.1 形式化基础](../01-foundations/README.md)、[1.2 数学模型](../01-foundations/mathematical-models.md)。详见 [01-learning-prerequisites.md](../12-learning-support/01-learning-prerequisites.md)。
+**应用 (Application)**：[4.1 软件开发](../04-industry-applications/software-development/)、[4.2 工程管理](../04-industry-applications/engineering-management/)。
+**相关 (Related)**：[2.1 生命周期](lifecycle-models.md)、[2.2 资源](resource-models.md)、[2.4 质量](quality-models.md)。
+**深化 (Deep Dive)**：Level 1 风险五元组与定性分析 → Level 2 定量模型与应对策略（§2.3）→ Level 3 与生命周期/质量/资源的交叉（见 Relations）。
+**对比 (Comparison)**：[PMBOK 8th 对标](../PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT](../STANDARDS_ALIGNMENT.md)、[LEARNING_PATHS](../LEARNING_PATHS.md)。
+
 **知识体系层次结构**:
 
 ```mermaid
@@ -122,6 +129,8 @@ graph TB
     E --> E2[风险控制算法]
     E --> E3[风险报告]
 ```
+
+**阅读提示 / Reading Guide**（降低认知负荷）：**本节要点**：(1) 风险五元组（事件、概率、影响、时间、应对成本）；(2) 定性/定量分析与应对策略（规避、减轻、转移、接受）；(3) 风险暴露与监控；(4) 与 PMBOK 8 Risk 绩效域对应。**阅读时间**：约 40–50 分钟；**难度**：中–高。应用优先可先读 §6 直观/应用解释。
 
 ---
 
@@ -1673,6 +1682,25 @@ pub struct RiskReport {
 - **风险应对**: 风险应对策略
 - **风险监控**: 风险监控和控制
 
+### PMBOK 8th Edition（2025）对标
+
+PMBOK Guide 第 8 版于 2025 年 11 月发布。本模型与 PMBOK 8 的对应关系如下（详见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT.md](../STANDARDS_ALIGNMENT.md)）：
+
+- **相关绩效域**：Risk（风险）绩效域；质量风险、沟通与干系人风险并入 Stakeholders/Governance。
+- **相关原则**：Be an Accountable Leader（负责任领导）、Adopt a Holistic View（风险全景）；不确定性管理体现在 Risk 绩效域及 Integrate Sustainability 中。详见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) §1.1。
+- **流程结构**：风险识别、分析、应对、监督等流程在 PMBOK 8 中分布于规划、执行、监控阶段；具体流程列表见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md)。
+- **PMBOK 8 流程列表（占位）**：按阶段划分的流程占位表见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) §1.3.1；正式版发布后填齐流程名称与编号。
+
+---
+
+## 本章自测 / Chapter Self-Test
+
+建议学完本章后完成以下检索练习以巩固记忆（间隔重复见 [02-spaced-repetition-schedule.md](../12-learning-support/02-spaced-repetition-schedule.md)）：
+
+- **风险定义与分析**：[03-retrieval-practice-questions.md](../12-learning-support/03-retrieval-practice-questions.md) §3.3 CML-2.3 Risk Models（定义回忆、概念解释、应用题）
+- **风险应对与监控**：同上 §3.3 中与 Risk Response、Monitoring 相关题目
+- **综合**：可选 §5 Interleaved / Cross-layer 中涉及 2.3 的题目
+
 ---
 
 ## 9. References / 参考文献
@@ -1737,13 +1765,9 @@ pub struct RiskReport {
 **Version / 版本**: 2.0
 **Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 

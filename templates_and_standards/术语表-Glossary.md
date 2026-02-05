@@ -25,11 +25,11 @@
 
 **English / 英文**:
 
-This glossary provides standardized English-Chinese terminology for the Formal-ProgramManage project, ensuring consistency across all documents. All terms follow international project management standards and align with PMI PMBOK 7th Edition, ISO 21500:2012, ISO 31000:2018, PRINCE2 2017, CMMI-DEV, and other authoritative sources.
+This glossary provides standardized English-Chinese terminology for the Formal-ProgramManage project, ensuring consistency across all documents. All terms follow international project management standards and align with PMI PMBOK 7th Edition, ISO 21500:2021, ISO 21502:2020, ISO 31000:2018, PRINCE2 2017, CMMI-DEV, and other authoritative sources.
 
 **中文**:
 
-本术语表为Formal-ProgramManage项目提供标准化的中英术语，确保所有文档的一致性。所有术语遵循国际项目管理标准，并与PMI PMBOK 7th Edition、ISO 21500:2012、ISO 31000:2018、PRINCE2 2017、CMMI-DEV等权威来源对齐。
+本术语表为Formal-ProgramManage项目提供标准化的中英术语，确保所有文档的一致性。所有术语遵循国际项目管理标准，并与PMI PMBOK 7th Edition、ISO 21500:2021、ISO 21502:2020、ISO 31000:2018、PRINCE2 2017、CMMI-DEV等权威来源对齐。
 
 **使用说明 / Usage Instructions**:
 

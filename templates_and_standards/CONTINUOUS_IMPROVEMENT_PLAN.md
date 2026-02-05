@@ -357,6 +357,19 @@ This document outlines the continuous improvement tasks and plans for the Formal
 **截止日期**: 2026-06-30
 **状态**: 📋 待开始
 
+#### 任务3.4：大学课程对标内容补充 / Task 3.4: University-aligned Content Gaps
+
+与 [docs/README.md](../docs/README.md) 大学课程对标及 [COMPREHENSIVE_ANALYSIS_AND_RECOMMENDATIONS_2026.md](../COMPREHENSIVE_ANALYSIS_AND_RECOMMENDATIONS_2026.md) 一致，以下内容为可选补充（目标文件见括号）：
+
+- [x] **设计结构矩阵 (DSM)**：在 [lifecycle-models.md](../docs/02-project-management/lifecycle-models.md) §2.1.6 已增加「设计结构矩阵 (DSM) 与 MIT ESD.36 对标」小节，[13-complexity-systems/README.md](../docs/13-complexity-systems/README.md) 已链到 MIT ESD.36 ✅
+- [x] **系统动力学**：[13-complexity-systems/02-systems-dynamics.md](../docs/13-complexity-systems/02-systems-dynamics.md) 已有完整内容；lifecycle-models §2.1.6 与 13 README 已链到 MIT ESD.36 ✅
+- [x] **CPM/PERT 实例**：在 [resource-models.md](../docs/02-project-management/resource-models.md) §2.2.3 关键路径法下已增加「CPM/PERT 算例（MIT ESD.36 对标）」最小算例（前推/逆推/关键路径 B→C→D）✅
+- [x] **反应式系统与 PM**：已明确不在本项目单独章节范围；[README.md](../docs/README.md) 课程表中 Stanford CS 256 行已注明「本项目不单独设反应式系统章节，状态转换与 LTL/CTL 见 FL/VL」✅
+
+**负责人**: 项目团队
+**截止日期**: 2026-06-30
+**状态**: ✅ 已完成（2026-02-04）
+
 ### 阶段4：工具链完善 / Phase 4: Toolchain Enhancement
 
 **时间**: 2026年4月-6月
@@ -409,6 +422,12 @@ This document outlines the continuous improvement tasks and plans for the Formal
 - [ ] 持续关注形式化方法最新研究
 - [ ] 持续关注新兴技术最新发展
 - [ ] 持续完善知识体系
+
+#### 任务5.4：案例库可持续增量 / Task 5.4: Case Library Incremental Growth
+
+- [ ] **周期**：每半年（与 [SUSTAINABLE_EXECUTION_PLAN.md](../docs/SUSTAINABLE_EXECUTION_PLAN.md) 半年度审查同步）
+- [ ] **目标**：新增 1–2 个案例（决策情境/伦理两难/老手经验），见 [case-library/README.md](../docs/case-library/README.md) 模板
+- [ ] **链接**：每个案例链到 [THREE_LAYER_EXPLANATIONS.md](../docs/THREE_LAYER_EXPLANATIONS.md) 或 CML 相关概念
 
 **负责人**: 项目团队
 **截止日期**: 持续进行

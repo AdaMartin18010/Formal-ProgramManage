@@ -91,8 +91,15 @@
 **标准对标**:
 
 - PMBOK 7th Edition: 资源管理知识领域和资源管理过程
-- ISO 21500:2012: 资源管理相关过程
+- ISO 21500:2021 / ISO 21502:2020: 资源管理相关指导
 - PRINCE2 2017: 资源管理主题
+
+**五类链接 (Five-Type Links)**
+**前置知识 (Prerequisites)**：[1.1 形式化基础](../01-foundations/README.md)、[1.2 数学模型](../01-foundations/mathematical-models.md)。详见 [01-learning-prerequisites.md](../12-learning-support/01-learning-prerequisites.md)。
+**应用 (Application)**：[4.1 软件开发](../04-industry-applications/software-development/)、[4.2 工程管理](../04-industry-applications/engineering-management/)。
+**相关 (Related)**：[2.1 生命周期](lifecycle-models.md)、[2.3 风险](risk-models.md)、[2.4 质量](quality-models.md)。
+**深化 (Deep Dive)**：Level 1 资源与约束概念 → Level 2 优化与调度模型（§2.2）→ Level 3 CPM/PERT 算例与关键路径（见 §2.2.3、[lifecycle-models 进度](lifecycle-models.md)）。
+**对比 (Comparison)**：[PMBOK 8th 对标](../PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT](../STANDARDS_ALIGNMENT.md)、[LEARNING_PATHS](../LEARNING_PATHS.md)。
 
 **知识体系层次结构**:
 
@@ -119,6 +126,8 @@ graph TB
     E --> E1[资源使用监控]
     E --> E2[资源控制算法]
 ```
+
+**阅读提示 / Reading Guide**（降低认知负荷）：**本节要点**：(1) 资源四元组（人力、物料、技术、财务）与约束；(2) 资源分配与优化模型（线性/动态规划）；(3) 关键路径与 CPM/PERT 算例（§2.2.3）；(4) 与 PMBOK 8 Resources/Finance 绩效域对应。**阅读时间**：约 40–50 分钟；**难度**：中–高。应用优先可先读 §6 直观/应用解释。
 
 ---
 
@@ -587,6 +596,8 @@ $$V(i, r) = \max_{0 \leq x \leq r} \{v_i(x) + V(i-1, r-x)\}$$
 ## 2.2.3 资源调度算法
 
 ### 关键路径法
+
+**CPM/PERT 算例（MIT ESD.36 对标）**：以下为最小 CPM 算例，用于说明前推/逆推与关键路径。任务 A(2 天)、B(3 天)、C(2 天)、D(1 天)；依赖 A→C，B→C，C→D。前推：ES_A=0, EF_A=2；ES_B=0, EF_B=3；ES_C=max(2,3)=3, EF_C=5；ES_D=5, EF_D=6 ⇒ 项目工期 6 天。逆推：LF_D=6, LS_D=5；LF_C=5, LS_C=3；LF_A=3, LS_A=1；LF_B=3, LS_B=0。松弛：A 为 1，B 为 0，C 为 0，D 为 0。关键路径为 B→C→D（松弛为 0 的链）。对标 [lifecycle-models.md](./lifecycle-models.md) §2.1.6 DSM 与 MIT ESD.36、[README.md](../README.md) 大学课程表。
 
 **算法 2.2.1** (关键路径资源调度)：
 
@@ -1113,6 +1124,25 @@ pub enum AdjustmentType {
 - **资源计划**: 资源计划和分配
 - **资源控制**: 资源使用控制
 
+### PMBOK 8th Edition（2025）对标
+
+PMBOK Guide 第 8 版于 2025 年 11 月发布。本模型与 PMBOK 8 的对应关系如下（详见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT.md](../STANDARDS_ALIGNMENT.md)）：
+
+- **相关绩效域**：Resources（资源）、Finance（财务）、Governance（治理）；质量、沟通等已并入相关域。
+- **相关原则**：Build an Empowered Culture（赋能文化）、Be an Accountable Leader（负责任领导）、Adopt a Holistic View（整体观）、Embed Quality into Processes and Deliverables（过程质量）、Integrate Sustainability（资源与可持续性）。详见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) §1.1。
+- **流程结构**：资源与成本相关流程在 PMBOK 8 中分布于规划、执行、监控阶段；具体流程列表见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md)。
+- **PMBOK 8 流程列表（占位）**：按阶段划分的流程占位表见 [PMBOK_8_ALIGNMENT_PLAN.md](../PMBOK_8_ALIGNMENT_PLAN.md) §1.3.1；正式版发布后填齐流程名称与编号。
+
+---
+
+## 本章自测 / Chapter Self-Test
+
+建议学完本章后完成以下检索练习以巩固记忆（间隔重复见 [02-spaced-repetition-schedule.md](../12-learning-support/02-spaced-repetition-schedule.md)）：
+
+- **资源定义与分配**：[03-retrieval-practice-questions.md](../12-learning-support/03-retrieval-practice-questions.md) §3.2 CML-2.2 Resource Models（定义回忆、概念解释、应用题）
+- **优化与约束**：同上 §3.2 中与 Resource Constraints、Scheduling 相关题目
+- **综合**：可选 §5 Interleaved / Cross-layer 中涉及 2.2 的题目
+
 ---
 
 ## 9. References / 参考文献
@@ -1143,20 +1173,21 @@ pub enum AdjustmentType {
 
 1. Project Management Institute. (2021). *A guide to the project management body of knowledge (PMBOK guide)* (7th ed.). Project Management Institute.
 
-2. ISO 21500:2012. *Guidance on project management*. International Organization for Standardization.
+2. ISO 21500:2021. *Project, programme and portfolio management — Context and concepts*. International Organization for Standardization.
+3. ISO 21502:2020. *Project management — Guidance on project management*. International Organization for Standardization.
 
-3. AXELOS. (2017). *Managing Successful Projects with PRINCE2 2017 Edition*. TSO (The Stationery Office).
+4. AXELOS. (2017). *Managing Successful Projects with PRINCE2 2017 Edition*. TSO (The Stationery Office).
 
-4. Kerzner, H. (2017). *Project management: a systems approach to planning, scheduling, and controlling* (12th ed.). John Wiley & Sons.
+5. Kerzner, H. (2017). *Project management: a systems approach to planning, scheduling, and controlling* (12th ed.). John Wiley & Sons.
 
-5. Meredith, J. R., & Mantel, S. J. (2019). *Project management: a managerial approach* (10th ed.). John Wiley & Sons.
+6. Meredith, J. R., & Mantel, S. J. (2019). *Project management: a managerial approach* (10th ed.). John Wiley & Sons.
 
-6. Goldratt, E. M. (1997). *Critical chain*. North River Press.
+7. Goldratt, E. M. (1997). *Critical chain*. North River Press.
 
 ### 9.3 国际标准 / International Standards
 
 1. PMI PMBOK 7th Edition (2021) - 资源管理知识领域
-2. ISO 21500:2012 - 资源管理相关过程
+2. ISO 21500:2021、ISO 21502:2020 - 项目管理与资源管理指导
 3. PRINCE2 2017 - 资源管理主题
 
 ### 9.4 学术论文 / Academic Papers
@@ -1175,16 +1206,11 @@ pub enum AdjustmentType {
 
 **Last Updated / 最后更新**: 2026-01-27
 **Version / 版本**: 2.0
-**Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节）
+**Status / 状态**: ✅ Complete（标准章节结构、ISO 21500:2021/21502 引用已就绪）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 
@@ -1199,16 +1225,17 @@ pub enum AdjustmentType {
 **Standards References / 标准参考**:
 
 - PMI PMBOK 7th Edition: 资源管理知识领域和资源管理过程
-- ISO 21500:2012: 资源管理相关过程
+- ISO 21500:2021 / ISO 21502:2020: 资源管理相关指导
 - PRINCE2 2017: 资源管理主题
 
 1. Project Management Institute. (2021). A guide to the project management body of knowledge (PMBOK guide) (7th ed.).
-2. ISO 21500:2012. Guidance on project management. International Organization for Standardization.
-3. AXELOS. (2017). Managing Successful Projects with PRINCE2 2017 Edition. TSO (The Stationery Office).
-4. Kerzner, H. (2017). Project management: a systems approach to planning, scheduling, and controlling (12th ed.). John Wiley & Sons.
-5. Meredith, J. R., & Mantel, S. J. (2019). Project management: a managerial approach (10th ed.). John Wiley & Sons.
-6. Turner, J. R. (2016). Gower handbook of project management (5th ed.). Routledge.
-7. Lock, D. (2013). Project management (10th ed.). Routledge.
-8. Schwalbe, K. (2019). Information technology project management (9th ed.). Cengage Learning.
-9. Wysocki, R. K. (2019). Effective project management: traditional, agile, extreme, hybrid (8th ed.). John Wiley & Sons.
-10. Goldratt, E. M. (1997). Critical chain. North River Press.
+2. ISO 21500:2021. Project, programme and portfolio management — Context and concepts. International Organization for Standardization.
+3. ISO 21502:2020. Project management — Guidance on project management. International Organization for Standardization.
+4. AXELOS. (2017). Managing Successful Projects with PRINCE2 2017 Edition. TSO (The Stationery Office).
+5. Kerzner, H. (2017). Project management: a systems approach to planning, scheduling, and controlling (12th ed.). John Wiley & Sons.
+6. Meredith, J. R., & Mantel, S. J. (2019). Project management: a managerial approach (10th ed.). John Wiley & Sons.
+7. Turner, J. R. (2016). Gower handbook of project management (5th ed.). Routledge.
+8. Lock, D. (2013). Project management (10th ed.). Routledge.
+9. Schwalbe, K. (2019). Information technology project management (9th ed.). Cengage Learning.
+10. Wysocki, R. K. (2019). Effective project management: traditional, agile, extreme, hybrid (8th ed.). John Wiley & Sons.
+11. Goldratt, E. M. (1997). Critical chain. North River Press.

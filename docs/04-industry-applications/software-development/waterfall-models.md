@@ -19,6 +19,8 @@
 
 瀑布模型是经典的线性、顺序开发方法论。本节提供瀑布模型的形式化数学模型与项目化管理框架。
 
+**本模块依赖 (Prerequisites)**：建议先掌握 CML [2.1 生命周期](../../02-project-management/lifecycle-models.md)（阶段与关口）、[2.4 质量](../../02-project-management/quality-models.md)（质量门控）；VL 可选 [3.1 验证理论](../../03-formal-verification/verification-theory.md)。详见 [01-learning-prerequisites.md](../../12-learning-support/01-learning-prerequisites.md)。
+
 **主题定位**: 应用层（AL），Formal-ProgramManage 在顺序式软件/系统开发中的应用。
 
 **主要内容**: 瀑布项目六元组、六阶段（需求、系统设计、详细设计、编码、测试、部署维护）、进度/质量/成本/风险模型、验证规范。
@@ -567,7 +569,7 @@ mod tests {
 
 ### 国际标准 / Standards
 
-- ISO 21500:2012. Guidance on project management.
+- ISO 21500:2021 / ISO 21502:2020. Project management standards.
 - IEEE Std 830-1998. Software requirements specifications.
 - ISO/IEC 25010:2011. SQuaRE - System and software quality models.
 

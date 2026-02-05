@@ -12,10 +12,10 @@
 
 | Source / 来源 | Description / 描述 | URL |
 |--------------|-------------------|-----|
-| TLA+ Home | Leslie Lamport Official | https://lamport.azurewebsites.net/tla/tla.html |
-| TLA+ Wiki | Community Documentation | https://docs.tlapl.us/ |
-| Apalache | Symbolic Model Checker | https://apalache-mc.org/ |
-| TLC Model Checker | Explicit-State Checker | https://lamport.azurewebsites.net/tla/tools.html |
+| TLA+ Home | Leslie Lamport Official | <https://lamport.azurewebsites.net/tla/tla.html> |
+| TLA+ Wiki | Community Documentation | <https://docs.tlapl.us/> |
+| Apalache | Symbolic Model Checker | <https://apalache-mc.org/> |
+| TLC Model Checker | Explicit-State Checker | <https://lamport.azurewebsites.net/tla/tools.html> |
 
 ---
 
@@ -26,12 +26,14 @@
 **Definition 2.1** (TLA+ Specification / TLA+规范)
 
 **English Definition**: A TLA+ specification is a mathematical description of a system that defines:
+
 - State variables representing the system state
 - Initial state predicate defining valid starting states
 - Next-state relation describing state transitions
 - Temporal properties the system must satisfy
 
 **中文定义**: TLA+规范是系统的数学描述，定义了：
+
 - 表示系统状态的状态变量
 - 定义有效初始状态的初始状态谓词
 - 描述状态转换的下一状态关系
@@ -68,7 +70,7 @@ EXTENDS Naturals, Sequences, FiniteSets
 
 CONSTANTS MaxTasks, MaxResources
 
-VARIABLES 
+VARIABLES
     phase,          \* Current project phase
     tasks,          \* Set of tasks
     resources,      \* Available resources
@@ -76,7 +78,7 @@ VARIABLES
     budget,         \* Remaining budget
     timeline        \* Project timeline status
 
-TypeInvariant == 
+TypeInvariant ==
     /\ phase \in {"Initiation", "Planning", "Execution", "Monitoring", "Closing", "Completed"}
     /\ tasks \subseteq (1..MaxTasks)
     /\ resources \subseteq (1..MaxResources)
@@ -84,7 +86,7 @@ TypeInvariant ==
     /\ budget \in Nat
     /\ timeline \in {"OnTrack", "Delayed", "Critical"}
 
-Init == 
+Init ==
     /\ phase = "Initiation"
     /\ tasks = {}
     /\ resources = {}
@@ -93,12 +95,12 @@ Init ==
     /\ timeline = "OnTrack"
 
 \* Phase Transitions
-Initiate == 
+Initiate ==
     /\ phase = "Initiation"
     /\ phase' = "Planning"
     /\ UNCHANGED <<tasks, resources, completed, budget, timeline>>
 
-Plan == 
+Plan ==
     /\ phase = "Planning"
     /\ \E newTasks \in SUBSET (1..MaxTasks):
         /\ Cardinality(newTasks) > 0
@@ -106,21 +108,21 @@ Plan ==
     /\ phase' = "Execution"
     /\ UNCHANGED <<resources, completed, budget, timeline>>
 
-Execute == 
+Execute ==
     /\ phase = "Execution"
     /\ \E task \in tasks \ completed:
         /\ completed' = completed \cup {task}
         /\ budget' = budget - 1
     /\ UNCHANGED <<phase, tasks, resources, timeline>>
 
-Monitor == 
+Monitor ==
     /\ phase \in {"Execution", "Monitoring"}
     /\ IF completed = tasks
        THEN phase' = "Closing"
        ELSE phase' = "Monitoring"
     /\ UNCHANGED <<tasks, resources, completed, budget, timeline>>
 
-Close == 
+Close ==
     /\ phase = "Closing"
     /\ completed = tasks
     /\ phase' = "Completed"
@@ -131,7 +133,7 @@ Next == Initiate \/ Plan \/ Execute \/ Monitor \/ Close
 \* Safety Properties
 NeverNegativeBudget == budget >= 0
 TasksOnlyCompleteOnce == completed \subseteq tasks
-PhaseProgressForward == 
+PhaseProgressForward ==
     [][phase = "Completed" => phase' = "Completed"]_phase
 
 \* Liveness Properties
@@ -173,19 +175,19 @@ Spec == Init /\ [][Next]_<<phase, tasks, resources, completed, budget, timeline>
 ```mermaid
 graph TD
     subgraph TLA_Concepts[TLA+ Concepts]
-        A[State Variables] 
+        A[State Variables]
         B[Actions]
         C[Temporal Operators]
         D[Invariants]
     end
-    
+
     subgraph PM_Concepts[Project Management Concepts]
         E[Project State]
         F[Phase Transitions]
         G[Lifecycle Properties]
         H[Constraints]
     end
-    
+
     A -->|maps to| E
     B -->|maps to| F
     C -->|models| G
@@ -214,7 +216,7 @@ EXTENDS Naturals, Sequences, FiniteSets
 
 CONSTANTS Risks, MaxImpact
 
-VARIABLES 
+VARIABLES
     identifiedRisks,    \* Set of identified risks
     analyzedRisks,      \* Risks with analysis complete
     mitigatedRisks,     \* Risks with mitigation in place
@@ -227,42 +229,42 @@ RiskType == [
     status: {"Identified", "Analyzed", "Mitigated", "Closed"}
 ]
 
-Init == 
+Init ==
     /\ identifiedRisks = {}
     /\ analyzedRisks = {}
     /\ mitigatedRisks = {}
     /\ riskStatus = "Monitoring"
 
-IdentifyRisk(r) == 
+IdentifyRisk(r) ==
     /\ r \in Risks
     /\ r \notin identifiedRisks
     /\ identifiedRisks' = identifiedRisks \cup {r}
     /\ UNCHANGED <<analyzedRisks, mitigatedRisks, riskStatus>>
 
-AnalyzeRisk(r) == 
+AnalyzeRisk(r) ==
     /\ r \in identifiedRisks
     /\ r \notin analyzedRisks
     /\ analyzedRisks' = analyzedRisks \cup {r}
     /\ UNCHANGED <<identifiedRisks, mitigatedRisks, riskStatus>>
 
-MitigateRisk(r) == 
+MitigateRisk(r) ==
     /\ r \in analyzedRisks
     /\ r \notin mitigatedRisks
     /\ mitigatedRisks' = mitigatedRisks \cup {r}
     /\ UNCHANGED <<identifiedRisks, analyzedRisks, riskStatus>>
 
-Next == 
+Next ==
     \E r \in Risks:
         \/ IdentifyRisk(r)
         \/ AnalyzeRisk(r)
         \/ MitigateRisk(r)
 
 \* Safety: Risks must be analyzed before mitigation
-RiskProcessOrder == 
+RiskProcessOrder ==
     mitigatedRisks \subseteq analyzedRisks /\ analyzedRisks \subseteq identifiedRisks
 
 \* Liveness: All identified risks eventually mitigated
-AllRisksMitigated == 
+AllRisksMitigated ==
     <>(identifiedRisks = mitigatedRisks)
 
 Spec == Init /\ [][Next]_<<identifiedRisks, analyzedRisks, mitigatedRisks, riskStatus>>
@@ -277,36 +279,36 @@ EXTENDS Naturals, FiniteSets
 
 CONSTANTS Tasks, Resources, MaxCapacity
 
-VARIABLES 
+VARIABLES
     allocation,     \* Function: Task -> Resource
     taskStatus,     \* Function: Task -> Status
     resourceLoad    \* Function: Resource -> Load
 
-Init == 
+Init ==
     /\ allocation = [t \in Tasks |-> CHOOSE r \in Resources : TRUE]
     /\ taskStatus = [t \in Tasks |-> "Pending"]
     /\ resourceLoad = [r \in Resources |-> 0]
 
-AllocateResource(t, r) == 
+AllocateResource(t, r) ==
     /\ taskStatus[t] = "Pending"
     /\ resourceLoad[r] < MaxCapacity
     /\ allocation' = [allocation EXCEPT ![t] = r]
     /\ resourceLoad' = [resourceLoad EXCEPT ![r] = @ + 1]
     /\ UNCHANGED taskStatus
 
-StartTask(t) == 
+StartTask(t) ==
     /\ taskStatus[t] = "Pending"
     /\ taskStatus' = [taskStatus EXCEPT ![t] = "InProgress"]
     /\ UNCHANGED <<allocation, resourceLoad>>
 
-CompleteTask(t) == 
+CompleteTask(t) ==
     /\ taskStatus[t] = "InProgress"
     /\ taskStatus' = [taskStatus EXCEPT ![t] = "Completed"]
     /\ LET r == allocation[t]
        IN resourceLoad' = [resourceLoad EXCEPT ![r] = @ - 1]
     /\ UNCHANGED allocation
 
-Next == 
+Next ==
     \E t \in Tasks, r \in Resources:
         \/ AllocateResource(t, r)
         \/ StartTask(t)
@@ -335,6 +337,7 @@ Spec == Init /\ [][Next]_<<allocation, taskStatus, resourceLoad>>
 ### 6.2 Formal Explanation / 形式解释
 
 TLA+ specifications consist of:
+
 1. **State Variables**: Represent the current state of the project
 2. **Initial Predicate (Init)**: Defines valid starting states
 3. **Next-State Relation (Next)**: Defines all possible transitions
@@ -343,6 +346,7 @@ TLA+ specifications consist of:
 ### 6.3 Geometric Interpretation / 几何解释
 
 Project lifecycle can be visualized as a directed graph where:
+
 - Nodes represent states (phase, resources, tasks)
 - Edges represent valid transitions (actions)
 - TLA+ verifies all paths satisfy required properties
@@ -350,6 +354,7 @@ Project lifecycle can be visualized as a directed graph where:
 ### 6.4 Physical Interpretation / 物理解释
 
 Think of project management as a control system:
+
 - State variables = system state
 - Actions = control inputs
 - Invariants = operating constraints
@@ -362,6 +367,7 @@ TLA+ was developed by Leslie Lamport (Turing Award 2013) initially for concurren
 ### 6.6 Motivation / 动机
 
 Applying TLA+ to project management enables:
+
 - Rigorous verification of process correctness
 - Detection of deadlocks and livelocks
 - Proof of constraint satisfaction
@@ -409,6 +415,7 @@ stateDiagram-v2
 **Claim**: TLA+ improves project management quality.
 
 **Premises**:
+
 1. TLA+ enables formal verification of process correctness
 2. Formal verification catches errors before implementation
 3. Earlier error detection reduces project costs
@@ -424,6 +431,7 @@ stateDiagram-v2
 ### 7.3 Theoretical Justification / 理论论证
 
 TLA+ is grounded in:
+
 - Temporal logic (Pnueli, 1977)
 - State machine theory
 - Model checking theory (Clarke, Emerson, Sifakis - Turing Award 2007)
@@ -435,6 +443,7 @@ TLA+ is grounded in:
 ### 8.1 Project Workflow Verification / 项目工作流验证
 
 Use TLA+ to verify:
+
 - Phase transitions are valid
 - Resources are properly allocated
 - Deadlines can be met
@@ -443,6 +452,7 @@ Use TLA+ to verify:
 ### 8.2 Risk Management Verification / 风险管理验证
 
 Verify that:
+
 - All risks are eventually addressed
 - Risk mitigation follows proper sequence
 - No risk is left unmitigated
@@ -450,6 +460,7 @@ Verify that:
 ### 8.3 Resource Optimization / 资源优化
 
 Verify that:
+
 - Resource constraints are satisfied
 - No resource conflicts occur
 - Optimal allocation is achieved
@@ -461,14 +472,14 @@ Verify that:
 ### 9.1 Primary Sources / 主要来源
 
 1. Lamport, L. (2002). *Specifying Systems: The TLA+ Language and Tools for Hardware and Software Engineers*. Addison-Wesley.
-2. Lamport, L. (2019). *The TLA+ Video Course*. https://lamport.azurewebsites.net/video/videos.html
+2. Lamport, L. (2019). *The TLA+ Video Course*. <https://lamport.azurewebsites.net/video/videos.html>
 3. Newcombe, C. et al. (2015). "How Amazon Web Services Uses Formal Methods". *Communications of the ACM*.
 
 ### 9.2 Secondary Sources / 次要来源
 
-1. TLA+ Wiki: https://docs.tlapl.us/
-2. Apalache Documentation: https://apalache-mc.org/docs/
-3. PlusCal User Manual: https://lamport.azurewebsites.net/tla/pluscal.html
+1. TLA+ Wiki: <https://docs.tlapl.us/>
+2. Apalache Documentation: <https://apalache-mc.org/docs/>
+3. PlusCal User Manual: <https://lamport.azurewebsites.net/tla/pluscal.html>
 
 ---
 
@@ -480,6 +491,7 @@ Verify that:
 **Next Review / 下次审查**: 2026-05-02
 
 **Related Documents / 相关文档**:
+
 - [Model Checking Examples](./02-model-checking-examples.md)
 - [Theorem Proving Applications](./03-theorem-proving-applications.md)
 - [Formal Verification Tools](./04-formal-verification-tools.md)

@@ -47,14 +47,14 @@
 
 PMI于2025年11月发布了PMBOK第8版，基于全球48,000+数据点的研究。
 
-**核心原则** (从第7版的12个简化为6个):
+**核心原则** (从第7版的12个简化为6个；**以 PMI 官方 PMBOK Guide 8th Edition 正文为准**，详见项目 [PMBOK_8_ALIGNMENT_PLAN.md](docs/PMBOK_8_ALIGNMENT_PLAN.md)):
 
 1. 采用整体观 (Adopt a Holistic View)
 2. 聚焦价值 (Focus on Value)
-3. 建立赋能文化 (Build an Empowered Culture)
-4. 拥抱适应性 (Embrace Adaptability)
-5. 展现问责制 (Demonstrate Accountability)
-6. 管理不确定性 (Manage Uncertainty)
+3. 将质量嵌入过程与可交付成果 (Embed Quality into Processes and Deliverables)
+4. 做负责任的领导者 (Be an Accountable Leader)
+5. 整合可持续性 (Integrate Sustainability)
+6. 建立赋能文化 (Build an Empowered Culture)
 
 **七大绩效域** (Performance Domains):
 
@@ -2028,25 +2028,25 @@ Week 12: 总结与发布
 
 #### 学术课程
 
-6. MIT xPRO (2026). *Project Management: Leading Organizations to Success*.
+1. MIT xPRO (2026). *Project Management: Leading Organizations to Success*.
 2. MIT OpenCourseWare. ESD.36 *System Project Management*.
 3. Stanford CS256. *Formal Methods for Reactive Systems*.
 
 #### 认知科学
 
-9. Mayer, R.E. (2023). "The Past, Present, and Future of the Cognitive Theory of Multimedia Learning". *Educational Psychology Review*.
+1. Mayer, R.E. (2023). "The Past, Present, and Future of the Cognitive Theory of Multimedia Learning". *Educational Psychology Review*.
 2. Sweller, J., van Merriënboer, J.J.G., & Paas, F. (2019). "Cognitive Architecture and Instructional Design: 20 Years Later". *Educational Psychology Review*.
 3. Paivio, A. (1986). *Mental Representations: A Dual Coding Approach*. Oxford University Press.
 
 #### 项目管理研究
 
-12. Kerzner, H. (2022). *Project Management: A Systems Approach to Planning, Scheduling, and Controlling* (13th ed.). Wiley.
+1. Kerzner, H. (2022). *Project Management: A Systems Approach to Planning, Scheduling, and Controlling* (13th ed.). Wiley.
 2. Larman, C., & Vodde, B. (2016). *Large-Scale Scrum: More with LeSS*. Addison-Wesley.
 3. Highsmith, J. (2020). *Edge: Value-Driven Digital Transformation*. Addison-Wesley.
 
 #### 形式化方法
 
-15. Baier, C., & Katoen, J.P. (2008). *Principles of Model Checking*. MIT Press.
+1. Baier, C., & Katoen, J.P. (2008). *Principles of Model Checking*. MIT Press.
 2. Pierce, B.C. (2002). *Types and Programming Languages*. MIT Press.
 3. Nipkow, T., Wenzel, M., & Paulson, L.C. (2002). *Isabelle/HOL: A Proof Assistant for Higher-Order Logic*. Springer.
 

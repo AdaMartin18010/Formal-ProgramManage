@@ -21,13 +21,13 @@ This module provides practical guidance and examples for applying formal verific
 
 | Source | Type | URL |
 |--------|------|-----|
-| Leslie Lamport | TLA+ Creator | https://lamport.azurewebsites.net/tla/tla.html |
-| SPIN Project | Model Checker | https://spinroot.com |
-| Apalache | Symbolic MC | https://apalache-mc.org |
-| Alloy | Model Finder | https://alloytools.org |
-| Z3 | SMT Solver | https://github.com/Z3Prover/z3 |
-| Coq | Proof Assistant | https://coq.inria.fr |
-| Lean | Proof Language | https://leanprover.github.io |
+| Leslie Lamport | TLA+ Creator | <https://lamport.azurewebsites.net/tla/tla.html> |
+| SPIN Project | Model Checker | <https://spinroot.com> |
+| Apalache | Symbolic MC | <https://apalache-mc.org> |
+| Alloy | Model Finder | <https://alloytools.org> |
+| Z3 | SMT Solver | <https://github.com/Z3Prover/z3> |
+| Coq | Proof Assistant | <https://coq.inria.fr> |
+| Lean | Proof Language | <https://leanprover.github.io> |
 
 ### Academic References / 学术参考
 
@@ -44,34 +44,38 @@ flowchart LR
     B --> C[Model Checking]
     C --> D[Theorem Proving]
     D --> E[Tool Integration]
-    
+
     subgraph Prerequisites[先备知识]
         P1[Logic]
         P2[Set Theory]
         P3[State Machines]
     end
-    
+
     Prerequisites --> A
 ```
 
 ## Key Concepts / 关键概念
 
 ### 1. TLA+ (Temporal Logic of Actions)
+
 - Formal specification language
 - State machine modeling
 - Temporal property verification
 
 ### 2. Model Checking
+
 - Exhaustive state space exploration
 - Safety and liveness verification
 - Counterexample generation
 
 ### 3. Theorem Proving
+
 - Mathematical proof construction
 - Infinite state space handling
 - Interactive and automated provers
 
 ### 4. SMT Solving
+
 - Satisfiability checking
 - Constraint optimization
 - Automated reasoning

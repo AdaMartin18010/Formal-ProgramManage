@@ -80,7 +80,7 @@
 **标准对标**:
 
 - PMI PMBOK 7th Edition: 项目成本管理、项目财务管理
-- ISO 21500:2012: 成本管理过程
+- ISO 21500:2021 / ISO 21502:2020: 成本管理相关指导
 - IFRS (International Financial Reporting Standards): 国际财务报告准则
 - Basel Committee on Banking Supervision: 银行监管标准
 - ISO 20022: 金融信息交换标准
@@ -698,7 +698,7 @@ $$r_D(1-T) = r_E$$
    - Project Management Institute
    - 项目成本管理和财务管理指南
 
-2. **ISO 21500:2012**
+2. **ISO 21500:2021 / ISO 21502:2020**
    - International Organization for Standardization
    - 项目管理中的成本管理过程
 

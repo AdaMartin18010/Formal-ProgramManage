@@ -38,7 +38,7 @@
 **标准对标**:
 
 - PMI PMBOK 7th Edition: 项目变更管理、干系人管理
-- ISO 21500:2012: 变更控制过程
+- ISO 21500:2021 / ISO 21502:2020: 变更控制相关指导
 - Prosci ADKAR 模型
 - Kotter 8 步变革模型
 - Lewin 三阶段变革模型
@@ -381,7 +381,7 @@ Lewin 侧重宏观阶段；Kotter 强调步骤与紧迫感；ADKAR 聚焦个体�
 ### 9.3 国际标准 / International Standards
 
 1. PMI PMBOK 7th Edition: 变更管理、干系人管理
-2. ISO 21500:2012: 变更控制
+2. ISO 21500:2021、ISO 21502:2020: 变更控制
 3. Prosci: Change Management Best Practices
 
 ### 9.4 学术论文 / Academic Papers

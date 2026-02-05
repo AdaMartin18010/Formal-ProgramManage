@@ -19,13 +19,15 @@
 
 人工智能管理是组织通过系统化方法规划、开发、部署和维护AI系统，实现智能化转型和价值创造的管理活动。本模型提供AI管理的形式化理论基础和实践应用框架。
 
+**本模块依赖 (Prerequisites)**：建议先掌握 CML [2.1 生命周期](../../02-project-management/lifecycle-models.md)、[2.3 风险](../../02-project-management/risk-models.md)、[2.4 质量](../../02-project-management/quality-models.md)；PMBOK 8 与 ISO 21520 见 [PMBOK_8_ALIGNMENT_PLAN.md](../../PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT.md](../../STANDARDS_ALIGNMENT.md)。详见 [01-learning-prerequisites.md](../../12-learning-support/01-learning-prerequisites.md)。
+
 **主题定位**: 应用层（AL），Formal-ProgramManage 在 AI 项目管理中的应用。
 
 **主要内容**: AI 系统 (M,D,P,E)、规划（需求、技术选型、资源）、开发（数据、训练、验证）、部署（策略、监控、维护）、治理（伦理、风险、合规）。
 
 **学习目标**: 理解 AI 项目的形式化定义；掌握需求优先级、数据质量、技术匹配度、训练收敛性、监控覆盖率等模型；能用于 AI 全生命周期项目管理。
 
-**标准对标**: PMI PMBOK 7th; ISO 21500; ISO/IEC 23053 (AI/ML); Russell & Norvig, Goodfellow et al.
+**标准对标**: PMI PMBOK 7th/8th（8th 扩展 AI 在项目管理中的应用，见 [PMBOK_8_ALIGNMENT_PLAN.md](../../PMBOK_8_ALIGNMENT_PLAN.md)）；ISO 21500:2021、ISO 21502:2020；ISO/CD 21520（AI in P3M，制定中，见 [STANDARDS_ALIGNMENT.md](../../STANDARDS_ALIGNMENT.md)）；ISO/IEC 23053 (AI/ML)；Russell & Norvig, Goodfellow et al.
 
 **知识体系层次结构**:
 
@@ -768,6 +770,26 @@ impl AIOperations {
 ## 8. Applications / 应用
 
 企业 AI 转型、AI 平台建设、智能运营、AI 治理与伦理、AI 与各行业融合（见 4.5.1.6 及 cross-domain）。
+
+---
+
+## 与 ISO 21520 对齐
+
+**ISO/CD 21520**（*Project, programme and portfolio management — Artificial intelligence — Concepts, applications, and implications*）是 ISO/TC 258 正在制定的标准，针对项目、项目群与项目组合管理中的 AI 概念、应用与影响。本项目 AI 管理模型与该标准对齐如下（标准状态与引用见 [STANDARDS_ALIGNMENT.md](../../STANDARDS_ALIGNMENT.md)）：
+
+| ISO 21520 关注领域 | 本模型对应 | 说明 |
+|--------------------|------------|------|
+| AI 概念与定义 | 2. Definition（AI 系统 $AIS = (M,D,P,E)$、需求分析、技术选型等） | 形式化定义与标准概念一致 |
+| AI 应用（P3M） | 4.5.1.2–4.5.1.5（规划、开发、部署、治理） | 覆盖 AI 在项目/项目群/项目组合管理中的应用 |
+| 收益与风险 | 4.5.1.5.2 风险管理模型、7. Argumentation | 风险治理与监控 |
+| 治理框架 | 4.5.1.5 AI 治理模型（伦理、风险、合规） | 治理、透明度、问责 |
+| 伦理、安全、隐私、偏见 | 4.5.1.5.1 伦理治理模型、合规 | 伦理考量与数据治理 |
+| 数据治理 | 4.5.1.3.1 数据准备模型、治理模型 | 数据质量与治理 |
+| 实施范围与适用性 | 1. Overview、8. Applications | 适用于各类组织与项目规模 |
+
+**审查与更新**：ISO 21520 目前处于 CD 阶段（Committee Draft，2025 年 12 月进入 CD 咨询）；正式发布后，将更新本节及 [STANDARDS_ALIGNMENT.md](../../STANDARDS_ALIGNMENT.md) 中的标准状态与引用。
+
+**PMBOK 8 与 AI 管理**：PMBOK Guide 8th Edition (2025) 扩展了 AI 在项目管理中的应用及可持续性（Integrate Sustainability）；本模型与 8th 的对应关系见 [PMBOK_8_ALIGNMENT_PLAN.md](../../PMBOK_8_ALIGNMENT_PLAN.md) 及 [STANDARDS_ALIGNMENT.md](../../STANDARDS_ALIGNMENT.md)。AI 治理、伦理与数据治理与 ISO 21520 及 PMBOK 8 原则（如 Be an Accountable Leader、Embed Quality）一致。
 
 ---
 

@@ -65,6 +65,8 @@
 
 系统工程是处理复杂系统设计、开发、集成和管理的跨学科方法。本模型提供系统工程的形式化理论基础和实践应用框架。
 
+**本模块依赖 (Prerequisites)**：建议先掌握 CML [2.1 生命周期](../../02-project-management/lifecycle-models.md)、[2.2 资源](../../02-project-management/resource-models.md)、[2.4 质量](../../02-project-management/quality-models.md)；VL [3.1 验证理论](../../03-formal-verification/verification-theory.md)（验证规范）。详见 [01-learning-prerequisites.md](../../12-learning-support/01-learning-prerequisites.md)。
+
 **主题定位**: 本模型属于应用层（AL），是Formal-ProgramManage知识体系在系统工程领域的应用，为系统工程项目管理提供形式化模型。
 
 **主要内容**:
@@ -1209,14 +1211,9 @@ $$R(s) = \prod_{i=1}^{n} R_i^{w_i}$$
 **Version / 版本**: 2.0
 **Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节，并添加了实际项目案例）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../../../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 

@@ -97,7 +97,7 @@ docs/
 ### 3.2 外部引用格式
 
 - 学术论文：`Author, A. (Year). Title. Journal, Volume(Issue), Pages.`
-- 标准文档：`ISO 21500:2012. Title. Organization.`
+- 标准文档：`ISO 21500:2021. Title. Organization.` 或 `ISO 21502:2020. Title. Organization.`（见 [STANDARDS_ALIGNMENT.md](./STANDARDS_ALIGNMENT.md)）
 - 书籍：`Author, A. (Year). Title. Publisher.`
 
 ### 3.3 参考文献格式
@@ -108,7 +108,7 @@ docs/
 ## 参考文献
 
 1. Author, A. (Year). Title. Journal, Volume(Issue), Pages.
-2. ISO 21500:2012. Title. Organization.
+2. ISO 21500:2021 或 ISO 21502:2020. Title. Organization.
 ```
 
 ## 4. 内容结构规范
@@ -125,6 +125,8 @@ docs/
 6. **相关链接**：内部引用
 7. **参考文献**：外部引用
 
+**直观/应用解释规范**：为降低认知负荷、支持应用优先阅读，建议每章（尤其 04-industry-applications 与长文档）包含 **§ 直观解释** 或 **§ 应用场景/应用解释** 至少其一；若已有 §6 Explanations，其中应含「直观解释」「应用解释」子节。后续审阅时逐步补全缺失章节。详见 [THREE_LAYER_EXPLANATIONS.md](./THREE_LAYER_EXPLANATIONS.md)、[LEARNING_PATHS.md](./LEARNING_PATHS.md) 应用优先路径。
+
 ### 4.2 章节内容要求
 
 - **概述**：每个主要章节必须有概述部分
@@ -132,6 +134,46 @@ docs/
 - **验证方法**：所有模型应包含验证方法
 - **实现示例**：提供代码实现示例（Rust/Haskell/Lean）
 - **国际标准对标**：标注对标的国际标准
+- **术语引用**：核心概念首次出现时应链接至 [GLOSSARY.md](./GLOSSARY.md) 或 [术语表（Glossary）](../templates_and_standards/术语表-Glossary.md)；季度审查时检查术语与各文档交叉引用一致性（见 [SUSTAINABLE_EXECUTION_PLAN.md](./SUSTAINABLE_EXECUTION_PLAN.md)）。
+
+### 4.3 五类链接模板（核心文档推荐）
+
+在核心文档开头或「相关链接」处，建议按需包含以下五类链接，便于依赖与导航（详见 [LEARNING_PATHS.md](./LEARNING_PATHS.md)、[THREE_LAYER_EXPLANATIONS.md](./THREE_LAYER_EXPLANATIONS.md)）：
+
+```markdown
+**前置知识 (Prerequisites)**： [FL-1.1 形式化基础](./01-foundations/README.md)（必需）、[FL-1.2 数学模型](./01-foundations/mathematical-models.md)（推荐）。详见 [01-learning-prerequisites.md](./12-learning-support/01-learning-prerequisites.md)。
+
+**应用 (Application)**： [4.1 软件开发模型](./04-industry-applications/software-development/)、[4.2 工程管理](./04-industry-applications/engineering-management/)。
+
+**相关 (Related)**： [2.2 资源管理](./02-project-management/resource-models.md)、[2.3 风险管理](./02-project-management/risk-models.md)。
+
+**深化 (Deep Dive)**： Level 1 概念 → Level 2 定量模型 → Level 3 形式化验证（见各章内锚点）。
+
+**对比 (Comparison)**： [PMBOK 8th 对标](./PMBOK_8_ALIGNMENT_PLAN.md)、[STANDARDS_ALIGNMENT.md](./STANDARDS_ALIGNMENT.md)。
+```
+
+### 4.4 认知分块规范（Cognitive Chunking）
+
+为控制认知负荷、符合工作记忆限制（约 5–7 个组块），建议：
+
+- **一级标题下**：子概念或子节数量以 **5–7 个** 为佳。
+- **每个概念下**：要点或子点以 **3–5 个** 为佳。
+- **三级及以下**：以具体实例、步骤或细节为主，避免单节过长。
+
+详见 [12-learning-support/README.md](./12-learning-support/README.md) 与 [LEARNING_PATHS.md](./LEARNING_PATHS.md)。
+
+### 4.5 概念卡片（Concept Card）模板
+
+为支持图式构建与快速检索，核心概念可采用「概念卡片」统一结构（What/How/When），并链到 [GLOSSARY.md](./GLOSSARY.md) 与 [THREE_LAYER_EXPLANATIONS.md](./THREE_LAYER_EXPLANATIONS.md)：
+
+| 区块 | 内容 |
+|------|------|
+| **What（是什么）** | 一句话定义；3–5 个关键要素；可选图示或类比 |
+| **How（怎么做/如何用）** | 应用步骤或判定方法；可链到具体章节与工具 |
+| **When（何时用）** | 适用场景；与相似概念的区分（可链到交错学习路径） |
+| **形式化/延伸** | 链到正式定义（定义 X.Y.Z）、[THREE_LAYER_EXPLANATIONS](./THREE_LAYER_EXPLANATIONS.md)、术语表 |
+
+示例：见 [THREE_LAYER_EXPLANATIONS.md](./THREE_LAYER_EXPLANATIONS.md) 中各概念的一句话/段落/形式化三层及 [12-learning-support/README.md](./12-learning-support/README.md) 学习进度自查表。
 
 ## 5. 思维导图规范
 

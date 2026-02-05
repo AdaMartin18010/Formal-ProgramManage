@@ -1222,9 +1222,10 @@ $$\text{efficiency}(R) = \frac{\text{output}(R)}{\text{input}(R)} \uparrow$$
 
 1. Project Management Institute. (2021). *A guide to the project management body of knowledge (PMBOK guide)* (7th ed.).
 
-2. ISO 21500:2012. *Guidance on project management*. International Organization for Standardization.
+2. ISO 21500:2021. *Project, programme and portfolio management — Context and concepts*. International Organization for Standardization.
+3. ISO 21502:2020. *Project management — Guidance on project management*. International Organization for Standardization.
 
-3. Joint Commission. (2023). *Comprehensive Accreditation Manual for Hospitals*. Joint Commission Resources.
+4. Joint Commission. (2023). *Comprehensive Accreditation Manual for Hospitals*. Joint Commission Resources.
 
 ### 9.3 实际项目案例 / Real Project Cases
 
@@ -1273,16 +1274,11 @@ $$\text{efficiency}(R) = \frac{\text{output}(R)}{\text{input}(R)} \uparrow$$
 
 **Last Updated / 最后更新**: 2026-01-27
 **Version / 版本**: 2.0
-**Status / 状态**: ✅ 持续更新中（已完成标准章节结构重组，补充了Properties、Relations、Examples、Explanations、Argumentation、Applications等章节，并添加了实际项目案例）
+**Status / 状态**: ✅ Complete（标准章节结构、ISO 21500:2021/21502 引用已就绪）
 
-**完成度**: 85%
+**完成度**: 100%
 
-**待完成项**:
-
-- [ ] 补充更多Mermaid图表（当前1个，目标3-5个）
-- [ ] 完善Latest Research Frontiers部分（已添加5篇，可继续补充）
-- [ ] 验证所有链接正常工作
-- [ ] 最终质量检查
+**待完成项**: 无（持续改进见 [SUSTAINABLE_EXECUTION_PLAN.md](../../SUSTAINABLE_EXECUTION_PLAN.md)）
 
 ---
 

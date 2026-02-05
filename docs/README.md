@@ -257,18 +257,63 @@ graph TD
 
 ## 国际标准对标
 
-### 学术标准
+### 大学课程对标表（形式化方法与本项目模块映射）
+
+下表按两条线组织：**形式化方法**（与 [03-formal-verification](./03-formal-verification/) 对应）与**项目管理**（与 [02-project-management](./02-project-management/)、[04-industry-applications](./04-industry-applications/) 对应）。课程以 2024–2025 学年为参考，便于读者按课程反查文档。**年度审查**：建议每年 9 月核对各校课程页面，更新学年与工具（如 Lean 4、NuSMV 版本）；详见 [SUSTAINABLE_EXECUTION_PLAN.md](./SUSTAINABLE_EXECUTION_PLAN.md) 审查与更新节。
+
+#### 形式化方法线（Formal Methods）
+
+| 学校 | 课程编号/名称 | 与本项目模块对应 | 说明与工具 |
+|------|----------------|------------------|------------|
+| **Stanford** | CS 357S — Formal Methods for Computer Systems | [VL](./03-formal-verification/)、[FL](./01-foundations/README.md) | SAT/SMT、模型检验、符号执行、定理证明、Fuzzing（研究讨论课） |
+| **Stanford** | CS 256 — Formal Methods for Reactive Systems | [FL-1.1](./01-foundations/README.md)、[VL 模型检验](./03-formal-verification/model-checking.md) | LTL/CTL、演绎推理、模型检验、反应式系统；本项目不单独设反应式系统章节，状态转换与 LTL/CTL 见 FL/VL |
+| **Stanford** | CS 357 — Advanced Topics in Formal Methods | [VL 定理证明](./03-formal-verification/theorem-proving.md)、SMT | SAT/SMT 理论与实现；**Lean** 等交互式证明器 |
+| **CMU** | 15-414 — Bug Catching: Automated Program Verification | [VL](./03-formal-verification/verification-theory.md)、FL 规范与语义 | **Why3**、形式语义、判定过程；对标见 [verification-theory.md](./03-formal-verification/verification-theory.md) |
+| **CMU** | 15-311 / 15311 — Logic and Mechanized Reasoning (Spring 2024+) | [VL](./03-formal-verification/)、[theorem-proving](./03-formal-verification/theorem-proving.md) | 命题/一阶逻辑、SAT/SMT、**Lean** 交互式定理证明 |
+| **Oxford** | Computer-Aided Formal Verification (2024–2025) | [VL 模型检验](./03-formal-verification/model-checking.md) | LTL/CTL/CTL*、符号/有界模型检验、符号执行；工具：**NuSMV**、**SPIN** 等 |
+| **Oxford** | Probabilistic Model Checking (2024–2025) | [VL 模型检验](./03-formal-verification/model-checking.md) | 马尔可夫链、MDP、概率时序逻辑、**PRISM**；与确定性模型检验互补，年度审查时可核对课程页面 |
+| **Cambridge** | Hoare Logic and Model Checking (Part II, 2024–25) | [theorem-proving](./03-formal-verification/theorem-proving.md)、[model-checking](./03-formal-verification/model-checking.md) | Hoare 逻辑、模型检验 |
+| **ETH Zurich** | Program Verification | [VL](./03-formal-verification/)、实现层 | **SMT**（如 Z3）、**Viper**、堆与并发推理 |
+| **Edinburgh** | Formal Verification (FV) | [VL](./03-formal-verification/)、工具实践 | 自动化验证技术、工业工具 |
+
+#### 数学与算法基础（FL 支撑）
+
+| 学校 | 课程 | 与本项目模块对应 | 说明 |
+|------|------|------------------|------|
+| **MIT** | 6.006 — 算法导论 | [FL 数学模型](./01-foundations/mathematical-models.md) | 算法基础 |
+| **Stanford** | CS228 — 概率图模型 | FL-1.2（MDP/概率） | 概率与图模型 |
+| **CMU** | 15-150 — 函数式编程 | FL 实现规范、语义 | 函数式基础 |
+| **Berkeley** | CS70 — 离散数学 | FL 集合论与逻辑 | 离散结构 |
+
+#### 项目管理线（Project Management）
+
+| 学校 | 课程 | 与本项目模块对应 | 说明 |
+|------|------|------------------|------|
+| **MIT** | ESD.36 — System Project Management | [02-project-management](./02-project-management/)、[13-complexity-systems](./13-complexity-systems/) | CPM、PERT、设计结构矩阵（DSM）、系统动力学、风险管理 |
+| **CMU** | 17-632 — Software Project Management (Spring 2025) | [04-industry-applications/software-development](./04-industry-applications/software-development/) | WBS、估算、关键路径、混合敏捷 |
+
+#### 形式化验证工具链（与 VL 文档对应）
+
+| 工具 | 用途 | 本项目参考 |
+|------|------|------------|
+| **NuSMV** | 符号模型检验、LTL/CTL | [model-checking.md](./03-formal-verification/model-checking.md) |
+| **SPIN** | 模型检验、Promela | [model-checking.md](./03-formal-verification/model-checking.md) |
+| **Why3** | 演绎验证、VC 生成 | [verification-theory.md](./03-formal-verification/verification-theory.md)（对标 CMU 15-414） |
+| **Viper** | 堆与并发验证 | 验证理论/实现层可扩展 |
+| **Coq / Lean** | 定理证明 | [theorem-proving.md](./03-formal-verification/theorem-proving.md)、[05-implementations/lean-examples.md](./05-implementations/lean-examples.md) |
+
+### 学术标准（补充）
 
 - **MIT**: 6.006 (算法导论), 18.06 (线性代数), 6.042 (离散数学)
-- **Stanford**: CS228 (概率图模型), CS229 (机器学习), CS242 (编程语言)
-- **CMU**: 15-150 (函数式编程), 15-251 (计算理论), 15-312 (编程语言基础)
+- **Stanford**: CS228 (概率图模型), CS229 (机器学习), CS242 (编程语言), **CS 256/357S/357 (形式化方法)**
+- **CMU**: 15-150 (函数式编程), 15-251 (计算理论), 15-312 (编程语言基础), **15-414 (自动程序验证)**
 - **Berkeley**: CS70 (离散数学), CS170 (算法), CS188 (人工智能)
 
 ### 行业标准
 
-- **ISO**: 21500 (项目管理), 25010 (软件质量), 15504 (过程评估)
+- **ISO**: 21500:2021（项目/项目群/项目组合背景与概念）, 21502:2020（项目管理指导）, 25010 (软件质量), 15504 (过程评估)。版本与采用说明见 [STANDARDS_ALIGNMENT.md](./STANDARDS_ALIGNMENT.md)。
 - **IEEE**: 830 (需求规格), 754 (浮点数), 1012 (验证与确认)
-- **PMI**: PMBOK 7th Edition, Agile Practice Guide
+- **PMI**: PMBOK 7th Edition（主参考）, PMBOK 8th（2025年11月发布，待同步）, Agile Practice Guide
 - **Scrum Alliance**: Scrum Guide 2020, CSM/CSPO认证标准
 - **SAFe**: Scaled Agile Framework 6.0
 
@@ -374,7 +419,11 @@ graph TD
 
 ## 结构梳理与知识体系
 
-- [结构梳理指南](./STRUCTURE_GUIDE.md) - 完整的编号系统、目录结构、引用规范等
+- [结构梳理指南](./STRUCTURE_GUIDE.md) - 完整的编号系统、目录结构、引用规范、五类链接模板与认知分块规范
+- [学习路径](./LEARNING_PATHS.md) - 入门/进阶/专家三条轨道；先备知识与难度见 [12-learning-support](./12-learning-support/)
+- [PMBOK 8 对齐计划](./PMBOK_8_ALIGNMENT_PLAN.md) - PMBOK 8th 与 CML 映射；标准版本见 [STANDARDS_ALIGNMENT.md](./STANDARDS_ALIGNMENT.md)
+- [主题分析与改进方案摘要](./THEME_ANALYSIS_AND_IMPROVEMENT_SUMMARY.md) - 权威对齐、认知与学习、链接/补充、可持续任务执行摘要
+- [案例库](./case-library/README.md) - 案例写作规范与样板
 - [概念知识图谱](./KNOWLEDGE_GRAPH.md) - 完整的概念关系网络和知识体系
 - [批量编号修复指南](./BATCH_NUMBERING_GUIDE.md) - 批量修复内部编号的详细指南和脚本模板
 - [编号修复完成总结](./NUMBERING_COMPLETION_SUMMARY.md) - ✅ 所有25个文件的内部编号修复已完成
